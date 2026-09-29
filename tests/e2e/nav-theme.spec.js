@@ -103,6 +103,17 @@ test.describe('US4 — theme toggle (FR-030, FR-031, SC-008)', () => {
     await expect(toggle(page)).toHaveAttribute('aria-pressed', 'true');
   });
 
+  test('shows only the icon for the theme the toggle switches to', async ({ page }) => {
+    await page.goto('/');
+    const moon = toggle(page).locator('.theme-toggle__icon--moon');
+    const sun = toggle(page).locator('.theme-toggle__icon--sun');
+    await expect(moon).toBeVisible();
+    await expect(sun).toBeHidden();
+    await toggle(page).click();
+    await expect(sun).toBeVisible();
+    await expect(moon).toBeHidden();
+  });
+
   test('theme-color metas follow the chosen theme', async ({ page }) => {
     await page.goto('/');
     await toggle(page).click();

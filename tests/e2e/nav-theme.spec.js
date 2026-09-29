@@ -1,5 +1,5 @@
 import { test, expect } from '../helpers/fixtures.js';
-import { isObscuredByHeader, TAB_REACHES_LINKS } from '../helpers/page-utils.js';
+import { isObscuredByHeader, layoutShiftScore, TAB_REACHES_LINKS } from '../helpers/page-utils.js';
 
 const DARK_BG = 'rgb(27, 19, 16)';
 const LIGHT_BG = 'rgb(251, 246, 238)';
@@ -204,5 +204,70 @@ test.describe('US4 — mobile menu (FR-023, FR-025)', () => {
     await page.setViewportSize({ width: 1024, height: 800 });
     await page.goto('/');
     await expect(page.locator('.nav__toggle')).toBeHidden();
+  });
+});
+
+test.describe('US4 — current section and smooth scrolling (FR-024, FR-026)', () => {
+  test('exactly one nav link marks the section in view; none in the hero', async ({ page }) => {
+    await page.goto('/');
+    await expect(page.locator('.nav__link[aria-current="true"]')).toHaveCount(0);
+    for (const id of ['about', 'experience', 'projects', 'contact']) {
+      await page.locator(`#${id}`).evaluate((el) => el.scrollIntoView({ behavior: 'instant' }));
+      const current = page.locator('.nav__link[aria-current="true"]');
+      await expect(current).toHaveCount(1);
+      await expect(current).toHaveAttribute('href', `#${id}`);
+    }
+  });
+
+  for (const [reducedMotion, expected] of [
+    ['no-preference', 'smooth'],
+    ['reduce', 'auto'],
+  ]) {
+    test(`scroll-behavior is ${expected} with reducedMotion=${reducedMotion}`, async ({ page }) => {
+      await page.emulateMedia({ reducedMotion });
+      await page.goto('/');
+      const behavior = await page.evaluate(
+        () => getComputedStyle(document.documentElement).scrollBehavior,
+      );
+      expect(behavior).toBe(expected);
+    });
+  }
+});
+
+test.describe('US4 — navigation survives a failed script (constitution IV)', () => {
+  test.use({
+    viewport: { width: 375, height: 667 },
+    expectedProblems: /main.js|Failed to load resource|ERR_FAILED/i,
+  });
+
+  test('the Menu link still opens the menu via #nav-menu', async ({ page }) => {
+    await page.route(/\/js\/main\.js/, (route) => route.abort());
+    await page.goto('/');
+    const menu = page.locator('a.nav__toggle');
+    await expect(menu).toBeVisible();
+    await expect(page.locator('.nav__link').first()).toBeHidden();
+    await menu.click();
+    for (const link of await page.locator('.nav__link').all()) {
+      await expect(link).toBeVisible();
+    }
+    await page.locator('.nav__link', { hasText: 'Projects' }).click();
+    await expect(page).toHaveURL(/#projects$/);
+    await expect(page.locator('.nav__link').first()).toBeHidden();
+  });
+});
+
+test.describe('US4 — no layout shift when the menu enhances (CLS)', () => {
+  test.use({ viewport: { width: 375, height: 667 } });
+
+  test('the bar is compact before and after nav.js runs', async ({ page, browserName }) => {
+    test.skip(browserName !== 'chromium', 'Layout Instability API is Chromium-only');
+    // Delay the module graph so enhancement certainly happens after first paint.
+    await page.route(/\/js\/main\.js/, async (route) => {
+      await new Promise((resolve) => setTimeout(resolve, 600));
+      await route.continue();
+    });
+    await page.goto('/');
+    await expect(page.locator('button.nav__toggle')).toBeVisible();
+    expect(await layoutShiftScore(page)).toBeLessThanOrEqual(0.05);
   });
 });

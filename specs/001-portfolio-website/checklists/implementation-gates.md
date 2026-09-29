@@ -87,13 +87,24 @@ Result values: PASS · FAIL · PENDING · N/A (with reason).
 
 | ID | Criterion | Result | Evidence | Date |
 |---|---|---|---|---|
-| V5.1 | Reveal e2e | PENDING | | |
-| V5.2 | Scroll-spy | PENDING | | |
-| V5.3 | Smooth scroll | PENDING | | |
-| V5.4 | One render-blocking stylesheet; `?v=` URLs; CSP on dist | PENDING | | |
-| V5.5 | Budgets + Lighthouse thresholds (SC-005) | PENDING | | |
-| V5.6 | 0 broken links (SC-010) | PENDING | | |
-| V5.7 | Share preview metadata + 1200×630 image | PENDING | | |
+| V5.1 | Reveal e2e | PASS | Below-fold entries pending (opacity 0) then visible ≤ 1s; reduced motion: no `data-reveal`; JS off: opacity 1; `/#projects` and End key: none pending; scroll CLS ≤ 0.05 (Chromium); 3 engines | 2026-09-29 |
+| V5.2 | Scroll-spy | PASS | Exactly one `aria-current="true"` per section, none in hero; 3 engines | 2026-09-29 |
+| V5.3 | Smooth scroll | PASS | `smooth` with motion, `auto` with reduced motion; deep links/nav keep headings below bar; no `focusin` guard needed (T087) | 2026-09-29 |
+| V5.4 | One render-blocking stylesheet; `?v=` URLs; CSP on dist | PASS | 1 bundled stylesheet (+ print); all 21 local URLs versioned incl. module imports and preloads; check-csp passes on src + dist | 2026-09-29 |
+| V5.5 | Budgets + Lighthouse thresholds (SC-005) | PASS (pending content for SEO) | Budgets: 12.6 KB HTML+CSS+JS, 5.7 KB JS, 13.8 KB total (gzip). Lighthouse mobile ×3: Perf 1.00, A11y 1.00, BP 1.00, LCP 1.1 s, CLS 0.001, TBT 0 ms. SEO 0.92 only because robots.txt Sitemap is a `CONTENT:` placeholder; with example URLs SEO passes and all assertions succeed | 2026-09-29 |
+| V5.6 | 0 broken links (SC-010) | PENDING (content) | Runs after T096 fills URLs | |
+| V5.7 | Share preview metadata + 1200×630 image | PASS | og-image.png 1200×630, 44.8 KB; apple-touch-icon + 32px PNG; OG URLs checked by check-site-url after content | 2026-09-29 |
+
+**Notes (Phase 5)**
+- Found and fixed a mobile CLS bug (0.29): the phone header was collapsed only after nav.js ran.
+  The menu now collapses from the pre-paint `js` class and ships as a `:target` link that
+  nav.js upgrades to a button (research R-12). Covered by two new tests (delayed and blocked
+  module).
+- CSP `connect-src` changed `'none'` → `'self'`: Lighthouse fetches robots.txt in-page (R-20).
+- Current-section style no longer changes font weight (width change shifted neighbouring links).
+- Axe runs with reduced motion so entries awaiting the fade-in (opacity 0, never seen) are not
+  reported as low contrast; reveal.spec verifies they always reach opacity 1.
+- Timeline hide is instant; only the reveal animates (`[data-reveal='visible']` transition).
 | V5.8 | 0 `CONTENT:` markers | PENDING | | |
 | V5.9 | CI verify → deploy wiring | PENDING | | |
 | V5.10 | Final SC table + manual gates | PENDING | | |

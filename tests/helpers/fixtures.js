@@ -5,8 +5,11 @@ import { test as base, expect } from '@playwright/test';
  * a console error/warning, threw an uncaught error, or reported a CSP violation.
  */
 export const test = base.extend({
+  // A RegExp matching problems a test deliberately provokes (e.g. a blocked script request).
+  expectedProblems: [null, { option: true }],
+
   pageProblems: [
-    async ({ page }, use) => {
+    async ({ page, expectedProblems }, use) => {
       const problems = [];
       page.on('console', (message) => {
         if (message.type() === 'error' || message.type() === 'warning') {
@@ -25,7 +28,10 @@ export const test = base.extend({
 
       const violations = await page.evaluate(() => window.__cspViolations ?? []).catch(() => []);
       problems.push(...violations.map((violation) => `csp: ${violation}`));
-      expect(problems, 'page reported console errors, page errors, or CSP violations').toEqual([]);
+      const unexpected = problems.filter((problem) => !expectedProblems?.test(problem));
+      expect(unexpected, 'page reported console errors, page errors, or CSP violations').toEqual(
+        [],
+      );
     },
     { auto: true },
   ],

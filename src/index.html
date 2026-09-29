@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta
       http-equiv="Content-Security-Policy"
-      content="default-src 'none'; script-src 'self' 'sha256-o5hwM8LuGJgme0+9SQU9LhpqrQNaCZwA1qLTm5oKRwE='; style-src 'self'; img-src 'self'; manifest-src 'self'; connect-src 'none'; base-uri 'self'; form-action 'none'"
+      content="default-src 'none'; script-src 'self' 'sha256-o5hwM8LuGJgme0+9SQU9LhpqrQNaCZwA1qLTm5oKRwE='; style-src 'self'; img-src 'self'; manifest-src 'self'; connect-src 'self'; base-uri 'self'; form-action 'none'"
     />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
     <title>Aseel Almanahy — Full Stack Software Engineer</title>
@@ -27,6 +27,8 @@
     <link rel="modulepreload" href="js/theme.js" />
     <link rel="modulepreload" href="js/nav.js" />
     <link rel="modulepreload" href="js/copy-email.js" />
+    <link rel="modulepreload" href="js/reveal.js" />
+    <link rel="modulepreload" href="js/scroll-spy.js" />
     <script type="module" src="js/main.js"></script>
     <meta
       name="description"
@@ -52,6 +54,8 @@
     <meta name="theme-color" content="#FBF6EE" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#1B1310" media="(prefers-color-scheme: dark)" />
     <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -81,18 +85,12 @@
       <div class="container site-header__inner">
         <a class="site-header__brand" href="#home">Aseel Almanahy</a>
         <nav class="nav" aria-label="Primary">
-          <button
-            class="nav__toggle"
-            type="button"
-            hidden
-            aria-expanded="false"
-            aria-controls="nav-menu"
-          >
+          <a class="nav__toggle" href="#nav-menu">
             <svg class="icon" aria-hidden="true" focusable="false">
               <use href="assets/icons.svg#menu"></use>
             </svg>
             <span>Menu</span>
-          </button>
+          </a>
           <ul id="nav-menu" class="nav__list">
             <li><a class="nav__link" href="#about">About</a></li>
             <li><a class="nav__link" href="#experience">Experience</a></li>

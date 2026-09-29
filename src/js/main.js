@@ -1,8 +1,10 @@
 import { initCopyEmail } from './copy-email.js';
 import { initNav } from './nav.js';
+import { initReveal } from './reveal.js';
+import { initScrollSpy } from './scroll-spy.js';
 import { initThemeToggle } from './theme.js';
 
-for (const init of [initThemeToggle, initNav, initCopyEmail]) {
+for (const init of [initThemeToggle, initNav, initCopyEmail, initReveal, initScrollSpy]) {
   try {
     init();
   } catch {

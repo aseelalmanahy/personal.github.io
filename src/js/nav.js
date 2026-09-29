@@ -19,13 +19,34 @@ function focusTarget(doc, hash) {
 }
 
 /**
+ * Replaces the no-JS "Menu" link (#nav-menu, opened by :target) with an identically styled
+ * disclosure button, moving its children so the box does not change size (no layout shift).
+ */
+function upgradeToggle(doc, link) {
+  const view = doc.defaultView;
+  const button = doc.createElement('button');
+  button.type = 'button';
+  button.className = link.className;
+  button.setAttribute('aria-controls', link.hash.slice(1));
+  button.setAttribute('aria-expanded', String(view.location.hash === link.hash));
+  button.append(...link.childNodes);
+  link.replaceWith(button);
+  // The button now owns the open state; drop a #nav-menu hash so :target cannot override it.
+  if (view.location.hash === link.hash) {
+    view.history.replaceState(null, '', view.location.pathname + view.location.search);
+  }
+  return button;
+}
+
+/**
  * Wires the mobile menu disclosure and moves focus to the section a nav link points at
- * (FR-024, FR-025). The list only collapses once this reveals the Menu button (see CSS).
+ * (FR-024, FR-025).
  * @param {Document} [doc]
  */
 export function initNav(doc = globalThis.document) {
-  const toggle = doc.querySelector('.nav__toggle');
-  if (!toggle) return;
+  const menuLink = doc.querySelector('a.nav__toggle');
+  if (!menuLink) return;
+  const toggle = upgradeToggle(doc, menuLink);
   const view = doc.defaultView;
   const isOpen = () => toggle.getAttribute('aria-expanded') === 'true';
   const setOpen = (open) => toggle.setAttribute('aria-expanded', String(open));
@@ -45,5 +66,4 @@ export function initNav(doc = globalThis.document) {
       focusTarget(doc, link.hash);
     });
   }
-  toggle.hidden = false;
 }

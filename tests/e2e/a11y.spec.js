@@ -9,7 +9,9 @@ const THEMES = [
 
 test.describe('accessibility — axe WCAG 2.2 AA', () => {
   // axe's own injected style would trip the site's CSP; CSP is enforced by every other spec.
-  test.use({ bypassCSP: true });
+  // Reduced motion scans the page as visitors see it: entries waiting to fade in (opacity 0,
+  // never seen) would otherwise be reported as low contrast. reveal.spec covers the fade.
+  test.use({ bypassCSP: true, reducedMotion: 'reduce' });
 
   for (const path of ['/', '/404.html']) {
     for (const theme of THEMES) {

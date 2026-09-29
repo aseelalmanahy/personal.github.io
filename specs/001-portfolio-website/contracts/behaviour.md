@@ -7,7 +7,7 @@ Research references: R-02 – R-06, R-12 – R-17.
 
 | Attribute | Values | Set by | Consumed by |
 |---|---|---|---|
-| `class` | `no-js` (shipped) → `js` | inline bootstrap | CSS (menu collapse only applies under `.js`) |
+| `class` | `no-js` (shipped) → `js` | inline bootstrap | CSS: under `.js` the phone menu is collapsed from first paint (no layout shift); under `.no-js` links wrap in the bar and anchors get a larger scroll offset |
 | `data-theme` | absent \| `light` \| `dark` | bootstrap (saved value), `theme.js` (toggle) | `tokens.css` |
 | `data-theme-switching` | present for 300ms after a toggle | `theme.js` | `base.css` colour transitions |
 
@@ -29,7 +29,7 @@ No cookies, no network requests, no other storage.
 | Element | Hook | States / attributes managed |
 |---|---|---|
 | Theme toggle | `button.theme-toggle` | `hidden` removed on init; `aria-pressed` = effective theme is dark |
-| Menu button | `button.nav__toggle` | `hidden` removed on init; `aria-expanded`; controls `#nav-menu` |
+| Menu control | `a.nav__toggle[href="#nav-menu"]` → `button.nav__toggle` | Ships as a link (opens via `:target` if the module fails); `nav.js` replaces it with a button carrying `aria-expanded` and `aria-controls="nav-menu"`, clearing a `#nav-menu` hash |
 | Nav links | `.nav__list a` | `aria-current="true"` on the active section's link |
 | Copy button | `[data-js="copy-email"]` | `hidden` removed when Clipboard API exists |
 | Copy status | `[data-js="copy-email-status"]` (`role="status"`) | text: "", "Copied!", or "Couldn't copy — please select the address above" |

@@ -93,4 +93,20 @@
       border-color var(--duration-ui) var(--ease-out),
       box-shadow var(--duration-ui) var(--ease-out);
   }
+
+  /* Set only by reveal.js, which also guarantees the entry is revealed again (R-16). Hiding
+     is instant; only the way in animates. Opacity and transform never move layout (no CLS). */
+  .timeline__entry[data-reveal='pending'] {
+    opacity: 0;
+    transform: translateY(1rem);
+  }
+
+  .timeline__entry[data-reveal='visible'] {
+    transition:
+      background-color var(--duration-ui) var(--ease-out),
+      border-color var(--duration-ui) var(--ease-out),
+      box-shadow var(--duration-ui) var(--ease-out),
+      opacity var(--duration-reveal) var(--ease-out),
+      transform var(--duration-reveal) var(--ease-out);
+  }
 }

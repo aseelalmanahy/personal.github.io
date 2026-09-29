@@ -4,14 +4,14 @@ html {
   scroll-padding-top: calc(var(--nav-height) + var(--space-4));
 }
 
-/* Until nav.js reveals the Menu button (no scripting, or it failed), the phone header shows
-   every link and wraps to about three rows, so anchors need a larger offset (FR-023a). */
-html:has(.nav__toggle[hidden]) {
+/* Without scripting the phone header shows every link and wraps to about three rows, so
+   anchors need a larger offset (FR-023a). `no-js` stays on <html> only when scripts never run. */
+.no-js {
   scroll-padding-top: calc(3 * var(--nav-height) + var(--space-4));
 }
 
 @media (min-width: 48em) {
-  html:has(.nav__toggle[hidden]) {
+  .no-js {
     scroll-padding-top: calc(var(--nav-height) + var(--space-4));
   }
 }

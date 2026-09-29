@@ -25,8 +25,10 @@
   align-items: center;
 }
 
+/* Ships as a link to #nav-menu (works via :target if the module fails); nav.js swaps in an
+   identically styled <button aria-expanded>. Only shown when scripting runs (.js). */
 .nav__toggle {
-  display: inline-flex;
+  display: none;
   gap: var(--space-2);
   align-items: center;
   justify-content: center;
@@ -37,7 +39,9 @@
   border-radius: var(--radius-pill);
   background-color: var(--color-surface);
   color: var(--color-text);
+  font: inherit;
   font-weight: 600;
+  text-decoration: none;
   cursor: pointer;
 }
 
@@ -64,19 +68,36 @@
   text-decoration: underline;
 }
 
+/* Current section (FR-026): styled from the ARIA state, so what is seen and announced agree.
+   No font-weight change — a wider bold label would shift the neighbouring links (CLS). */
+.nav__link[aria-current='true'] {
+  text-decoration: underline;
+  text-decoration-color: var(--color-accent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.35em;
+}
+
 /*
- * The list collapses only once nav.js has revealed the Menu button, so navigation can never
- * disappear if scripting is off or fails (research R-12).
+ * Phones with scripting: the bar is compact from the first paint (the `js` class is set before
+ * paint), so enhancing the menu never shifts the page (CLS). The menu opens via the enhanced
+ * button (aria-expanded) or, if the module failed, via :target on #nav-menu. Without
+ * scripting (`no-js`) none of this applies and the links simply wrap in the bar (R-12).
  */
-.nav__toggle:not([hidden])[aria-expanded='false'] + .nav__list {
+.js .nav__toggle {
+  display: inline-flex;
+}
+
+.js .nav__list {
   display: none;
 }
 
-.nav__toggle:not([hidden])[aria-expanded='true'] + .nav__list {
+.js .nav__list:target,
+.js .nav__toggle[aria-expanded='true'] + .nav__list {
   position: absolute;
   top: 100%;
   right: 0;
   left: 0;
+  display: flex;
   flex-direction: column;
   padding: var(--space-2) var(--gutter) var(--space-4);
   border-bottom: 1px solid var(--color-border);
@@ -84,16 +105,19 @@
   box-shadow: var(--shadow-md);
 }
 
-.nav__toggle:not([hidden])[aria-expanded='true'] + .nav__list .nav__link {
+.js .nav__list:target .nav__link,
+.js .nav__toggle[aria-expanded='true'] + .nav__list .nav__link {
   width: 100%;
 }
 
 @media (min-width: 48em) {
-  .nav__toggle {
+  .js .nav__toggle {
     display: none;
   }
 
-  .nav__toggle:not([hidden])[aria-expanded] + .nav__list {
+  .js .nav__list,
+  .js .nav__list:target,
+  .js .nav__toggle[aria-expanded] + .nav__list {
     position: static;
     display: flex;
     flex-direction: row;
@@ -103,7 +127,8 @@
     box-shadow: none;
   }
 
-  .nav__toggle:not([hidden])[aria-expanded] + .nav__list .nav__link {
+  .js .nav__list:target .nav__link,
+  .js .nav__toggle[aria-expanded] + .nav__list .nav__link {
     width: auto;
   }
 }

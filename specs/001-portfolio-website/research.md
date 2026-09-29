@@ -202,13 +202,22 @@ was open in the plan's Technical Context is resolved here.
 - **Decision**: `<header>` fixed to the top (`position: sticky; top: 0` on the header inside
   the document flow) with height token `--nav-height: 3.5rem` (56px). Content: brand link
   "Aseel Almanahy" → `#home`, `<nav aria-label="Primary">` with links About, Experience,
-  Projects, Contact, and the theme toggle. Below `48em`, JS reveals a "Menu" disclosure button
-  (`aria-expanded`, `aria-controls`) and collapses the list; Escape closes it and returns focus
-  to the button; choosing a link closes it. With scripting unavailable, the list is simply shown
-  and wraps within the header (the bar may grow to two rows — acceptable degradation, since all
-  links remain available).
+  Projects, Contact, and the theme toggle. Below `48em`, when scripting runs (`html.js`, set
+  by the head bootstrap before first paint), the list is collapsed from the first paint and a
+  "Menu" control is shown. It ships as `<a class="nav__toggle" href="#nav-menu">`, which opens
+  the list through `:target` even if the module fails; `nav.js` replaces it with an identically
+  styled `<button aria-expanded aria-controls="nav-menu">` (moving the same child nodes, so no
+  layout shift). Escape closes it and returns focus to the button; choosing a link closes it.
+  With scripting unavailable (`html.no-js`), the Menu control is not shown and the list wraps
+  within the header (spec Edge Cases → "Scripting unavailable"), with a larger
+  `scroll-padding-top` so anchors clear the taller bar.
 - **Rationale**: Disclosure pattern is the simplest accessible mobile menu; sticky positioning
-  avoids a hard-coded body offset and never overlaps content in flow.
+  avoids a hard-coded body offset and never overlaps content in flow. *Changed during
+  implementation*: the first design collapsed the list only after `nav.js` revealed a hidden
+  button, which let the page paint with a three-row header and then jump up ~76px on phones
+  (CLS 0.29 when the module ran after first paint). Collapsing on the pre-paint `js` class
+  removes the shift, and the `:target` fallback keeps navigation working if the module fails
+  (constitution IV).
 - **Alternatives considered**: `<details>/<summary>` menu (works without JS but cannot be forced
   open on desktop without non-uniform `::details-content` support); off-canvas drawer (more
   code, focus-trap complexity).
@@ -309,14 +318,17 @@ was open in the plan's Technical Context is resolved here.
 
 - **Decision**: `<meta http-equiv="Content-Security-Policy">` with
   `default-src 'none'; script-src 'self' 'sha256-<theme-bootstrap>'; style-src 'self';
-  img-src 'self'; manifest-src 'self'; connect-src 'none'; base-uri 'self';
+  img-src 'self'; manifest-src 'self'; connect-src 'self'; base-uri 'self';
   form-action 'none'` (no `upgrade-insecure-requests`: it would rewrite local `http://localhost`
   asset requests during development and tests, and GitHub Pages already enforces HTTPS), and
   `<meta name="referrer" content="strict-origin-when-cross-origin">`. External links use
   `rel="noopener noreferrer"`. HTTPS enforced in repository Pages settings.
 - **Rationale**: Strictest policy that still allows the page to work; blocks any accidental
   third-party request (enforces "no third-party requests" automatically). `frame-ancestors`
-  cannot be set via meta — accepted limitation of GitHub Pages.
+  cannot be set via meta — accepted limitation of GitHub Pages. `connect-src` is `'self'`
+  rather than `'none'` (changed during implementation): Lighthouse fetches `robots.txt` from
+  inside the page, and `'none'` made its SEO audit fail (0.92 < 0.95); same-origin fetches
+  still cannot reach third parties.
 - **Alternatives considered**: no CSP (violates Principle VII); `'unsafe-inline'` (defeats CSP).
 
 ## R-21 404 page under a project subpath

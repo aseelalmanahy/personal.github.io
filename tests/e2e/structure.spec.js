@@ -103,3 +103,29 @@ test.describe('page structure — contracts/page-structure.md', () => {
     await expect(page.locator('base[href]')).toHaveCount(1);
   });
 });
+
+test.describe('production build — dist/ (V5.4, V5.7)', () => {
+  test('one render-blocking stylesheet and versioned local asset URLs', async () => {
+    const { readFile } = await import('node:fs/promises');
+    const html = await readFile('dist/index.html', 'utf8');
+    const blocking = [...html.matchAll(/<link rel="stylesheet"[^>]*>/g)].filter(
+      ([tag]) => !tag.includes('media="print"'),
+    );
+    expect(blocking).toHaveLength(1);
+    const local = [...html.matchAll(/(?:href|src)="((?:css|js|assets)\/[^"]+)"/g)].map(
+      ([, url]) => url,
+    );
+    expect(local.length).toBeGreaterThan(5);
+    for (const url of local) expect(url, url).toMatch(/\?v=[0-9a-f]{8}/);
+  });
+
+  test('icon set and a 1200×630 share image', async ({ page }) => {
+    const { readFile } = await import('node:fs/promises');
+    await page.goto('/');
+    await expect(page.locator('link[rel="apple-touch-icon"]')).toHaveCount(1);
+    await expect(page.locator('link[rel="icon"][type="image/png"][sizes="32x32"]')).toHaveCount(1);
+    const png = await readFile('dist/assets/og-image.png');
+    expect([png.readUInt32BE(16), png.readUInt32BE(20)]).toEqual([1200, 630]);
+    expect(png.length).toBeLessThanOrEqual(100 * 1024);
+  });
+});

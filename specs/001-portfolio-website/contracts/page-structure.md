@@ -31,7 +31,8 @@ body
 ├── header.site-header                  sticky, height var(--nav-height) collapsed
 │   ├── a.site-header__brand[href="#home"]   "Aseel Almanahy"
 │   └── nav[aria-label="Primary"]
-│       ├── button.nav__toggle[hidden][aria-expanded][aria-controls="nav-menu"]  "Menu"
+│       ├── a.nav__toggle[href="#nav-menu"]  "Menu" (shown only under html.js below 48em;
+│       │                                       nav.js swaps it for button[aria-expanded])
 │       ├── ul#nav-menu.nav__list
 │       │   ├── a[href="#about"]       About
 │       │   ├── a[href="#experience"]  Experience

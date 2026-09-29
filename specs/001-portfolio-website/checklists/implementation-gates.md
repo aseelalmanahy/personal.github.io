@@ -54,15 +54,20 @@ Result values: PASS · FAIL · PENDING · N/A (with reason).
 
 | ID | Criterion | Result | Evidence | Date |
 |---|---|---|---|---|
-| V3.1 | SC-004 viewport matrix, both themes, 3 engines | PENDING | | |
-| V3.2 | 400% zoom / 200% font size | PENDING | | |
-| V3.3 | projects.spec | PENDING | | |
-| V3.4 | Timeline layout, labels, marker shapes, highlight parity | PENDING | | |
-| V3.5 | Nav height and layouts | PENDING | | |
-| V3.6 | FR-023a headings/focus never under the bar | PENDING | | |
-| V3.7 | axe at 375 & 1024, both themes | PENDING | | |
-| V3.8 | Print emulation | PENDING | | |
-| V3.9 | Manual screenshot matrix | PENDING | | |
+| V3.1 | SC-004 viewport matrix, both themes, 3 engines | PASS | 320/375/768/1024/1440/2560 × light/dark × 3 engines: no overflow | 2026-09-29 |
+| V3.2 | 400% zoom / 200% font size | PASS | 320px (= 1280px at 400%) passes; 320px + 200% root font passes after `minmax(0,1fr)` grids and fluid card/button padding | 2026-09-29 |
+| V3.3 | projects.spec | PASS | Launch card, iff-invariant, 2560 width ≤ 28rem, 1 → ≥2 columns, link names include titles, missing demo omitted; 3 engines | 2026-09-29 |
+| V3.4 | Timeline layout, labels, marker shapes, highlight parity | PASS | Single column at 375/768/1440; circle vs diamond; hover = focus = tap (hasTouch) styles; 3 engines | 2026-09-29 |
+| V3.5 | Nav height and layouts | PARTIAL → Gate 4 | ≥768 inline links: PASS; JS-off 375 links visible: PASS. Collapsed ≤56px height needs nav.js (T075) to reveal the Menu button — verified in T068 | 2026-09-29 |
+| V3.6 | FR-023a headings/focus never under the bar | PASS | Deep links to 4 sections at 375 and 1440 in 3 engines; Tab walk (Chromium, Firefox) never obscured. Taller no-JS header handled by `html:has(.nav__toggle[hidden])` scroll-padding | 2026-09-29 |
+| V3.7 | axe at 375 & 1024, both themes | PASS | axe 0 across theme states; 44×44 target test now passes in 3 engines (V2.6 closed) | 2026-09-29 |
+| V3.8 | Print emulation | PASS | Controls hidden; background light for device-dark and saved-dark (H1 specificity fix verified) | 2026-09-29 |
+| V3.9 | Manual screenshot matrix | PASS | 12 full-page captures (6 widths × 2 themes) reviewed: single-column timeline with shaped markers, 2-col About ≥768, card-sized coming-soon card, no clipping | 2026-09-29 |
+
+**Notes (Phase 3)**
+- The menu collapses only when nav.js has revealed the Menu button
+  (`.nav__toggle:not([hidden])`), so navigation never disappears if scripting fails.
+- T061 needed no layout change: `.container` already centres at 2560px (verified by V3.1).
 
 ## Phase 4 — Vanilla JS Modules
 

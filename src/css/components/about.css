@@ -1,0 +1,58 @@
+.about__intro {
+  margin-bottom: var(--space-7);
+  font-size: var(--text-lg);
+}
+
+/* minmax(0, …) lets columns shrink below their longest word so long words wrap at 400% zoom. */
+.about__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-7);
+}
+
+@media (min-width: 48em) {
+  .about__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.about__heading {
+  margin-bottom: var(--space-4);
+}
+
+.education {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-4);
+}
+
+.education__item {
+  padding: var(--space-4) clamp(0.75rem, 4vw, 1.5rem);
+  border-left: 3px solid var(--color-accent-bg);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  background-color: var(--color-surface);
+  overflow-wrap: anywhere;
+}
+
+.education__school {
+  margin-top: var(--space-1);
+}
+
+.education__status {
+  margin-top: var(--space-1);
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+
+.skill-group + .skill-group {
+  margin-top: var(--space-5);
+}
+
+.skill-group__title {
+  margin-bottom: var(--space-3);
+  color: var(--color-text-muted);
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}

@@ -1,0 +1,38 @@
+.contact__intro {
+  margin-bottom: var(--space-5);
+  font-size: var(--text-lg);
+}
+
+.contact__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.contact__email {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-4);
+  align-items: center;
+  max-width: none;
+  margin-top: var(--space-6);
+}
+
+.contact__email-link {
+  display: inline-block;
+  max-width: 100%;
+  min-width: 0;
+  padding-block: 0.6rem;
+  font-size: var(--text-lg);
+  font-weight: 600;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+/* Own line with reserved height, so a status message never shifts the layout. */
+.copy-email__status {
+  flex-basis: 100%;
+  min-height: 1.6em;
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}

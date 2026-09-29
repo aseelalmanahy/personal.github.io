@@ -25,6 +25,22 @@
   align-items: center;
 }
 
+.nav__toggle {
+  display: inline-flex;
+  gap: var(--space-2);
+  align-items: center;
+  justify-content: center;
+  min-width: var(--tap-min);
+  min-height: var(--tap-min);
+  padding-inline: var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  font-weight: 600;
+  cursor: pointer;
+}
+
 .nav__list {
   display: flex;
   flex-wrap: wrap;
@@ -46,4 +62,48 @@
 .nav__link:hover {
   color: var(--color-accent);
   text-decoration: underline;
+}
+
+/*
+ * The list collapses only once nav.js has revealed the Menu button, so navigation can never
+ * disappear if scripting is off or fails (research R-12).
+ */
+.nav__toggle:not([hidden])[aria-expanded='false'] + .nav__list {
+  display: none;
+}
+
+.nav__toggle:not([hidden])[aria-expanded='true'] + .nav__list {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: 0;
+  flex-direction: column;
+  padding: var(--space-2) var(--gutter) var(--space-4);
+  border-bottom: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+  box-shadow: var(--shadow-md);
+}
+
+.nav__toggle:not([hidden])[aria-expanded='true'] + .nav__list .nav__link {
+  width: 100%;
+}
+
+@media (min-width: 48em) {
+  .nav__toggle {
+    display: none;
+  }
+
+  .nav__toggle:not([hidden])[aria-expanded] + .nav__list {
+    position: static;
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+    border-bottom: 0;
+    background-color: transparent;
+    box-shadow: none;
+  }
+
+  .nav__toggle:not([hidden])[aria-expanded] + .nav__list .nav__link {
+    width: auto;
+  }
 }

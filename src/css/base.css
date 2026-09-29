@@ -4,6 +4,18 @@ html {
   scroll-padding-top: calc(var(--nav-height) + var(--space-4));
 }
 
+/* Until nav.js reveals the Menu button (no scripting, or it failed), the phone header shows
+   every link and wraps to about three rows, so anchors need a larger offset (FR-023a). */
+html:has(.nav__toggle[hidden]) {
+  scroll-padding-top: calc(3 * var(--nav-height) + var(--space-4));
+}
+
+@media (min-width: 48em) {
+  html:has(.nav__toggle[hidden]) {
+    scroll-padding-top: calc(var(--nav-height) + var(--space-4));
+  }
+}
+
 body {
   background-color: var(--color-bg);
   color: var(--color-text);

@@ -1,0 +1,29 @@
+/* Layout and visibility only — print colours come from tokens.css (@media print). This file is
+   unlayered, so it overrides the layered component styles without !important. */
+.skip-link,
+.nav,
+.theme-toggle,
+.nav__toggle,
+[data-js='copy-email'] {
+  display: none;
+}
+
+.site-header {
+  position: static;
+}
+
+.hero {
+  background-image: none;
+}
+
+a[href^='http']::after {
+  content: ' (' attr(href) ')';
+  font-size: 0.85em;
+  font-weight: 400;
+}
+
+.timeline__entry,
+.project-card,
+.education__item {
+  break-inside: avoid;
+}

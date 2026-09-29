@@ -33,15 +33,22 @@ Result values: PASS · FAIL · PENDING · N/A (with reason).
 
 | ID | Criterion | Result | Evidence | Date |
 |---|---|---|---|---|
-| V2.1 | Stylelint 0; no colour literal outside tokens.css | PENDING | | |
-| V2.2 | axe 0 violations light + dark | PENDING | | |
-| V2.3 | contrast.test.js | PENDING | | |
-| V2.4 | SC-001 hero above the fold at 375×667 | PENDING | | |
-| V2.5 | No theme flash | PENDING | | |
-| V2.6 | Focus outlines ≥ 2px; targets ≥ 44×44 | PENDING | | |
-| V2.7 | No overflow at 320px | PENDING | | |
-| V2.8 | Load CLS ≤ 0.05 | PENDING | | |
-| V2.9 | Manual visual review (375, 1440, both themes) | PENDING | | |
+| V2.1 | Stylelint 0; no colour literal outside tokens.css | PASS | 0 errors in all authored CSS; only `no-empty-source` on 8 partials owned by later phases (about, tag, timeline, projects, project-card, contact, theme-toggle, print). Colour-literal rules enforced by config | 2026-09-29 |
+| V2.2 | axe 0 violations light + dark | PASS | 0 violations × {light device, dark device, saved dark} × {/, /404.html} × 3 engines (V1.8 target-size resolved) | 2026-09-29 |
+| V2.3 | contrast.test.js | PASS | 30/30: all R-09 pairs in both themes on bg + surface; dark blocks identical; print block = light values | 2026-09-29 |
+| V2.4 | SC-001 hero above the fold at 375×667 | PASS | 3 engines; bottom of Email button ≈ 480px at 375×667 (JS-off wrapped header) | 2026-09-29 |
+| V2.5 | No theme flash | PASS | Saved dark on light device: `data-theme="dark"` at DOMContentLoaded; device dark (no save) and JS-off dark both give `rgb(27, 19, 16)`; 3 engines | 2026-09-29 |
+| V2.6 | Focus outlines ≥ 2px; targets ≥ 44×44 | PARTIAL → Gate 3 | Outlines: PASS (Chromium, Firefox; WebKit skipped — no Tab to links). Targets: all pass except `.project-card__link` (235×24) and `.contact__email-link` (124×24), styled in Phase 3 (T059, T060) | 2026-09-29 |
+| V2.7 | No overflow at 320px | PASS | 3 engines | 2026-09-29 |
+| V2.8 | Load CLS ≤ 0.05 | PASS | Chromium (Layout Instability API is Chromium-only) | 2026-09-29 |
+| V2.9 | Manual visual review (375, 1440, both themes) | PASS | Screenshots reviewed: warm cream/amber (light) and espresso/amber (dark), minimal hero; hero gradient edge softened with an explicit ellipse size | 2026-09-29 |
+
+**Notes (Phase 2)**
+- axe runs with `preload: false` and `bypassCSP` (axe re-fetches stylesheets and injects a style
+  the strict CSP blocks); CSP enforcement stays covered by every other spec's fixture.
+- `body { overflow-wrap: break-word }` replaces `a, p, li { overflow-wrap: anywhere }` from T043:
+  it wraps long strings without shrinking flex/grid min-content sizes; the email link gets
+  `anywhere` in Phase 3 (T060).
 
 ## Phase 3 — Mobile-First Responsive Grid & Timeline Styles
 

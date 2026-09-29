@@ -65,11 +65,18 @@ export async function tabOrder(page, maxSteps) {
   return order;
 }
 
-/** Sum of layout-shift entries (excluding those after recent input) since navigation. */
+/**
+ * Sum of layout-shift entries (excluding those after recent input) since navigation, or `null`
+ * in engines without the Layout Instability API (only Chromium implements it).
+ */
 export async function layoutShiftScore(page) {
   return page.evaluate(
     () =>
       new Promise((resolve) => {
+        if (!PerformanceObserver.supportedEntryTypes.includes('layout-shift')) {
+          resolve(null);
+          return;
+        }
         let score = 0;
         new PerformanceObserver((list) => {
           for (const entry of list.getEntries()) {
@@ -81,10 +88,15 @@ export async function layoutShiftScore(page) {
   );
 }
 
-/** Runs axe with the WCAG 2.2 AA rule tags and returns the violations. */
+/**
+ * Runs axe with the WCAG 2.2 AA rule tags and returns the violations. `preload: false` stops axe
+ * re-fetching stylesheets itself (it mis-resolves `@import` paths); specs that call this must
+ * also use `bypassCSP`, because axe injects an inline style that the site's strict CSP blocks.
+ */
 export async function runAxe(page) {
   const results = await new AxeBuilder({ page })
     .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'])
+    .options({ preload: false })
     .analyze();
   return results.violations;
 }

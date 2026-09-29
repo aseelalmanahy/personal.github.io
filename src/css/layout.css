@@ -1,0 +1,29 @@
+.container {
+  width: min(100% - 2 * var(--gutter), var(--container-max));
+  margin-inline: auto;
+}
+
+main > section {
+  padding-block: var(--space-section);
+}
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-header);
+  border-bottom: 1px solid var(--color-border);
+  background-color: var(--color-surface);
+}
+
+.site-footer {
+  padding-block: var(--space-6);
+  border-top: 1px solid var(--color-border);
+}
+
+.not-found {
+  padding-block: var(--space-section);
+}
+
+.not-found__text {
+  margin-block: var(--space-4) var(--space-6);
+}

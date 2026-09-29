@@ -56,3 +56,21 @@ test.describe('US1 — hero and contact content', () => {
     expect(normalise(await link.textContent())).toBe(href.replace(/^mailto:/, ''));
   });
 });
+
+test.describe('US1 — hero above the fold (SC-001)', () => {
+  test.use({ viewport: { width: 375, height: 667 } });
+
+  test('greeting, statement, and three actions are visible without scrolling', async ({ page }) => {
+    await page.goto('/');
+    const targets = [
+      page.locator('h1'),
+      page.locator('.hero__statement'),
+      ...(await page.locator('.hero__actions a').all()),
+    ];
+    expect(targets).toHaveLength(5);
+    for (const target of targets) {
+      const box = await target.boundingBox();
+      expect(box.y + box.height, await target.textContent()).toBeLessThanOrEqual(667);
+    }
+  });
+});

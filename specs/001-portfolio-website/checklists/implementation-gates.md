@@ -113,37 +113,37 @@ Result values: PASS · FAIL · PENDING · N/A (with reason).
 
 | Gate | Rule | Result | Evidence |
 |---|---|---|---|
-| G1 | spec.md unchanged below header | PENDING | |
-| G2 | Everything traces to an FR/US | PENDING | |
-| G3 | Plain-language visitor text, no dev artefacts | PENDING | |
-| G4 | All sections complete | PENDING | |
-| G5 | No unresolved decisions; 0 `CONTENT:` at launch | PENDING | |
-| G6 | Each FR has a passing check | PENDING | |
-| G7 | SCs measured with numbers | PENDING | |
-| G8 | SCs verified in real browsers | PENDING | |
-| G9 | Acceptance scenarios automated | PENDING | |
-| G10 | Edge cases automated | PENDING | |
-| G11 | Scope bounded (no forms, résumé, 3rd-party) | PENDING | |
-| G12 | Deps justified; runtime deps zero | PENDING | |
-| G13 | FR rows ticked with evidence | PENDING | |
-| G14 | Primary flows demonstrable | PENDING | |
-| G15 | SC-001–SC-010 met | PENDING | |
-| G16 | No internal/implementation details leak onto the page | PENDING | |
+| G1 | spec.md unchanged below header | PASS | Only the Feature Branch header line changed (T001) |
+| G2 | Everything traces to an FR/US | PASS | All src files map to plan tasks/FRs; no untraced features |
+| G3 | Plain-language visitor text, no dev artefacts | PASS (pre-content) | grep TODO/FIXME/lorem/console.log = 0; `CONTENT:` placeholders visible until T096 |
+| G4 | All sections complete | PASS | structure.spec: five sections + 404 |
+| G5 | No unresolved decisions; 0 `CONTENT:` at launch | PENDING (content) | 32 markers, all tracked content inputs (T094–T096) |
+| G6 | Each FR has a passing check | PASS | 258 e2e + 52 unit tests; FR-015 privacy review is manual (T098) |
+| G7 | SCs measured with numbers | PASS | Budgets, Lighthouse, CLS, viewport matrix recorded above |
+| G8 | SCs verified in real browsers | PASS | Chromium, Firefox, WebKit |
+| G9 | Acceptance scenarios automated | PASS | US1–US4 scenarios in e2e specs |
+| G10 | Edge cases automated | PASS | No-JS, blocked storage, clipboard denied/absent, device change, 320/2560, 200% text, deep link, fast scroll, print, failed module |
+| G11 | Scope bounded (no forms, résumé, 3rd-party) | PASS | privacy-scope.spec; CSP `default-src 'none'`; no `dependencies` |
+| G12 | Deps justified; runtime deps zero | PASS | Dev deps per R-01 (+ none added); 10 npm-audit advisories are in dev-only tooling |
+| G13 | FR rows ticked with evidence | PASS | Phase tables above |
+| G14 | Primary flows demonstrable | PASS | US1–US4 demonstrable on the built site |
+| G15 | SC-001–SC-010 met | PENDING | See Success Criteria: SC-002, SC-009, SC-010 await owner/content; SC-006 manual part pending |
+| G16 | No internal/implementation details leak onto the page | PASS (automated) | No HTML comments shipped; timeline fields restricted; owner privacy review in T098 |
 
 ## Success Criteria
 
 | SC | Result | Evidence |
 |---|---|---|
-| SC-001 | PENDING | |
-| SC-002 | PENDING | Usability check (manual) |
-| SC-003 | PENDING | |
-| SC-004 | PENDING | |
-| SC-005 | PENDING | |
-| SC-006 | PENDING | |
-| SC-007 | PENDING | |
-| SC-008 | PENDING | |
-| SC-009 | PENDING | Privacy review (manual) |
-| SC-010 | PENDING | |
+| SC-001 | PASS | V2.4 — hero + 3 CTAs above the fold at 375×667, 3 engines |
+| SC-002 | PENDING (owner) | Usability check, 5 participants (T099) |
+| SC-003 | PASS | ≥ 768px: 1 click; phones: Menu + link = 2 (V4.5) |
+| SC-004 | PASS | V3.1/V3.2 — 6 widths × 2 themes × 3 engines, 320px + 200% text |
+| SC-005 | PASS (lab) | Lighthouse mobile: LCP 1.1 s, CLS 0.001, TBT 0 ms; 13.8 KB gzip |
+| SC-006 | PARTIAL | Keyboard walkthrough automated (V4.6); screen-reader walkthrough pending (T099) |
+| SC-007 | PASS | axe 0 violations, light/dark/saved-dark × 2 pages × 3 engines |
+| SC-008 | PASS | V4.2 — theme persists across reload |
+| SC-009 | PENDING (owner) | Privacy review (T098); automated field restriction passes |
+| SC-010 | PENDING (content) | Link check after real URLs (T097); placeholders currently skipped |
 
 ## Manual gates
 

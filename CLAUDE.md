@@ -4,9 +4,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project state
 
-Single-page personal portfolio for Aseel Almanahy, scaffolded with **GitHub Spec Kit** (v1.0.13.dev0). Active feature: `specs/001-portfolio-website` — spec, clarifications, and plan are done; application code does not exist yet (it is created by Implementation Phase 1 of `plan.md`).
+Single-page personal portfolio for Aseel Almanahy, scaffolded with **GitHub Spec Kit** (v1.0.13.dev0). Active feature: `specs/001-portfolio-website` on branch `001-portfolio-website`. Implementation phases 1–5 are built and tested; launch waits on the owner's content (see below). Gate evidence lives in `specs/001-portfolio-website/checklists/implementation-gates.md`.
 
-The repo is not yet a git repository (step P1.1 of the plan initialises it with branch `001-portfolio-website`).
+- **Content placeholders**: unknown values (role dates, GitHub/LinkedIn URLs, email, site URL) are `CONTENT:` markers; the About intro is marked `data-content-status="draft"`. Never invent them — `node tools/check-content.mjs` lists what remains; `--strict` must pass before deploy. Until then `npm run test:lighthouse` fails SEO (placeholder in `robots.txt`) and CI stays red, by design.
+- The parent folder (`../`) contains an unrelated, empty git repository; this project's repository root is this directory.
 
 ## Stack (decided in `specs/001-portfolio-website/plan.md`)
 
@@ -14,18 +15,21 @@ The repo is not yet a git repository (step P1.1 of the plan initialises it with 
 - **Layout**: `src/` is the deployable root and is served as-is in development; `tools/build.mjs` writes the production build to `dist/` (bundled/minified CSS, `?v=` cache-busting). Tests in `tests/unit` (node:test) and `tests/e2e` (Playwright + axe); dev scripts in `tools/`.
 - **Only CSS/JS file allowed to contain colour literals**: `src/css/tokens.css` (Stylelint enforces; print colours live there too). JS reads colours via `getComputedStyle`.
 - **Inline `<head>` theme bootstrap** (the only inline script the constitution allows; must stay < 1 KB) is protected by a CSP hash — after editing it, run `node tools/check-csp.mjs --write`.
-- `[hidden]` is forced to `display: none !important` in `utilities.css`; JS-only controls ship `hidden`.
+- `[hidden]` is forced to `display: none !important` in `utilities.css`; JS-only controls (theme toggle, Copy email) ship `hidden`.
+- **Mobile menu**: collapsed from first paint under `html.js` (avoids layout shift). The Menu control ships as `<a href="#nav-menu">` (works via `:target` if scripts fail) and `nav.js` swaps it for a `<button aria-expanded>`. Without scripting (`html.no-js`) links wrap in the bar.
+- **Tests**: every e2e spec imports `test`/`expect` from `tests/helpers/fixtures.js`, which fails a test on any console error/warning or CSP violation (use the `expectedProblems` RegExp option for deliberate ones). Playwright's WebKit never Tabs to links, so Tab-order tests skip WebKit and use structural checks.
 - **Hosting**: GitHub Pages via `.github/workflows/ci.yml` (`verify` job gates `deploy`).
 - Dev tooling: Node.js 24 LTS.
 
-## Commands (available after Implementation Phase 1)
+## Commands
 
 - `npm ci` — install dev tooling; then `npx playwright install --with-deps chromium firefox webkit`
 - `npm start` — serve `src/` at http://localhost:8080; `npm run preview` — build and serve `dist/` at :8081
 - `npm run format:check` / `npm run lint` (ESLint + Stylelint + html-validate)
 - `npm run test:unit` — single file: `node --test tests/unit/theme.test.js`
-- `npm run build` then `npm run test:e2e` — single spec: `npx playwright test tests/e2e/nav-theme.spec.js --project=chromium`
-- `npm run test:lighthouse`, `npm run check:links`, `npm run check:static`
+- `npm run build` then `npm run test:e2e` (e2e runs against `dist/`, so rebuild after source changes) — single spec: `npx playwright test tests/e2e/nav-theme.spec.js --project=chromium`
+- `npm run test:lighthouse` (uses local Chrome; set `CHROME_PATH` if none is installed), `npm run check:links`, `npm run check:static`
+- `node tools/generate-images.mjs` — regenerate `og-image.png` and PNG icons after changing `tools/og-template.html` or `favicon.svg`
 - `npm run verify` — the full CI gate; must pass before merge/deploy
 
 ## Spec-Driven Development workflow

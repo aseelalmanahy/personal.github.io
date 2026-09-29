@@ -1,0 +1,23 @@
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--tap-min);
+  height: var(--tap-min);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  background-color: var(--color-surface);
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+.theme-toggle:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+/* Show the moon while light (press for dark) and the sun while dark. */
+.theme-toggle[aria-pressed='false'] .theme-toggle__icon--sun,
+.theme-toggle[aria-pressed='true'] .theme-toggle__icon--moon {
+  display: none;
+}

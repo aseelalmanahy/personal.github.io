@@ -1,5 +1,5 @@
 import { test, expect } from '../helpers/fixtures.js';
-import { runAxe, TAB_REACHES_LINKS, tabKey } from '../helpers/page-utils.js';
+import { runAxe, TAB_REACHES_LINKS, tabKey, tabOrder } from '../helpers/page-utils.js';
 
 const THEMES = [
   { name: 'light device', colorScheme: 'light', saved: null },
@@ -31,7 +31,7 @@ test.describe('keyboard focus and target size (FR-033)', () => {
     await page.goto('/');
     const count = await page
       .locator('a[href], button:not([hidden]), [tabindex="0"]')
-      .evaluateAll((els) => els.filter((el) => !el.closest('[hidden]')).length);
+      .evaluateAll((els) => els.filter((el) => el.getClientRects().length > 0).length);
     for (let step = 0; step < count; step += 1) {
       await page.keyboard.press(tabKey());
       const outline = await page.evaluate(() => {
@@ -57,5 +57,33 @@ test.describe('keyboard focus and target size (FR-033)', () => {
         .map(({ html, rect }) => `${Math.round(rect.width)}×${Math.round(rect.height)} ${html}`),
     );
     expect(small).toEqual([]);
+  });
+});
+
+test.describe('keyboard walkthrough (SC-006)', () => {
+  test.use({ viewport: { width: 1440, height: 900 } });
+
+  test('logical tab order through every control, without traps', async ({ page, browserName }) => {
+    test.skip(!TAB_REACHES_LINKS(browserName), 'WebKit build does not Tab to links');
+    await page.goto('/');
+    const order = await tabOrder(page, 22);
+    const labels = order.map(({ text, className }) =>
+      className.includes('timeline__entry') ? 'timeline entry' : text,
+    );
+    expect(labels.slice(0, 10)).toEqual([
+      'Skip to main content',
+      'Aseel Almanahy',
+      'About',
+      'Experience',
+      'Projects',
+      'Contact',
+      'Dark theme',
+      'GitHub (opens in a new tab)',
+      'LinkedIn (opens in a new tab)',
+      'Email',
+    ]);
+    expect(labels.filter((label) => label === 'timeline entry')).toHaveLength(4);
+    expect(labels).toContain('Copy email');
+    expect(new Set(labels.slice(0, 21)).size).toBeGreaterThan(15);
   });
 });

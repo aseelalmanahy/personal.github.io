@@ -74,3 +74,50 @@ test.describe('US1 — hero above the fold (SC-001)', () => {
     }
   });
 });
+
+const COPY_FAILURE = "Couldn't copy — please select the address above";
+
+test.describe('US1 — copy email (FR-021a)', () => {
+  const copyButton = (page) => page.locator('[data-js="copy-email"]');
+  const status = (page) => page.locator('[data-js="copy-email-status"]');
+
+  test('copies the address and announces it, then clears', async ({
+    page,
+    context,
+    browserName,
+  }) => {
+    test.skip(browserName !== 'chromium', 'Clipboard permissions can only be granted in Chromium');
+    await context.grantPermissions(['clipboard-read', 'clipboard-write']);
+    await page.goto('/');
+    const address = (await page.locator('.contact__email-link').getAttribute('href')).replace(
+      /^mailto:/,
+      '',
+    );
+    await copyButton(page).click();
+    await expect(status(page)).toHaveText('Copied!');
+    await expect(status(page)).toHaveAttribute('role', 'status');
+    expect(await page.evaluate(() => navigator.clipboard.readText())).toBe(address);
+    await expect(status(page)).toHaveText('', { timeout: 6000 });
+  });
+
+  test('explains what to do when copying fails', async ({ page }) => {
+    await page.addInitScript(() => {
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText = () => Promise.reject(new Error('NotAllowedError'));
+      }
+    });
+    await page.goto('/');
+    test.skip(!(await copyButton(page).isVisible()), 'No Clipboard API in this engine context');
+    await copyButton(page).click();
+    await expect(status(page)).toHaveText(COPY_FAILURE);
+  });
+
+  test('stays hidden when the Clipboard API is unavailable', async ({ page }) => {
+    await page.addInitScript(() => {
+      Object.defineProperty(Navigator.prototype, 'clipboard', { get: () => undefined });
+    });
+    await page.goto('/');
+    await expect(copyButton(page)).toBeHidden();
+    await expect(page.locator('.contact__email-link')).toBeVisible();
+  });
+});

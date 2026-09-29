@@ -73,15 +73,15 @@ Result values: PASS · FAIL · PENDING · N/A (with reason).
 
 | ID | Criterion | Result | Evidence | Date |
 |---|---|---|---|---|
-| V4.1 | ESLint 0; unit tests pass | PENDING | | |
-| V4.2 | Theme toggle e2e (SC-008) | PENDING | | |
-| V4.3 | Theme motion / reduced motion | PENDING | | |
-| V4.4 | Copy email e2e | PENDING | | |
-| V4.5 | Menu e2e | PENDING | | |
-| V4.6 | Keyboard walkthrough (SC-006 automated) | PENDING | | |
-| V4.7 | 0 console errors / CSP violations | PENDING | | |
-| V4.8 | JS ≤ 30 KB compressed | PENDING | | |
-| V4.9 | Manual screen-reader announcements | PENDING | | |
+| V4.1 | ESLint 0; unit tests pass | PASS | ESLint 0 (max 40 lines/function); 46/46 unit tests incl. throwing/missing storage and rejected/missing clipboard | 2026-09-29 |
+| V4.2 | Theme toggle e2e (SC-008) | PASS | Click/Enter/Space flip `aria-pressed` + `data-theme`; persisted across reload; theme-color metas read from `--color-bg`; blocked storage works for the visit with 0 console errors; device changes followed only before a choice; 3 engines | 2026-09-29 |
+| V4.3 | Theme motion / reduced motion | PASS | Reduced motion: 0s; otherwise 0 < max duration ≤ 0.3s; 3 engines | 2026-09-29 |
+| V4.4 | Copy email e2e | PASS | Chromium real clipboard: "Copied!" in role=status, clipboard = address, cleared after 4s. Rejected writeText → failure message (3 engines). No Clipboard API → button hidden, address visible | 2026-09-29 |
+| V4.5 | Menu e2e | PASS | 375: bar ≤ 56px collapsed (closes V3.5), disclosure, Escape returns focus, choosing Experience closes menu + focuses `#experience` not under bar; 1024: Menu hidden; 3 engines | 2026-09-29 |
+| V4.6 | Keyboard walkthrough (SC-006 automated) | PASS | Chromium + Firefox: skip → brand → 4 nav → theme → 3 hero CTAs → 4 timeline entries → … → Copy email, no traps (WebKit: structural checks only) | 2026-09-29 |
+| V4.7 | 0 console errors / CSP violations | PASS | Auto-fixture on all 223 e2e tests reported none | 2026-09-29 |
+| V4.8 | JS ≤ 30 KB compressed | PASS | JS 3.3 KB gzip; HTML+CSS+JS 14.7 KB; initial total 15.9 KB | 2026-09-29 |
+| V4.9 | Manual screen-reader announcements | PENDING (owner) | Requires NVDA + Firefox and VoiceOver iOS — scheduled in T099 | |
 
 ## Phase 5 — Scroll Animations & Performance
 

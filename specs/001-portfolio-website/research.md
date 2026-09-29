@@ -310,7 +310,8 @@ was open in the plan's Technical Context is resolved here.
 - **Decision**: `<meta http-equiv="Content-Security-Policy">` with
   `default-src 'none'; script-src 'self' 'sha256-<theme-bootstrap>'; style-src 'self';
   img-src 'self'; manifest-src 'self'; connect-src 'none'; base-uri 'self';
-  form-action 'none'; upgrade-insecure-requests`, and
+  form-action 'none'` (no `upgrade-insecure-requests`: it would rewrite local `http://localhost`
+  asset requests during development and tests, and GitHub Pages already enforces HTTPS), and
   `<meta name="referrer" content="strict-origin-when-cross-origin">`. External links use
   `rel="noopener noreferrer"`. HTTPS enforced in repository Pages settings.
 - **Rationale**: Strictest policy that still allows the page to work; blocks any accidental

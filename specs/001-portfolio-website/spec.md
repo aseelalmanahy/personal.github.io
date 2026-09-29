@@ -1,7 +1,6 @@
 # Feature Specification: Personal Portfolio Website
 
-**Feature Branch**: N/A — the repository is not yet under git; feature directory is
-`specs/001-portfolio-website`
+**Feature Branch**: `001-portfolio-website`
 
 **Created**: 2026-09-29
 

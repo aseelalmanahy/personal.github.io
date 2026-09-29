@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: CONTENT:https://YOUR-USERNAME.github.io/sitemap.xml

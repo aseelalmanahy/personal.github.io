@@ -45,6 +45,19 @@ Spec FR-005, FR-021, FR-022a rewritten; FR-007 and FR-021a removed (spec Session
 - **Result**: no email address is published; JS drops to four modules. Tasks: Phase 10
   (T130–T137).
 
+## Amendment 2026-09-30 — four-tier skills
+
+Spec FR-010 (four tiers, 28 items), research R-29. Contact copy also names LinkedIn the channel
+to "initiate professional discussions" (FR-021).
+
+- **Changed**: About is now stacked — Education (2 cards side by side ≥ 48em) then a full-width
+  Skills block (`.skills` grid of four `.skill-group` cards). Column count comes from the
+  `--skills-columns` token in `tokens.css` (1 → 2 at 40em → 4 at 75em); `about.css` applies it.
+  Long slash-joined tags carry `<wbr>` break hints; `.tag` can wrap as a last resort.
+- **Tests**: `about-experience.spec.js` checks the four tiers, items, order, and 1/2/2/4 columns at
+  375/768/1024/1440px; defunct timeline/copy-email conditions removed. Tasks: Phase 11
+  (T138–T146).
+
 ## Summary
 
 Build a single-page, static portfolio for Aseel Almanahy — Hero, About Me, Experience
@@ -88,7 +101,7 @@ Chrome for Android); static hosting on GitHub Pages over HTTPS.
 `default-src 'none'`); WCAG 2.2 AA in both themes; no horizontal scroll 320–2560px and at 400%
 zoom; source directly servable without a build.
 
-**Scale/Scope**: 1 page + 404; 6 sections; 2 education entries; 2 skill groups (8 skills);
+**Scale/Scope**: 1 page + 404; 6 sections; 2 education entries; 4 skill tiers (28 skills);
 1 experience narrative; 5 interests; 0 projects at launch (grid designed for ~12); 6 JS modules; 16 CSS
 partials. Expected size: HTML ≈ 4 KB, CSS ≈ 6 KB, JS ≈ 3 KB (gzip).
 

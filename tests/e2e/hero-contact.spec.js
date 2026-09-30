@@ -49,7 +49,8 @@ test.describe('US1 — hero and contact content', () => {
     await page.goto('/');
     const intro = normalise(await page.locator('#contact .contact__intro').textContent());
     expect(intro).toMatch(/LinkedIn/);
-    expect(intro).toMatch(/best|primary/i);
+    expect(intro).toMatch(/primary and best/i);
+    expect(intro).toMatch(/initiate professional discussions/i);
     const links = await describeLinks(page.locator('#contact .contact__links a'));
     expect(links.map((link) => link.href)).toEqual([LINKEDIN_URL, GITHUB_URL]);
     expect(links[0].className).toContain('button--primary');
@@ -57,10 +58,9 @@ test.describe('US1 — hero and contact content', () => {
     links.forEach(expectExternal);
   });
 
-  test('no email address, mailto link, or copy control anywhere (FR-021)', async ({ page }) => {
+  test('no email address or mailto link anywhere (FR-021)', async ({ page }) => {
     await page.goto('/');
     await expect(page.locator('a[href^="mailto:"]')).toHaveCount(0);
-    await expect(page.locator('[data-js*="copy"], .copy-email, .contact__email')).toHaveCount(0);
     const html = await readFile('dist/index.html', 'utf8');
     expect(html).not.toMatch(/[\w.+-]+@[\w-]+\.[\w.]+/);
     expect(html).not.toMatch(/mailto:/i);

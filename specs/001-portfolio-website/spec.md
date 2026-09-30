@@ -5,7 +5,7 @@
 **Created**: 2026-09-29
 
 **Status**: Draft — amended 2026-09-30 (narrative content structure; Interests section; email
-removed, LinkedIn primary; see Clarifications)
+removed, LinkedIn primary; four-tier skills; see Clarifications)
 
 **Input**: User description: "Create a technical specification for a single-page personal
 portfolio website for Aseel Almanahy, a Full Stack Software Engineer. Hero section (greeting
@@ -39,6 +39,16 @@ no external icon libraries or heavy web fonts, keeping the performance guideline
 email link, the 'Copy Email' script modules, and the FR-021a fallback logic; refocus the Contact
 section text to state that the best and primary way to reach out or connect is directly via
 LinkedIn; remove stale email test assertions; keep Lighthouse at 100 across all metrics."
+
+**Amendment input (2026-09-30, skills)**: "Overhaul the Skills section to use a structured, 4-tier
+grid that highlights full-lifecycle engineering capabilities — Languages: Java,
+TypeScript/JavaScript, C/C++, C#, SQL, Python; Frameworks & Security: Spring Boot, Angular,
+Flask, Hibernate, Spring Data JPA, RESTful APIs, OAuth2, JWT; Cloud & DevOps: AWS (EC2, Lambda,
+S3), Docker, Kubernetes, Jenkins, uDeploy, Git/GitLab/Bitbucket; Quality & Methodology:
+Test-Driven Development (TDD), JUnit, Karate, SonarQube, Splunk, Datadog, Scrum/Kanban/SAFe,
+Architecture Grooming — with a lean, responsive layout on mobile, tablet, and desktop. Contact
+copy states LinkedIn is the primary and best channel to reach out, connect, or initiate
+professional discussions."
 
 ## Clarifications
 
@@ -93,6 +103,10 @@ LinkedIn; remove stale email test assertions; keep Lighthouse at 100 across all 
   reach out or connect; the Contact section says so and presents LinkedIn first and most
   prominently, with GitHub as a secondary route. No email address, email link, or copy control
   appears anywhere on the page.
+- Q: How are the expanded skills organised and laid out? → A: Four labelled tiers — Languages;
+  Frameworks & Security; Cloud & DevOps; Quality & Methodology — with the owner's items in the
+  owner's order (FR-010). Skills get their own full-width block under Education: one column on
+  phones, two on tablets, and all four side by side on wide desktops.
 
 ## User Scenarios & Testing *(mandatory)*
 
@@ -136,7 +150,8 @@ the correct destination.
 A hiring manager wants to judge fit. In About Me they read a short introduction that shows how
 Aseel approaches engineering and mentorship, see education (BS in Computer Science, UMass
 Lowell; MBA in Project Management candidate, LSU Shreveport), and scan skills grouped into
-Languages and Tools/Frameworks. In Experience they read one polished narrative that tells the
+four tiers — Languages, Frameworks & Security, Cloud & DevOps, and Quality & Methodology —
+that show full-lifecycle engineering capability. In Experience they read one polished narrative that tells the
 story of Aseel's technical growth — from strong foundations to full-stack, cloud, and
 architecture work — and of Aseel's technical leadership.
 
@@ -151,8 +166,8 @@ terms of full-stack work, cloud (AWS), architecture, and technical leadership.
 
 1. **Given** a visitor in About Me, **When** they read the section, **Then** they see the
    introduction from FR-008 verbatim, both education entries with institution, degree, and
-   status (completed vs. candidate), and skills presented under the two headings "Languages"
-   (Java, C/C++, SQL, Python) and "Tools/Frameworks" (Git, SpringBoot, Angular, AWS).
+   status (completed vs. candidate), and skills presented under the four headings listed in
+   FR-010, each with its items in the stated order.
 2. **Given** a visitor in Experience, **When** they view it at any screen size, **Then** they
    see the narrative from FR-011 verbatim as flowing prose at a comfortable reading width, with
    no timeline, role list, dates, or employer name.
@@ -328,8 +343,14 @@ no motion and nothing to click.
 - **FR-009**: About Me MUST list education: Bachelor of Science in Computer Science, University
   of Massachusetts Lowell (completed); Master of Business Administration in Project Management,
   Louisiana State University Shreveport (candidate / in progress).
-- **FR-010**: About Me MUST present technical skills in two labelled groups: Languages (Java,
-  C/C++, SQL, Python) and Tools/Frameworks (Git, SpringBoot, Angular, AWS). Groups MUST be
+- **FR-010**: About Me MUST present technical skills in four labelled tiers, in this order and
+  with exactly these items in this order: **Languages** — Java, TypeScript/JavaScript, C/C++,
+  C#, SQL, Python; **Frameworks & Security** — Spring Boot, Angular, Flask, Hibernate, Spring
+  Data JPA, RESTful APIs, OAuth2, JWT; **Cloud & DevOps** — AWS (EC2, Lambda, S3), Docker,
+  Kubernetes, Jenkins, uDeploy, Git/GitLab/Bitbucket; **Quality & Methodology** — Test-Driven
+  Development (TDD), JUnit, Karate, SonarQube, Splunk, Datadog, Scrum/Kanban/SAFe, Architecture
+  Grooming. The tiers MUST form a grid: one column on phone-sized screens, two on tablets, and
+  four side by side on wide desktop screens, with no overflow (FR-032). Groups MUST be
   readable as lists by assistive technology.
 
 **Experience**
@@ -393,8 +414,9 @@ no motion and nothing to click.
 **Contact Links**
 
 - **FR-021**: The final section MUST state, in plain text, that LinkedIn is the best and primary
-  way to reach out or connect; MUST present LinkedIn as its first and most prominent action and
-  GitHub as a secondary action, each with a descriptive label; and the page MUST NOT publish an
+  way to reach out, connect, or initiate professional discussions; MUST present LinkedIn as its
+  first and most prominent action and GitHub as a secondary action, each with a descriptive
+  label; and the page MUST NOT publish an
   email address, email (`mailto:`) link, or copy-to-clipboard control anywhere.
 - **FR-021a**: *(Removed 2026-09-30 — the copy-email control and its fallback no longer exist.)*
 - **FR-022**: No form that collects visitor data MAY be included; contact happens through
@@ -455,7 +477,8 @@ no motion and nothing to click.
 - **Contact Link**: a route to reach Aseel — type (GitHub, LinkedIn), visible label,
   destination (always opens in a new tab); LinkedIn is the primary route.
 - **Education Entry**: degree, field, institution, status (completed / candidate).
-- **Skill Category**: category name (Languages, Tools/Frameworks) and its ordered list of
+- **Skill Category**: category name (Languages, Frameworks & Security, Cloud & DevOps,
+  Quality & Methodology) and its ordered list of
   skills.
 - **Experience Narrative**: one approved paragraph of prose (FR-011); no dates, roles, or
   employer.

@@ -59,7 +59,8 @@ for manual confirmation at each phase gate. Details of expected markup are in
 ### US2 — Review background and experience
 
 1. Read About Me. **Expect**: the approved intro (spec FR-008) verbatim, both degrees with
-   status, skills under "Languages" and "Tools/Frameworks".
+   status, skills in four tiers (Languages; Frameworks & Security; Cloud & DevOps; Quality &
+   Methodology) — 1 column on phones, 2 on tablets, 4 on wide desktops.
 2. Scroll to Experience. **Expect**: one narrative paragraph (spec FR-011) verbatim, at a
    comfortable reading width with a drop cap and amber rule; no timeline, roles, dates, or
    employer name; no animation.

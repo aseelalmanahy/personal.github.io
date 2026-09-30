@@ -4,9 +4,12 @@
   gap: var(--space-2);
 }
 
+/* Long labels (e.g. "Git/GitLab/Bitbucket") wrap at their <wbr> hints and, as a last resort,
+   anywhere — a tag never overflows its column at 320px or with enlarged text. */
 .tag {
   display: inline-flex;
   align-items: center;
+  max-width: 100%;
   padding: var(--space-1) var(--space-3);
   border-radius: var(--radius-pill);
   background-color: var(--color-tag-bg);
@@ -14,4 +17,5 @@
   font-size: var(--text-sm);
   font-weight: 600;
   line-height: 1.4;
+  overflow-wrap: anywhere;
 }

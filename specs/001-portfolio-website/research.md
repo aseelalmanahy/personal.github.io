@@ -449,3 +449,19 @@ was open in the plan's Technical Context is resolved here.
 - **Alternatives considered**: adding the icons to `icons.svg` (an extra fetch dependency for
   one-off icons, and the owner asked for inline); emoji (inconsistent rendering, announced by
   screen readers); an icon font (forbidden — constitution V and the request).
+
+## R-29 Four-tier skills grid (FR-010, amendment 2026-09-30)
+
+- **Decision**: Skills move out of the About two-column layout into their own full-width block:
+  `<div class="skills">` containing four `.skill-group` cards (heading + `ul.tag-list`). The grid
+  is `repeat(var(--skills-columns), minmax(0, 1fr))`; `--skills-columns` is a responsive token in
+  `tokens.css` (1 by default, 2 from 40em, 4 from 75em). Slash-joined labels get `<wbr>` after
+  each slash; `.tag` has `max-width: 100%` and `overflow-wrap: anywhere`.
+- **Rationale**: 28 tags do not fit a half-width column; a tier grid keeps them scannable. Driving
+  the column count from a token keeps layout configuration with the other design tokens, while
+  the selectors stay in the component layer (constitution Best Practices 6–7: tokens file holds
+  custom properties only). `<wbr>` gives natural break points without changing the accessible
+  text.
+- **Alternatives considered**: putting grid classes in `tokens.css` (breaks the tokens → components
+  layer order and the "custom properties only" rule); `auto-fit` columns (3 + 1 orphan at
+  1024px); abbreviating long labels (changes the owner's wording).

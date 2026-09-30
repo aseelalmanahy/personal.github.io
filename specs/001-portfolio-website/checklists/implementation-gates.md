@@ -117,7 +117,7 @@ Result values: PASS · FAIL · PENDING · N/A (with reason).
 | G2 | Everything traces to an FR/US | PASS | All src files map to plan tasks/FRs; no untraced features |
 | G3 | Plain-language visitor text, no dev artefacts | PASS (pre-content) | grep TODO/FIXME/lorem/console.log = 0; `CONTENT:` placeholders visible until T096 |
 | G4 | All sections complete | PASS | structure.spec: five sections + 404 |
-| G5 | No unresolved decisions; 0 `CONTENT:` at launch | PASS | 0 markers; email `[email removed]` applied 2026-09-30 |
+| G5 | No unresolved decisions; 0 `CONTENT:` at launch | PASS | 0 markers; email applied then removed 2026-09-30 (LinkedIn primary, FR-021) |
 | G6 | Each FR has a passing check | PASS | 258 e2e + 52 unit tests; FR-015 privacy review is manual (T098) |
 | G7 | SCs measured with numbers | PASS | Budgets, Lighthouse, CLS, viewport matrix recorded above |
 | G8 | SCs verified in real browsers | PASS | Chromium, Firefox, WebKit |
@@ -210,3 +210,15 @@ Result values: PASS · FAIL · PENDING · N/A (with reason).
 | C7 | Lighthouse (mobile ×3) | PASS | index.html Perf 1.00, A11y 1.00, BP 1.00, SEO 1.00; LCP 1.1 s, CLS 0.001, TBT 0 ms | 2026-09-30 |
 
 **Notes**: superseded — V1.5 (6 contact links → 4), V4.4 (copy email), SC-010 evidence now 12 links.
+
+## Four-tier skills (Phase 11, 2026-09-30)
+
+| ID | Gate | Result | Evidence | Date |
+|---|---|---|---|---|
+| S1 | Four tiers, 28 items, FR-010 order | PASS | about-experience.spec: titles + items per tier, one `ul.tag-list` each (3 engines) | 2026-09-30 |
+| S2 | Responsive columns from `--skills-columns` | PASS | 1 @ 375, 2 @ 768 / 1024, 4 @ 1440 (distinct `.skill-group` offsets); no overflow at 320px + 200% text (`<wbr>` hints) | 2026-09-30 |
+| S3 | Contact copy — LinkedIn primary | PASS | hero-contact.spec: "primary and best", "initiate professional discussions"; no `mailto:` or address in dist | 2026-09-30 |
+| S4 | Defunct conditions removed | PASS | `.timeline` check (privacy-scope), copy-email selector (hero-contact), reveal-fade reduced-motion (a11y); FR-012/FR-021 guards kept | 2026-09-30 |
+| S5 | `npm run verify` | PASS | exit 0: format, lint, 46/46 unit, 0 content markers, 274 e2e passed / 8 skipped (engine limits), 12/12 links | 2026-09-30 |
+| S6 | Budgets | PASS | 11.5 KB HTML+CSS+JS, 3.9 KB JS, 12.7 KB total (gzip) | 2026-09-30 |
+| S7 | Lighthouse (mobile ×3) | PASS | index.html Perf 1.00, A11y 1.00, BP 1.00, SEO 1.00; LCP 1.1 s, CLS 0.001, TBT 0 ms | 2026-09-30 |

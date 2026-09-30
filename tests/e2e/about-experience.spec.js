@@ -21,6 +21,39 @@ const EXPERIENCE_NARRATIVE =
   'environments that empower engineering teams to deploy stable, high-quality features with ' +
   'absolute confidence.';
 
+// Spec FR-010 (amendment 2026-09-30): four tiers, owner's items and order.
+const SKILLS = {
+  Languages: ['Java', 'TypeScript/JavaScript', 'C/C++', 'C#', 'SQL', 'Python'],
+  'Frameworks & Security': [
+    'Spring Boot',
+    'Angular',
+    'Flask',
+    'Hibernate',
+    'Spring Data JPA',
+    'RESTful APIs',
+    'OAuth2',
+    'JWT',
+  ],
+  'Cloud & DevOps': [
+    'AWS (EC2, Lambda, S3)',
+    'Docker',
+    'Kubernetes',
+    'Jenkins',
+    'uDeploy',
+    'Git/GitLab/Bitbucket',
+  ],
+  'Quality & Methodology': [
+    'Test-Driven Development (TDD)',
+    'JUnit',
+    'Karate',
+    'SonarQube',
+    'Splunk',
+    'Datadog',
+    'Scrum/Kanban/SAFe',
+    'Architecture Grooming',
+  ],
+};
+
 const normalise = (value) => value.replace(/\s+/g, ' ').trim();
 const text = (locator) => locator.evaluateAll((els) => els.map((el) => el.textContent.trim()));
 
@@ -40,25 +73,33 @@ test.describe('US2 — About Me', () => {
     expect(await text(page.locator('.education__status'))).toEqual(['Completed', 'Candidate']);
   });
 
-  test('skills grouped and ordered', async ({ page }) => {
+  test('four skill tiers with the owner’s items, in order (FR-010)', async ({ page }) => {
     await page.goto('/');
-    expect(await text(page.locator('.skill-group__title'))).toEqual([
-      'Languages',
-      'Tools/Frameworks',
-    ]);
-    expect(await text(page.locator('.skill-group').nth(0).locator('.tag'))).toEqual([
-      'Java',
-      'C/C++',
-      'SQL',
-      'Python',
-    ]);
-    expect(await text(page.locator('.skill-group').nth(1).locator('.tag'))).toEqual([
-      'Git',
-      'SpringBoot',
-      'Angular',
-      'AWS',
-    ]);
+    expect(await text(page.locator('.skill-group__title'))).toEqual(Object.keys(SKILLS));
+    const groups = page.locator('.skill-group');
+    await expect(groups).toHaveCount(4);
+    for (const [index, items] of Object.values(SKILLS).entries()) {
+      const list = groups.nth(index).locator('ul.tag-list');
+      await expect(list).toHaveCount(1);
+      expect(await text(list.locator('li.tag'))).toEqual(items);
+    }
   });
+
+  for (const [width, columns] of [
+    [375, 1],
+    [768, 2],
+    [1024, 2],
+    [1440, 4],
+  ]) {
+    test(`skill tiers use ${columns} column(s) at ${width}px`, async ({ page }) => {
+      await page.setViewportSize({ width, height: 900 });
+      await page.goto('/');
+      const lefts = await page
+        .locator('.skill-group')
+        .evaluateAll((groups) => groups.map((group) => Math.round(group.offsetLeft)));
+      expect(new Set(lefts).size).toBe(columns);
+    });
+  }
 });
 
 test.describe('US2 — Experience narrative (FR-011 – FR-013)', () => {

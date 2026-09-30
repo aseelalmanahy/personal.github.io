@@ -335,6 +335,34 @@ FR-005, FR-021, FR-022a; FR-007 and FR-021a removed) without regressing any gate
 
 ---
 
+## Phase 11: Amendment — Four-Tier Skills & Contact Wording (2026-09-30)
+
+**Goal**: Replace the two skill groups with the owner's four full-lifecycle tiers (spec FR-010)
+in a responsive 1/2/4-column grid, sharpen the Contact copy to name LinkedIn the primary channel
+to "initiate professional discussions" (FR-021), and remove defunct email/timeline conditions
+from the test suite — keeping every gate and Lighthouse at 100.
+
+**Independent Test**: `npm run verify` exits 0; `about-experience.spec.js` confirms four tiers, 28 items in order, and 1/2/2/4 columns at 375/768/1024/1440px.
+
+### Tests for Phase 11 (write first, confirm they fail)
+
+- [X] T138 [P] [US2] In `tests/e2e/about-experience.spec.js`, replace the two-group skills test with a four-tier test (titles and all 28 items in FR-010 order, one `ul.tag-list` per tier) and a column test (1 @ 375, 2 @ 768 and 1024, 4 @ 1440)
+- [X] T139 [P] [US1] In `tests/e2e/hero-contact.spec.js`, require the Contact intro to say "primary and best" and "initiate professional discussions"; drop the defunct copy-email selector check (keep the no-`mailto:`/no-address guard for FR-021)
+- [X] T140 [P] Remove defunct conditions: the `.timeline` class check in `tests/e2e/privacy-scope.spec.js` (FR-012 structure checks remain) and the reveal-fade reduced-motion setting and comment in `tests/e2e/a11y.spec.js`
+
+### Implementation for Phase 11
+
+- [X] T141 [US2] In `src/index.html`, replace the About two-column grid with stacked `div.about__group` blocks (Education, then Skills) and a `div.skills` of four `.skill-group` tiers (`skills-languages`, `skills-frameworks`, `skills-cloud`, `skills-quality`) with the FR-010 items; add `<wbr />` after each "/" in TypeScript/JavaScript, Git/GitLab/Bitbucket, Scrum/Kanban/SAFe
+- [X] T142 [US2] Add `--skills-columns` (1; 2 at 40em; 4 at 75em) to `src/css/tokens.css`; rewrite `src/css/components/about.css` (group spacing, education 2-up ≥ 48em, `.skills` grid from the token, `.skill-group` cards); give `.tag` `max-width: 100%` and `overflow-wrap: anywhere` in `src/css/components/tag.css`
+- [X] T143 [US1] Update the Contact intro in `src/index.html`: LinkedIn is the primary and best channel to reach out, connect, or initiate professional discussions
+- [X] T144 Sync design docs: spec (FR-010, FR-021, US2, Skill Category, Session 2026-09-30), plan amendment + scale, research R-29, data model, contracts (page-structure outline, content-blocks skill tiers), quickstart
+- [X] T145 Run `npm run verify` — exit 0; Lighthouse index.html 1.00 in all four categories; record in `specs/001-portfolio-website/checklists/implementation-gates.md`
+- [X] T146 Commit on branch `001-portfolio-website`
+
+**Checkpoint (Skills gate)**: T145 passes; no regression in earlier gates.
+
+---
+
 ## Dependencies & Execution Order
 
 ### Phase Dependencies
@@ -350,6 +378,7 @@ FR-005, FR-021, FR-022a; FR-007 and FR-021a removed) without regressing any gate
 - **Phase 8 Amendment (2026-09-30)**: runs after Gate 5a and before T096–T103 (launch needs the amended content). T104–T108 are parallel; T109–T112 edit shared files, in order; T113–T117 follow.
 - **Phase 9 Interests (2026-09-30)**: after Phase 8 and before T096–T103. T118–T120 are parallel; T121–T124 in order; T125–T129 follow.
 - **Phase 10 Contact via LinkedIn (2026-09-30)**: after Phase 9 and before T102–T103. T130–T131 parallel; T132–T134 in order; T135–T137 follow.
+- **Phase 11 Skills (2026-09-30)**: after Phase 10 and before T102–T103. T138–T140 parallel; T141–T144 in order; T145–T146 follow.
 - **Phase 7 Polish & Launch**: T093 can start after Gate 4; T094 (content) can be requested at
   any time and is the only external blocker; T095–T103 depend on Gate 5a (T092) and T094.
 
@@ -420,7 +449,7 @@ Each story can be verified on its own with the listed tests once its tasks are d
 | Story | Tasks | Independent test |
 |---|---|---|
 | **US1** Meet Aseel & get in touch (P1) 🎯 MVP | T016, T024, T028, T038, T046, T047, T060, T130, T132, T133 (email tasks T066, T069, T074, T096 superseded 2026-09-30) | `hero-contact.spec.js`: verbatim hero text, GitHub and LinkedIn above the fold at 375×667 with new-tab cues, Contact names LinkedIn as the primary way to connect (listed first), no email anywhere |
-| **US2** Background & experience (P2) | T025, T057, T104, T105, T109, T111 (timeline tasks T026, T053, T058, T079, T081, T084, T095 superseded 2026-09-30) | `about-experience.spec.js`: verbatim About intro, degrees, grouped skills, one verbatim Experience narrative at ≤ 75 characters per line; `privacy-scope.spec.js`: no timeline, dates, employer, or role list |
+| **US2** Background & experience (P2) | T025, T057, T104, T105, T109, T111, T138, T141, T142 (timeline tasks T026, T053, T058, T079, T081, T084, T095 superseded 2026-09-30) | `about-experience.spec.js`: verbatim About intro, degrees, four skill tiers (28 items, 1/2/4 columns), one verbatim Experience narrative at ≤ 75 characters per line; `privacy-scope.spec.js`: no timeline, dates, employer, or role list |
 | **US3** Explore projects (P3) | T027, T054, T059 | `projects.spec.js`: coming-soon card at launch; injected cards reflow 1 → ≥ 2 columns with all five elements and omitted missing links |
 | **US4** Navigate & choose a theme (P4) | T023, T039, T049, T055, T056, T065, T067, T068, T072, T073, T075, T076, T080, T082, T085 | `nav-theme.spec.js`: no-flash theme, persisted toggle, device-follow rules, reduced motion, mobile menu with Escape, focus to section, headings never under the bar, current-section marking |
 | **US5** Interests (P5) | T118, T119, T120, T121, T122, T123 | `interests.spec.js`: placement after Experience, five hobbies in order as a list, one decorative inline icon each, static (no links, motion), 1/2/5 columns at 320/375/1440px, accent-coloured icons in both themes |

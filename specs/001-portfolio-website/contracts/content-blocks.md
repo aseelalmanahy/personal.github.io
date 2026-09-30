@@ -48,16 +48,22 @@ Contact section (FR-021) — LinkedIn first and primary, GitHub second; no email
 Items sit in `<ul class="education">` under the `h3` "Education", so degrees are `h4`
 (outline in page-structure.md). The MBA uses "Candidate" as its status text.
 
-## Skill group
+## Skill tiers (FR-010)
 
 ```html
-<div class="skill-group">
-  <h4 class="skill-group__title" id="skills-languages">Languages</h4>
-  <ul class="tag-list" aria-labelledby="skills-languages">
-    <li class="tag">Java</li><li class="tag">C/C++</li><li class="tag">SQL</li><li class="tag">Python</li>
-  </ul>
+<div class="skills">
+  <div class="skill-group">
+    <h4 class="skill-group__title" id="skills-languages">Languages</h4>
+    <ul class="tag-list" aria-labelledby="skills-languages">
+      <li class="tag">Java</li><li class="tag">TypeScript/<wbr />JavaScript</li>…
+    </ul>
+  </div>
+  … frameworks, cloud, quality (ids skills-frameworks, skills-cloud, skills-quality) …
 </div>
 ```
+
+- Four groups, in the order and with the items of spec FR-010; add `<wbr />` after each "/" in
+  long labels. The grid's column count is the `--skills-columns` token.
 
 ## Experience narrative (FR-011–FR-014; replaces the timeline entry, 2026-09-30)
 

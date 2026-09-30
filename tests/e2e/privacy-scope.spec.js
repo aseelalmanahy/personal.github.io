@@ -20,7 +20,6 @@ test.describe('privacy and scope guardrails (FR-012, FR-014, FR-022, FR-022a, G1
     for (const pattern of FORBIDDEN_IN_EXPERIENCE) {
       expect(content, String(pattern)).not.toMatch(pattern);
     }
-    await expect(page.locator('.timeline, [class*="timeline__"]')).toHaveCount(0);
   });
 
   test('no forms and no résumé download', async ({ page }) => {

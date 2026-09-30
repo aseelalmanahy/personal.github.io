@@ -28,7 +28,7 @@ the end.
 |---|---|
 | `type` | `github` \| `linkedin` — hero order GitHub, LinkedIn; Contact order LinkedIn (primary), GitHub (FR-005, FR-021, FR-022a) |
 | `label` | Visible text: "GitHub", "LinkedIn" (hero); "Connect on LinkedIn", "GitHub profile" (Contact) |
-| `href` | `https://github.com/aseelalmanahy`, `https://www.linkedin.com/in/aseel-almanahy-97342b109/` (FR-006); `mailto:[email removed]` |
+| `href` | `https://github.com/aseelalmanahy`, `https://www.linkedin.com/in/aseel-almanahy-97342b109/` (FR-006); no `mailto:` (email removed 2026-09-30) |
 | `opensNewTab` | always `true` |
 
 **Validation**: new-tab links carry `target="_blank"`, `rel="noopener noreferrer"`, and a
@@ -49,10 +49,10 @@ visible or visually-hidden "(opens in a new tab)" (FR-006); no `mailto:` link or
 
 | Field | Rule |
 |---|---|
-| `name` | "Languages" \| "Tools/Frameworks" |
-| `skills` | Ordered list. Languages: Java, C/C++, SQL, Python. Tools/Frameworks: Git, SpringBoot, Angular, AWS |
+| `name` | "Languages" \| "Frameworks & Security" \| "Cloud & DevOps" \| "Quality & Methodology" |
+| `skills` | Ordered list, exactly as in spec FR-010 (6 + 8 + 6 + 8 = 28 items) |
 
-**Validation**: two categories, each a heading followed by a `ul` (FR-010); no proficiency
+**Validation**: four categories, each a heading followed by a `ul` (FR-010); no proficiency
 ratings.
 
 ### ExperienceNarrative *(replaces TimelineEntry, amendment 2026-09-30)*

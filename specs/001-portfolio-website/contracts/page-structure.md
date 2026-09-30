@@ -63,7 +63,9 @@ h2  About Me
     h4  <degree> ×2
   h3  Skills
     h4  Languages
-    h4  Tools/Frameworks
+    h4  Frameworks & Security
+    h4  Cloud & DevOps
+    h4  Quality & Methodology
 h2  Experience
   (one narrative paragraph — no sub-headings; amendment 2026-09-30)
 h2  Interests

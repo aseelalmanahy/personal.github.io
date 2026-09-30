@@ -68,6 +68,22 @@
   --measure: 65ch;
   --tap-min: 2.75rem;
   --size-icon-lg: 1.75rem;
+
+  /* Responsive layout tokens (mobile-first; overridden by the queries below) */
+  --skills-columns: 1;
+}
+
+/* Skill tiers: 1 column on phones, 2 on tablets and small laptops, all 4 on wide screens. */
+@media (min-width: 40em) {
+  :root {
+    --skills-columns: 2;
+  }
+}
+
+@media (min-width: 75em) {
+  :root {
+    --skills-columns: 4;
+  }
 }
 
 /*

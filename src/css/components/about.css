@@ -3,27 +3,25 @@
   font-size: var(--text-lg);
 }
 
-/* minmax(0, …) lets columns shrink below their longest word so long words wrap at 400% zoom. */
-.about__grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: var(--space-7);
-}
-
-@media (min-width: 48em) {
-  .about__grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
+.about__group + .about__group {
+  margin-top: var(--space-7);
 }
 
 .about__heading {
   margin-bottom: var(--space-4);
 }
 
+/* minmax(0, …) lets columns shrink below their longest word so long words wrap at 400% zoom. */
 .education {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
   gap: var(--space-4);
+}
+
+@media (min-width: 48em) {
+  .education {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 .education__item {
@@ -44,8 +42,18 @@
   font-size: var(--text-sm);
 }
 
-.skill-group + .skill-group {
-  margin-top: var(--space-5);
+/* Four skill tiers (spec FR-010); the column count comes from --skills-columns in tokens.css. */
+.skills {
+  display: grid;
+  grid-template-columns: repeat(var(--skills-columns), minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+.skill-group {
+  padding: var(--space-4) clamp(0.75rem, 3vw, 1.25rem);
+  border: 1px solid var(--color-tag-bg);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface);
 }
 
 .skill-group__title {

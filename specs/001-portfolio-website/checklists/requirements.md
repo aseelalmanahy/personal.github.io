@@ -61,3 +61,9 @@
   (5 sentences, verbatim); FR-012 allows the owner's university (already public in Education)
   as the only named organization; FR-014, US2 story and acceptance, Experience Narrative entity,
   and the scope assumption aligned. All 16 items still pass; no [NEEDS CLARIFICATION] markers.
+- Iteration 8 (2026-09-30, polish and projects): FR-041 (no em dashes) and FR-042 (profile
+  links only in hero and Contact) added; FR-008 and FR-011 punctuation updated at the owner's
+  request; FR-017 and FR-020 rewritten for three featured repository cards (coming-soon card
+  removed); US3, edge case, Project entity, SC-002, and assumption aligned. "Cloud Architecture"
+  resolved without a marker (no public cloud repository; recorded in Clarifications). All 16
+  items still pass; no [NEEDS CLARIFICATION] markers.

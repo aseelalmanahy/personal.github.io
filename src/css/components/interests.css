@@ -1,5 +1,5 @@
 /* Interests (spec FR-037–FR-040, research R-28): a static grid list of hobbies. Deliberately
-   no hover, focus, transition, or animation — nothing here is interactive. */
+   no hover, focus, transition, or animation; nothing here is interactive. */
 .interests__list {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 9.5rem), 1fr));

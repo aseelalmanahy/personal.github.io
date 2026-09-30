@@ -92,7 +92,7 @@ try {
   await buildCss();
   const versions = await assetVersions();
   await versionHtml(versions);
-  console.log(`Built ${DIST}/ — ${versions.size} versioned assets`);
+  console.log(`Built ${DIST}/ (${versions.size} versioned assets)`);
 } catch (error) {
   console.error(`Build failed: ${error.message}`);
   process.exit(1);

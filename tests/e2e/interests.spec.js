@@ -7,7 +7,7 @@ const columnCount = (page) =>
     .locator('.interests__item')
     .evaluateAll((items) => new Set(items.map((item) => Math.round(item.offsetLeft))).size);
 
-test.describe('US5 — Interests (FR-037 – FR-040)', () => {
+test.describe('US5: Interests (FR-037 to FR-040)', () => {
   test('sits between Experience and Projects with the five hobbies in order', async ({ page }) => {
     await page.goto('/');
     const order = await page

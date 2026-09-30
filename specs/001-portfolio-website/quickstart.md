@@ -67,11 +67,10 @@ for manual confirmation at each phase gate. Details of expected markup are in
 
 ### US3 — Explore projects
 
-1. At launch state. **Expect**: exactly one "More projects coming soon" card, no tags, no
-   sample text, no dead links.
-2. Run `tests/e2e/projects.spec.js` (injects three sample cards from the contract pattern).
-   **Expect**: 1 column at 375px, ≥ 2 columns at 768px+, all five card elements present,
-   missing demo link omitted.
+1. Open Projects. **Expect**: three cards (Event-Driven Microservices, Full-Stack Web
+   Application, Algorithmic Systems), each with a description, unique tags, and code links that
+   open the named repository in a new tab; no placeholder card, no profile link.
+2. Resize. **Expect**: 1 column at 375px, 2 at 768px, 3 at 1024px and wider.
 
 ### US5 — Get to know Aseel beyond work
 

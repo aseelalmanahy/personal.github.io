@@ -98,46 +98,31 @@ Items sit in `<ul class="education">` under the `h3` "Education", so degrees are
   attributes, no sprite reference, no icon font.
 - No links, buttons, `tabindex`, hover/focus styles, or animation (FR-040).
 
-## Project card (FR-016–FR-019)
+## Project card (FR-016–FR-020)
 
 ```html
 <li class="projects__item">
   <article class="project-card" aria-labelledby="project-<slug>">
-    <h3 class="project-card__title" id="project-<slug>">Project Title</h3>
+    <h3 class="project-card__title" id="project-<slug>">Competency Title</h3>
     <p class="project-card__description">≤ 200 characters.</p>
     <ul class="tag-list" aria-label="Technologies used">
-      <li class="tag">HTML</li><li class="tag">CSS</li><li class="tag">JS</li>
+      <li class="tag">…</li>
     </ul>
     <p class="project-card__links">
-      <a class="project-card__link" href="https://github.com/…" target="_blank"
-         rel="noopener noreferrer">Source code<span class="visually-hidden"> for Project
-         Title (opens in a new tab)</span></a>
-      <a class="project-card__link" href="https://…" target="_blank"
-         rel="noopener noreferrer">Live demo<span class="visually-hidden"> of Project Title
-         (opens in a new tab)</span></a>
+      <a class="project-card__link" href="https://github.com/aseelalmanahy/<repo>"
+         target="_blank" rel="noopener noreferrer">
+        <svg class="icon icon--small" aria-hidden="true" focusable="false">
+          <use href="assets/icons.svg#code"></use>
+        </svg>
+        Repo Label<span class="visually-hidden"> source code for Competency Title (opens in a
+        new tab)</span>
+      </a>
     </p>
   </article>
 </li>
 ```
 
-Omit an `<a>` entirely when its URL does not exist (FR-018). The grid container is
-`<ul class="projects__grid">`.
+One `<a>` per repository; a live demo link only where a demo exists (FR-018). Tags are unique
+across cards. The grid container is `<ul class="projects__grid">` (1 → 2 → 3 columns); no
+placeholder card (removed 2026-09-30).
 
-## Coming-soon card (FR-020)
-
-```html
-<li class="projects__item">
-  <article class="project-card project-card--placeholder" aria-labelledby="project-coming-soon">
-    <h3 class="project-card__title" id="project-coming-soon">More projects coming soon</h3>
-    <p class="project-card__description">New projects are on the way — follow along on GitHub.</p>
-    <p class="project-card__links">
-      <a class="project-card__link" href="CONTENT:https://github.com/…" target="_blank"
-         rel="noopener noreferrer">Visit my GitHub<span class="visually-hidden"> (opens in a
-         new tab)</span></a>
-    </p>
-  </article>
-</li>
-```
-
-Present only while the grid has zero project cards; delete it in the same change that adds the
-first project.

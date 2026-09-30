@@ -69,7 +69,7 @@
 }
 
 /* Current section (FR-026): styled from the ARIA state, so what is seen and announced agree.
-   No font-weight change — a wider bold label would shift the neighbouring links (CLS). */
+   No font-weight change: a wider bold label would shift the neighbouring links (CLS). */
 .nav__link[aria-current='true'] {
   text-decoration: underline;
   text-decoration-color: var(--color-accent);

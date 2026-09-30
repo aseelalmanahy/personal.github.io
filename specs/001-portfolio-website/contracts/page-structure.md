@@ -11,7 +11,7 @@ In this order:
 2. `<meta name="viewport" content="width=device-width, initial-scale=1">` (never disables zoom)
 3. `<meta http-equiv="Content-Security-Policy" content="…">` (policy in research R-20)
 4. `<meta name="referrer" content="strict-origin-when-cross-origin">`
-5. `<title>Aseel Almanahy — Full Stack Software Engineer</title>`
+5. `<title>Aseel Almanahy | Full Stack Software Engineer</title>` (no em dash, FR-041)
 6. Inline theme bootstrap `<script>` (research R-02) — **before** any stylesheet
 7. `<link rel="stylesheet" href="css/main.css">` and
    `<link rel="stylesheet" href="css/print.css" media="print">`
@@ -71,7 +71,7 @@ h2  Experience
 h2  Interests
   (list of five items — no sub-headings)
 h2  Projects
-  h3  <project title> ×N  |  h3 "More projects coming soon"
+  h3  Event-Driven Microservices · Full-Stack Web Application · Algorithmic Systems
 h2  Contact
 ```
 

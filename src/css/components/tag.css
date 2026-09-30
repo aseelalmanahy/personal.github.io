@@ -5,7 +5,7 @@
 }
 
 /* Long labels (e.g. "Git/GitLab/Bitbucket") wrap at their <wbr> hints and, as a last resort,
-   anywhere — a tag never overflows its column at 320px or with enlarged text. */
+   anywhere, so a tag never overflows its column at 320px or with enlarged text. */
 .tag {
   display: inline-flex;
   align-items: center;

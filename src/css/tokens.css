@@ -1,5 +1,5 @@
 /*
- * Design tokens — the only stylesheet allowed to contain colour literals (constitution
+ * Design tokens: the only stylesheet allowed to contain colour literals (constitution
  * Principle III). Values and contrast ratios: research R-09.
  *
  * Breakpoints (media queries cannot read custom properties, so they are written literally):
@@ -8,7 +8,7 @@
 :root {
   color-scheme: light;
 
-  /* Colour — light theme: soft creams, warm ambers, dark warm browns */
+  /* Colour, light theme: soft creams, warm ambers, dark warm browns */
   --color-bg: #fbf6ee;
   --color-surface: #f3e9d8;
   --color-text: #2b1d14;
@@ -56,7 +56,7 @@
   --z-header: 100;
   --z-skip: 200;
 
-  /* Motion — only applied inside prefers-reduced-motion: no-preference */
+  /* Motion: only applied inside prefers-reduced-motion: no-preference */
   --duration-ui: 150ms;
   --duration-theme: 250ms;
   --duration-reveal: 400ms;
@@ -127,8 +127,8 @@
 }
 
 /*
- * Print is always light. Both selectors have specificity (0,2,0) — equal to the dark rules
- * above — and come last, so they win whether or not a theme attribute is set.
+ * Print is always light. Both selectors have specificity (0,2,0), equal to the dark rules
+ * above, and come last, so they win whether or not a theme attribute is set.
  */
 @media print {
   :root:not([data-theme]),

@@ -1,43 +1,36 @@
 import { test, expect } from '../helpers/fixtures.js';
 
-const SAMPLES = [
-  { slug: 'alpha', title: 'Alpha Planner', demo: true },
-  { slug: 'beta', title: 'Beta Notes', demo: false },
-  { slug: 'gamma', title: 'Gamma Charts', demo: true },
+const REPO = 'https://github.com/aseelalmanahy/';
+
+// Featured cards (spec FR-017, FR-020, amendment 2026-09-30): competency, repositories, tags.
+const FEATURED = [
+  {
+    slug: 'microservices',
+    title: 'Event-Driven Microservices',
+    tags: ['Spring Boot', 'Apache Kafka', 'MySQL', 'Docker Compose'],
+    code: [
+      ['Order Service', `${REPO}order-service`],
+      ['Product Service', `${REPO}e-commerce-store-project`],
+    ],
+  },
+  {
+    slug: 'full-stack',
+    title: 'Full-Stack Web Application',
+    tags: ['Angular', 'TypeScript', 'REST API', 'Spring Data JPA'],
+    code: [
+      ['Angular front end', `${REPO}booky-frontend`],
+      ['Spring Boot API', `${REPO}books`],
+    ],
+  },
+  {
+    slug: 'algorithms',
+    title: 'Algorithmic Systems',
+    tags: ['Android', 'Java', 'SQLite', 'Algorithms'],
+    code: [['Radix Calculator', `${REPO}Radix-Calculator`]],
+  },
 ];
 
-/** Replaces the coming-soon card with sample cards built from contracts/content-blocks.md. */
-async function injectSampleProjects(page) {
-  await page.evaluate((samples) => {
-    const grid = document.querySelector('.projects__grid');
-    grid.innerHTML = samples
-      .map(
-        ({ slug, title, demo }) => `
-        <li class="projects__item">
-          <article class="project-card" aria-labelledby="project-${slug}">
-            <h3 class="project-card__title" id="project-${slug}">${title}</h3>
-            <p class="project-card__description">A short description of ${title}.</p>
-            <ul class="tag-list" aria-label="Technologies used">
-              <li class="tag">HTML</li><li class="tag">CSS</li><li class="tag">JS</li>
-            </ul>
-            <p class="project-card__links">
-              <a class="project-card__link" href="https://example.com/${slug}/source" target="_blank"
-                 rel="noopener noreferrer">Source code<span class="visually-hidden"> for ${title}
-                 (opens in a new tab)</span></a>
-              ${
-                demo
-                  ? `<a class="project-card__link" href="https://example.com/${slug}" target="_blank"
-                 rel="noopener noreferrer">Live demo<span class="visually-hidden"> of ${title}
-                 (opens in a new tab)</span></a>`
-                  : ''
-              }
-            </p>
-          </article>
-        </li>`,
-      )
-      .join('');
-  }, SAMPLES);
-}
+const normalise = (text) => text.replace(/\s+/g, ' ').trim();
 
 async function columnCount(page) {
   const xs = await page
@@ -46,64 +39,69 @@ async function columnCount(page) {
   return new Set(xs).size;
 }
 
-test.describe('US3 — projects (FR-016 – FR-020)', () => {
-  test('launch state: one coming-soon card, no tags, no dead links', async ({ page }) => {
+test.describe('US3: featured projects (FR-016 to FR-020)', () => {
+  test('three featured cards with title, description, tags, and code links, in order', async ({
+    page,
+  }) => {
     await page.goto('/');
-    const placeholder = page.locator('.project-card--placeholder');
-    await expect(placeholder).toHaveCount(1);
-    await expect(placeholder.locator('.tag')).toHaveCount(0);
-    const hrefs = await placeholder
-      .locator('a')
-      .evaluateAll((links) => links.map((a) => a.getAttribute('href')));
-    for (const href of hrefs) {
-      expect(href).not.toBe('#');
-      expect(href).toBeTruthy();
-    }
-  });
-
-  test('coming-soon card appears only when there are no projects', async ({ page }) => {
-    await page.goto('/');
-    const real = await page.locator('.project-card:not(.project-card--placeholder)').count();
-    const placeholders = await page.locator('.project-card--placeholder').count();
-    expect(placeholders).toBe(real === 0 ? 1 : 0);
-  });
-
-  test('coming-soon card stays card-sized at 2560px', async ({ page }) => {
-    await page.setViewportSize({ width: 2560, height: 1200 });
-    await page.goto('/');
-    const box = await page.locator('.project-card--placeholder').boundingBox();
-    expect(box.width).toBeLessThanOrEqual(28 * 16);
-  });
-
-  for (const [width, minColumns, maxColumns] of [
-    [375, 1, 1],
-    [768, 2, 4],
-    [1024, 2, 4],
-    [1440, 2, 4],
-  ]) {
-    test(`sample cards reflow at ${width}px`, async ({ page }) => {
-      await page.setViewportSize({ width, height: 900 });
-      await page.goto('/');
-      await injectSampleProjects(page);
-      const columns = await columnCount(page);
-      expect(columns).toBeGreaterThanOrEqual(minColumns);
-      expect(columns).toBeLessThanOrEqual(maxColumns);
-    });
-  }
-
-  test('cards show all elements, name their project, and omit missing demos', async ({ page }) => {
-    await page.goto('/');
-    await injectSampleProjects(page);
-    for (const sample of SAMPLES) {
-      const card = page.locator('.project-card', { has: page.locator(`#project-${sample.slug}`) });
-      await expect(card.locator('.project-card__title')).toHaveText(sample.title);
-      await expect(card.locator('.project-card__description')).toBeVisible();
-      expect(await card.locator('.tag').count()).toBeGreaterThanOrEqual(1);
-      const links = card.getByRole('link');
-      await expect(links).toHaveCount(sample.demo ? 2 : 1);
-      for (const link of await links.all()) {
-        expect(await link.textContent()).toContain(sample.title);
+    await expect(page.locator('#projects .project-card')).toHaveCount(FEATURED.length);
+    for (const [index, card] of FEATURED.entries()) {
+      const article = page.locator('.project-card').nth(index);
+      await expect(article).toHaveAttribute('aria-labelledby', `project-${card.slug}`);
+      await expect(article.locator('.project-card__title')).toHaveText(card.title);
+      const description = normalise(
+        await article.locator('.project-card__description').textContent(),
+      );
+      expect(description.length).toBeGreaterThan(40);
+      expect(description.length).toBeLessThanOrEqual(200);
+      expect(await article.locator('.tag').allTextContents()).toEqual(card.tags);
+      const links = await article.getByRole('link').evaluateAll((anchors) =>
+        anchors.map((a) => ({
+          text: a.textContent.replace(/\s+/g, ' ').trim(),
+          href: a.getAttribute('href'),
+          target: a.getAttribute('target'),
+          rel: a.getAttribute('rel'),
+        })),
+      );
+      expect(links.map(({ href }) => href)).toEqual(card.code.map(([, href]) => href));
+      for (const [i, link] of links.entries()) {
+        expect(link.text).toBe(
+          `${card.code[i][0]} source code for ${card.title} (opens in a new tab)`,
+        );
+        expect(link.target).toBe('_blank');
+        expect(link.rel).toBe('noopener noreferrer');
       }
     }
   });
+
+  test('no placeholder card and no tag repeated across cards', async ({ page }) => {
+    await page.goto('/');
+    await expect(page.locator('.project-card--placeholder')).toHaveCount(0);
+    await expect(page.locator('#projects')).not.toContainText(/coming soon/i);
+    const tags = await page.locator('#projects .tag').allTextContents();
+    expect(new Set(tags).size).toBe(tags.length);
+  });
+
+  test('Projects links only to repositories, never to a profile (FR-042)', async ({ page }) => {
+    await page.goto('/');
+    const hrefs = await page
+      .locator('#projects a')
+      .evaluateAll((links) => links.map((a) => a.getAttribute('href')));
+    expect(hrefs.length).toBe(5);
+    for (const href of hrefs)
+      expect(href).toMatch(/^https:\/\/github\.com\/aseelalmanahy\/[\w-]+$/);
+  });
+
+  for (const [width, columns] of [
+    [375, 1],
+    [768, 2],
+    [1024, 3],
+    [1440, 3],
+  ]) {
+    test(`cards reflow to ${columns} column(s) at ${width}px`, async ({ page }) => {
+      await page.setViewportSize({ width, height: 900 });
+      await page.goto('/');
+      expect(await columnCount(page)).toBe(columns);
+    });
+  }
 });

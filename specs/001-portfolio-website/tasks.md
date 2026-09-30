@@ -379,6 +379,32 @@ FR-012 exception for the owner's university, keeping every gate green.
 
 ---
 
+## Phase 13: Amendment — Punctuation, Link Placement, Featured Projects (2026-09-30)
+
+**Goal**: Remove every em dash (FR-041), keep profile links only in the hero and Contact
+(FR-042), and replace the coming-soon card with three featured repository cards (FR-017,
+FR-020), keeping every gate and Lighthouse at 100.
+
+**Independent Test**: `npm run verify` exits 0; `projects.spec.js`, the FR-042 placement test, and the FR-041 punctuation checks pass on all three engines.
+
+### Tests for Phase 13 (write first, confirm they fail)
+
+- [X] T151 [P] [US3] Rewrite `tests/e2e/projects.spec.js` for the three real cards: titles, order, description ≤ 200, exact tags, repository hrefs and labels, unique tags, no placeholder, repo-only links, 1/2/3/3 columns at 375/768/1024/1440px
+- [X] T152 [P] [US1] In `tests/e2e/hero-contact.spec.js`, expect two profile links per network and add the FR-042 placement test (hero then Contact, nowhere else)
+- [X] T153 [P] Add FR-041 checks to `tests/e2e/structure.spec.js` (rendered text, titles, meta, and labels on `/` and `/404.html`; every `src/` file); update the FR-008/FR-011 constants in `about-experience.spec.js` and the 17-stop keyboard walkthrough in `a11y.spec.js`
+
+### Implementation for Phase 13
+
+- [X] T154 [US3] Replace the coming-soon card in `src/index.html` with the three featured cards; add the `#code` symbol to `src/assets/icons.svg`; delete `.project-card--placeholder` and add the accent top border and link icon gap in `src/css/components/project-card.css`
+- [X] T155 Remove em dashes: `src/index.html` (title, `og:title`, About, Experience, Contact), `src/404.html`, CSS comments, `tools/*.mjs`, `package.json`, and e2e describe titles
+- [X] T156 Sync docs: spec (status, amendment input, clarifications, US3, edge case, FR-008, FR-011, FR-017, FR-020, FR-041, FR-042, Project entity, SC-002, assumption), requirements checklist iteration 8, data model, contracts, quickstart, plan amendment, research R-30
+- [X] T157 Run `npm run verify` (exit 0, Lighthouse 1.00 ×4) and record in `checklists/implementation-gates.md`
+- [X] T158 Commit on branch `001-portfolio-website`
+
+**Checkpoint (Polish & projects gate)**: T157 passes; the owner reviews the card copy with T098.
+
+---
+
 ## Dependencies & Execution Order
 
 ### Phase Dependencies
@@ -394,6 +420,7 @@ FR-012 exception for the owner's university, keeping every gate green.
 - **Phase 8 Amendment (2026-09-30)**: runs after Gate 5a and before T096–T103 (launch needs the amended content). T104–T108 are parallel; T109–T112 edit shared files, in order; T113–T117 follow.
 - **Phase 9 Interests (2026-09-30)**: after Phase 8 and before T096–T103. T118–T120 are parallel; T121–T124 in order; T125–T129 follow.
 - **Phase 10 Contact via LinkedIn (2026-09-30)**: after Phase 9 and before T102–T103. T130–T131 parallel; T132–T134 in order; T135–T137 follow.
+- **Phase 13 Polish & projects (2026-09-30)**: after Phase 12 and before T098/T102–T103. T151–T153 parallel; T154–T156 in order; T157–T158 follow.
 - **Phase 12 Narrative (2026-09-30)**: after Phase 11 and before T098/T102–T103. T147 → T148 → T149 → T150.
 - **Phase 11 Skills (2026-09-30)**: after Phase 10 and before T102–T103. T138–T140 parallel; T141–T144 in order; T145–T146 follow.
 - **Phase 7 Polish & Launch**: T093 can start after Gate 4; T094 (content) can be requested at
@@ -467,7 +494,7 @@ Each story can be verified on its own with the listed tests once its tasks are d
 |---|---|---|
 | **US1** Meet Aseel & get in touch (P1) 🎯 MVP | T016, T024, T028, T038, T046, T047, T060, T130, T132, T133 (email tasks T066, T069, T074, T096 superseded 2026-09-30) | `hero-contact.spec.js`: verbatim hero text, GitHub and LinkedIn above the fold at 375×667 with new-tab cues, Contact names LinkedIn as the primary way to connect (listed first), no email anywhere |
 | **US2** Background & experience (P2) | T025, T057, T104, T105, T109, T111, T138, T141, T142, T147, T148 (timeline tasks T026, T053, T058, T079, T081, T084, T095 superseded 2026-09-30) | `about-experience.spec.js`: verbatim About intro, degrees, four skill tiers (28 items, 1/2/4 columns), one verbatim Experience narrative at ≤ 75 characters per line; `privacy-scope.spec.js`: no timeline, dates, employer, or role list |
-| **US3** Explore projects (P3) | T027, T054, T059 | `projects.spec.js`: coming-soon card at launch; injected cards reflow 1 → ≥ 2 columns with all five elements and omitted missing links |
+| **US3** Explore projects (P3) | T027, T054, T059, T151, T154 | `projects.spec.js`: three featured repository cards (content, order, unique tags, repo-only code links) reflow 1 → 2 → 3 columns |
 | **US4** Navigate & choose a theme (P4) | T023, T039, T049, T055, T056, T065, T067, T068, T072, T073, T075, T076, T080, T082, T085 | `nav-theme.spec.js`: no-flash theme, persisted toggle, device-follow rules, reduced motion, mobile menu with Escape, focus to section, headings never under the bar, current-section marking |
 | **US5** Interests (P5) | T118, T119, T120, T121, T122, T123 | `interests.spec.js`: placement after Experience, five hobbies in order as a list, one decorative inline icon each, static (no links, motion), 1/2/5 columns at 320/375/1440px, accent-coloured icons in both themes |
 

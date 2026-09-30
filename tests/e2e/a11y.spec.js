@@ -7,7 +7,7 @@ const THEMES = [
   { name: 'saved dark on light device', colorScheme: 'light', saved: 'dark' },
 ];
 
-test.describe('accessibility — axe WCAG 2.2 AA', () => {
+test.describe('accessibility: axe WCAG 2.2 AA', () => {
   // axe's own injected style would trip the site's CSP; CSP is enforced by every other spec.
   test.use({ bypassCSP: true });
 
@@ -66,7 +66,7 @@ test.describe('keyboard walkthrough (SC-006)', () => {
   test('logical tab order through every control, without traps', async ({ page, browserName }) => {
     test.skip(!TAB_REACHES_LINKS(browserName), 'WebKit build does not Tab to links');
     await page.goto('/');
-    const labels = (await tabOrder(page, 13)).map(({ text }) => text);
+    const labels = (await tabOrder(page, 17)).map(({ text }) => text);
     expect(labels).toEqual([
       'Skip to main content',
       'Aseel Almanahy',
@@ -78,7 +78,11 @@ test.describe('keyboard walkthrough (SC-006)', () => {
       'Dark theme',
       'GitHub (opens in a new tab)',
       'LinkedIn (opens in a new tab)',
-      'Visit my GitHub (opens in a new tab)',
+      'Order Service source code for Event-Driven Microservices (opens in a new tab)',
+      'Product Service source code for Event-Driven Microservices (opens in a new tab)',
+      'Angular front end source code for Full-Stack Web Application (opens in a new tab)',
+      'Spring Boot API source code for Full-Stack Web Application (opens in a new tab)',
+      'Radix Calculator source code for Algorithmic Systems (opens in a new tab)',
       'Connect on LinkedIn (opens in a new tab)',
       'GitHub profile (opens in a new tab)',
     ]);

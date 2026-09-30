@@ -8,7 +8,7 @@
       content="default-src 'none'; script-src 'self' 'sha256-o5hwM8LuGJgme0+9SQU9LhpqrQNaCZwA1qLTm5oKRwE='; style-src 'self'; img-src 'self'; manifest-src 'self'; connect-src 'self'; base-uri 'self'; form-action 'none'"
     />
     <meta name="referrer" content="strict-origin-when-cross-origin" />
-    <title>Aseel Almanahy — Full Stack Software Engineer</title>
+    <title>Aseel Almanahy | Full Stack Software Engineer</title>
     <script>
       (() => {
         const root = document.documentElement;
@@ -34,7 +34,7 @@
     />
     <link rel="canonical" href="https://aseelalmanahy.github.io/" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Aseel Almanahy — Full Stack Software Engineer" />
+    <meta property="og:title" content="Aseel Almanahy | Full Stack Software Engineer" />
     <meta
       property="og:description"
       content="Full Stack Software Engineer specializing in scalable systems, robust architectures, and engineering mentorship."
@@ -164,7 +164,7 @@
             I'm a full-stack software engineer who loves turning complex problems into reliable,
             well-structured systems. I studied Computer Science at UMass Lowell and am now pursuing
             an MBA in Project Management at LSU Shreveport, pairing engineering depth with strategic
-            delivery know-how. Mentorship is incredibly important to me—I actively dedicate time to
+            delivery know-how. Mentorship is incredibly important to me; I actively dedicate time to
             sharing my industry experience to accelerate the growth of other engineers while
             continuously sharpening my own leadership capabilities.
           </p>
@@ -255,7 +255,7 @@
             managing cloud infrastructure on AWS within high-stakes fields like Financial Services
             and Healthcare. Beyond the code, I focus on bridging the gap between technical execution
             and organizational strategy. My career is defined not just by the systems I build, but
-            by my active involvement in mentorship—collaborating with leadership to share technical
+            by my active involvement in mentorship, collaborating with leadership to share technical
             insights while mentoring new associate software engineers to help them onboard smoothly,
             master best practices, and achieve both technical and personal growth.
           </p>
@@ -366,24 +366,124 @@
           <h2 id="projects-title" class="section__title">Projects</h2>
           <ul class="projects__grid">
             <li class="projects__item">
-              <article
-                class="project-card project-card--placeholder"
-                aria-labelledby="project-coming-soon"
-              >
-                <h3 class="project-card__title" id="project-coming-soon">
-                  More projects coming soon
+              <article class="project-card" aria-labelledby="project-microservices">
+                <h3 class="project-card__title" id="project-microservices">
+                  Event-Driven Microservices
                 </h3>
                 <p class="project-card__description">
-                  New projects are on the way — follow along on GitHub.
+                  Two Spring Boot services for an online store. Orders are checked against the
+                  product catalogue over non-blocking HTTP, saved to MySQL, and published as Kafka
+                  events.
                 </p>
+                <ul class="tag-list" aria-label="Technologies used">
+                  <li class="tag">Spring Boot</li>
+                  <li class="tag">Apache Kafka</li>
+                  <li class="tag">MySQL</li>
+                  <li class="tag">Docker Compose</li>
+                </ul>
                 <p class="project-card__links">
                   <a
                     class="project-card__link"
-                    href="https://github.com/aseelalmanahy"
+                    href="https://github.com/aseelalmanahy/order-service"
                     target="_blank"
                     rel="noopener noreferrer"
-                    >Visit my GitHub<span class="visually-hidden"> (opens in a new tab)</span></a
                   >
+                    <svg class="icon icon--small" aria-hidden="true" focusable="false">
+                      <use href="assets/icons.svg#code"></use>
+                    </svg>
+                    Order Service<span class="visually-hidden">
+                      source code for Event-Driven Microservices (opens in a new tab)</span
+                    >
+                  </a>
+                  <a
+                    class="project-card__link"
+                    href="https://github.com/aseelalmanahy/e-commerce-store-project"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <svg class="icon icon--small" aria-hidden="true" focusable="false">
+                      <use href="assets/icons.svg#code"></use>
+                    </svg>
+                    Product Service<span class="visually-hidden">
+                      source code for Event-Driven Microservices (opens in a new tab)</span
+                    >
+                  </a>
+                </p>
+              </article>
+            </li>
+            <li class="projects__item">
+              <article class="project-card" aria-labelledby="project-full-stack">
+                <h3 class="project-card__title" id="project-full-stack">
+                  Full-Stack Web Application
+                </h3>
+                <p class="project-card__description">
+                  A book catalogue with an Angular front end and a Spring Boot REST API that lists,
+                  adds, and updates books through a layered service and repository design.
+                </p>
+                <ul class="tag-list" aria-label="Technologies used">
+                  <li class="tag">Angular</li>
+                  <li class="tag">TypeScript</li>
+                  <li class="tag">REST API</li>
+                  <li class="tag">Spring Data JPA</li>
+                </ul>
+                <p class="project-card__links">
+                  <a
+                    class="project-card__link"
+                    href="https://github.com/aseelalmanahy/booky-frontend"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <svg class="icon icon--small" aria-hidden="true" focusable="false">
+                      <use href="assets/icons.svg#code"></use>
+                    </svg>
+                    Angular front end<span class="visually-hidden">
+                      source code for Full-Stack Web Application (opens in a new tab)</span
+                    >
+                  </a>
+                  <a
+                    class="project-card__link"
+                    href="https://github.com/aseelalmanahy/books"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <svg class="icon icon--small" aria-hidden="true" focusable="false">
+                      <use href="assets/icons.svg#code"></use>
+                    </svg>
+                    Spring Boot API<span class="visually-hidden">
+                      source code for Full-Stack Web Application (opens in a new tab)</span
+                    >
+                  </a>
+                </p>
+              </article>
+            </li>
+            <li class="projects__item">
+              <article class="project-card" aria-labelledby="project-algorithms">
+                <h3 class="project-card__title" id="project-algorithms">Algorithmic Systems</h3>
+                <p class="project-card__description">
+                  An Android app that converts numbers between bases and calculates across mixed
+                  bases, keeping a history of results on the device. Built as a two-person course
+                  project.
+                </p>
+                <ul class="tag-list" aria-label="Technologies used">
+                  <li class="tag">Android</li>
+                  <li class="tag">Java</li>
+                  <li class="tag">SQLite</li>
+                  <li class="tag">Algorithms</li>
+                </ul>
+                <p class="project-card__links">
+                  <a
+                    class="project-card__link"
+                    href="https://github.com/aseelalmanahy/Radix-Calculator"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <svg class="icon icon--small" aria-hidden="true" focusable="false">
+                      <use href="assets/icons.svg#code"></use>
+                    </svg>
+                    Radix Calculator<span class="visually-hidden">
+                      source code for Algorithmic Systems (opens in a new tab)</span
+                    >
+                  </a>
                 </p>
               </article>
             </li>
@@ -396,7 +496,7 @@
           <h2 id="contact-title" class="section__title">Contact</h2>
           <p class="contact__intro">
             Whether it's a role, a project, or mentorship, I'd love to hear from you. LinkedIn is my
-            primary and best channel — reach out, connect, or initiate professional discussions
+            primary and best channel. Reach out, connect, or initiate professional discussions
             directly there.
           </p>
           <ul class="contact__links">

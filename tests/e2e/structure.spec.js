@@ -3,7 +3,7 @@ import { firstFocusable, TAB_REACHES_LINKS, tabKey } from '../helpers/page-utils
 
 const SECTION_IDS = ['home', 'about', 'experience', 'interests', 'projects', 'contact'];
 
-test.describe('page structure — contracts/page-structure.md', () => {
+test.describe('page structure: contracts/page-structure.md', () => {
   test('head: language, charset, viewport, CSP, and bootstrap before stylesheet', async ({
     page,
   }) => {
@@ -104,7 +104,37 @@ test.describe('page structure — contracts/page-structure.md', () => {
   });
 });
 
-test.describe('production build — dist/ (V5.4, V5.7)', () => {
+test.describe('punctuation: no em dashes (FR-041)', () => {
+  for (const path of ['/', '/404.html']) {
+    test(`${path}: visible text, title, and meta content`, async ({ page }) => {
+      await page.goto(path);
+      const text = await page.evaluate(() =>
+        [
+          document.title,
+          document.body.innerText,
+          ...[...document.querySelectorAll('meta[content]')].map((m) => m.content),
+          ...[...document.querySelectorAll('[aria-label], [alt], [title]')].map((el) =>
+            ['aria-label', 'alt', 'title'].map((name) => el.getAttribute(name) ?? '').join(' '),
+          ),
+        ].join('\n'),
+      );
+      expect(text).not.toContain('\u2014');
+    });
+  }
+
+  test('no em dash in any source file of the site', async () => {
+    const { readdir, readFile } = await import('node:fs/promises');
+    const files = (await readdir('src', { recursive: true })).filter((f) =>
+      /\.(html|css|js|json|webmanifest|svg|txt|xml)$/.test(f),
+    );
+    expect(files.length).toBeGreaterThan(10);
+    for (const file of files) {
+      expect(await readFile(`src/${file}`, 'utf8'), file).not.toContain('\u2014');
+    }
+  });
+});
+
+test.describe('production build: dist/ (V5.4, V5.7)', () => {
   test('one render-blocking stylesheet and versioned local asset URLs', async () => {
     const { readFile } = await import('node:fs/promises');
     const html = await readFile('dist/index.html', 'utf8');

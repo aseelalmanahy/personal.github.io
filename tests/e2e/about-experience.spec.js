@@ -5,7 +5,7 @@ const ABOUT_INTRO =
   "I'm a full-stack software engineer who loves turning complex problems into reliable, " +
   'well-structured systems. I studied Computer Science at UMass Lowell and am now pursuing an ' +
   'MBA in Project Management at LSU Shreveport, pairing engineering depth with strategic ' +
-  'delivery know-how. Mentorship is incredibly important to me—I actively dedicate time to ' +
+  'delivery know-how. Mentorship is incredibly important to me; I actively dedicate time to ' +
   'sharing my industry experience to accelerate the growth of other engineers while ' +
   'continuously sharpening my own leadership capabilities.';
 
@@ -20,7 +20,7 @@ const EXPERIENCE_NARRATIVE =
   'managing cloud infrastructure on AWS within high-stakes fields like Financial Services ' +
   'and Healthcare. Beyond the code, I focus on bridging the gap between technical execution ' +
   'and organizational strategy. My career is defined not just by the systems I build, but ' +
-  'by my active involvement in mentorship—collaborating with leadership to share technical ' +
+  'by my active involvement in mentorship, collaborating with leadership to share technical ' +
   'insights while mentoring new associate software engineers to help them onboard smoothly, ' +
   'master best practices, and achieve both technical and personal growth.';
 
@@ -60,7 +60,7 @@ const SKILLS = {
 const normalise = (value) => value.replace(/\s+/g, ' ').trim();
 const text = (locator) => locator.evaluateAll((els) => els.map((el) => el.textContent.trim()));
 
-test.describe('US2 — About Me', () => {
+test.describe('US2: About Me', () => {
   test('introduction is the approved text, verbatim (FR-008)', async ({ page }) => {
     await page.goto('/');
     expect(normalise(await page.locator('.about__intro').textContent())).toBe(ABOUT_INTRO);
@@ -105,7 +105,7 @@ test.describe('US2 — About Me', () => {
   }
 });
 
-test.describe('US2 — Experience narrative (FR-011 – FR-013)', () => {
+test.describe('US2: Experience narrative (FR-011 to FR-013)', () => {
   test('one paragraph with the approved narrative, verbatim', async ({ page }) => {
     await page.goto('/');
     const narrative = page.locator('#experience .experience__narrative');

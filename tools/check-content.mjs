@@ -1,5 +1,5 @@
 // Lists content inputs still awaiting the owner (research R-25). With --strict, fails if any
-// remain — used as the launch gate (V5.8).
+// remain; used as the launch gate (V5.8).
 import { readdir, readFile } from 'node:fs/promises';
 import path from 'node:path';
 

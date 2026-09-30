@@ -1,4 +1,4 @@
-/* Layout and visibility only — print colours come from tokens.css (@media print). This file is
+/* Layout and visibility only; print colours come from tokens.css (@media print). This file is
    unlayered, so it overrides the layered component styles without !important. */
 .skip-link,
 .nav,

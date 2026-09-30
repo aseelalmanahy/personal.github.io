@@ -465,3 +465,19 @@ was open in the plan's Technical Context is resolved here.
 - **Alternatives considered**: putting grid classes in `tokens.css` (breaks the tokens → components
   layer order and the "custom properties only" rule); `auto-fit` columns (3 + 1 orphan at
   1024px); abbreviating long labels (changes the owner's wording).
+
+## R-30 Punctuation, link placement, and featured projects (FR-041, FR-042, FR-020)
+
+- **Decision**: Replace em dashes with commas, semicolons, or sentence breaks in copy and a
+  vertical bar in page titles; enforce with an e2e check over rendered text and every `src/`
+  file. Profile links live only in the hero and Contact. Projects shows three cards built from
+  the owner's public repositories (checked 2026-09-30 via the GitHub API: READMEs, dependencies,
+  source trees): order-service + e-commerce-store-project (Spring Boot, Kafka, MySQL, Docker
+  Compose), booky-frontend + books (Angular 14, Spring Boot, Spring Data JPA), Radix-Calculator
+  (Android, Java, SQLite).
+- **Rationale**: Every claim on a card is visible in the linked code, so visitors who follow a
+  link find what the card describes. Linking repositories rather than the profile removes the
+  repetition the owner flagged while keeping direct code access.
+- **Alternatives considered**: a "Cloud Architecture" card (no public cloud code to back it);
+  linking cards to the GitHub profile (the repetition being removed); keeping `auto-fill` with
+  a spanning last card on tablets (breaks equal visual weight, US3 #3).

@@ -58,6 +58,19 @@ to "initiate professional discussions" (FR-021).
   375/768/1024/1440px; defunct timeline/copy-email conditions removed. Tasks: Phase 11
   (T138–T146).
 
+## Amendment 2026-09-30 — punctuation, link placement, featured projects
+
+Spec FR-041, FR-042, FR-017, FR-020; research R-30.
+
+- **Changed**: every em dash removed from `src/` (copy, titles, meta, comments), tests, and
+  tools; FR-008/FR-011 punctuation updated as the owner requested. The coming-soon card and its
+  profile link are gone; Projects holds three featured cards built from the owner's public
+  repositories, each with unique tags and code links (new `#code` sprite symbol). Cards gain a
+  4px accent top border; the dashed placeholder style is deleted.
+- **Tests**: `projects.spec.js` rewritten for the real cards (content, order, unique tags,
+  repo-only links, 1/2/3/3 columns at 375/768/1024/1440); FR-042 placement test; FR-041 checks
+  rendered text and every `src/` file; keyboard walkthrough now 17 stops. Tasks: Phase 13.
+
 ## Summary
 
 Build a single-page, static portfolio for Aseel Almanahy — Hero, About Me, Experience

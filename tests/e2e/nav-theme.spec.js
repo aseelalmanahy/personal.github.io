@@ -7,7 +7,7 @@ const LIGHT_BG = 'rgb(251, 246, 238)';
 const bodyBackground = (page) =>
   page.evaluate(() => getComputedStyle(document.body).backgroundColor);
 
-test.describe('US4 — theme applies before first paint (FR-029)', () => {
+test.describe('US4: theme applies before first paint (FR-029)', () => {
   test('saved dark choice wins over a light device without a flash', async ({ page }) => {
     await page.emulateMedia({ colorScheme: 'light' });
     await page.addInitScript(() => {
@@ -31,7 +31,7 @@ test.describe('US4 — theme applies before first paint (FR-029)', () => {
   });
 });
 
-test.describe('US4 — headings and focus never hidden under the bar (FR-023a)', () => {
+test.describe('US4: headings and focus never hidden under the bar (FR-023a)', () => {
   for (const width of [375, 1440]) {
     test(`deep links land below the bar at ${width}px`, async ({ page }) => {
       // Instant jumps: this checks where sections land (FR-023a). Smooth scrolling is covered by
@@ -97,7 +97,7 @@ test.describe('US4 — headings and focus never hidden under the bar (FR-023a)',
   }
 });
 
-test.describe('US4 — theme without scripting', () => {
+test.describe('US4: theme without scripting', () => {
   test.use({ javaScriptEnabled: false, colorScheme: 'dark' });
 
   test('dark device gives the dark theme', async ({ page }) => {
@@ -109,7 +109,7 @@ test.describe('US4 — theme without scripting', () => {
 const toggle = (page) => page.locator('.theme-toggle');
 const theme = (page) => page.locator('html').getAttribute('data-theme');
 
-test.describe('US4 — theme toggle (FR-030, FR-031, SC-008)', () => {
+test.describe('US4: theme toggle (FR-030, FR-031, SC-008)', () => {
   // Reduced motion so colours are read after the switch, not mid-fade (fade tested below).
   test.use({ colorScheme: 'light', reducedMotion: 'reduce' });
 
@@ -197,7 +197,7 @@ const longestTransition = (page) =>
     ),
   );
 
-test.describe('US4 — theme transition respects reduced motion (FR-031)', () => {
+test.describe('US4: theme transition respects reduced motion (FR-031)', () => {
   test('instant with reduced motion', async ({ page }) => {
     await page.emulateMedia({ reducedMotion: 'reduce' });
     await page.goto('/');
@@ -215,7 +215,7 @@ test.describe('US4 — theme transition respects reduced motion (FR-031)', () =>
   });
 });
 
-test.describe('US4 — mobile menu (FR-023, FR-025)', () => {
+test.describe('US4: mobile menu (FR-023, FR-025)', () => {
   test.use({ viewport: { width: 375, height: 667 } });
 
   test('compact bar, disclosure, Escape, and choosing a link', async ({ page }) => {
@@ -252,7 +252,7 @@ test.describe('US4 — mobile menu (FR-023, FR-025)', () => {
   });
 });
 
-test.describe('US4 — current section and smooth scrolling (FR-024, FR-026)', () => {
+test.describe('US4: current section and smooth scrolling (FR-024, FR-026)', () => {
   test('exactly one nav link marks the section in view; none in the hero', async ({ page }) => {
     await page.goto('/');
     await expect(page.locator('.nav__link[aria-current="true"]')).toHaveCount(0);
@@ -279,7 +279,7 @@ test.describe('US4 — current section and smooth scrolling (FR-024, FR-026)', (
   }
 });
 
-test.describe('US4 — navigation survives a failed script (constitution IV)', () => {
+test.describe('US4: navigation survives a failed script (constitution IV)', () => {
   test.use({
     viewport: { width: 375, height: 667 },
     expectedProblems: /main.js|Failed to load resource|ERR_FAILED/i,
@@ -301,7 +301,7 @@ test.describe('US4 — navigation survives a failed script (constitution IV)', (
   });
 });
 
-test.describe('US4 — no layout shift when the menu enhances (CLS)', () => {
+test.describe('US4: no layout shift when the menu enhances (CLS)', () => {
   test.use({ viewport: { width: 375, height: 667 } });
 
   test('the bar is compact before and after nav.js runs', async ({ page, browserName }) => {

@@ -80,32 +80,18 @@ ratings.
 
 | Field | Rule |
 |---|---|
-| `title` | Required, ≤ 60 characters |
+| `title` | Competency the card demonstrates, ≤ 60 characters |
 | `description` | Required, ≤ 200 characters (FR-017) |
-| `tags` | ≥ 1 short technology names (e.g. HTML, CSS, JS) |
-| `repoUrl` | Optional absolute URL; omitted link when absent (FR-018) |
+| `tags` | ≥ 1 short technology names; no tag repeated on another card |
+| `codeLinks` | ≥ 1 of { `label`, `repoUrl` } → `https://github.com/aseelalmanahy/<repo>` |
 | `demoUrl` | Optional absolute URL; omitted link when absent (FR-018) |
 
-**Validation**: link labels include the project title (FR-017); no `#`, empty, or placeholder
-hrefs (SC-010). Zero projects at launch.
+**Validation**: link labels include the card title (FR-017); no `#`, empty, placeholder, or
+profile hrefs (SC-010, FR-042). Exactly three cards, in FR-020 order.
 
-### ComingSoonCard
+### ComingSoonCard *(removed 2026-09-30)*
 
-| Field | Rule |
-|---|---|
-| `heading` | e.g. "More projects coming soon" |
-| `message` | One friendly sentence, e.g. "New projects are on the way — follow along on GitHub." |
-| `githubUrl` | Optional; same URL as the GitHub ContactLink |
-
-**Validation**: present **iff** the number of Project entries is 0 (FR-020); has no tags, no
-sample titles, no demo link.
-
-## Section-level state
-
-**ProjectsSection**: `empty` (0 projects → exactly one ComingSoonCard) → `populated` (≥ 1
-project → no ComingSoonCard). Transition happens by editing HTML: add the first project card
-and delete the coming-soon card in the same change. The grid layout is identical in both states
-(FR-019, US3 scenario 5).
+Replaced by three featured Project cards (FR-020); the Projects section has no empty state.
 
 ## Client-side UI state
 

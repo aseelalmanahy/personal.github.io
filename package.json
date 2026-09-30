@@ -2,7 +2,7 @@
   "name": "aseel-portfolio",
   "version": "1.0.0",
   "private": true,
-  "description": "Single-page personal portfolio for Aseel Almanahy — vanilla HTML, CSS, and ES modules on GitHub Pages.",
+  "description": "Single-page personal portfolio for Aseel Almanahy: vanilla HTML, CSS, and ES modules on GitHub Pages.",
   "type": "module",
   "engines": {
     "node": ">=24"

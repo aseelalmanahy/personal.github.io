@@ -9,7 +9,7 @@ const BUDGETS = { core: 100 * KB, js: 30 * KB, total: 300 * KB };
 const DIST = 'dist';
 
 if (!existsSync(DIST)) {
-  console.warn('skip: dist/ not found — run `npm run build` first');
+  console.warn('skip: dist/ not found; run `npm run build` first');
   process.exit(0);
 }
 

@@ -6,7 +6,7 @@
 
 **Status**: Draft — amended 2026-09-30 (narrative content structure; Interests section; email
 removed, LinkedIn primary; four-tier skills; Experience
-narrative revised; see Clarifications)
+narrative revised; em dashes removed; featured projects; see Clarifications)
 
 **Input**: User description: "Create a technical specification for a single-page personal
 portfolio website for Aseel Almanahy, a Full Stack Software Engineer. Hero section (greeting
@@ -55,6 +55,14 @@ professional discussions."
 word-for-word with this corrected version" (the text now in FR-011), "then run 'npm run verify'
 to confirm that all cross-browser tests continue to pass."
 
+**Amendment input (2026-09-30, polish and projects)**: "Remove all long em-dashes across the
+entire codebase (About Me, Experience, and Projects), replacing them with commas, semicolons, or
+natural sentence breaks. Eliminate redundant link elements: GitHub and LinkedIn are placed only
+in the hero and the contact section, without intermediate repetition. Remove the dashed
+placeholder card and restructure Projects into a grid of 2–3 featured repository highlights
+displaying core competencies (e.g. 'Enterprise Microservices', 'Cloud Architecture', and
+'Algorithmic Systems') with unique tags and direct code anchors. Run 'npm run verify'."
+
 ## Clarifications
 
 ### Session 2026-09-29
@@ -68,7 +76,8 @@ to confirm that all cross-browser tests continue to pass."
   a narrative since 2026-09-30; order unchanged.)*
 - Q: How are placeholder project cards handled on the live site? → A: Launch with a single
   friendly "coming soon" card in the project-card style; the full card design is built and
-  ready to fill with real projects.
+  ready to fill with real projects. *(Superseded 2026-09-30: three featured project cards
+  replace the coming-soon card, FR-020.)*
 - Q: How should the email address be displayed? → A: Visible address plus an email link, with
   a "Copy email" button that confirms the copy visually and to screen readers. *(Superseded
   2026-09-30: no email is published.)*
@@ -119,6 +128,22 @@ to confirm that all cross-browser tests continue to pass."
   Engineer, Full Stack Engineer) and sectors (healthcare, Financial Services) appear only inside
   the prose, never as a list. The current employer, internal program names, dates, and every
   FR-014 item stay excluded.
+- Q: Which em dashes are removed, and what replaces them in the owner's verbatim texts? → A:
+  Every em dash in the published pages (visible text, page titles, share metadata) and in the
+  site's source, tests, and tools. In FR-008 the dash becomes a semicolon ("important to me; I
+  actively…"); in FR-011 a comma ("mentorship, collaborating…"); in the Contact intro a sentence
+  break. Page titles use a vertical bar as the separator ("Aseel Almanahy | Full Stack Software
+  Engineer"). Planning documents keep their own punctuation.
+- Q: Which projects fill the featured grid, given the example competencies? → A: The owner's
+  public repositories, three cards: Event-Driven Microservices (order-service and
+  e-commerce-store-project), Full-Stack Web Application (booky-frontend and books), and
+  Algorithmic Systems (Radix-Calculator). "Cloud Architecture" is not used as a title because no
+  public repository contains cloud infrastructure code, and a card must not claim more than its
+  code shows; the cloud skills stay in Skills and Experience. "Enterprise" is replaced by
+  "Event-Driven", which describes the Kafka-based design accurately.
+- Q: Where may the profile links appear? → A: Only in the hero and the Contact section, once each
+  (FR-042). Project cards link to repositories, never to the profile, and the page has no other
+  profile link.
 
 ## User Scenarios & Testing *(mandatory)*
 
@@ -194,33 +219,32 @@ terms of full-stack work, cloud (AWS), architecture, and technical leadership.
 ### User Story 3 - Explore projects (Priority: P3)
 
 A peer or technical interviewer wants to see real work. The Projects section shows a
-minimalist grid of cards; each card has a project title, a short description, technology tags,
-a link to the source repository, and a link to a live demo.
+minimalist grid of three featured cards, each naming a core competency and backing it with a
+public repository: a short description, technology tags, and direct links to the source code.
 
 **Why this priority**: Projects deepen credibility, but the site delivers its core value
-without them, and the project content itself is still to be supplied.
+without them.
 
-**Independent Test**: Populate the section with sample cards and confirm each card exposes all
-five elements, links resolve correctly, and the grid reflows from one column on a phone to
-multiple columns on larger screens.
+**Independent Test**: Open the Projects section and confirm each card shows a competency title,
+a description, unique tags, and working code links, and that the grid reflows from one column on
+a phone to three on a desktop.
 
 **Acceptance Scenarios**:
 
-1. **Given** the Projects section, **When** a visitor views a card, **Then** it shows a title,
-   a description of no more than ~200 characters, one or more technology tags, a repository
-   link, and a live demo link, each link naming the project it belongs to for assistive
-   technology users.
+1. **Given** the Projects section, **When** a visitor views a card, **Then** it shows a
+   competency title, a description of no more than 200 characters, one or more technology tags
+   used by no other card, and one or more source-code links, each naming the card it belongs to
+   for assistive technology users.
 2. **Given** a project with no live demo, **When** its card is displayed, **Then** the live
    demo link is omitted rather than shown as broken or inert.
 3. **Given** screens of different widths, **When** the visitor views the grid, **Then** cards
    show in one column on phones and in two or more columns on tablets and desktops, with equal
    visual weight and no card overflowing its column.
-4. **Given** no real projects have been added yet, **When** a visitor views the Projects
-   section, **Then** they see a single friendly "coming soon" card in the same visual style as
-   project cards, with no sample titles, fake tags, or links.
-5. **Given** the first real project is added, **When** the page is published, **Then** it
-   appears as a full project card and the "coming soon" card is removed without any layout
-   change.
+4. **Given** the Projects section, **When** a visitor opens a code link, **Then** it opens the
+   named public repository in a new tab; no card links to a profile page, a placeholder, or a
+   missing repository.
+5. **Given** a project is added, removed, or replaced later, **When** the page is published,
+   **Then** only that card's content changes and the grid layout is unchanged (FR-019).
 
 ---
 
@@ -310,8 +334,8 @@ no motion and nothing to click.
 - **Long narrative on small screens or with enlarged text**: the Experience narrative wraps
   within the viewport at 320px and 400% zoom and stays readable (no clipped or overlapping
   text).
-- **Only the "coming soon" card present**: it sits within the grid without stretching to an
-  awkward width on large screens.
+- **Odd number of cards in two columns** (tablets): the last card keeps the same width as the
+  others instead of stretching across the row.
 - **Project with a missing element** (no demo, no tags): the card stays aligned with its
   neighbours; missing links are omitted, never dead.
 - **External profile unavailable**: failures happen on the external site; this page contains no
@@ -351,7 +375,7 @@ no motion and nothing to click.
   engineer who loves turning complex problems into reliable, well-structured systems. I studied
   Computer Science at UMass Lowell and am now pursuing an MBA in Project Management at LSU
   Shreveport, pairing engineering depth with strategic delivery know-how. Mentorship is
-  incredibly important to me—I actively dedicate time to sharing my industry experience to
+  incredibly important to me; I actively dedicate time to sharing my industry experience to
   accelerate the growth of other engineers while continuously sharpening my own leadership
   capabilities."
 - **FR-009**: About Me MUST list education: Bachelor of Science in Computer Science, University
@@ -379,7 +403,7 @@ no motion and nothing to click.
   robust systems, constructing microservices, and managing cloud infrastructure on AWS within
   high-stakes fields like Financial Services and Healthcare. Beyond the code, I focus on
   bridging the gap between technical execution and organizational strategy. My career is defined
-  not just by the systems I build, but by my active involvement in mentorship—collaborating with
+  not just by the systems I build, but by my active involvement in mentorship, collaborating with
   leadership to share technical insights while mentoring new associate software engineers to
   help them onboard smoothly, master best practices, and achieve both technical and personal
   growth."
@@ -414,22 +438,32 @@ no motion and nothing to click.
 - **FR-040**: The Interests section MUST be static: no animation, no hover or focus effects that
   suggest interactivity, no links or controls, and no reliance on scripting.
 
+**Punctuation and link placement**
+
+- **FR-041**: No em dash (—) may appear in any published text: visible copy, page titles, share
+  metadata, or accessible labels. Where the owner's texts used one, it is replaced by a comma,
+  semicolon, or sentence break as recorded in Clarifications.
+- **FR-042**: The GitHub and LinkedIn profile links MUST appear exactly once in the hero and once
+  in the Contact section, and nowhere else on the page. Other sections may link to specific
+  repositories but not to either profile.
+
 **Projects**
 
 - **FR-016**: Projects MUST be shown as a minimalist grid of cards: one column on phones, two
   or more columns on tablets and desktops.
-- **FR-017**: Each card MUST provide: project title, short description (≤ 200 characters), one
-  or more technology tags, a repository link, and a live demo link. Link labels MUST identify
-  the project (e.g. "Source code for <Project Title>").
+- **FR-017**: Each card MUST provide: a title naming the competency it demonstrates, a short
+  description (≤ 200 characters) of the underlying project, one or more technology tags (no tag
+  repeated on another card), and one or more direct links to the project's public source code;
+  a live demo link only where a demo exists. Link labels MUST identify the card (e.g. "Order
+  Service source code for Event-Driven Microservices").
 - **FR-018**: When a project has no repository or no live demo, the corresponding link MUST be
   omitted; no card may contain a dead or placeholder link on the live site.
 - **FR-019**: Cards MUST be structured so that adding, removing, or replacing a project
   requires editing only that project's content, without changing the layout.
-- **FR-020**: While no real projects exist, the section MUST show exactly one "coming soon" card
-  styled like a project card, containing a short friendly message (e.g. "New projects are on
-  the way — follow along on GitHub") and no sample titles, tags, or placeholder links. A link
-  to Aseel's GitHub profile MAY be included. This card is exempt from FR-017 and MUST be removed
-  once at least one real project is published.
+- **FR-020**: Projects MUST show exactly these three featured cards, in order, each backed by
+  the owner's public repositories: **Event-Driven Microservices** (order-service,
+  e-commerce-store-project), **Full-Stack Web Application** (booky-frontend, books), and
+  **Algorithmic Systems** (Radix-Calculator). No placeholder or "coming soon" card appears.
 
 **Contact Links**
 
@@ -504,8 +538,8 @@ no motion and nothing to click.
   employer name (the owner's university excepted, FR-012).
 - **Interest**: a personal hobby — label (Cooking, Reading Books, Weightlifting, Cycling,
   Skiing) and a decorative icon; ordered; no description or link.
-- **Project**: title, short description, technology tags, optional repository link, optional
-  live demo link.
+- **Project**: competency title, short description, technology tags (unique across cards), one
+  or more source-code links to the owner's public repositories, optional live demo link.
 
 ## Success Criteria *(mandatory)*
 
@@ -514,8 +548,8 @@ no motion and nothing to click.
 - **SC-001**: On a standard phone screen (375 × 667), 100% of first-time visitors can see Aseel's
   name, professional statement, and both contact actions without scrolling.
 - **SC-002**: In a usability check with at least 5 participants, at least 4 can find and open
-  Aseel's LinkedIn profile as the way to get in touch, and open Aseel's GitHub profile (or, once
-  projects are published, one project's source repository), within 30 seconds each.
+  Aseel's LinkedIn profile as the way to get in touch, and open Aseel's GitHub profile or one
+  featured project's source code, within 30 seconds each.
 - **SC-003**: Any section can be reached from any scroll position in no more than 2
   interactions (e.g. open menu, choose section).
 - **SC-004**: Zero instances of horizontal scrolling or clipped content at 320px, 375px, 768px,
@@ -538,7 +572,8 @@ no motion and nothing to click.
 - **Content still to be supplied by Aseel before launch**: none. (Supplied 2026-09-30: GitHub and
   LinkedIn URLs, About Me introduction, Experience narrative, and site URL. Role dates and an
   email address are no longer needed.)
-  Real project details are post-launch content that replaces the "coming soon" card.
+  Featured project copy (FR-020) is drafted from each repository's code and README and
+  approved by the owner.
 - The site's name/heading uses the first name "Aseel"; the full name "Aseel Almanahy" appears in
   the page title, share previews, and footer.
 - No profile photo is included; the hero relies on typography and colour. A photo can be added

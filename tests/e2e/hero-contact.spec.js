@@ -29,7 +29,7 @@ function expectExternal(link) {
   expect(link.text).toContain('(opens in a new tab)');
 }
 
-test.describe('US1 — hero and contact content', () => {
+test.describe('US1: hero and contact content', () => {
   test('hero greeting and statement are verbatim', async ({ page }) => {
     await page.goto('/');
     expect(normalise(await page.locator('h1').textContent())).toBe(GREETING);
@@ -72,10 +72,9 @@ test.describe('US1 — hero and contact content', () => {
     await page.goto('/');
     const hrefs = (selector) =>
       page.locator(selector).evaluateAll((links) => links.map((a) => a.getAttribute('href')));
-    const github = await hrefs('a[href*="github.com"]');
+    const github = await hrefs(`a[href="${GITHUB_URL}"]`);
     const linkedin = await hrefs('a[href*="linkedin.com"]');
-    expect(github).toHaveLength(3); // hero, Contact, coming-soon card
-    expect(new Set(github)).toEqual(new Set([GITHUB_URL]));
+    expect(github).toHaveLength(2); // hero, Contact
     expect(linkedin).toHaveLength(2); // hero, Contact
     expect(new Set(linkedin)).toEqual(new Set([LINKEDIN_URL]));
     const person = await page
@@ -83,9 +82,26 @@ test.describe('US1 — hero and contact content', () => {
       .evaluate((el) => JSON.parse(el.textContent));
     expect(person.sameAs).toEqual([GITHUB_URL, LINKEDIN_URL]);
   });
+
+  test('profile links appear once in the hero and once in Contact, nowhere else (FR-042)', async ({
+    page,
+  }) => {
+    await page.goto('/');
+    const placement = await page
+      .locator(`a[href="${GITHUB_URL}"], a[href="${LINKEDIN_URL}"]`)
+      .evaluateAll((links) =>
+        links.map((a) => `${a.closest('section')?.id ?? 'outside'}:${a.getAttribute('href')}`),
+      );
+    expect(placement).toEqual([
+      `home:${GITHUB_URL}`,
+      `home:${LINKEDIN_URL}`,
+      `contact:${LINKEDIN_URL}`,
+      `contact:${GITHUB_URL}`,
+    ]);
+  });
 });
 
-test.describe('US1 — hero above the fold (SC-001)', () => {
+test.describe('US1: hero above the fold (SC-001)', () => {
   test.use({ viewport: { width: 375, height: 667 } });
 
   test('greeting, statement, and both actions are visible without scrolling', async ({ page }) => {

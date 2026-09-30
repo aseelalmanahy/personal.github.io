@@ -11,7 +11,7 @@ test.describe('responsive baseline', () => {
   });
 });
 
-test.describe('SC-004 — no horizontal overflow from 320 to 2560px', () => {
+test.describe('SC-004: no horizontal overflow from 320 to 2560px', () => {
   for (const colorScheme of ['light', 'dark']) {
     for (const width of WIDTHS) {
       test(`${width}px, ${colorScheme}`, async ({ page }) => {

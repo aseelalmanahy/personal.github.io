@@ -553,7 +553,10 @@ Validation criteria:
 | Requirement | Phase(s) | Primary evidence |
 |---|---|---|
 | FR-001–FR-003 | 1 | V1.4 |
-| FR-004–FR-007 | 1, 2 | V1.5, V2.4 |
+| FR-004 | 16 | Gates S16-1 to S16-3 |
+| FR-005 | 15 | Gates U1–U4 |
+| FR-006 | 14 | Gate F2 |
+| FR-007 | — | Removed 2026-09-30 (no email action) |
 | FR-008–FR-010 | 1, 3 | V1.4, V3.1 |
 | FR-011, FR-012 | 8 | Amendment A2–A3 (supersedes V1.7, V3.4) |
 | FR-013 (FR-013a removed) | 8 | Amendment A2, A8 (supersedes V3.4, V5.1) |
@@ -568,8 +571,8 @@ Validation criteria:
 | FR-037–FR-040 | 9 | Interests I2–I5, I10 |
 | FR-041 | 13 | Gate P1 |
 | FR-042 | 14 | Gate F2 |
-| FR-001, FR-005, FR-005a, FR-023 | 15 | Gates U1–U4 |
-| SC-001 | 2 | V2.4 |
+| FR-001, FR-005a, FR-023 | 15 | Gates U1–U4 |
+| SC-001 | 16 | Gates S16-1 to S16-3 (supersedes V2.4) |
 | SC-002 | 5 | Usability check (manual) |
 | SC-003 | 4 | V4.5 |
 | SC-004 | 3 | V3.1, V3.2 |

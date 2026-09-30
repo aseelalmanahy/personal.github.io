@@ -182,7 +182,7 @@ specializing in scalable systems, robust architectures, and engineering mentorsh
   (the page's only h1), professional statement, biography (FR-008), Education (two degree cards),
   Skills (four tiers). "Education" and "Skills" become the intro's sub-headings; there is no
   "About Me" heading anywhere. Constitution v4.0.0 lists four sections: Intro, Experience,
-  Interests, Contact Links.
+  Interests, Contact Links. *(Statement removed 2026-09-30, see below.)*
 - Q: What happens to the "About" navigation link? → A: It is removed: the intro is the top of
   the page and the site-name link in the bar already returns to it. The bar links to
   Experience, Interests, and Contact.
@@ -207,7 +207,7 @@ touch they choose Contact in the navigation bar (or scroll to the end): the Cont
 tells them that LinkedIn is the best way to reach out or connect and offers LinkedIn and GitHub,
 the only place on the page where either appears.
 
-**Why this priority**: Converting a visit into contact is the site's core purpose. The hero and
+**Why this priority**: Converting a visit into contact is the site's core purpose. The intro and
 contact routes alone are a viable, publishable page.
 
 **Independent Test**: Load the page at a standard phone size, confirm the greeting is visible and the biography
@@ -246,7 +246,10 @@ on, but they are only useful once the visitor already knows who Aseel is (P1).
 
 **Independent Test**: With only the intro and Experience sections present, a reviewer
 can state Aseel's degrees, list the skills per category, and summarise Aseel's experience in
-terms of full-stack work, cloud (AWS), architecture, and technical leadership.
+the narrative's own terms (FR-011): a foundation as a Professor's Assistant and grader at UMass
+Lowell, Android engineering in the healthcare sector, full-stack engineering building robust
+systems, microservices, and cloud infrastructure on AWS in Financial Services and Healthcare,
+and mentorship of new associate software engineers.
 
 **Acceptance Scenarios**:
 
@@ -378,8 +381,10 @@ no motion and nothing to click.
 **Intro**
 
 - **FR-004**: The intro MUST display the greeting "Hi, I'm Aseel." as the page's main heading.
-  The professional statement ("Full Stack Software Engineer specializing in…") MUST NOT appear as visible text; it
-  remains only as the page's summary description (FR-036).
+  The professional statement ("Full Stack Software Engineer specializing in…") MUST NOT appear
+  in the main document body text. It is explicitly permitted in the page metadata (summary
+  description and share-preview tags), the structured data block, and the share-preview image
+  (FR-036), none of which render as body text.
 - **FR-005**: The intro MUST present, in this order, the greeting (FR-004), the
   biography (FR-008), the education cards (FR-009), and the skills grid (FR-010), with
   "Education" and "Skills" as its only sub-headings and no "About Me" heading. It contains no
@@ -389,8 +394,7 @@ no motion and nothing to click.
   larger) the education cards begin within the first screenful.
 - **FR-006**: GitHub and LinkedIn actions MUST open Aseel's public profiles —
   `https://github.com/aseelalmanahy` and `https://www.linkedin.com/in/aseel-almanahy-97342b109/`
-  — in a new tab and MUST indicate to all users that they open in a new tab. The same two URLs
-  are used everywhere the page links to these profiles.
+  — in a new tab and MUST indicate to all users that they open in a new tab.
 - **FR-007**: *(Removed 2026-09-30 — no email action; see FR-021.)*
 
 **Intro: biography, education, skills**

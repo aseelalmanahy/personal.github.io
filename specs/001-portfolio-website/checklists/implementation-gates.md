@@ -247,7 +247,7 @@ Result values: PASS · FAIL · PENDING · N/A (with reason).
 | P6 | `npm run verify` | PASS | exit 0: format, lint, 46/46 unit, 0 content markers, 283 e2e passed / 8 skipped (engine limits), 17/17 links (repositories resolve). A first run hit one WebKit browser crash (no assertion failed); re-run clean | 2026-09-30 |
 | P7 | Budgets | PASS | 12.2 KB HTML+CSS+JS, 3.9 KB JS, 13.4 KB total (gzip) | 2026-09-30 |
 | P8 | Lighthouse (mobile ×3) | PASS | index.html Perf 1.00, A11y 1.00, BP 1.00, SEO 1.00; LCP 1.1 s, CLS 0.001, TBT 0 ms | 2026-09-30 |
-| P9 | Owner review of card copy | PENDING | Owner action with T098 | — |
+| P9 | Owner review of card copy | N/A | Projects section and its cards removed in Phase 14 (gate F4); nothing left to review | 2026-09-30 |
 
 ## Five sections: hero links and Projects removed (Phase 14, 2026-09-30)
 

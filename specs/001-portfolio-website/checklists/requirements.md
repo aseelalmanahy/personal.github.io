@@ -80,3 +80,7 @@
   FR-005, FR-005a, US1, SC-001, Profile entity); it remains the summary description for share
   previews (FR-036). Constitution v5.0.0. All 16 items still pass; no [NEEDS CLARIFICATION]
   markers.
+- Iteration 12 (2026-09-30, analysis clean-up): FR-004 scope clarified (body text vs. metadata,
+  structured data, share image), FR-006 redundant sentence removed (FR-042 governs placement),
+  US1 and US2 wording aligned with the intro and FR-011, clarification cross-reference added. All
+  16 items still pass; no [NEEDS CLARIFICATION] markers.

@@ -14,7 +14,7 @@ the end.
 
 | Field | Value / rule | Rendered in |
 |---|---|---|
-| `displayName` | "Aseel" | hero `h1` greeting "Hi, I'm Aseel." |
+| `displayName` | "Aseel" | intro `h1` greeting "Hi, I'm Aseel." |
 | `fullName` | "Aseel Almanahy" | `<title>`, brand link, OG tags, JSON-LD, footer |
 | `statement` | "Full Stack Software Engineer specializing in scalable systems, robust architectures, and engineering mentorship." — verbatim | meta/OG description and JSON-LD only; not shown on the page (FR-004, amendment 2026-09-30) |
 | `intro` | The owner's approved text in spec FR-008, verbatim (3 sentences) | intro biography paragraph (directly below the greeting) |
@@ -32,7 +32,7 @@ the end.
 | `opensNewTab` | always `true` |
 
 **Validation**: new-tab links carry `target="_blank"`, `rel="noopener noreferrer"`, and a
-visible or visually-hidden "(opens in a new tab)" (FR-006); no `mailto:` link or email address anywhere (FR-021); each route appears exactly once, in Contact (2 links total, FR-042); the hero has none (FR-005).
+visible or visually-hidden "(opens in a new tab)" (FR-006); no `mailto:` link or email address anywhere (FR-021); each route appears exactly once, in Contact (2 links total, FR-042); the intro has none (FR-005).
 
 ### EducationEntry
 
@@ -118,4 +118,4 @@ the button), on choosing a link, or on widening past the breakpoint. Exposed as
 ### ActiveSection
 
 At most one nav link has `aria-current="true"` — the section whose top has crossed below the nav
-bar and which occupies the upper part of the viewport; none while the hero is in view.
+bar and which occupies the upper part of the viewport; none while the intro is in view.

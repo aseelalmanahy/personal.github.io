@@ -80,6 +80,8 @@ no external icon libraries or heavy web fonts, keeping the performance guideline
   Contact? → A: Immediately after Experience ("right after the narrative Experience block"),
   so the order is Hero, About Me, Experience, Interests, Projects, Contact Links; constitution
   amended to v2.2.0 to allow the sixth section.
+- Q: Which public email address does the page publish? → A: `[email removed]`
+  (owner-supplied routing address; an earlier proposal on an unregistered domain was rejected).
 
 ## User Scenarios & Testing *(mandatory)*
 
@@ -246,7 +248,7 @@ no motion and nothing to click.
   the theme follows the device preference; only the toggle, menu animation, and current-section
   highlight are absent. The theme toggle is hidden rather than shown non-functional. On
   phone-sized screens the menu cannot collapse, so the navigation links are shown directly and
-  the bar may wrap to two rows (exceeding the ~56px collapsed height of FR-023) — all links stay
+  the bar may wrap to several rows (exceeding the ~56px collapsed height of FR-023) — all links stay
   visible and usable.
 - **Preference storage blocked** (private browsing, storage disabled): the theme toggle still
   works for the current visit; nothing errors.
@@ -356,8 +358,7 @@ no motion and nothing to click.
   Cycling, Skiing.
 - **FR-038**: The items MUST be presented as a list (announced as a list of five items by
   assistive technology) laid out as a grid: at least two columns on phone-sized screens where
-  space allows and more columns on wider screens, with no overflow at any width from 320px to
-  2560px or at 400% zoom.
+  space allows and more columns on wider screens (overflow rules: FR-032).
 - **FR-039**: Each item MUST show a small decorative icon that is hidden from assistive
   technology, drawn in the theme's colours in both light and dark themes, and delivered with the
   page itself (no icon library, web font, or additional download).
@@ -487,8 +488,9 @@ no motion and nothing to click.
 ## Assumptions
 
 - **Content still to be supplied by Aseel before launch** (not blocking the spec): the public
-  email address to publish. (Supplied 2026-09-30: GitHub and LinkedIn URLs, About Me
-  introduction, Experience narrative, and site URL; role dates are no longer needed.)
+  nothing. (Supplied 2026-09-30: GitHub and LinkedIn URLs, About Me introduction, Experience
+  narrative, site URL, and the public email `[email removed]`; role dates are no
+  longer needed.)
   Real project details are post-launch content that replaces the "coming soon" card.
 - The site's name/heading uses the first name "Aseel"; the full name "Aseel Almanahy" appears in
   the page title, share previews, and footer.

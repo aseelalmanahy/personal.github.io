@@ -92,7 +92,7 @@ Result values: PASS · FAIL · PENDING · N/A (with reason).
 | V5.3 | Smooth scroll | PASS | `smooth` with motion, `auto` with reduced motion; deep links/nav keep headings below bar; no `focusin` guard needed (T087) | 2026-09-29 |
 | V5.4 | One render-blocking stylesheet; `?v=` URLs; CSP on dist | PASS | 1 bundled stylesheet (+ print); all 21 local URLs versioned incl. module imports and preloads; check-csp passes on src + dist | 2026-09-29 |
 | V5.5 | Budgets + Lighthouse thresholds (SC-005) | PASS (pending content for SEO) | Budgets: 12.6 KB HTML+CSS+JS, 5.7 KB JS, 13.8 KB total (gzip). Lighthouse mobile ×3: Perf 1.00, A11y 1.00, BP 1.00, LCP 1.1 s, CLS 0.001, TBT 0 ms. SEO 0.92 only because robots.txt Sitemap is a `CONTENT:` placeholder; with example URLs SEO passes and all assertions succeed | 2026-09-29 |
-| V5.6 | 0 broken links (SC-010) | PENDING (content) | Runs after T096 fills URLs | |
+| V5.6 | 0 broken links (SC-010) | PASS | linkinator: 13 links OK incl. github.com/aseelalmanahy (200); own origin skipped until first deploy; LinkedIn skipped (bot-blocking) — verify manually | 2026-09-30 |
 | V5.7 | Share preview metadata + 1200×630 image | PASS | og-image.png 1200×630, 44.8 KB; apple-touch-icon + 32px PNG; OG URLs checked by check-site-url after content | 2026-09-29 |
 
 **Notes (Phase 5)**
@@ -105,7 +105,7 @@ Result values: PASS · FAIL · PENDING · N/A (with reason).
 - Axe runs with reduced motion so entries awaiting the fade-in (opacity 0, never seen) are not
   reported as low contrast; reveal.spec verifies they always reach opacity 1.
 - Timeline hide is instant; only the reveal animates (`[data-reveal='visible']` transition).
-| V5.8 | 0 `CONTENT:` markers | PENDING | | |
+| V5.8 | 0 `CONTENT:` markers | PASS | check-content --strict: 0 | 2026-09-30 |
 | V5.9 | CI verify → deploy wiring | PENDING | | |
 | V5.10 | Final SC table + manual gates | PENDING | | |
 
@@ -117,7 +117,7 @@ Result values: PASS · FAIL · PENDING · N/A (with reason).
 | G2 | Everything traces to an FR/US | PASS | All src files map to plan tasks/FRs; no untraced features |
 | G3 | Plain-language visitor text, no dev artefacts | PASS (pre-content) | grep TODO/FIXME/lorem/console.log = 0; `CONTENT:` placeholders visible until T096 |
 | G4 | All sections complete | PASS | structure.spec: five sections + 404 |
-| G5 | No unresolved decisions; 0 `CONTENT:` at launch | PENDING (content) | 4 markers: public email only (T094, T096) |
+| G5 | No unresolved decisions; 0 `CONTENT:` at launch | PASS | 0 markers; email `[email removed]` applied 2026-09-30 |
 | G6 | Each FR has a passing check | PASS | 258 e2e + 52 unit tests; FR-015 privacy review is manual (T098) |
 | G7 | SCs measured with numbers | PASS | Budgets, Lighthouse, CLS, viewport matrix recorded above |
 | G8 | SCs verified in real browsers | PASS | Chromium, Firefox, WebKit |
@@ -143,7 +143,7 @@ Result values: PASS · FAIL · PENDING · N/A (with reason).
 | SC-007 | PASS | axe 0 violations, light/dark/saved-dark × 2 pages × 3 engines |
 | SC-008 | PASS | V4.2 — theme persists across reload |
 | SC-009 | PENDING (owner) | Privacy review (T098); automated field restriction passes |
-| SC-010 | PENDING (content) | Link check after real URLs (T097); placeholders currently skipped |
+| SC-010 | PASS | 0 broken links (V5.6); 0 placeholder links (V5.8) |
 
 ## Manual gates
 
@@ -190,3 +190,9 @@ Result values: PASS · FAIL · PENDING · N/A (with reason).
 | I8 | Budgets | PASS | 12.2 KB HTML+CSS+JS, 4.8 KB JS, 13.5 KB total (gzip) | 2026-09-30 |
 | I9 | Lighthouse (mobile ×3, real build) | PASS | Perf 1.00, A11y 1.00, BP 1.00, SEO 1.00; LCP 1.1 s, CLS 0.001, TBT 0 ms | 2026-09-30 |
 | I10 | Visual check | PASS | 1440 light (5 across), 375 dark (2 columns), 320 light (1 column), 768 header one row | 2026-09-30 |
+
+## Final validation sweep (2026-09-30)
+
+`npm run verify` exit 0 (93 s): Prettier clean; ESLint/Stylelint/html-validate 0; 50/50 unit; build; check-csp, check-site-url, check-content (0), budgets (13.5 KB gzip); 269 e2e passed, 10 skipped (engine limits) in Chromium, Firefox, WebKit; Lighthouse assertions pass (index 100/100/100/100); link check 13/13.
+
+**Open before launch**: T098 privacy review, T099 manual gates (screen reader, visual, JS-off, print, usability) — owner-run; T100 final tables; T102 create repository + push + PR + Pages settings (owner account); T103 live spot-check; send a test email to the published address.

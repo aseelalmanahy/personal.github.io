@@ -4,9 +4,9 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project state
 
-Single-page personal portfolio for Aseel Almanahy, scaffolded with **GitHub Spec Kit** (v1.0.13.dev0). Active feature: `specs/001-portfolio-website` on branch `001-portfolio-website`. Implementation phases 1–5 are built and tested; launch waits on the owner's content (see below). Gate evidence lives in `specs/001-portfolio-website/checklists/implementation-gates.md`.
+Single-page personal portfolio for Aseel Almanahy, scaffolded with **GitHub Spec Kit** (v1.0.13.dev0). Active feature: `specs/001-portfolio-website` on branch `001-portfolio-website`. Implementation phases 1–9 are built and tested; launch waits only on creating the GitHub repository and the owner's manual gates (tasks T097–T103). Gate evidence lives in `specs/001-portfolio-website/checklists/implementation-gates.md`.
 
-- **Content placeholders**: the two remaining unknowns (public email, site URL) are `CONTENT:` markers. GitHub/LinkedIn URLs, the About intro, and the Experience narrative are owner-approved (spec FR-006, FR-008, FR-011) — keep them verbatim. Never invent values — `node tools/check-content.mjs` lists what remains; `--strict` must pass before deploy. Until then `npm run test:lighthouse` fails SEO (placeholder in `robots.txt`) and CI stays red, by design.
+- **Content**: all owner content is final (spec FR-006, FR-008, FR-011, FR-037; site URL `https://aseelalmanahy.github.io/`; email `[email removed]`) — keep it verbatim. `node tools/check-content.mjs --strict` must stay at 0 markers; never invent content.
 - The parent folder (`../`) contains an unrelated, empty git repository; this project's repository root is this directory.
 
 ## Stack (decided in `specs/001-portfolio-website/plan.md`)

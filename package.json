@@ -20,7 +20,7 @@
     "build": "node tools/build.mjs",
     "test:e2e": "playwright test",
     "test:lighthouse": "lhci autorun",
-    "check:links": "linkinator dist --recurse --skip linkedin.com",
+    "check:links": "linkinator dist --recurse --skip linkedin.com --skip aseelalmanahy.github.io",
     "check:static": "node tools/check-csp.mjs && node tools/check-site-url.mjs && node tools/check-content.mjs && node tools/check-budgets.mjs",
     "verify": "npm run format:check && npm run lint && npm run test:unit && npm run build && npm run check:static && npm run test:e2e && npm run test:lighthouse && npm run check:links"
   },

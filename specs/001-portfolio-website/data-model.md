@@ -28,7 +28,7 @@ the end.
 |---|---|
 | `type` | `github` \| `linkedin` \| `email` — exactly these three, in this order (FR-005, FR-022a) |
 | `label` | Visible text: "GitHub", "LinkedIn", "Email" (hero); descriptive in Contact section (e.g. "GitHub profile") |
-| `href` | `https://github.com/aseelalmanahy`, `https://www.linkedin.com/in/aseel-almanahy-97342b109/` (FR-006); `mailto:<address>` — **content input** |
+| `href` | `https://github.com/aseelalmanahy`, `https://www.linkedin.com/in/aseel-almanahy-97342b109/` (FR-006); `mailto:[email removed]` |
 | `opensNewTab` | `true` for github/linkedin, `false` for email |
 
 **Validation**: new-tab links carry `target="_blank"`, `rel="noopener noreferrer"`, and a

@@ -37,7 +37,7 @@ files that deploy.
 | `npm run build` | bundle/minify CSS, cache-bust, copy to `dist/` | exits 0; size table printed |
 | `npm run test:e2e` | Playwright on `dist/`, Chromium + Firefox + WebKit | all pass, 0 console errors |
 | `npm run test:lighthouse` | Lighthouse CI (mobile) on `dist/` | Perf ≥ 95, A11y = 100, BP ≥ 95, SEO ≥ 95; LCP ≤ 2.0s; CLS ≤ 0.05; TBT ≤ 200ms |
-| `npm run check:links` | linkinator on `dist/` | 0 broken links |
+| `npm run check:links` | linkinator on `dist/` (skips LinkedIn and the site's own origin, which only exists after deploy) | 0 broken links |
 | `npm run verify` | all of the above in order | exit 0 — this is the CI gate |
 
 ## Scenario walkthroughs
@@ -73,6 +73,17 @@ for manual confirmation at each phase gate. Details of expected markup are in
    **Expect**: 1 column at 375px, ≥ 2 columns at 768px+, all five card elements present,
    missing demo link omitted.
 
+### US5 — Get to know Aseel beyond work
+
+1. Choose "Interests" in the navigation. **Expect**: the heading lands just below the bar and
+   "Interests" is marked as the current link.
+2. **Expect**: five items in order — Cooking, Reading Books, Weightlifting, Cycling, Skiing —
+   each with an amber icon; 1 column at 320px, 2 at 375px, all 5 in a row on desktop; nothing
+   animates or reacts to hover.
+3. **Screen reader** (NVDA + Firefox, VoiceOver iOS): the section is announced as "Interests",
+   then "list, 5 items"; each item is read by its label only — icons are silent; no item is
+   announced as a link or button.
+
 ### US4 — Navigate and choose a theme
 
 1. From any scroll position, choose each nav link. **Expect**: smooth scroll (instant with
@@ -97,7 +108,8 @@ for manual confirmation at each phase gate. Details of expected markup are in
 ## Manual gates (recorded in the PR description)
 
 - **Screen reader smoke test**: NVDA + Firefox and VoiceOver on iOS — landmarks, headings,
-  toggle state, menu state, copy status announcement, Experience narrative read as one paragraph.
+  toggle state, menu state, copy status announcement, Experience narrative read as one paragraph,
+  Interests read as a list of five items with silent icons.
 - **Visual review**: screenshots at 320, 375, 768, 1024, 1440, 2560 in light and dark.
 - **Privacy review (FR-015, SC-009)**: reviewer confirms every word inside `#experience` (and
   the whole page) contains no internal application or system names, architecture descriptions,
@@ -113,7 +125,7 @@ for manual confirmation at each phase gate. Details of expected markup are in
 - [x] ~~Role start/end months~~ — no longer needed (timeline removed 2026-09-30)
 - [x] GitHub profile URL — `https://github.com/aseelalmanahy` (2026-09-30)
 - [x] LinkedIn profile URL — `https://www.linkedin.com/in/aseel-almanahy-97342b109/` (2026-09-30)
-- [ ] Public email address
+- [x] Public email address — `[email removed]` (2026-09-30; send a test message before launch)
 - [x] About Me introduction approved (spec FR-008, 2026-09-30)
 - [x] Site URL / repository name — `aseelalmanahy.github.io` → `https://aseelalmanahy.github.io/` (2026-09-30); confirm
   before the GitHub repository is created (T094); the name sets the 404 `<base href>`

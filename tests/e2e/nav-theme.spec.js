@@ -38,7 +38,7 @@ test.describe('US4 — headings and focus never hidden under the bar (FR-023a)',
       // the scroll-behavior test; its animation can be cut short when the CPU is saturated.
       await page.emulateMedia({ reducedMotion: 'reduce' });
       await page.setViewportSize({ width, height: 800 });
-      for (const id of ['about', 'experience', 'projects', 'contact']) {
+      for (const id of ['about', 'experience', 'interests', 'projects', 'contact']) {
         await page.goto(`/#${id}`);
         // The page must actually scroll there: the heading is fully on screen below the bar and,
         // for every section but the last, lands just below the bar (within section padding).
@@ -256,7 +256,7 @@ test.describe('US4 — current section and smooth scrolling (FR-024, FR-026)', (
   test('exactly one nav link marks the section in view; none in the hero', async ({ page }) => {
     await page.goto('/');
     await expect(page.locator('.nav__link[aria-current="true"]')).toHaveCount(0);
-    for (const id of ['about', 'experience', 'projects', 'contact']) {
+    for (const id of ['about', 'experience', 'interests', 'projects', 'contact']) {
       await page.locator(`#${id}`).evaluate((el) => el.scrollIntoView({ behavior: 'instant' }));
       const current = page.locator('.nav__link[aria-current="true"]');
       await expect(current).toHaveCount(1);

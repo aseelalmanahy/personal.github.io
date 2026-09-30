@@ -4,7 +4,8 @@
 
 **Created**: 2026-09-29
 
-**Status**: Draft — amended 2026-09-30 (narrative content structure; see Clarifications)
+**Status**: Draft — amended 2026-09-30 (narrative content structure; Interests section; see
+Clarifications)
 
 **Input**: User description: "Create a technical specification for a single-page personal
 portfolio website for Aseel Almanahy, a Full Stack Software Engineer. Hero section (greeting
@@ -27,6 +28,12 @@ blocks in favour of a single, highly polished narrative focusing on full-stack c
 cloud experience, architectural growth, and technical leadership capability; GitHub and
 LinkedIn links are set to the owner's profiles; tasks and the page are regenerated while
 maintaining Lighthouse scores."
+
+**Amendment input (2026-09-30, Interests)**: "Inject a Hobbies/Interests section: a new section
+titled 'Interests' right after the narrative Experience block and before the Contact section; a
+clean, accessible, non-animated grid list of five items — Cooking, Reading Books, Weightlifting,
+Cycling, and Skiing; pure semantic HTML with embedded lightweight inline icons for each hobby,
+no external icon libraries or heavy web fonts, keeping the performance guidelines."
 
 ## Clarifications
 
@@ -69,6 +76,10 @@ maintaining Lighthouse scores."
   site URL `https://aseelalmanahy.github.io/` (the owner wrote "https://github.io"; GitHub Pages
   serves a repository with that name at `https://aseelalmanahy.github.io/`, so that address is
   used for the canonical link, share previews, and sitemap).
+- Q: Where does the new Interests section go, given Projects sits between Experience and
+  Contact? → A: Immediately after Experience ("right after the narrative Experience block"),
+  so the order is Hero, About Me, Experience, Interests, Projects, Contact Links; constitution
+  amended to v2.2.0 to allow the sixth section.
 
 ## User Scenarios & Testing *(mandatory)*
 
@@ -203,6 +214,32 @@ touch, and keyboard; toggle the theme, reload, and confirm the choice persisted.
 
 ---
 
+### User Story 5 - Get to know Aseel beyond work (Priority: P5)
+
+A visitor who has read Aseel's experience wants a sense of the person behind it. In a short
+Interests section they see five hobbies at a glance — Cooking, Reading Books, Weightlifting,
+Cycling, and Skiing — each with a small, friendly icon.
+
+**Why this priority**: It makes the page warmer and more personal, but it is supporting context
+rather than evidence for a hiring decision, so it follows the professional content.
+
+**Independent Test**: Load the page, reach Interests from the navigation, and confirm the five
+hobbies appear as a list in the stated order, each with an icon and a visible text label, with
+no motion and nothing to click.
+
+**Acceptance Scenarios**:
+
+1. **Given** a visitor scrolling past Experience, **When** they reach Interests, **Then** they
+   see the heading "Interests" and exactly five items, in this order: Cooking, Reading Books,
+   Weightlifting, Cycling, Skiing.
+2. **Given** a screen-reader user, **When** they reach Interests, **Then** it is announced as a
+   list of five items, each read by its text label only (icons are not announced).
+3. **Given** any screen width from 320px to 2560px, **When** the visitor views Interests,
+   **Then** the items form a tidy grid (more columns on wider screens) with no overflow, and
+   nothing animates, moves, or responds to hover as if it were clickable.
+
+---
+
 ### Edge Cases
 
 - **Scripting unavailable**: all content, all contact links, and in-page navigation still work;
@@ -229,6 +266,8 @@ touch, and keyboard; toggle the theme, reload, and confirm the choice persisted.
   button or by selecting the visible text.
 - **Clipboard access denied or unsupported**: the copy button reports the failure in words and
   points the visitor to the visible address; nothing else breaks.
+- **Interests on narrow screens or with enlarged text**: the grid drops to fewer columns (one if
+  needed) so labels such as "Weightlifting" and "Reading Books" never overflow or clip.
 - **Long narrative on small screens or with enlarged text**: the Experience narrative wraps
   within the viewport at 320px and 400% zoom and stays readable (no clipped or overlapping
   text).
@@ -248,7 +287,7 @@ touch, and keyboard; toggle the theme, reload, and confirm the choice persisted.
 **Page structure and scope**
 
 - **FR-001**: The site MUST be a single page containing these sections, in this order: Hero,
-  About Me, Experience, Projects, Contact Links.
+  About Me, Experience, Interests, Projects, Contact Links.
 - **FR-002**: Each section MUST be individually linkable so a visitor can share or bookmark a
   link that opens directly at that section.
 - **FR-003**: A "not found" page MUST be shown for any unknown address, in the site's style,
@@ -309,6 +348,21 @@ touch, and keyboard; toggle the theme, reload, and confirm the choice persisted.
   described only in terms of general technical competencies and leadership capability.
 - **FR-015**: All published text, including the Experience narrative, MUST pass a written
   privacy review against FR-014 before publication.
+
+**Interests**
+
+- **FR-037**: An "Interests" section MUST follow Experience and list exactly these five items,
+  in this order, each with a visible text label: Cooking, Reading Books, Weightlifting,
+  Cycling, Skiing.
+- **FR-038**: The items MUST be presented as a list (announced as a list of five items by
+  assistive technology) laid out as a grid: at least two columns on phone-sized screens where
+  space allows and more columns on wider screens, with no overflow at any width from 320px to
+  2560px or at 400% zoom.
+- **FR-039**: Each item MUST show a small decorative icon that is hidden from assistive
+  technology, drawn in the theme's colours in both light and dark themes, and delivered with the
+  page itself (no icon library, web font, or additional download).
+- **FR-040**: The Interests section MUST be static: no animation, no hover or focus effects that
+  suggest interactivity, no links or controls, and no reliance on scripting.
 
 **Projects**
 
@@ -399,6 +453,8 @@ touch, and keyboard; toggle the theme, reload, and confirm the choice persisted.
   skills.
 - **Experience Narrative**: one approved paragraph of prose (FR-011); no dates, roles, or
   employer.
+- **Interest**: a personal hobby — label (Cooking, Reading Books, Weightlifting, Cycling,
+  Skiing) and a decorative icon; ordered; no description or link.
 - **Project**: title, short description, technology tags, optional repository link, optional
   live demo link.
 

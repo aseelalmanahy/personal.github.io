@@ -175,3 +175,18 @@ Result values: PASS · FAIL · PENDING · N/A (with reason).
   the timeline layout/highlight/marker tests.
 - Remaining content inputs: public email and site URL (10 markers).
 - Supersedes V3.4, V5.1 (timeline-specific). SC-006 no longer involves timeline entries.
+
+## Amendment 2026-09-30 — Interests section (tasks Phase 9)
+
+| ID | Criterion | Result | Evidence | Date |
+|---|---|---|---|---|
+| I1 | New/updated tests fail first | PASS | 9 failures before T121 (interests, structure, responsive, no-js) | 2026-09-30 |
+| I2 | Placement, heading, five items in order (FR-037) | PASS | interests.spec, 3 engines | 2026-09-30 |
+| I3 | List semantics; one decorative inline icon per item, no sprite (FR-038, FR-039) | PASS | interests.spec, 3 engines; axe 0 violations | 2026-09-30 |
+| I4 | Static — no links/controls/tabindex, `animation-name: none`, `transition-duration: 0s` (FR-040) | PASS | interests.spec, 3 engines | 2026-09-30 |
+| I5 | Grid columns 1 @ 320, 2 @ 375, 5 @ 1440; icons use `--color-accent` in both themes | PASS | interests.spec, 3 engines | 2026-09-30 |
+| I6 | Nav still one row at 768px with six links (T120; T124 fix not needed) | PASS | header 57px, all links visible | 2026-09-30 |
+| I7 | Full regression | PASS | lint 0; 50/50 unit; 269 e2e passed, 10 skipped (engine limits); 0 console errors / CSP violations | 2026-09-30 |
+| I8 | Budgets | PASS | 12.2 KB HTML+CSS+JS, 4.8 KB JS, 13.5 KB total (gzip) | 2026-09-30 |
+| I9 | Lighthouse (mobile ×3, real build) | PASS | Perf 1.00, A11y 1.00, BP 1.00, SEO 1.00; LCP 1.1 s, CLS 0.001, TBT 0 ms | 2026-09-30 |
+| I10 | Visual check | PASS | 1440 light (5 across), 375 dark (2 columns), 320 light (1 column), 768 header one row | 2026-09-30 |

@@ -36,6 +36,7 @@ body
 │       ├── ul#nav-menu.nav__list
 │       │   ├── a[href="#about"]       About
 │       │   ├── a[href="#experience"]  Experience
+│       │   ├── a[href="#interests"]   Interests
 │       │   ├── a[href="#projects"]    Projects
 │       │   └── a[href="#contact"]     Contact
 │       └── button.theme-toggle[hidden][aria-pressed]  accessible name "Dark theme"
@@ -43,6 +44,7 @@ body
 │   ├── section#home       aria-labelledby → h1   (Hero)
 │   ├── section#about      aria-labelledby → h2 "About Me"
 │   ├── section#experience aria-labelledby → h2 "Experience"
+│   ├── section#interests  aria-labelledby → h2 "Interests"
 │   ├── section#projects   aria-labelledby → h2 "Projects"
 │   └── section#contact    aria-labelledby → h2 "Contact"
 └── footer.site-footer     "© <year> Aseel Almanahy"
@@ -64,6 +66,8 @@ h2  About Me
     h4  Tools/Frameworks
 h2  Experience
   (one narrative paragraph — no sub-headings; amendment 2026-09-30)
+h2  Interests
+  (list of five items — no sub-headings)
 h2  Projects
   h3  <project title> ×N  |  h3 "More projects coming soon"
 h2  Contact

@@ -46,3 +46,8 @@
   text and GitHub/LinkedIn URLs fixed (FR-006, FR-008). Re-validated: all 16 items still pass;
   no [NEEDS CLARIFICATION] markers. Constitution Principle V wording ("Experience Timeline")
   requires a matching amendment.
+- Iteration 4 (2026-09-30, Interests): User Story 5 and FR-037–FR-040 added (five hobbies, list
+  semantics, responsive grid, decorative inline icons, static); FR-001 order updated; Interest
+  entity and an edge case added. Placement ambiguity ("right after Experience" vs "before
+  Contact") resolved literally and recorded in Clarifications. Constitution amended to v2.2.0.
+  All 16 items still pass; no [NEEDS CLARIFICATION] markers.

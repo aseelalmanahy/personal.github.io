@@ -80,6 +80,24 @@ Items sit in `<ul class="education">` under the `h3` "Education", so degrees are
 - **Nothing else may appear in the section** — no lists, `<time>`, per-role headings, dates,
   employer or program names (FR-012, FR-014). The `privacy-scope` e2e spec enforces this.
 
+## Interest item (FR-037–FR-040, amendment 2026-09-30)
+
+```html
+<ul class="interests__list">
+  <li class="interests__item">
+    <svg class="interests__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"
+         fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"
+         stroke-linejoin="round">…</svg>
+    <span class="interests__label">Cooking</span>
+  </li>
+  …Reading Books, Weightlifting, Cycling, Skiing (this order)…
+</ul>
+```
+
+- Icons are inline, decorative (`aria-hidden`), and use `currentColor` — no `style`
+  attributes, no sprite reference, no icon font.
+- No links, buttons, `tabindex`, hover/focus styles, or animation (FR-040).
+
 ## Project card (FR-016–FR-019)
 
 ```html

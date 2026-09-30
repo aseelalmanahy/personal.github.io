@@ -68,12 +68,13 @@ test.describe('keyboard walkthrough (SC-006)', () => {
   test('logical tab order through every control, without traps', async ({ page, browserName }) => {
     test.skip(!TAB_REACHES_LINKS(browserName), 'WebKit build does not Tab to links');
     await page.goto('/');
-    const labels = (await tabOrder(page, 16)).map(({ text }) => text);
+    const labels = (await tabOrder(page, 17)).map(({ text }) => text);
     expect(labels).toEqual([
       'Skip to main content',
       'Aseel Almanahy',
       'About',
       'Experience',
+      'Interests',
       'Projects',
       'Contact',
       'Dark theme',

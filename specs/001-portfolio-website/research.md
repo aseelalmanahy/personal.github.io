@@ -432,3 +432,20 @@ was open in the plan's Technical Context is resolved here.
   "focus" tags (full-stack, cloud, architecture, leadership) — rejected because the owner asked
   for a single narrative and no extra content; a pull-quote card — heavier visual weight than
   the rest of the minimal page.
+
+## R-28 Interests section (FR-037–FR-040, amendment 2026-09-30)
+
+- **Decision**: `<section id="interests">` after Experience with `<ul class="interests__list">`;
+  each `<li class="interests__item">` holds an inline `<svg aria-hidden="true" focusable="false">`
+  (24×24 viewBox, `stroke="currentColor"`, no `<style>`/`style` attributes) and a text label.
+  Grid: `repeat(auto-fit, minmax(min(100%, 9.5rem), 1fr))` inside `max-width: 56rem`, so 320px
+  gets one column, 375px two, and desktop fits all five in one row. Items are quiet cards
+  (surface background, tag-coloured border, amber icon) with no hover/focus styling and no
+  motion. A `--size-icon-lg` token sizes the icons.
+- **Rationale**: The owner asked for embedded inline icons; each icon appears once, so inline SVG
+  costs no duplication and no request (unlike the shared sprite used for repeated icons, R-18).
+  `currentColor` keeps icons theme-aware without colour literals (Principle III). `auto-fit`
+  plus a max width avoids an empty sixth track on wide screens.
+- **Alternatives considered**: adding the icons to `icons.svg` (an extra fetch dependency for
+  one-off icons, and the owner asked for inline); emoji (inconsistent rendering, announced by
+  screen readers); an icon font (forbidden — constitution V and the request).

@@ -68,6 +68,15 @@ ratings.
   names (FR-012, FR-014) — enforced by the `privacy-scope` and `about-experience` e2e specs.
 - Written privacy review recorded before publication (FR-015).
 
+### Interest *(amendment 2026-09-30)*
+
+| Field | Rule |
+|---|---|
+| `label` | One of: Cooking, Reading Books, Weightlifting, Cycling, Skiing — exactly these five, in this order (FR-037) |
+| `icon` | Decorative inline SVG, hidden from assistive technology, drawn with `currentColor` (FR-039) |
+
+**Validation**: rendered as `ul > li` (FR-038); no links, controls, or motion (FR-040).
+
 ### Project
 
 | Field | Rule |

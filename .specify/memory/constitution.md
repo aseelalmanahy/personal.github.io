@@ -1,5 +1,17 @@
 <!--
 Sync Impact Report
+- Version change: 2.1.1 → 2.2.0 (MINOR: scope materially expanded — a sixth required section).
+  Owner request 2026-09-30 for specs/001-portfolio-website.
+- Modified principles:
+  - V. Focused Single-Page Scope — required sections now Hero, About Me, Experience, Interests,
+    Projects, Contact Links; new rule that Interests is static and non-interactive with
+    decorative inline icons and no scripts, animation, fonts, or third-party assets;
+    "outside the five sections" → "outside the six sections"
+- Added/removed sections: none
+- Templates requiring updates: none
+- Follow-up TODOs: none
+
+Earlier amendments (retained for review until committed):
 - Version change: 2.1.0 → 2.1.1 (PATCH: wording only). Owner amendment of
   specs/001-portfolio-website (2026-09-30) replaced the experience timeline with a narrative.
 - Modified principles:
@@ -158,9 +170,11 @@ formatted, lint-clean code is itself part of what the site demonstrates.
 ### V. Focused Single-Page Scope
 
 - The site MUST be a single static page (`index.html`) containing exactly these sections, in
-  order: Hero (friendly greeting and one-line introduction), About Me, Experience, Projects,
-  and Contact Links. A custom `404.html` is the only additional page permitted.
-- Every element on the page MUST serve the owner's content; features outside the five sections
+  order: Hero (friendly greeting and one-line introduction), About Me, Experience, Interests,
+  Projects, and Contact Links. A custom `404.html` is the only additional page permitted.
+- Interests is a static, non-interactive list of the owner's personal interests; icons in it are
+  decorative and inline, and it adds no scripts, animation, fonts, or third-party assets.
+- Every element on the page MUST serve the owner's content; features outside the six sections
   (blog, CMS, comments, e-commerce, dashboards) require a constitution amendment.
 - Content MUST live directly in the HTML so it is indexable and readable without JavaScript;
   JavaScript MUST NOT be the source of any primary content.
@@ -293,4 +307,4 @@ The following 20 practices apply to every change. Each is verifiable by inspecti
   `/speckit-analyze` flags conflicts with them as CRITICAL. Principles SHOULD be reviewed at
   least once a year or whenever the hosting or stack changes.
 
-**Version**: 2.1.1 | **Ratified**: 2026-09-25 | **Last Amended**: 2026-09-30
+**Version**: 2.2.0 | **Ratified**: 2026-09-25 | **Last Amended**: 2026-09-30

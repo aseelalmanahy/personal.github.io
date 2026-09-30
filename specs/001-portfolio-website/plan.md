@@ -20,6 +20,17 @@ Constitution v2.1.1 renames the required section to "Experience". Design deltas:
   copy-email, scroll-spy, build, and budgets. Lighthouse targets are unchanged.
 - Tasks: `tasks.md` Phase 8 (T104–T117) applies the amendment.
 
+## Amendment 2026-09-30 — Interests section
+
+Constitution v2.2.0 adds a sixth section. Spec FR-037–FR-040 / User Story 5; research R-28.
+
+- **Added**: `section#interests` (after Experience) with a `ul` of five items and inline SVG
+  icons; `components/interests.css`; `--size-icon-lg` token; an "Interests" nav link;
+  `interests` in the scroll-spy section list; `tests/e2e/interests.spec.js`.
+- **Checked**: the primary nav still fits one row at 768px with six links (V9 in tasks);
+  budgets and Lighthouse unchanged in kind.
+- Tasks: `tasks.md` Phase 9 (T118–T129).
+
 ## Summary
 
 Build a single-page, static portfolio for Aseel Almanahy — Hero, About Me, Experience

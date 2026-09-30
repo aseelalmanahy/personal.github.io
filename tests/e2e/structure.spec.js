@@ -1,7 +1,7 @@
 import { test, expect } from '../helpers/fixtures.js';
 import { firstFocusable, TAB_REACHES_LINKS, tabKey } from '../helpers/page-utils.js';
 
-const SECTION_IDS = ['home', 'about', 'experience', 'projects', 'contact'];
+const SECTION_IDS = ['home', 'about', 'experience', 'interests', 'projects', 'contact'];
 
 test.describe('page structure — contracts/page-structure.md', () => {
   test('head: language, charset, viewport, CSP, and bootstrap before stylesheet', async ({

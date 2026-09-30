@@ -12,6 +12,7 @@
 @import 'components/about.css' layer(components);
 @import 'components/tag.css' layer(components);
 @import 'components/experience.css' layer(components);
+@import 'components/interests.css' layer(components);
 @import 'components/projects.css' layer(components);
 @import 'components/project-card.css' layer(components);
 @import 'components/contact.css' layer(components);

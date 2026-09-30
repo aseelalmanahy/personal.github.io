@@ -279,6 +279,36 @@ every earlier gate and Lighthouse result.
 
 ---
 
+## Phase 9: Amendment — Interests Section (2026-09-30)
+
+**Goal**: Add the owner's Interests section (spec User Story 5, FR-037–FR-040; research R-28;
+constitution v2.2.0) between Experience and Projects — a static, accessible grid list of five
+hobbies with inline decorative SVG icons — without regressing any existing gate.
+
+**Independent Test**: `npm run build && npx playwright test tests/e2e/interests.spec.js` passes in three engines, and the full suite, budgets, and Lighthouse show no regression.
+
+### Tests for Phase 9 (write first, confirm they fail)
+
+- [X] T118 [P] [US5] Create `tests/e2e/interests.spec.js`: `#interests` follows `#experience` and precedes `#projects`; its `h2` reads "Interests"; `ul.interests__list > li` count is 5 with labels exactly Cooking, Reading Books, Weightlifting, Cycling, Skiing; every item has one inline `svg` with `aria-hidden="true"` and no `<use>`; the section contains no `a`, `button`, `[tabindex]`; computed `animation-name` is `none` and `transition-duration` is `0s` for items; column count (distinct item `x`) is 1 at 320px, 2 at 375px, and 5 at 1440px; icon stroke colour equals `--color-accent` in both themes (FR-037–FR-040)
+- [X] T119 [P] Update `tests/e2e/structure.spec.js` section order to `home, about, experience, interests, projects, contact`; update `tests/e2e/responsive.spec.js` and `tests/e2e/no-js.spec.js` to expect five nav links (and `#interests` visible without JS); add `#interests` to the deep-link list and the scroll-spy loop in `tests/e2e/nav-theme.spec.js`; add "Interests" after "Experience" in the keyboard walkthrough in `tests/e2e/a11y.spec.js`
+- [X] T120 [P] Add a nav-fit check to `tests/e2e/responsive.spec.js`: at 768px (JS on) the header is one row (height ≤ 57px) with all five nav links visible
+
+### Implementation for Phase 9
+
+- [X] T121 [US5] In `src/index.html`: add `<li><a class="nav__link" href="#interests">Interests</a></li>` after Experience in `#nav-menu`; add `<section id="interests" class="interests" tabindex="-1" aria-labelledby="interests-title">` after `#experience` with `h2#interests-title.section__title` "Interests" and `ul.interests__list` of five `li.interests__item` per [content-blocks.md → Interest item](contracts/content-blocks.md#interest-item-fr-037fr-040-amendment-2026-09-30): inline 24×24 stroke icons (pot, open book, dumbbell, bicycle, skier) with `aria-hidden="true" focusable="false"`, `stroke="currentColor"`, and a `span.interests__label`
+- [X] T122 [US5] Add `--size-icon-lg: 1.75rem` to the Layout group of `src/css/tokens.css`; create `src/css/components/interests.css` per research R-28 (auto-fit grid `minmax(min(100%, 9.5rem), 1fr)`, `max-width: 56rem`, surface cards with `--color-tag-bg` border, icon in `--color-accent` at `--size-icon-lg`, centred label; no hover, focus, transition, or animation); import it after `experience.css` in `src/css/main.css`; add `.interests__item` to the print break-avoid rule in `src/css/print.css`
+- [X] T123 [US4] Add `'interests'` after `'experience'` in `SECTION_IDS` in `src/js/scroll-spy.js`
+- [X] T124 **Not needed** — T120 passed (nav fits one row at 768px). Was: If T120 fails (nav wraps at 768px), fix the header so all links fit one row at ≥ 48em (e.g. tighter `.nav__link` padding at that breakpoint) without shrinking targets below 44×44
+- [X] T125 Run `npm run format`, `npm run lint`, `npm run test:unit`, `npm run build`, `npm run check:static`, and the full e2e suite in Chromium, Firefox, and WebKit — all pass with 0 console errors and 0 CSP violations; budgets hold
+- [X] T126 Run Lighthouse CI on the build: index.html Performance, Accessibility, Best Practices, SEO = 1.00; LCP ≤ 2.0 s, CLS ≤ 0.05, TBT ≤ 200 ms
+- [X] T127 Visual check of Interests at 320px, 375px, and 1440px in both themes (screenshots); record in `specs/001-portfolio-website/checklists/implementation-gates.md`
+- [X] T128 Update `specs/001-portfolio-website/checklists/implementation-gates.md` (Interests amendment table) and `CLAUDE.md` (constitution v2.2.0, six sections)
+- [X] T129 Commit the amendment on branch `001-portfolio-website`
+
+**Checkpoint (Interests gate)**: T125–T127 pass; no regression in earlier gates.
+
+---
+
 ## Dependencies & Execution Order
 
 ### Phase Dependencies
@@ -292,6 +322,7 @@ every earlier gate and Lighthouse result.
   requested sequence and V3.6 focus tests make Gate 3 the entry condition.)
 - **Phase 6 (Impl. Phase 5)**: depends on Gate 4 (T078).
 - **Phase 8 Amendment (2026-09-30)**: runs after Gate 5a and before T096–T103 (launch needs the amended content). T104–T108 are parallel; T109–T112 edit shared files, in order; T113–T117 follow.
+- **Phase 9 Interests (2026-09-30)**: after Phase 8 and before T096–T103. T118–T120 are parallel; T121–T124 in order; T125–T129 follow.
 - **Phase 7 Polish & Launch**: T093 can start after Gate 4; T094 (content) can be requested at
   any time and is the only external blocker; T095–T103 depend on Gate 5a (T092) and T094.
 

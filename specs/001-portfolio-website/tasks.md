@@ -363,6 +363,22 @@ from the test suite — keeping every gate and Lighthouse at 100.
 
 ---
 
+## Phase 12: Amendment — Corrected Experience Narrative (2026-09-30)
+
+**Goal**: Publish the owner's corrected Experience narrative word-for-word (spec FR-011) with the
+FR-012 exception for the owner's university, keeping every gate green.
+
+**Independent Test**: `npm run verify` exits 0; the verbatim-narrative test in `about-experience.spec.js` passes on all three engines.
+
+- [X] T147 [US2] Update `EXPERIENCE_NARRATIVE` in `tests/e2e/about-experience.spec.js` to the corrected FR-011 text; confirm it fails against the old page
+- [X] T148 [US2] Replace the `p.experience__narrative` text in `src/index.html` with the corrected FR-011 text, verbatim
+- [X] T149 Sync docs: spec (status, amendment input, clarification, US2, FR-011, FR-012, FR-014, Experience Narrative entity, assumption), requirements checklist iteration 7, data model
+- [X] T150 Run `npm run verify` (exit 0, Lighthouse 1.00 ×4), record in `checklists/implementation-gates.md`, and commit on `001-portfolio-website`
+
+**Checkpoint (Narrative gate)**: T150 passes; FR-015 privacy review of the new text stays with the owner (T098).
+
+---
+
 ## Dependencies & Execution Order
 
 ### Phase Dependencies
@@ -378,6 +394,7 @@ from the test suite — keeping every gate and Lighthouse at 100.
 - **Phase 8 Amendment (2026-09-30)**: runs after Gate 5a and before T096–T103 (launch needs the amended content). T104–T108 are parallel; T109–T112 edit shared files, in order; T113–T117 follow.
 - **Phase 9 Interests (2026-09-30)**: after Phase 8 and before T096–T103. T118–T120 are parallel; T121–T124 in order; T125–T129 follow.
 - **Phase 10 Contact via LinkedIn (2026-09-30)**: after Phase 9 and before T102–T103. T130–T131 parallel; T132–T134 in order; T135–T137 follow.
+- **Phase 12 Narrative (2026-09-30)**: after Phase 11 and before T098/T102–T103. T147 → T148 → T149 → T150.
 - **Phase 11 Skills (2026-09-30)**: after Phase 10 and before T102–T103. T138–T140 parallel; T141–T144 in order; T145–T146 follow.
 - **Phase 7 Polish & Launch**: T093 can start after Gate 4; T094 (content) can be requested at
   any time and is the only external blocker; T095–T103 depend on Gate 5a (T092) and T094.
@@ -449,7 +466,7 @@ Each story can be verified on its own with the listed tests once its tasks are d
 | Story | Tasks | Independent test |
 |---|---|---|
 | **US1** Meet Aseel & get in touch (P1) 🎯 MVP | T016, T024, T028, T038, T046, T047, T060, T130, T132, T133 (email tasks T066, T069, T074, T096 superseded 2026-09-30) | `hero-contact.spec.js`: verbatim hero text, GitHub and LinkedIn above the fold at 375×667 with new-tab cues, Contact names LinkedIn as the primary way to connect (listed first), no email anywhere |
-| **US2** Background & experience (P2) | T025, T057, T104, T105, T109, T111, T138, T141, T142 (timeline tasks T026, T053, T058, T079, T081, T084, T095 superseded 2026-09-30) | `about-experience.spec.js`: verbatim About intro, degrees, four skill tiers (28 items, 1/2/4 columns), one verbatim Experience narrative at ≤ 75 characters per line; `privacy-scope.spec.js`: no timeline, dates, employer, or role list |
+| **US2** Background & experience (P2) | T025, T057, T104, T105, T109, T111, T138, T141, T142, T147, T148 (timeline tasks T026, T053, T058, T079, T081, T084, T095 superseded 2026-09-30) | `about-experience.spec.js`: verbatim About intro, degrees, four skill tiers (28 items, 1/2/4 columns), one verbatim Experience narrative at ≤ 75 characters per line; `privacy-scope.spec.js`: no timeline, dates, employer, or role list |
 | **US3** Explore projects (P3) | T027, T054, T059 | `projects.spec.js`: coming-soon card at launch; injected cards reflow 1 → ≥ 2 columns with all five elements and omitted missing links |
 | **US4** Navigate & choose a theme (P4) | T023, T039, T049, T055, T056, T065, T067, T068, T072, T073, T075, T076, T080, T082, T085 | `nav-theme.spec.js`: no-flash theme, persisted toggle, device-follow rules, reduced motion, mobile menu with Escape, focus to section, headings never under the bar, current-section marking |
 | **US5** Interests (P5) | T118, T119, T120, T121, T122, T123 | `interests.spec.js`: placement after Experience, five hobbies in order as a list, one decorative inline icon each, static (no links, motion), 1/2/5 columns at 320/375/1440px, accent-coloured icons in both themes |

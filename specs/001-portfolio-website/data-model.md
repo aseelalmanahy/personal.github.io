@@ -59,12 +59,12 @@ ratings.
 
 | Field | Rule |
 |---|---|
-| `text` | The owner's paragraph in spec FR-011, verbatim (4 sentences) |
+| `text` | The owner's paragraph in spec FR-011, verbatim (5 sentences; corrected 2026-09-30) |
 
 **Validation**:
 - Exactly one paragraph inside `#experience` besides the section heading (FR-012); no `ol`,
   `ul`, `time`, `article`, or per-role headings; no month/year dates; no employer or program
-  names (FR-012, FR-014) — enforced by the `privacy-scope` and `about-experience` e2e specs.
+  names — the owner's university is the only organization named (FR-012, FR-014) — enforced by the `privacy-scope` and `about-experience` e2e specs.
 - Written privacy review recorded before publication (FR-015).
 
 ### Interest *(amendment 2026-09-30)*

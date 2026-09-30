@@ -57,3 +57,7 @@
 - Iteration 6 (2026-09-30, skills): FR-010 now lists four tiers (28 items, owner's order) with a
   1/2/4-column layout requirement; US2 story and acceptance, Skill Category entity, and FR-021
   wording ("initiate professional discussions") updated. All 16 items still pass; no markers.
+- Iteration 7 (2026-09-30, narrative): FR-011 replaced with the owner's corrected narrative
+  (5 sentences, verbatim); FR-012 allows the owner's university (already public in Education)
+  as the only named organization; FR-014, US2 story and acceptance, Experience Narrative entity,
+  and the scope assumption aligned. All 16 items still pass; no [NEEDS CLARIFICATION] markers.

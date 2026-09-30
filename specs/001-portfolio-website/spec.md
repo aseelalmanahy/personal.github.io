@@ -5,7 +5,8 @@
 **Created**: 2026-09-29
 
 **Status**: Draft — amended 2026-09-30 (narrative content structure; Interests section; email
-removed, LinkedIn primary; four-tier skills; see Clarifications)
+removed, LinkedIn primary; four-tier skills; Experience
+narrative revised; see Clarifications)
 
 **Input**: User description: "Create a technical specification for a single-page personal
 portfolio website for Aseel Almanahy, a Full Stack Software Engineer. Hero section (greeting
@@ -49,6 +50,10 @@ Test-Driven Development (TDD), JUnit, Karate, SonarQube, Splunk, Datadog, Scrum/
 Architecture Grooming — with a lean, responsive layout on mobile, tablet, and desktop. Contact
 copy states LinkedIn is the primary and best channel to reach out, connect, or initiate
 professional discussions."
+
+**Amendment input (2026-09-30, narrative)**: "Replace the Experience narrative paragraph text
+word-for-word with this corrected version" (the text now in FR-011), "then run 'npm run verify'
+to confirm that all cross-browser tests continue to pass."
 
 ## Clarifications
 
@@ -107,6 +112,13 @@ professional discussions."
   Frameworks & Security; Cloud & DevOps; Quality & Methodology — with the owner's items in the
   owner's order (FR-010). Skills get their own full-width block under Education: one column on
   phones, two on tablets, and all four side by side on wide desktops.
+- Q: The corrected narrative names UMass Lowell, role types, and industry sectors — does that
+  conflict with the Experience privacy rules? → A: No. The owner supplied the text word-for-word.
+  UMass Lowell is the owner's university and already appears in Education, so it is the one
+  organization the narrative may name (FR-012). Role types (Professor's Assistant, Android
+  Engineer, Full Stack Engineer) and sectors (healthcare, Financial Services) appear only inside
+  the prose, never as a list. The current employer, internal program names, dates, and every
+  FR-014 item stay excluded.
 
 ## User Scenarios & Testing *(mandatory)*
 
@@ -152,8 +164,9 @@ Aseel approaches engineering and mentorship, see education (BS in Computer Scien
 Lowell; MBA in Project Management candidate, LSU Shreveport), and scan skills grouped into
 four tiers — Languages, Frameworks & Security, Cloud & DevOps, and Quality & Methodology —
 that show full-lifecycle engineering capability. In Experience they read one polished narrative that tells the
-story of Aseel's technical growth — from strong foundations to full-stack, cloud, and
-architecture work — and of Aseel's technical leadership.
+story of Aseel's technical growth — from teaching and grading core computer science, through
+Android engineering in healthcare, to full-stack, microservices, and AWS work in financial
+services and healthcare — and of Aseel's mentorship of new engineers.
 
 **Why this priority**: Background and career story are the main evidence a hiring decision rests
 on, but they are only useful once the visitor already knows who Aseel is (P1).
@@ -170,7 +183,8 @@ terms of full-stack work, cloud (AWS), architecture, and technical leadership.
    FR-010, each with its items in the stated order.
 2. **Given** a visitor in Experience, **When** they view it at any screen size, **Then** they
    see the narrative from FR-011 verbatim as flowing prose at a comfortable reading width, with
-   no timeline, role list, dates, or employer name.
+   no timeline, role list, dates, or employer name (the university from Education is the only
+   organization named).
 3. **Given** the Experience narrative, **When** its content is reviewed, **Then** it contains no
    internal application names, internal system or architecture descriptions, proprietary tool
    names, team names, or confidential metrics.
@@ -356,19 +370,24 @@ no motion and nothing to click.
 **Experience**
 
 - **FR-011**: The Experience section MUST present this narrative, verbatim, as flowing prose:
-  "My engineering journey is rooted in a strong technical foundation, starting with early
-  hands-on work in data structures, object-oriented systems, and core software engineering
-  integrations. Over the years, I have evolved into a Full Stack Engineer specialized in
-  architecting robust systems, constructing high-throughput microservices, and managing
-  resilient cloud infrastructure on AWS. Beyond the code, I bridge the gap between technical
-  execution and organizational strategy. My career is defined not just by the systems I build,
-  but by my active involvement in leadership development—collaborating directly with executive
-  technology leaders to share technical insights while structuring onboarding environments
-  that empower engineering teams to deploy stable, high-quality features with absolute
-  confidence."
+  "My engineering journey is rooted in a strong technical foundation, starting as a Professor's
+  Assistant and grader at UMass Lowell, where I evaluated complex algorithmic concepts and
+  mentored students in core Data Structures in C and Object-Oriented Programming. I built upon
+  these fundamentals in industry, working as an Android Engineer in the healthcare sector to
+  integrate secure services and optimize user-facing mobile interfaces. Transitioning into
+  full-stack engineering, I have evolved into a Full Stack Engineer specialized in building
+  robust systems, constructing microservices, and managing cloud infrastructure on AWS within
+  high-stakes fields like Financial Services and Healthcare. Beyond the code, I focus on
+  bridging the gap between technical execution and organizational strategy. My career is defined
+  not just by the systems I build, but by my active involvement in mentorship—collaborating with
+  leadership to share technical insights while mentoring new associate software engineers to
+  help them onboard smoothly, master best practices, and achieve both technical and personal
+  growth."
 - **FR-012**: The Experience section MUST NOT contain a timeline, role or position listings,
-  job titles as separate items, dates or date ranges, employer or organization names, or any
-  list structure; it is a single narrative block.
+  job titles as separate items, dates or date ranges, employer or organization names (sole
+  exception: the owner's university, UMass Lowell, which Education already publishes), or any
+  list structure; it is a single narrative block. Role types and industry sectors may appear
+  only within the approved prose.
 - **FR-013**: The narrative MUST be laid out for comfortable reading and visual polish: a
   readable line length (about 45–75 characters), typographic emphasis consistent with the warm
   minimalist design, and no interactive behaviour or animation it depends on.
@@ -376,7 +395,8 @@ no motion and nothing to click.
 - **FR-014**: No text on the page may include internal application or system names,
   descriptions of internal enterprise architecture, proprietary or internal tool names or
   setups, team or department names, client information, or non-public metrics. Experience is
-  described only in terms of general technical competencies and leadership capability.
+  described only in terms of general technical competencies, role types, industry sectors, and
+  leadership and mentorship capability.
 - **FR-015**: All published text, including the Experience narrative, MUST pass a written
   privacy review against FR-014 before publication.
 
@@ -480,8 +500,8 @@ no motion and nothing to click.
 - **Skill Category**: category name (Languages, Frameworks & Security, Cloud & DevOps,
   Quality & Methodology) and its ordered list of
   skills.
-- **Experience Narrative**: one approved paragraph of prose (FR-011); no dates, roles, or
-  employer.
+- **Experience Narrative**: one approved paragraph of prose (FR-011); no dates, role list, or
+  employer name (the owner's university excepted, FR-012).
 - **Interest**: a personal hobby — label (Cooking, Reading Books, Weightlifting, Cycling,
   Skiing) and a decorative icon; ordered; no description or link.
 - **Project**: title, short description, technology tags, optional repository link, optional
@@ -529,8 +549,8 @@ no motion and nothing to click.
   detailed work history are out of scope for this version.
 - A downloadable résumé is out of scope for this version; visitors wanting a full work history
   use the LinkedIn link.
-- The Experience narrative names no employer, program, or role; visitors who want a detailed
-  work history use the LinkedIn link.
+- The Experience narrative names no employer or program (only the owner's university) and
+  gives no dates; visitors who want a detailed work history use the LinkedIn link.
 - Remembering the theme choice uses only the visitor's own browser storage — no cookies,
   accounts, analytics, or data sent anywhere.
 - English only; no internationalization in this version.

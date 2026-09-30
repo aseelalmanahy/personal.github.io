@@ -222,3 +222,15 @@ Result values: PASS · FAIL · PENDING · N/A (with reason).
 | S5 | `npm run verify` | PASS | exit 0: format, lint, 46/46 unit, 0 content markers, 274 e2e passed / 8 skipped (engine limits), 12/12 links | 2026-09-30 |
 | S6 | Budgets | PASS | 11.5 KB HTML+CSS+JS, 3.9 KB JS, 12.7 KB total (gzip) | 2026-09-30 |
 | S7 | Lighthouse (mobile ×3) | PASS | index.html Perf 1.00, A11y 1.00, BP 1.00, SEO 1.00; LCP 1.1 s, CLS 0.001, TBT 0 ms | 2026-09-30 |
+
+## Corrected Experience narrative (Phase 12, 2026-09-30)
+
+| ID | Gate | Result | Evidence | Date |
+|---|---|---|---|---|
+| N1 | Narrative verbatim (FR-011) | PASS | about-experience.spec: normalised text equals the corrected 5-sentence FR-011 text (3 engines); failed against the old page first | 2026-09-30 |
+| N2 | Structure and privacy guards (FR-012, FR-014) | PASS | privacy-scope.spec: one `p`, no list/`time`/`article`/`h3`, no years, month dates, employer or program names; UMass Lowell is the only organization named | 2026-09-30 |
+| N3 | Reading width (FR-013) | PASS | 45–75 characters per line at every tested width | 2026-09-30 |
+| N4 | `npm run verify` | PASS | exit 0: format, lint, 46/46 unit, 0 content markers, 274 e2e passed / 8 skipped (engine limits), 12/12 links | 2026-09-30 |
+| N5 | Budgets | PASS | 11.7 KB HTML+CSS+JS, 3.9 KB JS, 12.9 KB total (gzip) | 2026-09-30 |
+| N6 | Lighthouse (mobile ×3) | PASS | index.html Perf 1.00, A11y 1.00, BP 1.00, SEO 1.00; LCP 1.1 s, CLS 0.001, TBT 0 ms | 2026-09-30 |
+| N7 | Privacy review of the new text (FR-015) | PENDING | Owner action, T098 | — |

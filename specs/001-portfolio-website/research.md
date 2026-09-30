@@ -124,7 +124,7 @@ was open in the plan's Technical Context is resolved here.
 ## R-08 JavaScript module organisation
 
 - **Decision**: One entry module `src/js/main.js` loaded with `<script type="module">`, which
-  imports feature modules: `storage.js`, `theme.js`, `nav.js`, `copy-email.js`,
+  imports feature modules: `storage.js`, `theme.js`, `nav.js`,
   `scroll-spy.js`. Each feature exports pure, DOM-free helpers (unit-tested) plus one
   `init*()` function that attaches listeners via `addEventListener`. `main.js` calls every
   `init*()` inside its own `try/catch` so one failure cannot disable the others. Submodules are
@@ -275,7 +275,7 @@ was open in the plan's Technical Context is resolved here.
   not supported across the full browser matrix at planning time; hiding entries in CSS by
   default (entries vanish if JS fails — violates FR-013a).
 
-## R-17 Copy-email button (FR-021a)
+## R-17 Copy-email button (FR-021a) — SUPERSEDED 2026-09-30 (email removed; LinkedIn primary)
 
 - **Decision**: `copy-email.js` reveals the button (shipped `hidden`) only when
   `navigator.clipboard?.writeText` exists. On click it writes the address read from the
@@ -290,7 +290,7 @@ was open in the plan's Technical Context is resolved here.
 
 ## R-18 Icons
 
-- **Decision**: One local SVG sprite `assets/icons.svg` (GitHub, LinkedIn, email, sun, moon,
+- **Decision**: One local SVG sprite `assets/icons.svg` (GitHub, LinkedIn, sun, moon,
   menu, external-link) referenced with `<svg><use href="assets/icons.svg#id"></use></svg>`,
   always `aria-hidden="true"` next to visible text. Icons use `currentColor`.
 - **Rationale**: One cached request for both hero and contact icons; themable via tokens;
@@ -357,7 +357,7 @@ was open in the plan's Technical Context is resolved here.
 
 - **Decision**:
   - **Unit** (`tests/unit`, `node --test`): pure helpers in `storage.js`, `theme.js`,
-    `copy-email.js`, `scroll-spy.js` (`reveal.js` removed 2026-09-30).
+    `scroll-spy.js` (`reveal.js` and `copy-email.js` removed 2026-09-30).
   - **End-to-end** (`tests/e2e`, Playwright; Chromium, Firefox, WebKit): one spec per user
     story plus cross-cutting specs — `structure`, `hero-contact` (US1), `about-experience`
     (US2), `projects` (US3), `nav-theme` (US4), `responsive` (viewport matrix + zoom),

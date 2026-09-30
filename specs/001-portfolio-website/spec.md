@@ -4,8 +4,8 @@
 
 **Created**: 2026-09-29
 
-**Status**: Draft — amended 2026-09-30 (narrative content structure; Interests section; see
-Clarifications)
+**Status**: Draft — amended 2026-09-30 (narrative content structure; Interests section; email
+removed, LinkedIn primary; see Clarifications)
 
 **Input**: User description: "Create a technical specification for a single-page personal
 portfolio website for Aseel Almanahy, a Full Stack Software Engineer. Hero section (greeting
@@ -35,6 +35,11 @@ clean, accessible, non-animated grid list of five items — Cooking, Reading Boo
 Cycling, and Skiing; pure semantic HTML with embedded lightweight inline icons for each hobby,
 no external icon libraries or heavy web fonts, keeping the performance guidelines."
 
+**Amendment input (2026-09-30, contact)**: "Remove email contact paths: completely remove the
+email link, the 'Copy Email' script modules, and the FR-021a fallback logic; refocus the Contact
+section text to state that the best and primary way to reach out or connect is directly via
+LinkedIn; remove stale email test assertions; keep Lighthouse at 100 across all metrics."
+
 ## Clarifications
 
 ### Session 2026-09-29
@@ -50,7 +55,8 @@ no external icon libraries or heavy web fonts, keeping the performance guideline
   friendly "coming soon" card in the project-card style; the full card design is built and
   ready to fill with real projects.
 - Q: How should the email address be displayed? → A: Visible address plus an email link, with
-  a "Copy email" button that confirms the copy visually and to screen readers.
+  a "Copy email" button that confirms the copy visually and to screen readers. *(Superseded
+  2026-09-30: no email is published.)*
 - Q: Should the theme control be two-state or include a "follow device" option? → A:
   Two-state toggle (Light ⇄ Dark); starts from the device preference, explicit choice is
   remembered.
@@ -82,6 +88,11 @@ no external icon libraries or heavy web fonts, keeping the performance guideline
   amended to v2.2.0 to allow the sixth section.
 - Q: Which public email address does the page publish? → A: `[email removed]`
   (owner-supplied routing address; an earlier proposal on an unregistered domain was rejected).
+  *(Superseded 2026-09-30: email removed from the page.)*
+- Q: How do visitors contact Aseel without email? → A: LinkedIn is the best and primary way to
+  reach out or connect; the Contact section says so and presents LinkedIn first and most
+  prominently, with GitHub as a secondary route. No email address, email link, or copy control
+  appears anywhere on the page.
 
 ## User Scenarios & Testing *(mandatory)*
 
@@ -91,31 +102,32 @@ who arrive from a shared link (résumé, LinkedIn, email signature) — most oft
 ### User Story 1 - Meet Aseel and get in touch (Priority: P1)
 
 A recruiter opens the site from a link. Without scrolling, they see a friendly greeting ("Hi,
-I'm Aseel."), the professional statement, and three clear actions: GitHub, LinkedIn, and Email.
-They choose one and reach Aseel's profile or start an email. A dedicated Contact Links section
-at the end of the page offers the same three routes for visitors who scrolled through
-everything.
+I'm Aseel."), the professional statement, and two clear actions: GitHub and LinkedIn. They
+choose one and reach Aseel's profile. A dedicated Contact Links section at the end of the page
+tells visitors that LinkedIn is the best way to reach out or connect, and offers LinkedIn and
+GitHub again for visitors who scrolled through everything.
 
 **Why this priority**: Converting a visit into contact is the site's core purpose. The hero and
 contact routes alone are a viable, publishable page.
 
 **Independent Test**: Load the page at a standard phone size, confirm the greeting, statement,
-and three actions are visible without scrolling, and activate each action to confirm it reaches
+and both actions are visible without scrolling, and activate each action to confirm it reaches
 the correct destination.
 
 **Acceptance Scenarios**:
 
 1. **Given** a visitor on a phone-sized screen, **When** the page first loads, **Then** the
    greeting "Hi, I'm Aseel.", the statement "Full Stack Software Engineer specializing in
-   scalable systems, robust architectures, and engineering mentorship.", and the GitHub,
-   LinkedIn, and Email actions are all visible without scrolling.
+   scalable systems, robust architectures, and engineering mentorship.", and the GitHub and
+   LinkedIn actions are all visible without scrolling.
 2. **Given** the hero is visible, **When** the visitor activates the GitHub or LinkedIn action,
    **Then** Aseel's corresponding public profile opens in a new tab and the visitor is told
    beforehand that it opens in a new tab.
-3. **Given** the hero is visible, **When** the visitor activates the Email action, **Then** their
-   email application opens with Aseel's address pre-filled as the recipient.
-4. **Given** a visitor at the bottom of the page, **When** they reach the Contact Links section,
-   **Then** the same three contact routes are available with descriptive labels.
+3. **Given** a visitor at the bottom of the page, **When** they reach the Contact Links section,
+   **Then** it states that LinkedIn is the best and primary way to reach out or connect, shows
+   LinkedIn as the first and most prominent action, and offers GitHub as a second route.
+4. **Given** any part of the page, **When** a visitor looks for an email address, **Then** none
+   is published — no address, email link, or copy control.
 
 ---
 
@@ -254,8 +266,8 @@ no motion and nothing to click.
   works for the current visit; nothing errors.
 - **Device theme changes while the page is open**: if the visitor has never chosen a theme, the
   page follows the new device preference; an explicit choice is kept.
-- **Very narrow screens (320px) and 400% zoom**: no horizontal scrolling; long words, the email
-  address, and URLs wrap; the menu and cards remain usable.
+- **Very narrow screens (320px) and 400% zoom**: no horizontal scrolling; long words and URLs
+  wrap; the menu and cards remain usable.
 - **Tabbing through content under the fixed bar**: each focused link or button scrolls into
   view below the bar, never hidden behind it.
 - **Landscape phones (short viewports)**: the fixed bar stays compact enough to leave most of
@@ -264,10 +276,6 @@ no motion and nothing to click.
   centred; nothing stretches edge to edge in a way that harms readability.
 - **Deep link on arrival** (e.g. a shared link to the Experience section): the page opens with
   that section's heading in view, not hidden under the navigation bar.
-- **No email application configured**: the visitor copies the address with the "Copy email"
-  button or by selecting the visible text.
-- **Clipboard access denied or unsupported**: the copy button reports the failure in words and
-  points the visitor to the visible address; nothing else breaks.
 - **Interests on narrow screens or with enlarged text**: the grid drops to fewer columns (one if
   needed) so labels such as "Weightlifting" and "Reading Books" never overflow or clip.
 - **Long narrative on small screens or with enlarged text**: the Experience narrative wraps
@@ -300,13 +308,13 @@ no motion and nothing to click.
 - **FR-004**: The hero MUST display the greeting "Hi, I'm Aseel." as the page's main heading
   and the statement "Full Stack Software Engineer specializing in scalable systems, robust
   architectures, and engineering mentorship." verbatim.
-- **FR-005**: The hero MUST present three clearly labelled actions — GitHub, LinkedIn, Email —
+- **FR-005**: The hero MUST present two clearly labelled actions — GitHub and LinkedIn —
   styled as buttons, each with a visible text label (icons, if used, are supplementary).
 - **FR-006**: GitHub and LinkedIn actions MUST open Aseel's public profiles —
   `https://github.com/aseelalmanahy` and `https://www.linkedin.com/in/aseel-almanahy-97342b109/`
   — in a new tab and MUST indicate to all users that they open in a new tab. The same two URLs
   are used everywhere the page links to these profiles.
-- **FR-007**: The Email action MUST start a new email to Aseel's chosen public address.
+- **FR-007**: *(Removed 2026-09-30 — no email action; see FR-021.)*
 
 **About Me**
 
@@ -384,18 +392,15 @@ no motion and nothing to click.
 
 **Contact Links**
 
-- **FR-021**: The final section MUST repeat the three contact routes (GitHub, LinkedIn, Email)
-  with descriptive labels and MUST show the email address as readable, selectable text that is
-  also an email link.
-- **FR-021a**: Next to the visible address, a "Copy email" button MUST copy the address to the
-  visitor's clipboard and confirm success with a visible message (e.g. "Copied!") that is also
-  announced to screen readers and clears after a few seconds. If copying fails, the message
-  MUST tell the visitor to select the address manually. The button MUST be hidden when
-  scripting is unavailable; the visible address and email link remain.
+- **FR-021**: The final section MUST state, in plain text, that LinkedIn is the best and primary
+  way to reach out or connect; MUST present LinkedIn as its first and most prominent action and
+  GitHub as a secondary action, each with a descriptive label; and the page MUST NOT publish an
+  email address, email (`mailto:`) link, or copy-to-clipboard control anywhere.
+- **FR-021a**: *(Removed 2026-09-30 — the copy-email control and its fallback no longer exist.)*
 - **FR-022**: No form that collects visitor data MAY be included; contact happens through
   links only.
 - **FR-022a**: The site MUST NOT offer a résumé/CV download; the hero and Contact Links section
-  contain exactly the three contact routes (GitHub, LinkedIn, Email).
+  contain exactly two contact routes each (GitHub and LinkedIn).
 
 **Navigation**
 
@@ -447,8 +452,8 @@ no motion and nothing to click.
 
 - **Profile**: the site owner — display name ("Aseel"), full name (Aseel Almanahy), professional
   statement, short introduction.
-- **Contact Link**: a route to reach Aseel — type (GitHub, LinkedIn, Email), visible label,
-  destination, whether it opens in a new tab.
+- **Contact Link**: a route to reach Aseel — type (GitHub, LinkedIn), visible label,
+  destination (always opens in a new tab); LinkedIn is the primary route.
 - **Education Entry**: degree, field, institution, status (completed / candidate).
 - **Skill Category**: category name (Languages, Tools/Frameworks) and its ordered list of
   skills.
@@ -464,10 +469,10 @@ no motion and nothing to click.
 ### Measurable Outcomes
 
 - **SC-001**: On a standard phone screen (375 × 667), 100% of first-time visitors can see Aseel's
-  name, professional statement, and all three contact actions without scrolling.
-- **SC-002**: In a usability check with at least 5 participants, at least 4 can start an email
-  to Aseel and open Aseel's GitHub profile (or, once projects are published, one project's
-  source repository) within 30 seconds each.
+  name, professional statement, and both contact actions without scrolling.
+- **SC-002**: In a usability check with at least 5 participants, at least 4 can find and open
+  Aseel's LinkedIn profile as the way to get in touch, and open Aseel's GitHub profile (or, once
+  projects are published, one project's source repository), within 30 seconds each.
 - **SC-003**: Any section can be reached from any scroll position in no more than 2
   interactions (e.g. open menu, choose section).
 - **SC-004**: Zero instances of horizontal scrolling or clipped content at 320px, 375px, 768px,
@@ -487,18 +492,16 @@ no motion and nothing to click.
 
 ## Assumptions
 
-- **Content still to be supplied by Aseel before launch** (not blocking the spec): the public
-  nothing. (Supplied 2026-09-30: GitHub and LinkedIn URLs, About Me introduction, Experience
-  narrative, site URL, and the public email `[email removed]`; role dates are no
-  longer needed.)
+- **Content still to be supplied by Aseel before launch**: none. (Supplied 2026-09-30: GitHub and
+  LinkedIn URLs, About Me introduction, Experience narrative, and site URL. Role dates and an
+  email address are no longer needed.)
   Real project details are post-launch content that replaces the "coming soon" card.
 - The site's name/heading uses the first name "Aseel"; the full name "Aseel Almanahy" appears in
   the page title, share previews, and footer.
 - No profile photo is included; the hero relies on typography and colour. A photo can be added
   later without changing the structure.
-- The email address is published as plain text, an email link, and a copy button; it is not
-  disguised. The owner accepts the resulting exposure to automated collection and SHOULD use an
-  address intended for public contact.
+- No email address is published (owner decision 2026-09-30): LinkedIn messaging is the primary
+  contact channel, which also keeps the owner's address away from automated collection.
 - The About Me section may mention both degrees and skills only; certifications, awards, and a
   detailed work history are out of scope for this version.
 - A downloadable résumé is out of scope for this version; visitors wanting a full work history

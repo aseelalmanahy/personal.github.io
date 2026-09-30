@@ -23,7 +23,7 @@ test.describe('SC-004 — no horizontal overflow from 320 to 2560px', () => {
     }
   }
 
-  test('320px with 200% root font size (zoom/reflow proxy); email wraps', async ({ page }) => {
+  test('320px with 200% root font size (zoom/reflow proxy)', async ({ page }) => {
     await page.setViewportSize({ width: 320, height: 640 });
     await page.goto('/');
     // CSSOM changes are allowed by the CSP (a <style> tag would not be).
@@ -31,8 +31,6 @@ test.describe('SC-004 — no horizontal overflow from 320 to 2560px', () => {
       document.documentElement.style.setProperty('font-size', '200%');
     });
     expect(await hasHorizontalOverflow(page)).toBe(false);
-    const email = await page.locator('.contact__email-link').boundingBox();
-    expect(email.x + email.width).toBeLessThanOrEqual(320);
   });
 });
 

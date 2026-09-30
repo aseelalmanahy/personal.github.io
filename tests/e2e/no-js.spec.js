@@ -22,6 +22,5 @@ test.describe('scripting unavailable (FR-035, edge case)', () => {
     await page.goto('/');
     await expect(page.locator('.theme-toggle')).toBeHidden();
     await expect(page.locator('.nav__toggle')).toBeHidden();
-    await expect(page.locator('[data-js="copy-email"]')).toBeHidden();
   });
 });

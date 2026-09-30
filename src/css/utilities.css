@@ -1,4 +1,5 @@
-/* JS-only controls ship `hidden`; component display rules must never reveal them (FR-021a). */
+/* JS-only controls (the theme toggle) ship `hidden`; component display rules must never
+   reveal them before JavaScript does. */
 [hidden] {
   display: none !important;
 }

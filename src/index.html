@@ -26,7 +26,6 @@
     <link rel="modulepreload" href="js/storage.js" />
     <link rel="modulepreload" href="js/theme.js" />
     <link rel="modulepreload" href="js/nav.js" />
-    <link rel="modulepreload" href="js/copy-email.js" />
     <link rel="modulepreload" href="js/scroll-spy.js" />
     <script type="module" src="js/main.js"></script>
     <meta
@@ -153,12 +152,6 @@
                 <use href="assets/icons.svg#external"></use>
               </svg>
               <span class="visually-hidden"> (opens in a new tab)</span>
-            </a>
-            <a class="button button--secondary" href="mailto:[email removed]">
-              <svg class="icon" aria-hidden="true" focusable="false">
-                <use href="assets/icons.svg#email"></use>
-              </svg>
-              Email
             </a>
           </div>
         </div>
@@ -369,9 +362,27 @@
         <div class="container">
           <h2 id="contact-title" class="section__title">Contact</h2>
           <p class="contact__intro">
-            Whether it's a role, a project, or mentorship, I'd love to hear from you.
+            Whether it's a role, a project, or mentorship, I'd love to hear from you. The best way
+            to reach out or connect is directly on LinkedIn — send me a message there.
           </p>
           <ul class="contact__links">
+            <li>
+              <a
+                class="button button--primary"
+                href="https://www.linkedin.com/in/aseel-almanahy-97342b109/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <svg class="icon" aria-hidden="true" focusable="false">
+                  <use href="assets/icons.svg#linkedin"></use>
+                </svg>
+                Connect on LinkedIn
+                <svg class="icon icon--small" aria-hidden="true" focusable="false">
+                  <use href="assets/icons.svg#external"></use>
+                </svg>
+                <span class="visually-hidden"> (opens in a new tab)</span>
+              </a>
+            </li>
             <li>
               <a
                 class="button button--secondary"
@@ -389,46 +400,7 @@
                 <span class="visually-hidden"> (opens in a new tab)</span>
               </a>
             </li>
-            <li>
-              <a
-                class="button button--secondary"
-                href="https://www.linkedin.com/in/aseel-almanahy-97342b109/"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <svg class="icon" aria-hidden="true" focusable="false">
-                  <use href="assets/icons.svg#linkedin"></use>
-                </svg>
-                LinkedIn profile
-                <svg class="icon icon--small" aria-hidden="true" focusable="false">
-                  <use href="assets/icons.svg#external"></use>
-                </svg>
-                <span class="visually-hidden"> (opens in a new tab)</span>
-              </a>
-            </li>
-            <li>
-              <a class="button button--secondary" href="mailto:[email removed]">
-                <svg class="icon" aria-hidden="true" focusable="false">
-                  <use href="assets/icons.svg#email"></use>
-                </svg>
-                Email me
-              </a>
-            </li>
           </ul>
-          <p class="contact__email">
-            <a class="contact__email-link" href="mailto:[email removed]"
-              >[email removed]</a
-            >
-            <button
-              class="button button--small copy-email"
-              type="button"
-              hidden
-              data-js="copy-email"
-            >
-              Copy email
-            </button>
-            <span class="copy-email__status" role="status" data-js="copy-email-status"></span>
-          </p>
         </div>
       </section>
     </main>

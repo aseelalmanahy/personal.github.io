@@ -1,9 +1,8 @@
-import { initCopyEmail } from './copy-email.js';
 import { initNav } from './nav.js';
 import { initScrollSpy } from './scroll-spy.js';
 import { initThemeToggle } from './theme.js';
 
-for (const init of [initThemeToggle, initNav, initCopyEmail, initScrollSpy]) {
+for (const init of [initThemeToggle, initNav, initScrollSpy]) {
   try {
     init();
   } catch {

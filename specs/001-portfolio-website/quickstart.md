@@ -49,13 +49,12 @@ for manual confirmation at each phase gate. Details of expected markup are in
 ### US1 — Meet Aseel and get in touch
 
 1. Emulate 375 × 667. Load `/`. **Expect**: "Hi, I'm Aseel.", the full statement, and GitHub,
-   LinkedIn, Email buttons all visible without scrolling (SC-001).
+   LinkedIn buttons all visible without scrolling (SC-001).
 2. Activate GitHub, LinkedIn. **Expect**: each opens the correct profile in a new tab; the
    "opens in a new tab" cue is visible and announced.
-3. Activate Email. **Expect**: mail app opens addressed to the published address.
-4. Scroll to Contact. **Expect**: same three routes; the address is visible text; "Copy email"
-   shows "Copied!" and the clipboard holds the address. With clipboard permission denied:
-   failure message tells you to select the address.
+3. Scroll to Contact. **Expect**: the text says LinkedIn is the best and primary way to reach
+   out; "Connect on LinkedIn" is the first, primary button and "GitHub profile" the second; no
+   email address, email link, or copy button anywhere on the page.
 
 ### US2 — Review background and experience
 
@@ -96,10 +95,10 @@ for manual confirmation at each phase gate. Details of expected markup are in
 
 | Scenario | How | Expect |
 |---|---|---|
-| Scripting off | Playwright `javaScriptEnabled: false`, or browser setting | All content and links present; theme follows device; toggle, Menu, and Copy buttons hidden |
+| Scripting off | Playwright `javaScriptEnabled: false`, or browser setting | All content and links present; theme follows device; theme toggle and Menu button hidden |
 | Storage blocked | Private window with storage disabled / e2e stub that throws | Toggle works for the visit; no console errors |
 | Device theme changes | Switch OS/emulated scheme with no saved choice | Page follows; with a saved choice it doesn't |
-| 320px & 400% zoom | 1280px window at 400% zoom (= 320 CSS px) | No horizontal scroll; email and URLs wrap |
+| 320px & 400% zoom | 1280px window at 400% zoom (= 320 CSS px) | No horizontal scroll; long words and URLs wrap |
 | 2560px | Wide viewport | Content centred at comfortable width |
 | Deep link | Open `/#experience` directly | Heading visible below bar; narrative visible |
 | Keyboard under bar | Tab through whole page | Focused element never hidden by the bar |
@@ -108,14 +107,14 @@ for manual confirmation at each phase gate. Details of expected markup are in
 ## Manual gates (recorded in the PR description)
 
 - **Screen reader smoke test**: NVDA + Firefox and VoiceOver on iOS — landmarks, headings,
-  toggle state, menu state, copy status announcement, Experience narrative read as one paragraph,
+  toggle state, menu state, Experience narrative read as one paragraph,
   Interests read as a list of five items with silent icons.
 - **Visual review**: screenshots at 320, 375, 768, 1024, 1440, 2560 in light and dark.
 - **Privacy review (FR-015, SC-009)**: reviewer confirms every word inside `#experience` (and
   the whole page) contains no internal application or system names, architecture descriptions,
   proprietary tools, team or department names, client information, or non-public metrics.
   Record reviewer, date, and result.
-- **Usability check (SC-002)**: 5 participants, two tasks (start an email; open GitHub). Pass =
+- **Usability check (SC-002)**: 5 participants, two tasks (open LinkedIn to get in touch; open GitHub). Pass =
   ≥ 4 complete each task in ≤ 30s.
 
 ## Content inputs (must be complete before first deploy)
@@ -125,7 +124,7 @@ for manual confirmation at each phase gate. Details of expected markup are in
 - [x] ~~Role start/end months~~ — no longer needed (timeline removed 2026-09-30)
 - [x] GitHub profile URL — `https://github.com/aseelalmanahy` (2026-09-30)
 - [x] LinkedIn profile URL — `https://www.linkedin.com/in/aseel-almanahy-97342b109/` (2026-09-30)
-- [x] Public email address — `[email removed]` (2026-09-30; send a test message before launch)
+- [x] ~~Public email address~~ — no longer needed: email removed 2026-09-30; LinkedIn is the primary contact
 - [x] About Me introduction approved (spec FR-008, 2026-09-30)
 - [x] Site URL / repository name — `aseelalmanahy.github.io` → `https://aseelalmanahy.github.io/` (2026-09-30); confirm
   before the GitHub repository is created (T094); the name sets the 404 `<base href>`

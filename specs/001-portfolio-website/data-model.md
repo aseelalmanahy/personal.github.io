@@ -26,14 +26,13 @@ the end.
 
 | Field | Rule |
 |---|---|
-| `type` | `github` \| `linkedin` \| `email` — exactly these three, in this order (FR-005, FR-022a) |
-| `label` | Visible text: "GitHub", "LinkedIn", "Email" (hero); descriptive in Contact section (e.g. "GitHub profile") |
+| `type` | `github` \| `linkedin` — hero order GitHub, LinkedIn; Contact order LinkedIn (primary), GitHub (FR-005, FR-021, FR-022a) |
+| `label` | Visible text: "GitHub", "LinkedIn" (hero); "Connect on LinkedIn", "GitHub profile" (Contact) |
 | `href` | `https://github.com/aseelalmanahy`, `https://www.linkedin.com/in/aseel-almanahy-97342b109/` (FR-006); `mailto:[email removed]` |
-| `opensNewTab` | `true` for github/linkedin, `false` for email |
+| `opensNewTab` | always `true` |
 
 **Validation**: new-tab links carry `target="_blank"`, `rel="noopener noreferrer"`, and a
-visible or visually-hidden "(opens in a new tab)" (FR-006); email `href` uses the same address
-shown as text (FR-021); each appears once in the hero and once in Contact (6 links total).
+visible or visually-hidden "(opens in a new tab)" (FR-006); no `mailto:` link or email address anywhere (FR-021); each route appears once in the hero and once in Contact (4 links total).
 
 ### EducationEntry
 
@@ -138,11 +137,6 @@ memory for the visit only.
 `collapsed` ⇄ `expanded` via the Menu button; `expanded` → `collapsed` on Escape (focus returns to
 the button), on choosing a link, or on widening past the breakpoint. Exposed as
 `aria-expanded`.
-
-### CopyStatus
-
-`idle` → (click) → `success` ("Copied!") | `error` ("Couldn't copy — please select the address
-above") → (4s) → `idle`. A new click during `success`/`error` restarts the timer.
 
 ### ActiveSection
 

@@ -68,7 +68,7 @@ test.describe('keyboard walkthrough (SC-006)', () => {
   test('logical tab order through every control, without traps', async ({ page, browserName }) => {
     test.skip(!TAB_REACHES_LINKS(browserName), 'WebKit build does not Tab to links');
     await page.goto('/');
-    const labels = (await tabOrder(page, 17)).map(({ text }) => text);
+    const labels = (await tabOrder(page, 13)).map(({ text }) => text);
     expect(labels).toEqual([
       'Skip to main content',
       'Aseel Almanahy',
@@ -80,13 +80,9 @@ test.describe('keyboard walkthrough (SC-006)', () => {
       'Dark theme',
       'GitHub (opens in a new tab)',
       'LinkedIn (opens in a new tab)',
-      'Email',
       'Visit my GitHub (opens in a new tab)',
+      'Connect on LinkedIn (opens in a new tab)',
       'GitHub profile (opens in a new tab)',
-      'LinkedIn profile (opens in a new tab)',
-      'Email me',
-      expect.stringContaining('@'),
-      'Copy email',
     ]);
   });
 });

@@ -51,3 +51,6 @@
   entity and an edge case added. Placement ambiguity ("right after Experience" vs "before
   Contact") resolved literally and recorded in Clarifications. Constitution amended to v2.2.0.
   All 16 items still pass; no [NEEDS CLARIFICATION] markers.
+- Iteration 5 (2026-09-30, contact): email removed; LinkedIn named the primary contact route
+  (FR-005, FR-021, FR-022a rewritten; FR-007, FR-021a removed; SC-001, SC-002, US1, edge cases,
+  Contact Link entity, assumptions updated). All 16 items still pass; no markers.

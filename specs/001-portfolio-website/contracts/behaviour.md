@@ -31,8 +31,6 @@ No cookies, no network requests, no other storage.
 | Theme toggle | `button.theme-toggle` | `hidden` removed on init; `aria-pressed` = effective theme is dark |
 | Menu control | `a.nav__toggle[href="#nav-menu"]` → `button.nav__toggle` | Ships as a link (opens via `:target` if the module fails); `nav.js` replaces it with a button carrying `aria-expanded` and `aria-controls="nav-menu"`, clearing a `#nav-menu` hash |
 | Nav links | `.nav__list a` | `aria-current="true"` on the active section's link |
-| Copy button | `[data-js="copy-email"]` | `hidden` removed when Clipboard API exists |
-| Copy status | `[data-js="copy-email-status"]` (`role="status"`) | text: "", "Copied!", or "Couldn't copy — please select the address above" |
 | Sections | `main > section[id]` | receive focus (`tabindex="-1"`) after nav activation |
 
 CSS may style these states; it must not introduce other JS-set classes.
@@ -48,7 +46,6 @@ Pure helpers are DOM-free and unit-tested; `init*` functions take the document (
 | `theme.js` | `resolveEffectiveTheme(saved, prefersDark) → 'light' \| 'dark'`; `nextTheme(effective) → 'light' \| 'dark'`; `initThemeToggle(doc?)` |
 | `nav.js` | `shouldCollapse(viewportWidthEm) → boolean`; `initNav(doc?)` (menu disclosure, Escape, close-on-choose, focus target section) |
 | `scroll-spy.js` | `pickActiveSection(entries) → id \| null`; `initScrollSpy(doc?)` |
-| `copy-email.js` | `copyText(text, clipboard?) → Promise<'success' \| 'error'>`; `statusMessage(result) → string`; `initCopyEmail(doc?)` |
 | `main.js` | No exports. Calls each `init*` inside its own `try/catch`. |
 
 ## Keyboard behaviour
@@ -60,7 +57,6 @@ Pure helpers are DOM-free and unit-tested; `init*` functions take the document (
 | Open menu | Escape | Close menu, focus returns to menu button |
 | Nav link | Enter | Scroll to section, focus the section, close menu (phones) |
 | Theme toggle | Enter / Space | Switch theme, update `aria-pressed`, persist |
-| Copy button | Enter / Space | Copy + status message |
 
 ## Timings and motion
 
@@ -68,7 +64,6 @@ Pure helpers are DOM-free and unit-tested; `init*` functions take the document (
 |---|---|---|
 | `--duration-theme` | 250ms | `prefers-reduced-motion: no-preference` and `data-theme-switching` present |
 | `--duration-ui` | 150ms | hover/focus highlight transitions, motion allowed |
-| Copy status lifetime | 4000ms | always |
 | `scroll-behavior: smooth` | — | only inside `prefers-reduced-motion: no-preference` |
 
 With `prefers-reduced-motion: reduce`, every duration above is effectively `0` and no entry is

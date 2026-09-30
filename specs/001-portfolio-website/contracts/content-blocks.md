@@ -22,23 +22,17 @@ External profile (GitHub / LinkedIn):
 A visible external-link glyph (`#external`) accompanies the text so sighted users also know it
 opens a new tab (FR-006).
 
-Email (hero):
+Contact section (FR-021) — LinkedIn first and primary, GitHub second; no email anywhere:
 
 ```html
-<a class="button button--secondary" href="mailto:CONTENT:address">
-  <svg class="icon" …><use href="assets/icons.svg#email"></use></svg> Email
-</a>
-```
-
-Contact section email with copy button (FR-021, FR-021a):
-
-```html
-<p class="contact__email">
-  <a class="contact__email-link" href="mailto:CONTENT:address">CONTENT:address</a>
-  <button class="button button--small copy-email" type="button" hidden
-          data-js="copy-email">Copy email</button>
-  <span class="copy-email__status" role="status" data-js="copy-email-status"></span>
-</p>
+<p class="contact__intro">… The best way to reach out or connect is directly on LinkedIn — send
+  me a message there.</p>
+<ul class="contact__links">
+  <li><a class="button button--primary" href="https://www.linkedin.com/in/…" target="_blank"
+         rel="noopener noreferrer">…Connect on LinkedIn…</a></li>
+  <li><a class="button button--secondary" href="https://github.com/…" target="_blank"
+         rel="noopener noreferrer">…GitHub profile…</a></li>
+</ul>
 ```
 
 ## Education entry

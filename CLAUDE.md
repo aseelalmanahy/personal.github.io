@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Single-page personal portfolio for Aseel Almanahy, scaffolded with **GitHub Spec Kit** (v1.0.13.dev0). Active feature: `specs/001-portfolio-website` on branch `001-portfolio-website`. Implementation phases 1–9 are built and tested; launch waits only on creating the GitHub repository and the owner's manual gates (tasks T097–T103). Gate evidence lives in `specs/001-portfolio-website/checklists/implementation-gates.md`.
 
-- **Content**: all owner content is final (spec FR-006, FR-008, FR-011, FR-037; site URL `https://aseelalmanahy.github.io/`; email `[email removed]`) — keep it verbatim. `node tools/check-content.mjs --strict` must stay at 0 markers; never invent content.
+- **Content**: all owner content is final (spec FR-006, FR-008, FR-011, FR-037; site URL `https://aseelalmanahy.github.io/`; no email by design) — keep it verbatim. `node tools/check-content.mjs --strict` must stay at 0 markers; never invent content.
 - The parent folder (`../`) contains an unrelated, empty git repository; this project's repository root is this directory.
 
 ## Stack (decided in `specs/001-portfolio-website/plan.md`)
@@ -15,7 +15,7 @@ Single-page personal portfolio for Aseel Almanahy, scaffolded with **GitHub Spec
 - **Layout**: `src/` is the deployable root and is served as-is in development; `tools/build.mjs` writes the production build to `dist/` (bundled/minified CSS, `?v=` cache-busting). Tests in `tests/unit` (node:test) and `tests/e2e` (Playwright + axe); dev scripts in `tools/`.
 - **Only CSS/JS file allowed to contain colour literals**: `src/css/tokens.css` (Stylelint enforces; print colours live there too). JS reads colours via `getComputedStyle`.
 - **Inline `<head>` theme bootstrap** (the only inline script the constitution allows; must stay < 1 KB) is protected by a CSP hash — after editing it, run `node tools/check-csp.mjs --write`.
-- `[hidden]` is forced to `display: none !important` in `utilities.css`; JS-only controls (theme toggle, Copy email) ship `hidden`.
+- `[hidden]` is forced to `display: none !important` in `utilities.css`; the JS-only theme toggle ships `hidden`. No email is published — LinkedIn is the primary contact (spec FR-021).
 - **Mobile menu**: collapsed from first paint under `html.js` (avoids layout shift). The Menu control ships as `<a href="#nav-menu">` (works via `:target` if scripts fail) and `nav.js` swaps it for a `<button aria-expanded>`. Without scripting (`html.no-js`) links wrap in the bar.
 - **Tests**: every e2e spec imports `test`/`expect` from `tests/helpers/fixtures.js`, which fails a test on any console error/warning or CSP violation (use the `expectedProblems` RegExp option for deliberate ones). Playwright's WebKit never Tabs to links, so Tab-order tests skip WebKit and use structural checks.
 - **Hosting**: GitHub Pages via `.github/workflows/ci.yml` (`verify` job gates `deploy`).

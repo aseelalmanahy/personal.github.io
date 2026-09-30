@@ -196,3 +196,17 @@ Result values: PASS · FAIL · PENDING · N/A (with reason).
 `npm run verify` exit 0 (93 s): Prettier clean; ESLint/Stylelint/html-validate 0; 50/50 unit; build; check-csp, check-site-url, check-content (0), budgets (13.5 KB gzip); 269 e2e passed, 10 skipped (engine limits) in Chromium, Firefox, WebKit; Lighthouse assertions pass (index 100/100/100/100); link check 13/13.
 
 **Open before launch**: T098 privacy review, T099 manual gates (screen reader, visual, JS-off, print, usability) — owner-run; T100 final tables; T102 create repository + push + PR + Pages settings (owner account); T103 live spot-check; send a test email to the published address.
+
+## Amendment 2026-09-30 — contact via LinkedIn, email removed (tasks Phase 10)
+
+| ID | Criterion | Result | Evidence | Date |
+|---|---|---|---|---|
+| C1 | Updated tests fail first | PASS | 5 failures before T132 (hero-contact, a11y walkthrough) | 2026-09-30 |
+| C2 | Hero: exactly GitHub then LinkedIn (FR-005) | PASS | hero-contact.spec, 3 engines | 2026-09-30 |
+| C3 | Contact names LinkedIn as the best/primary way; LinkedIn first (primary), GitHub second (FR-021) | PASS | hero-contact.spec, 3 engines | 2026-09-30 |
+| C4 | No email address, `mailto:` link, or copy control anywhere (FR-021) | PASS | DOM + raw `dist/index.html` scan | 2026-09-30 |
+| C5 | `npm run verify` | PASS | exit 0: 46/46 unit; 262 e2e passed, 8 skipped (engine limits); 12/12 links | 2026-09-30 |
+| C6 | Budgets | PASS | 11.2 KB HTML+CSS+JS, 3.9 KB JS, 12.4 KB total (gzip) — down from 13.5 KB | 2026-09-30 |
+| C7 | Lighthouse (mobile ×3) | PASS | index.html Perf 1.00, A11y 1.00, BP 1.00, SEO 1.00; LCP 1.1 s, CLS 0.001, TBT 0 ms | 2026-09-30 |
+
+**Notes**: superseded — V1.5 (6 contact links → 4), V4.4 (copy email), SC-010 evidence now 12 links.

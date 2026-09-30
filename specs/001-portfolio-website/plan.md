@@ -31,13 +31,27 @@ Constitution v2.2.0 adds a sixth section. Spec FR-037–FR-040 / User Story 5; r
   budgets and Lighthouse unchanged in kind.
 - Tasks: `tasks.md` Phase 9 (T118–T129).
 
+## Amendment 2026-09-30 — contact via LinkedIn, email removed
+
+Spec FR-005, FR-021, FR-022a rewritten; FR-007 and FR-021a removed (spec Session 2026-09-30).
+
+- **Removed**: hero Email button, Contact "Email me" button, visible address, Copy-email button
+  and status region, `js/copy-email.js` (+ unit and e2e tests), the `#email` sprite symbol, and
+  the email/copy styles. Research R-17 is superseded; plan steps P1.5, P3.5, P4.3 and criteria
+  V1.5, V3.2 (email wrap), V4.4 describe the removed feature and are historical.
+- **Changed**: Contact text says LinkedIn is the best and primary way to reach out; LinkedIn is
+  the first, primary button ("Connect on LinkedIn") and GitHub the secondary one. Hero shows
+  GitHub and LinkedIn.
+- **Result**: no email address is published; JS drops to four modules. Tasks: Phase 10
+  (T130–T137).
+
 ## Summary
 
 Build a single-page, static portfolio for Aseel Almanahy — Hero, About Me, Experience
 (narrative), Interests, Projects, Contact Links — in hand-written HTML5, CSS3 (custom-property design
 tokens, cascade layers, BEM), and native ES modules, hosted on GitHub Pages. All content lives in
 HTML so the page is complete without JavaScript; JavaScript only adds the two-state theme toggle
-(with a no-flash head bootstrap), copy-email button, mobile menu, and current-section indicator. Quality is enforced by a single `npm run verify` gate (Prettier,
+(with a no-flash head bootstrap), mobile menu, and current-section indicator. Quality is enforced by a single `npm run verify` gate (Prettier,
 ESLint, Stylelint, html-validate, unit tests, Playwright + axe in three engines, Lighthouse CI,
 link check) that must pass before GitHub Actions deploys `dist/`. Work proceeds in five
 sequential implementation phases, each ending in a validation gate derived from the 16-item spec
@@ -153,17 +167,16 @@ src/                          # Deployable site — servable as-is
 │       ├── interests.css     # static grid list of hobbies (2026-09-30)
 │       ├── projects.css      # .projects__grid / .projects__item
 │       ├── project-card.css
-│       ├── contact.css       # incl. copy-email
+│       ├── contact.css       # LinkedIn-first contact links
 │       └── site-footer.css
 ├── js/
 │   ├── main.js               # entry; calls init* in isolated try/catch
 │   ├── storage.js
 │   ├── theme.js
 │   ├── nav.js
-│   ├── scroll-spy.js
-│   └── copy-email.js
+│   └── scroll-spy.js
 └── assets/
-    ├── icons.svg             # sprite: github, linkedin, email, sun, moon, menu, external
+    ├── icons.svg             # sprite: github, linkedin, sun, moon, menu, external
     ├── favicon.svg
     ├── favicon-32.png
     ├── apple-touch-icon.png
@@ -173,7 +186,6 @@ tests/
 ├── unit/                     # node --test
 │   ├── storage.test.js
 │   ├── theme.test.js
-│   ├── copy-email.test.js
 │   ├── nav.test.js
 │   ├── scroll-spy.test.js
 │   └── contrast.test.js      # parses tokens.css, asserts R-09 contrast pairs
@@ -506,9 +518,9 @@ Validation criteria:
 
 | Risk | Mitigation |
 |---|---|
-| Content inputs (dates, URLs, email) arrive late | `CONTENT:` markers let all phases proceed; `check-content --strict` blocks deploy |
+| Content inputs (dates, URLs) arrive late — resolved 2026-09-30 | `CONTENT:` markers let all phases proceed; `check-content --strict` blocks deploy |
 | An engine ignores `scroll-padding` for focus scrolling | V3.6 detects it; `focusin` guard ready (R-13) |
-| Clipboard permission cannot be granted in Firefox/WebKit test runs | Real clipboard asserted in Chromium; stubbed API covers success/failure in all engines |
+| ~~Clipboard permission in Firefox/WebKit tests~~ | Obsolete — copy-email removed 2026-09-30 |
 | JS-off narrow header wraps to two rows (> 56px) | Documented in spec Edge Cases → "Scripting unavailable"; FR-023's height limit applies with scripting available and is verified with JS on (V3.5) |
 | LinkedIn blocks automated link checks | Skipped in linkinator, verified manually at launch |
 

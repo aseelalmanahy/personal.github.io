@@ -3,8 +3,7 @@
 .skip-link,
 .nav,
 .theme-toggle,
-.nav__toggle,
-[data-js='copy-email'] {
+.nav__toggle {
   display: none;
 }
 

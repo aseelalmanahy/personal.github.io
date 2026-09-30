@@ -309,6 +309,32 @@ hobbies with inline decorative SVG icons — without regressing any existing gat
 
 ---
 
+## Phase 10: Amendment — Contact via LinkedIn, Email Removed (2026-09-30)
+
+**Goal**: Remove every email path (hero Email button, Contact "Email me" button, visible address,
+Copy-email control and module) and make LinkedIn the stated, primary way to get in touch (spec
+FR-005, FR-021, FR-022a; FR-007 and FR-021a removed) without regressing any gate.
+
+**Independent Test**: `npm run verify` exits 0; `hero-contact.spec.js` confirms two hero routes, LinkedIn-first Contact, and no email anywhere.
+
+### Tests for Phase 10 (write first, confirm they fail)
+
+- [X] T130 [P] [US1] Rewrite `tests/e2e/hero-contact.spec.js`: hero has exactly GitHub then LinkedIn (new tab); Contact intro mentions LinkedIn as the best/primary way, links are LinkedIn (`button--primary`) then GitHub (`button--secondary`); no `a[href^="mailto:"]`, no copy control, and no email address or `mailto:` in `dist/index.html`; SC-001 checks four hero targets; delete the copy-email tests
+- [X] T131 [P] Update `tests/e2e/a11y.spec.js` keyboard walkthrough (13 stops, "Connect on LinkedIn" before "GitHub profile"), drop the copy-button check from `tests/e2e/no-js.spec.js`, drop the email-wrap assertion from `tests/e2e/responsive.spec.js`, and delete `tests/unit/copy-email.test.js`
+
+### Implementation for Phase 10
+
+- [X] T132 [US1] In `src/index.html`: remove the hero Email button, the Contact "Email me" button, the email paragraph (address, Copy button, status region), and the `js/copy-email.js` modulepreload; set the Contact intro to say the best way to reach out or connect is directly on LinkedIn; order Contact links LinkedIn (`button--primary`, "Connect on LinkedIn") then GitHub (`button--secondary`, "GitHub profile")
+- [X] T133 Delete `src/js/copy-email.js` and its registration in `src/js/main.js`; remove the email/copy rules from `src/css/components/contact.css` and `src/css/print.css`; remove the unused `#email` symbol from `src/assets/icons.svg`
+- [X] T134 Sync design docs: spec (Session 2026-09-30 contact amendment), plan amendment note and trees, research R-17 superseded, data model (ContactLink, CopyStatus removed), contracts (content-blocks, behaviour), quickstart, and `CLAUDE.md`
+- [X] T135 Run `npm run verify` (format, lint, unit, build, static checks, full e2e in three engines, Lighthouse, links) — exit 0; Lighthouse index.html 1.00 in all four categories
+- [X] T136 Record the Phase 10 gate in `specs/001-portfolio-website/checklists/implementation-gates.md`
+- [X] T137 Commit on branch `001-portfolio-website`
+
+**Checkpoint (Contact gate)**: T135 passes; no regression in earlier gates.
+
+---
+
 ## Dependencies & Execution Order
 
 ### Phase Dependencies
@@ -323,6 +349,7 @@ hobbies with inline decorative SVG icons — without regressing any existing gat
 - **Phase 6 (Impl. Phase 5)**: depends on Gate 4 (T078).
 - **Phase 8 Amendment (2026-09-30)**: runs after Gate 5a and before T096–T103 (launch needs the amended content). T104–T108 are parallel; T109–T112 edit shared files, in order; T113–T117 follow.
 - **Phase 9 Interests (2026-09-30)**: after Phase 8 and before T096–T103. T118–T120 are parallel; T121–T124 in order; T125–T129 follow.
+- **Phase 10 Contact via LinkedIn (2026-09-30)**: after Phase 9 and before T102–T103. T130–T131 parallel; T132–T134 in order; T135–T137 follow.
 - **Phase 7 Polish & Launch**: T093 can start after Gate 4; T094 (content) can be requested at
   any time and is the only external blocker; T095–T103 depend on Gate 5a (T092) and T094.
 
@@ -392,7 +419,7 @@ Each story can be verified on its own with the listed tests once its tasks are d
 
 | Story | Tasks | Independent test |
 |---|---|---|
-| **US1** Meet Aseel & get in touch (P1) 🎯 MVP | T016, T024, T028, T038, T046, T047, T060, T066, T069, T074, T096 | `hero-contact.spec.js`: verbatim hero text, 3 CTAs above the fold at 375×667, correct destinations and new-tab cues, 6 contact links, copy email success/failure |
+| **US1** Meet Aseel & get in touch (P1) 🎯 MVP | T016, T024, T028, T038, T046, T047, T060, T130, T132, T133 (email tasks T066, T069, T074, T096 superseded 2026-09-30) | `hero-contact.spec.js`: verbatim hero text, GitHub and LinkedIn above the fold at 375×667 with new-tab cues, Contact names LinkedIn as the primary way to connect (listed first), no email anywhere |
 | **US2** Background & experience (P2) | T025, T057, T104, T105, T109, T111 (timeline tasks T026, T053, T058, T079, T081, T084, T095 superseded 2026-09-30) | `about-experience.spec.js`: verbatim About intro, degrees, grouped skills, one verbatim Experience narrative at ≤ 75 characters per line; `privacy-scope.spec.js`: no timeline, dates, employer, or role list |
 | **US3** Explore projects (P3) | T027, T054, T059 | `projects.spec.js`: coming-soon card at launch; injected cards reflow 1 → ≥ 2 columns with all five elements and omitted missing links |
 | **US4** Navigate & choose a theme (P4) | T023, T039, T049, T055, T056, T065, T067, T068, T072, T073, T075, T076, T080, T082, T085 | `nav-theme.spec.js`: no-flash theme, persisted toggle, device-follow rules, reduced motion, mobile menu with Escape, focus to section, headings never under the bar, current-section marking |

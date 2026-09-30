@@ -1,5 +1,72 @@
 <!--
 Sync Impact Report
+- Version change: 4.0.0 → 5.0.0 (MAJOR: the Intro's required content is redefined; the
+  one-line professional statement is removed, so a v4.0.0 Intro with a statement between the
+  greeting and the biography no longer complies). Owner request 2026-09-30 for
+  specs/001-portfolio-website.
+- Modified principles:
+  - V. Focused Single-Page Scope — Intro is now the greeting followed directly by the About Me
+    content (biography, education, skills); sections, order, and other rules unchanged
+- Added/removed sections: none
+- Templates requiring updates: none — templates read the constitution at runtime
+- Dependent artifacts to sync (outside this command): specs/001-portfolio-website (spec, plan,
+  tasks, contracts, quickstart), CLAUDE.md version reference
+- Follow-up TODOs: none
+
+Earlier amendments (retained for review until committed):
+- Version change: 3.0.0 → 4.0.0 (MAJOR: required sections redefined; Hero and About Me merge
+  into one Intro section, so pages built to v3.0.0 with a separate About Me section no longer
+  comply). Owner request 2026-09-30 for specs/001-portfolio-website.
+- Modified principles:
+  - V. Focused Single-Page Scope — required sections now Intro (greeting, statement, biography,
+    education, skills; no separate "About Me" heading; no contact links), Experience, Interests,
+    Contact Links; "outside the five sections" → "outside the four sections"
+- Added/removed sections: none
+- Templates requiring updates: none — templates read the constitution at runtime
+- Dependent artifacts to sync (outside this command): specs/001-portfolio-website (spec, plan,
+  tasks, data model, contracts, quickstart), CLAUDE.md version reference
+- Follow-up TODOs: none
+
+Earlier amendments (retained for review until committed):
+- Version change: 2.2.0 → 3.0.0 (MAJOR: a required section is removed; pages built to v2.2.0
+  with a Projects section no longer comply). Owner request 2026-09-30 for
+  specs/001-portfolio-website.
+- Modified principles:
+  - V. Focused Single-Page Scope — required sections now Hero, About Me, Experience, Interests,
+    Contact Links (Projects removed); the Hero carries no contact links; Contact Links is the
+    single place for the owner's professional profile links; "outside the six sections" →
+    "outside the five sections"
+- Added/removed sections: none
+- Templates requiring updates: none — templates read the constitution at runtime
+- Dependent artifacts to sync (outside this command): specs/001-portfolio-website (spec, plan,
+  tasks, data model, contracts, quickstart), CLAUDE.md version reference
+- Follow-up TODOs: none
+
+Earlier amendments (retained for review until committed):
+- Version change: 2.1.1 → 2.2.0 (MINOR: scope materially expanded — a sixth required section).
+  Owner request 2026-09-30 for specs/001-portfolio-website.
+- Modified principles:
+  - V. Focused Single-Page Scope — required sections now Hero, About Me, Experience, Interests,
+    Projects, Contact Links; new rule that Interests is static and non-interactive with
+    decorative inline icons and no scripts, animation, fonts, or third-party assets;
+    "outside the five sections" → "outside the six sections"
+- Added/removed sections: none
+- Templates requiring updates: none
+- Follow-up TODOs: none
+
+Earlier amendments (retained for review until committed):
+- Version change: 2.1.0 → 2.1.1 (PATCH: wording only). Owner amendment of
+  specs/001-portfolio-website (2026-09-30) replaced the experience timeline with a narrative.
+- Modified principles:
+  - V. Focused Single-Page Scope — required section "Experience Timeline" renamed "Experience"
+    (order and count unchanged)
+  - I. Vanilla Web Platform Architecture — reusable-pattern examples updated ("timeline
+    entries" → "skill tags")
+- Added/removed sections: none
+- Templates requiring updates: none
+- Follow-up TODOs: none
+
+Earlier amendments (retained for review until committed):
 - Version change: 2.0.1 → 2.1.0 (MINOR: bounded exception added to Principles I and VI; scope of
   Principle III and Best Practice 6 clarified). Resolves /speckit-analyze findings C1 and C4 for
   specs/001-portfolio-website.
@@ -78,7 +145,7 @@ Earlier amendments (retained for review until committed):
   or render content, and MUST be verified by an automated hash check in CI. No other inline or
   non-module script is covered by this exception. Non-executable data blocks (e.g.
   `type="application/ld+json"`) are not scripts for the purposes of this principle.
-- Reusable UI patterns (cards, timeline entries, contact links) MUST share one CSS component
+- Reusable UI patterns (cards, skill tags, contact links) MUST share one CSS component
   definition rather than being styled ad hoc per instance.
 - The simplest approach that meets a requirement MUST be chosen; any runtime third-party code
   MUST be justified in the plan's Complexity Tracking table.
@@ -146,9 +213,15 @@ formatted, lint-clean code is itself part of what the site demonstrates.
 ### V. Focused Single-Page Scope
 
 - The site MUST be a single static page (`index.html`) containing exactly these sections, in
-  order: Hero (friendly greeting and one-line introduction), About Me, Experience Timeline,
-  Projects, and Contact Links. A custom `404.html` is the only additional page permitted.
-- Every element on the page MUST serve the owner's content; features outside the five sections
+  order: Intro (friendly greeting followed directly by the About Me content — biography,
+  education, and skills — with no separate "About Me" heading and no contact links),
+  Experience, Interests, and Contact Links. A custom `404.html` is the only additional page
+  permitted.
+- Contact Links is the single place on the page for the owner's professional profile links
+  (GitHub, LinkedIn); no other section repeats them.
+- Interests is a static, non-interactive list of the owner's personal interests; icons in it are
+  decorative and inline, and it adds no scripts, animation, fonts, or third-party assets.
+- Every element on the page MUST serve the owner's content; features outside the four sections
   (blog, CMS, comments, e-commerce, dashboards) require a constitution amendment.
 - Content MUST live directly in the HTML so it is indexable and readable without JavaScript;
   JavaScript MUST NOT be the source of any primary content.
@@ -281,4 +354,4 @@ The following 20 practices apply to every change. Each is verifiable by inspecti
   `/speckit-analyze` flags conflicts with them as CRITICAL. Principles SHOULD be reviewed at
   least once a year or whenever the hosting or stack changes.
 
-**Version**: 2.1.0 | **Ratified**: 2026-09-25 | **Last Amended**: 2026-09-29
+**Version**: 5.0.0 | **Ratified**: 2026-09-25 | **Last Amended**: 2026-09-30

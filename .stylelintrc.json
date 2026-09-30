@@ -1,0 +1,42 @@
+{
+  "extends": ["stylelint-config-standard"],
+  "rules": {
+    "selector-class-pattern": [
+      "^[a-z][a-z0-9]*(-[a-z0-9]+)*(__[a-z0-9]+(-[a-z0-9]+)*)?(--[a-z0-9]+(-[a-z0-9]+)*)?$",
+      { "message": "Class names must follow BEM: block__element--modifier (research R-07)" }
+    ],
+    "selector-max-id": 0,
+    "declaration-no-important": true,
+    "color-no-hex": true,
+    "color-named": "never",
+    "function-disallowed-list": [
+      "rgb",
+      "rgba",
+      "hsl",
+      "hsla",
+      "hwb",
+      "lab",
+      "lch",
+      "oklab",
+      "oklch",
+      "color"
+    ],
+    "media-feature-range-notation": "prefix",
+    "import-notation": "string"
+  },
+  "overrides": [
+    {
+      "files": ["src/css/tokens.css"],
+      "rules": {
+        "color-no-hex": null,
+        "function-disallowed-list": null
+      }
+    },
+    {
+      "files": ["src/css/utilities.css"],
+      "rules": {
+        "declaration-no-important": null
+      }
+    }
+  ]
+}

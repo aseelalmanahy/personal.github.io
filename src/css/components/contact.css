@@ -1,0 +1,11 @@
+.contact__intro {
+  margin-bottom: var(--space-5);
+  font-size: var(--text-lg);
+}
+
+/* LinkedIn is the primary route (first, primary button); GitHub follows (spec FR-021). */
+.contact__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}

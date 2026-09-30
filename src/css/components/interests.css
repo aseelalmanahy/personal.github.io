@@ -1,0 +1,32 @@
+/* Interests (spec FR-037–FR-040, research R-28): a static grid list of hobbies. Deliberately
+   no hover, focus, transition, or animation; nothing here is interactive. */
+.interests__list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 9.5rem), 1fr));
+  gap: var(--space-3);
+  max-width: 56rem;
+}
+
+.interests__item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  align-items: center;
+  padding: var(--space-4) var(--space-3);
+  border: 1px solid var(--color-tag-bg);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface);
+  text-align: center;
+}
+
+.interests__icon {
+  flex: none;
+  width: var(--size-icon-lg);
+  height: var(--size-icon-lg);
+  color: var(--color-accent);
+}
+
+.interests__label {
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}

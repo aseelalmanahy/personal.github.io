@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Share image template (dev-only)</title>
+    <style>
+      /* Dev-only template (never shipped). Colours are literal but MUST match the light-theme
+         values in src/css/tokens.css (constitution Principle III, non-CSS contexts clause). */
+      html,
+      body {
+        margin: 0;
+        width: 1200px;
+        height: 630px;
+      }
+
+      body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        box-sizing: border-box;
+        padding: 0 96px;
+        position: relative;
+        overflow: hidden;
+        /* Flat colours only: gradients defeat PNG compression (budget: 100 KB). */
+        background: #fbf6ee;
+        color: #2b1d14;
+        font-family: system-ui, 'Segoe UI', roboto, arial, sans-serif;
+      }
+
+      body::before {
+        content: '';
+        position: absolute;
+        top: -260px;
+        right: -180px;
+        width: 620px;
+        height: 620px;
+        border-radius: 50%;
+        background: #f6e3c4;
+      }
+
+      .eyebrow,
+      h1,
+      .bar,
+      .statement {
+        position: relative;
+      }
+
+      .eyebrow {
+        margin: 0 0 20px;
+        color: #5e4b3c;
+        font-size: 30px;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        margin: 0;
+        font-family: 'Iowan Old Style', 'Palatino Linotype', palatino, georgia, serif;
+        font-size: 104px;
+        line-height: 1.05;
+      }
+
+      .bar {
+        width: 120px;
+        height: 10px;
+        margin: 36px 0;
+        border-radius: 999px;
+        background: #b45309;
+      }
+
+      .statement {
+        max-width: 900px;
+        margin: 0;
+        color: #5e4b3c;
+        font-size: 38px;
+        line-height: 1.4;
+      }
+    </style>
+  </head>
+  <body>
+    <p class="eyebrow">Portfolio</p>
+    <h1>Aseel Almanahy</h1>
+    <div class="bar"></div>
+    <p class="statement">
+      Full Stack Software Engineer specializing in scalable systems, robust architectures, and
+      engineering mentorship.
+    </p>
+  </body>
+</html>

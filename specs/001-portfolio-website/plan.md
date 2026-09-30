@@ -1,18 +1,128 @@
 # Implementation Plan: Personal Portfolio Website
 
-**Branch**: `001-portfolio-website` (repository not yet initialised — created in step P1.1) |
-**Date**: 2026-09-29 | **Spec**: [spec.md](spec.md)
+**Branch**: `001-portfolio-website` |
+**Date**: 2026-09-29, amended 2026-09-30 | **Spec**: [spec.md](spec.md)
 
 **Input**: Feature specification from `specs/001-portfolio-website/spec.md`
 
+## Amendment 2026-09-30 — narrative content structure
+
+The owner replaced the Experience timeline with one verbatim narrative paragraph (spec FR-011–
+FR-015), fixed the About Me text (FR-008), and supplied the GitHub and LinkedIn URLs (FR-006).
+Constitution v2.1.1 renames the required section to "Experience". Design deltas:
+
+- **Removed**: timeline markup, `components/timeline.css`, `js/reveal.js` and its tests, the
+  `data-reveal` state, `--duration-reveal`, and the role-date content inputs (research R-15 and
+  R-16 are superseded; implementation Phase 3/5 steps that built them are historical).
+- **Added**: `components/experience.css` — a single narrative block with a readable measure,
+  serif drop cap, and amber rule (research R-27); privacy/structure tests for the narrative.
+- **Unchanged**: section order and ids (`#experience` keeps its nav link), theme, menu,
+  copy-email, scroll-spy, build, and budgets. Lighthouse targets are unchanged.
+- Tasks: `tasks.md` Phase 8 (T104–T117) applies the amendment.
+
+## Amendment 2026-09-30 — Interests section
+
+Constitution v2.2.0 adds a sixth section. Spec FR-037–FR-040 / User Story 5; research R-28.
+
+- **Added**: `section#interests` (after Experience) with a `ul` of five items and inline SVG
+  icons; `components/interests.css`; `--size-icon-lg` token; an "Interests" nav link;
+  `interests` in the scroll-spy section list; `tests/e2e/interests.spec.js`.
+- **Checked**: the primary nav still fits one row at 768px with six links (V9 in tasks);
+  budgets and Lighthouse unchanged in kind.
+- Tasks: `tasks.md` Phase 9 (T118–T129).
+
+## Amendment 2026-09-30 — contact via LinkedIn, email removed
+
+Spec FR-005, FR-021, FR-022a rewritten; FR-007 and FR-021a removed (spec Session 2026-09-30).
+
+- **Removed**: hero Email button, Contact "Email me" button, visible address, Copy-email button
+  and status region, `js/copy-email.js` (+ unit and e2e tests), the `#email` sprite symbol, and
+  the email/copy styles. Research R-17 is superseded; plan steps P1.5, P3.5, P4.3 and criteria
+  V1.5, V3.2 (email wrap), V4.4 describe the removed feature and are historical.
+- **Changed**: Contact text says LinkedIn is the best and primary way to reach out; LinkedIn is
+  the first, primary button ("Connect on LinkedIn") and GitHub the secondary one. Hero shows
+  GitHub and LinkedIn.
+- **Result**: no email address is published; JS drops to four modules. Tasks: Phase 10
+  (T130–T137).
+
+## Amendment 2026-09-30 — four-tier skills
+
+Spec FR-010 (four tiers, 28 items), research R-29. Contact copy also names LinkedIn the channel
+to "initiate professional discussions" (FR-021).
+
+- **Changed**: About is now stacked — Education (2 cards side by side ≥ 48em) then a full-width
+  Skills block (`.skills` grid of four `.skill-group` cards). Column count comes from the
+  `--skills-columns` token in `tokens.css` (1 → 2 at 40em → 4 at 75em); `about.css` applies it.
+  Long slash-joined tags carry `<wbr>` break hints; `.tag` can wrap as a last resort.
+- **Tests**: `about-experience.spec.js` checks the four tiers, items, order, and 1/2/2/4 columns at
+  375/768/1024/1440px; defunct timeline/copy-email conditions removed. Tasks: Phase 11
+  (T138–T146).
+
+## Amendment 2026-09-30 — punctuation, link placement, featured projects
+
+Spec FR-041, FR-042, FR-017, FR-020; research R-30.
+
+- **Changed**: every em dash removed from `src/` (copy, titles, meta, comments), tests, and
+  tools; FR-008/FR-011 punctuation updated as the owner requested. The coming-soon card and its
+  profile link are gone; Projects holds three featured cards built from the owner's public
+  repositories, each with unique tags and code links (new `#code` sprite symbol). Cards gain a
+  4px accent top border; the dashed placeholder style is deleted.
+- **Tests**: `projects.spec.js` rewritten for the real cards (content, order, unique tags,
+  repo-only links, 1/2/3/3 columns at 375/768/1024/1440); FR-042 placement test; FR-041 checks
+  rendered text and every `src/` file; keyboard walkthrough now 17 stops. Tasks: Phase 13.
+
+## Amendment 2026-09-30 — five sections (hero links and Projects removed)
+
+Constitution v3.0.0 (Principle V); spec FR-001, FR-005, FR-016–FR-020 (removed), FR-022a, FR-042,
+SC-001, SC-002, SC-006; research R-31.
+
+- **Removed**: the hero actions (`.hero__actions` markup and rule), the Projects section and nav
+  link, `components/projects.css`, `components/project-card.css`, their `main.css` imports and
+  print rule, the `#code` sprite symbol, `projects` from `scroll-spy.js`, and
+  `tests/e2e/projects.spec.js`.
+- **Tests**: hero has no links or buttons; profile links only in Contact, once each; five
+  sections and four nav links everywhere (structure, no-JS, responsive, nav, Interests order);
+  keyboard walkthrough 9 stops. Tasks: Phase 14.
+- **Verification**: full-page review at 320/375/768/1024/1440 in both themes, keyboard and JS-off
+  (automated), recorded as gate F7.
+
+## Amendment 2026-09-30 — custom domain aseelalmanahy.com
+
+Spec FR-043; research R-34. Canonical, `og:url`, `og:image`, JSON-LD `url`, `robots.txt`, and
+`sitemap.xml` use `https://aseelalmanahy.com/`; `src/CNAME` (copied to `dist/`) tells GitHub
+Pages to serve the custom domain; `check-site-url` also checks the CNAME host; `check:links` skips
+the new origin until DNS is live. Hosting is unchanged (GitHub Pages via Actions, Principle VI).
+Owner actions: Squarespace DNS records and the Pages custom-domain setting (T102). Tasks: Phase 17.
+
+## Amendment 2026-09-30 — visible statement removed
+
+Constitution v5.0.0 (Principle V); spec FR-001, FR-004, FR-005, FR-005a, SC-001; research R-33.
+Removed `p.hero__statement` and its `.hero__statement` rule; the greeting is followed directly by
+the biography. The sentence stays in `meta[name=description]`, `og:description`, JSON-LD, and the
+share image (FR-036). Tests: statement absent from visible text, meta description unchanged,
+intro order h1 → biography → Education → Skills, SC-001 greeting plus biography start. Tasks:
+Phase 16.
+
+## Amendment 2026-09-30 — unified intro (Hero and About Me merged)
+
+Constitution v4.0.0 (Principle V); spec FR-001, FR-005, FR-005a, FR-008–FR-010, FR-023; research
+R-32.
+
+- **Changed**: `section#home` now holds the greeting, statement, biography, Education, and
+  Skills; `section#about` and the "About" nav link are removed. Education/Skills headings move
+  h3 → h2 (styled at `--text-xl`), degrees and skill tiers h4 → h3. The intro's top padding drops
+  to `clamp(2rem, 6vw, 4.5rem)` so the education cards land in the first desktop viewport.
+- **Tests**: intro order and sub-headings, no "About Me" heading, education cards within the
+  first viewport at 1024 × 768 and 1440 × 900, no section-sized gaps; four sections and three
+  nav links everywhere; 8-stop keyboard walkthrough. Tasks: Phase 15.
+
 ## Summary
 
-Build a single-page, static portfolio for Aseel Almanahy — Hero, About Me, Experience Timeline,
-Projects, Contact Links — in hand-written HTML5, CSS3 (custom-property design tokens, cascade
-layers, BEM), and native ES modules, hosted on GitHub Pages. All content lives in HTML so the
-page is complete without JavaScript; JavaScript only adds the two-state theme toggle (with a
-no-flash head bootstrap), copy-email button, mobile menu, current-section indicator, and
-timeline scroll-in animation. Quality is enforced by a single `npm run verify` gate (Prettier,
+Build a single-page, static portfolio for Aseel Almanahy — Hero, About Me, Experience
+(narrative), Interests, Projects, Contact Links — in hand-written HTML5, CSS3 (custom-property design
+tokens, cascade layers, BEM), and native ES modules, hosted on GitHub Pages. All content lives in
+HTML so the page is complete without JavaScript; JavaScript only adds the two-state theme toggle
+(with a no-flash head bootstrap), mobile menu, and current-section indicator. Quality is enforced by a single `npm run verify` gate (Prettier,
 ESLint, Stylelint, html-validate, unit tests, Playwright + axe in three engines, Lighthouse CI,
 link check) that must pass before GitHub Actions deploys `dist/`. Work proceeds in five
 sequential implementation phases, each ending in a validation gate derived from the 16-item spec
@@ -49,8 +159,8 @@ Chrome for Android); static hosting on GitHub Pages over HTTPS.
 `default-src 'none'`); WCAG 2.2 AA in both themes; no horizontal scroll 320–2560px and at 400%
 zoom; source directly servable without a build.
 
-**Scale/Scope**: 1 page + 404; 5 sections; 2 education entries; 2 skill groups (8 skills);
-4 timeline entries; 0 projects at launch (grid designed for ~12); ~6 JS modules; ~14 CSS
+**Scale/Scope**: 1 page + 404; 4 sections; 2 education entries; 4 skill tiers (28 skills);
+1 experience narrative; 5 interests; 0 projects at launch (grid designed for ~12); 6 JS modules; 16 CSS
 partials. Expected size: HTML ≈ 4 KB, CSS ≈ 6 KB, JS ≈ 3 KB (gzip).
 
 All previously open questions are resolved in research.md (R-01 – R-26); none remain.
@@ -59,7 +169,8 @@ All previously open questions are resolved in research.md (R-01 – R-26); none 
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-Constitution v2.1.0 (re-checked after the `/speckit-analyze` remediation of 2026-09-29).
+Constitution v5.0.0 (re-checked 2026-09-30 after the statement amendment; earlier checks:
+v4.0.0, v3.0.0, v2.2.0, and v2.1.0).
 
 | Principle / Rule | Gate | Pre-research | Post-design evidence |
 |---|---|---|---|
@@ -67,7 +178,7 @@ Constitution v2.1.0 (re-checked after the `/speckit-analyze` remediation of 2026
 | II. Mobile-First | `min-width` queries only; 320–2560 no h-scroll; 200%/400% zoom | PASS | em breakpoints (R-11); viewport-matrix e2e (V3.1–V3.2) |
 | III. Warm Minimalist | Cream/amber/dark roles; all colours via tokens; contrast in every theme; subtle motion | PASS | Palette + contrast table (R-09); Stylelint colour-literal ban outside `tokens.css` (R-07); motion tokens ≤ 400ms |
 | IV. Code Quality & A11y | WCAG 2.2 AA, 0 axe violations; keyboard; reduced motion; JS-off; Prettier/ESLint/Stylelint/HTML validator 0 warnings; tokens on `:root` | PASS | `npm run verify` (quickstart); axe in both themes & JS-off (V2.2, V3.7); `.editorconfig` (P1.1) |
-| V. Single-Page Scope | Five sections in order Hero, About, Experience, Projects, Contact; only extra page `404.html`; content in HTML; anchor nav | PASS | [contracts/page-structure.md](contracts/page-structure.md); `privacy-scope` e2e |
+| V. Single-Page Scope | Four sections in order Intro (greeting, biography, education, skills; no statement line; no contact links), Experience, Interests, Contact (sole home of the profile links); Interests static with decorative inline icons and no scripts, animation, fonts, or third-party assets; only extra page `404.html`; content in HTML; anchor nav | PASS | [contracts/page-structure.md](contracts/page-structure.md); `privacy-scope` e2e |
 | VI. GitHub Pages Delivery | Static, no server; Lighthouse thresholds; CWV; budgets; ≤ 1 render-blocking stylesheet; scripts are modules | PASS | Lightning CSS bundles to one stylesheet in `dist/` (R-07); LHCI + `check-budgets` (V5.5); the inline theme bootstrap is the only non-module script, covered by the Principle I exception referenced in Principle VI. Dev-mode `@import` partials are not deployed. |
 | VII. Privacy & Security | No trackers; no third-party requests; CSP + referrer via meta; HTTPS; no secrets; links-only contact | PASS | CSP policy (R-20); no forms (FR-022); `privacy-scope` e2e asserts same-origin requests only |
 | Technical Constraints | GitHub Pages via Actions; source servable as-is; dev tooling allowed; tooling recorded in `CLAUDE.md`; evergreen browsers | PASS | R-24 workflow; `CLAUDE.md` updated by this plan; Playwright 3 engines |
@@ -123,21 +234,20 @@ src/                          # Deployable site — servable as-is
 │       ├── section.css
 │       ├── about.css         # education + skill groups
 │       ├── tag.css
-│       ├── timeline.css
+│       ├── experience.css    # narrative block (replaced timeline.css, 2026-09-30)
+│       ├── interests.css     # static grid list of hobbies (2026-09-30)
 │       ├── projects.css      # .projects__grid / .projects__item
 │       ├── project-card.css
-│       ├── contact.css       # incl. copy-email
+│       ├── contact.css       # LinkedIn-first contact links
 │       └── site-footer.css
 ├── js/
 │   ├── main.js               # entry; calls init* in isolated try/catch
 │   ├── storage.js
 │   ├── theme.js
 │   ├── nav.js
-│   ├── scroll-spy.js
-│   ├── copy-email.js
-│   └── reveal.js
+│   └── scroll-spy.js
 └── assets/
-    ├── icons.svg             # sprite: github, linkedin, email, sun, moon, menu, external
+    ├── icons.svg             # sprite: github, linkedin, sun, moon, menu, external
     ├── favicon.svg
     ├── favicon-32.png
     ├── apple-touch-icon.png
@@ -147,22 +257,20 @@ tests/
 ├── unit/                     # node --test
 │   ├── storage.test.js
 │   ├── theme.test.js
-│   ├── copy-email.test.js
 │   ├── nav.test.js
 │   ├── scroll-spy.test.js
-│   ├── reveal.test.js
 │   └── contrast.test.js      # parses tokens.css, asserts R-09 contrast pairs
 ├── e2e/                      # Playwright (Chromium, Firefox, WebKit)
 │   ├── structure.spec.js
 │   ├── hero-contact.spec.js  # US1
 │   ├── about-experience.spec.js  # US2
+│   ├── interests.spec.js     # US5
 │   ├── projects.spec.js      # US3 (injects sample cards)
 │   ├── nav-theme.spec.js     # US4
 │   ├── responsive.spec.js    # viewport matrix, zoom, overflow, bar height
 │   ├── a11y.spec.js          # axe: light/dark × JS on/off × 375/1024
 │   ├── no-js.spec.js
-│   ├── reveal.spec.js
-│   └── privacy-scope.spec.js # allowed timeline fields, no forms/résumé, same-origin only
+│   └── privacy-scope.spec.js # narrative-only Experience, no forms/résumé, same-origin only
 └── helpers/
     └── page-utils.js         # overflow, obscured-by-header, console-error collectors
 
@@ -453,19 +561,27 @@ Validation criteria:
 | Requirement | Phase(s) | Primary evidence |
 |---|---|---|
 | FR-001–FR-003 | 1 | V1.4 |
-| FR-004–FR-007 | 1, 2 | V1.5, V2.4 |
+| FR-004 | 16 | Gates S16-1 to S16-3 |
+| FR-005 | 15 | Gates U1–U4 |
+| FR-006 | 14 | Gate F2 |
+| FR-007 | — | Removed 2026-09-30 (no email action) |
 | FR-008–FR-010 | 1, 3 | V1.4, V3.1 |
-| FR-011, FR-012 | 1, 3 | V1.7, V3.4 |
-| FR-013, FR-013a | 3, 5 | V3.4, V5.1 |
+| FR-011, FR-012 | 8 | Amendment A2–A3 (supersedes V1.7, V3.4) |
+| FR-013 (FR-013a removed) | 8 | Amendment A2, A8 (supersedes V3.4, V5.1) |
 | FR-014, FR-015 | 1, 5 | V1.7, V5.10 (privacy review) |
-| FR-016–FR-020 | 1, 3 | V3.3 |
-| FR-021, FR-021a, FR-022, FR-022a | 1, 3, 4 | V1.5, V1.7, V4.4 |
+| FR-016–FR-020 | — | Removed 2026-09-30 (Projects section deleted) |
+| FR-021, FR-022, FR-022a | 1, 10, 14 | Phase 10, gate F2 |
 | FR-023, FR-023a | 3 | V3.5, V3.6 |
 | FR-024–FR-027 | 1, 4, 5 | V1.4, V4.5, V5.2, V5.3 |
 | FR-028–FR-031 | 2, 4 | V2.2, V2.5, V4.2, V4.3 |
 | FR-032–FR-035 | 2, 3, 4 | V2.6, V3.1, V3.2, V1.6 |
 | FR-036 | 1, 5 | V1.4, V5.7 |
-| SC-001 | 2 | V2.4 |
+| FR-037–FR-040 | 9 | Interests I2–I5, I10 |
+| FR-041 | 13 | Gate P1 |
+| FR-043 | 17 | Gates D1–D4 |
+| FR-042 | 14 | Gate F2 |
+| FR-001, FR-005a, FR-023 | 15 | Gates U1–U4 |
+| SC-001 | 16 | Gates S16-1 to S16-3 (supersedes V2.4) |
 | SC-002 | 5 | Usability check (manual) |
 | SC-003 | 4 | V4.5 |
 | SC-004 | 3 | V3.1, V3.2 |
@@ -480,9 +596,9 @@ Validation criteria:
 
 | Risk | Mitigation |
 |---|---|
-| Content inputs (dates, URLs, email) arrive late | `CONTENT:` markers let all phases proceed; `check-content --strict` blocks deploy |
+| Content inputs (dates, URLs) arrive late — resolved 2026-09-30 | `CONTENT:` markers let all phases proceed; `check-content --strict` blocks deploy |
 | An engine ignores `scroll-padding` for focus scrolling | V3.6 detects it; `focusin` guard ready (R-13) |
-| Clipboard permission cannot be granted in Firefox/WebKit test runs | Real clipboard asserted in Chromium; stubbed API covers success/failure in all engines |
+| ~~Clipboard permission in Firefox/WebKit tests~~ | Obsolete — copy-email removed 2026-09-30 |
 | JS-off narrow header wraps to two rows (> 56px) | Documented in spec Edge Cases → "Scripting unavailable"; FR-023's height limit applies with scripting available and is verified with JS on (V3.5) |
 | LinkedIn blocks automated link checks | Skipped in linkinator, verified manually at launch |
 

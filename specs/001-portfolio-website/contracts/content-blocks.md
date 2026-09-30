@@ -7,7 +7,7 @@ block by copying its pattern; CSS and JS depend only on the classes and attribut
 Icon usage everywhere: `<svg class="icon" aria-hidden="true" focusable="false"><use
 href="assets/icons.svg#<id>"></use></svg>` placed next to visible text.
 
-## Contact link (hero and Contact section)
+## Contact link (Contact section only, FR-042)
 
 External profile (GitHub / LinkedIn):
 
@@ -22,112 +22,78 @@ External profile (GitHub / LinkedIn):
 A visible external-link glyph (`#external`) accompanies the text so sighted users also know it
 opens a new tab (FR-006).
 
-Email (hero):
+Contact section (FR-021) — LinkedIn first and primary, GitHub second; no email anywhere:
 
 ```html
-<a class="button button--secondary" href="mailto:CONTENT:address">
-  <svg class="icon" …><use href="assets/icons.svg#email"></use></svg> Email
-</a>
-```
-
-Contact section email with copy button (FR-021, FR-021a):
-
-```html
-<p class="contact__email">
-  <a class="contact__email-link" href="mailto:CONTENT:address">CONTENT:address</a>
-  <button class="button button--small copy-email" type="button" hidden
-          data-js="copy-email">Copy email</button>
-  <span class="copy-email__status" role="status" data-js="copy-email-status"></span>
-</p>
+<p class="contact__intro">… The best way to reach out or connect is directly on LinkedIn — send
+  me a message there.</p>
+<ul class="contact__links">
+  <li><a class="button button--primary" href="https://www.linkedin.com/in/…" target="_blank"
+         rel="noopener noreferrer">…Connect on LinkedIn…</a></li>
+  <li><a class="button button--secondary" href="https://github.com/…" target="_blank"
+         rel="noopener noreferrer">…GitHub profile…</a></li>
+</ul>
 ```
 
 ## Education entry
 
 ```html
 <li class="education__item">
-  <h4 class="education__degree">Bachelor of Science in Computer Science</h4>
+  <h3 class="education__degree">Bachelor of Science in Computer Science</h3>
   <p class="education__school">University of Massachusetts Lowell</p>
   <p class="education__status">Completed</p>
 </li>
 ```
 
-Items sit in `<ul class="education">` under the `h3` "Education", so degrees are `h4`
+Items sit in `<ul class="education">` under the `h2` "Education" inside the intro, so degrees are `h3`
 (outline in page-structure.md). The MBA uses "Candidate" as its status text.
 
-## Skill group
+## Skill tiers (FR-010)
 
 ```html
-<div class="skill-group">
-  <h4 class="skill-group__title" id="skills-languages">Languages</h4>
-  <ul class="tag-list" aria-labelledby="skills-languages">
-    <li class="tag">Java</li><li class="tag">C/C++</li><li class="tag">SQL</li><li class="tag">Python</li>
-  </ul>
+<div class="skills">
+  <div class="skill-group">
+    <h3 class="skill-group__title" id="skills-languages">Languages</h3>
+    <ul class="tag-list" aria-labelledby="skills-languages">
+      <li class="tag">Java</li><li class="tag">TypeScript/<wbr />JavaScript</li>…
+    </ul>
+  </div>
+  … frameworks, cloud, quality (ids skills-frameworks, skills-cloud, skills-quality) …
 </div>
 ```
 
-## Timeline entry (FR-011–FR-014)
+- Four groups, in the order and with the items of spec FR-010; add `<wbr />` after each "/" in
+  long labels. The grid's column count is the `--skills-columns` token.
+
+## Experience narrative (FR-011–FR-014; replaces the timeline entry, 2026-09-30)
 
 ```html
-<li class="timeline__item">
-  <article class="timeline__entry timeline__entry--engineering" tabindex="0"
-           aria-labelledby="role-fse">
-    <h3 class="timeline__title" id="role-fse">Full Stack Software Engineer</h3>
-    <p class="timeline__org">Fidelity Investments</p>
-    <p class="timeline__dates">
-      <time datetime="CONTENT:YYYY-MM">CONTENT:Mon YYYY</time>
-      <span aria-hidden="true">–</span><span class="visually-hidden">to</span>
-      Present
-    </p>
-    <p class="timeline__category">Engineering</p>
-  </article>
-</li>
+<section id="experience" class="experience" tabindex="-1" aria-labelledby="experience-title">
+  <div class="container">
+    <h2 id="experience-title" class="section__title">Experience</h2>
+    <p class="experience__narrative">My engineering journey is rooted in … absolute confidence.</p>
+  </div>
+</section>
 ```
 
-- Modifier `--engineering` | `--leadership` selects marker shape and badge style.
-- **Nothing else may appear inside an entry** — no descriptions, bullets, team, system, tool,
-  or metric text (FR-013, FR-014). The `privacy-scope` e2e spec enforces the allowed children.
-- Ended roles use a second `<time>` instead of "Present".
+- The paragraph is the owner's text from spec FR-011, **verbatim**.
+- **Nothing else may appear in the section** — no lists, `<time>`, per-role headings, dates,
+  employer or program names (FR-012, FR-014). The `privacy-scope` e2e spec enforces this.
 
-## Project card (FR-016–FR-019)
+## Interest item (FR-037–FR-040, amendment 2026-09-30)
 
 ```html
-<li class="projects__item">
-  <article class="project-card" aria-labelledby="project-<slug>">
-    <h3 class="project-card__title" id="project-<slug>">Project Title</h3>
-    <p class="project-card__description">≤ 200 characters.</p>
-    <ul class="tag-list" aria-label="Technologies used">
-      <li class="tag">HTML</li><li class="tag">CSS</li><li class="tag">JS</li>
-    </ul>
-    <p class="project-card__links">
-      <a class="project-card__link" href="https://github.com/…" target="_blank"
-         rel="noopener noreferrer">Source code<span class="visually-hidden"> for Project
-         Title (opens in a new tab)</span></a>
-      <a class="project-card__link" href="https://…" target="_blank"
-         rel="noopener noreferrer">Live demo<span class="visually-hidden"> of Project Title
-         (opens in a new tab)</span></a>
-    </p>
-  </article>
-</li>
+<ul class="interests__list">
+  <li class="interests__item">
+    <svg class="interests__icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"
+         fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round"
+         stroke-linejoin="round">…</svg>
+    <span class="interests__label">Cooking</span>
+  </li>
+  …Reading Books, Weightlifting, Cycling, Skiing (this order)…
+</ul>
 ```
 
-Omit an `<a>` entirely when its URL does not exist (FR-018). The grid container is
-`<ul class="projects__grid">`.
-
-## Coming-soon card (FR-020)
-
-```html
-<li class="projects__item">
-  <article class="project-card project-card--placeholder" aria-labelledby="project-coming-soon">
-    <h3 class="project-card__title" id="project-coming-soon">More projects coming soon</h3>
-    <p class="project-card__description">New projects are on the way — follow along on GitHub.</p>
-    <p class="project-card__links">
-      <a class="project-card__link" href="CONTENT:https://github.com/…" target="_blank"
-         rel="noopener noreferrer">Visit my GitHub<span class="visually-hidden"> (opens in a
-         new tab)</span></a>
-    </p>
-  </article>
-</li>
-```
-
-Present only while the grid has zero project cards; delete it in the same change that adds the
-first project.
+- Icons are inline, decorative (`aria-hidden`), and use `currentColor` — no `style`
+  attributes, no sprite reference, no icon font.
+- No links, buttons, `tabindex`, hover/focus styles, or animation (FR-040).

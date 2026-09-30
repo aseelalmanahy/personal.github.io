@@ -1,0 +1,19 @@
+/* Experience is one narrative paragraph (spec FR-011–FR-013, research R-27): a readable
+   long-read block with an amber rule and a serif drop cap. Static: no interaction or motion. */
+.experience__narrative {
+  max-width: 62ch;
+  padding-left: clamp(1rem, 4vw, 1.75rem);
+  border-left: 3px solid var(--color-accent-bg);
+  font-size: var(--text-lg);
+  line-height: 1.75;
+}
+
+.experience__narrative::first-letter {
+  float: left;
+  margin: 0.05em 0.12em 0 0;
+  color: var(--color-accent);
+  font-family: var(--font-serif);
+  font-size: 3.4em;
+  font-weight: 700;
+  line-height: 0.85;
+}

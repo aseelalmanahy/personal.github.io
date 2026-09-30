@@ -1,0 +1,32 @@
+/* JS-only controls (the theme toggle) ship `hidden`; component display rules must never
+   reveal them before JavaScript does. */
+[hidden] {
+  display: none !important;
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip-path: inset(50%) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+/* No `display` here: utilities is the last layer, so it would override components that hide an
+   icon (e.g. the theme toggle's sun/moon swap). SVGs are inline by default. */
+.icon {
+  flex: none;
+  width: 1.25em;
+  height: 1.25em;
+  vertical-align: middle;
+  fill: currentcolor;
+}
+
+.icon--small {
+  width: 0.875em;
+  height: 0.875em;
+}

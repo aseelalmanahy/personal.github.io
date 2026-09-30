@@ -1,0 +1,42 @@
+{
+  "name": "aseel-portfolio",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Single-page personal portfolio for Aseel Almanahy: vanilla HTML, CSS, and ES modules on GitHub Pages.",
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "scripts": {
+    "start": "http-server src -p 8080 -c-1",
+    "preview": "npm run build && http-server dist -p 8081 -c-1",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "npm run lint:js && npm run lint:css && npm run lint:html",
+    "lint:js": "eslint . --max-warnings 0",
+    "lint:css": "stylelint \"src/**/*.css\" --max-warnings 0",
+    "lint:html": "html-validate \"src/**/*.html\"",
+    "test:unit": "node --test \"tests/unit/*.test.js\"",
+    "build": "node tools/build.mjs",
+    "test:e2e": "playwright test",
+    "test:lighthouse": "lhci autorun",
+    "check:links": "linkinator dist --recurse --skip linkedin.com --skip aseelalmanahy.com",
+    "check:static": "node tools/check-csp.mjs && node tools/check-site-url.mjs && node tools/check-content.mjs && node tools/check-budgets.mjs",
+    "verify": "npm run format:check && npm run lint && npm run test:unit && npm run build && npm run check:static && npm run test:e2e && npm run test:lighthouse && npm run check:links"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.13.0",
+    "@eslint/js": "^10.0.1",
+    "@lhci/cli": "^0.15.1",
+    "@playwright/test": "^1.63.0",
+    "eslint": "^10.11.0",
+    "globals": "^17.12.0",
+    "html-validate": "^11.16.1",
+    "http-server": "^14.1.1",
+    "lightningcss": "^1.33.0",
+    "linkinator": "^8.1.0",
+    "prettier": "^3.9.9",
+    "stylelint": "^17.15.0",
+    "stylelint-config-standard": "^40.0.0"
+  }
+}

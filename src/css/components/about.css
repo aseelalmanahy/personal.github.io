@@ -1,0 +1,72 @@
+.about__intro {
+  margin-top: var(--space-5);
+  margin-bottom: var(--space-6);
+}
+
+.about__group + .about__group {
+  margin-top: var(--space-7);
+}
+
+/* h2 in the outline, sized as a sub-heading of the intro. */
+.about__heading {
+  margin-bottom: var(--space-4);
+  font-size: var(--text-xl);
+}
+
+/* minmax(0, …) lets columns shrink below their longest word so long words wrap at 400% zoom. */
+.education {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-4);
+}
+
+@media (min-width: 48em) {
+  .education {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+.education__item {
+  padding: var(--space-4) clamp(0.75rem, 4vw, 1.5rem);
+  border-left: 3px solid var(--color-accent-bg);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  background-color: var(--color-surface);
+  overflow-wrap: anywhere;
+}
+
+.education__degree {
+  font-size: var(--text-lg);
+}
+
+.education__school {
+  margin-top: var(--space-1);
+}
+
+.education__status {
+  margin-top: var(--space-1);
+  color: var(--color-text-muted);
+  font-size: var(--text-sm);
+}
+
+/* Four skill tiers (spec FR-010); the column count comes from --skills-columns in tokens.css. */
+.skills {
+  display: grid;
+  grid-template-columns: repeat(var(--skills-columns), minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+.skill-group {
+  padding: var(--space-4) clamp(0.75rem, 3vw, 1.25rem);
+  border: 1px solid var(--color-tag-bg);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface);
+}
+
+.skill-group__title {
+  margin-bottom: var(--space-3);
+  color: var(--color-text-muted);
+  font-family: var(--font-sans);
+  font-size: var(--text-sm);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}

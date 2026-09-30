@@ -11,7 +11,7 @@ In this order:
 2. `<meta name="viewport" content="width=device-width, initial-scale=1">` (never disables zoom)
 3. `<meta http-equiv="Content-Security-Policy" content="…">` (policy in research R-20)
 4. `<meta name="referrer" content="strict-origin-when-cross-origin">`
-5. `<title>Aseel Almanahy — Full Stack Software Engineer</title>`
+5. `<title>Aseel Almanahy | Full Stack Software Engineer</title>` (no em dash, FR-041)
 6. Inline theme bootstrap `<script>` (research R-02) — **before** any stylesheet
 7. `<link rel="stylesheet" href="css/main.css">` and
    `<link rel="stylesheet" href="css/print.css" media="print">`
@@ -31,18 +31,18 @@ body
 ├── header.site-header                  sticky, height var(--nav-height) collapsed
 │   ├── a.site-header__brand[href="#home"]   "Aseel Almanahy"
 │   └── nav[aria-label="Primary"]
-│       ├── button.nav__toggle[hidden][aria-expanded][aria-controls="nav-menu"]  "Menu"
+│       ├── a.nav__toggle[href="#nav-menu"]  "Menu" (shown only under html.js below 48em;
+│       │                                       nav.js swaps it for button[aria-expanded])
 │       ├── ul#nav-menu.nav__list
-│       │   ├── a[href="#about"]       About
 │       │   ├── a[href="#experience"]  Experience
-│       │   ├── a[href="#projects"]    Projects
+│       │   ├── a[href="#interests"]   Interests
 │       │   └── a[href="#contact"]     Contact
 │       └── button.theme-toggle[hidden][aria-pressed]  accessible name "Dark theme"
 ├── main#main[tabindex="-1"]
-│   ├── section#home       aria-labelledby → h1   (Hero)
-│   ├── section#about      aria-labelledby → h2 "About Me"
+│   ├── section#home       aria-labelledby → h1   (Intro: greeting, biography,
+│   │                                            Education, Skills; no links)
 │   ├── section#experience aria-labelledby → h2 "Experience"
-│   ├── section#projects   aria-labelledby → h2 "Projects"
+│   ├── section#interests  aria-labelledby → h2 "Interests"
 │   └── section#contact    aria-labelledby → h2 "Contact"
 └── footer.site-footer     "© <year> Aseel Almanahy"
 ```
@@ -55,16 +55,18 @@ body
 
 ```text
 h1  Hi, I'm Aseel.
-h2  About Me
-  h3  Education
-    h4  <degree> ×2
-  h3  Skills
-    h4  Languages
-    h4  Tools/Frameworks
+  (biography paragraph; no statement line and no "About Me" heading, amendment 2026-09-30)
+h2  Education
+  h3  <degree> ×2
+h2  Skills
+  h3  Languages
+  h3  Frameworks & Security
+  h3  Cloud & DevOps
+  h3  Quality & Methodology
 h2  Experience
-  h3  <role title> ×4
-h2  Projects
-  h3  <project title> ×N  |  h3 "More projects coming soon"
+  (one narrative paragraph — no sub-headings; amendment 2026-09-30)
+h2  Interests
+  (list of five items — no sub-headings)
 h2  Contact
 ```
 

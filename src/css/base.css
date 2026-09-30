@@ -1,0 +1,101 @@
+/* Headings reached by anchor, deep link, or focus land below the sticky header (research R-13).
+   Only scroll-padding is used: adding scroll-margin would double the offset. */
+html {
+  scroll-padding-top: calc(var(--nav-height) + var(--space-4));
+}
+
+/* Without scripting the phone header shows every link and wraps to about three rows, so
+   anchors need a larger offset (FR-023a). `no-js` stays on <html> only when scripts never run. */
+.no-js {
+  scroll-padding-top: calc(3 * var(--nav-height) + var(--space-4));
+}
+
+@media (min-width: 48em) {
+  .no-js {
+    scroll-padding-top: calc(var(--nav-height) + var(--space-4));
+  }
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  line-height: var(--leading-body);
+  overflow-wrap: break-word;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  line-height: var(--leading-heading);
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: var(--text-3xl);
+  letter-spacing: -0.01em;
+}
+
+h2 {
+  font-size: var(--text-2xl);
+}
+
+h3 {
+  font-size: var(--text-xl);
+}
+
+h4 {
+  font-size: var(--text-lg);
+}
+
+p {
+  max-width: var(--measure);
+}
+
+a {
+  color: var(--color-accent);
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.2em;
+}
+
+a:hover {
+  text-decoration-thickness: 0.15em;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-focus);
+  outline-offset: 3px;
+}
+
+/* Mouse and touch focus keeps no ring; keyboard focus always gets the ring above. */
+:focus:not(:focus-visible) {
+  outline: none;
+}
+
+::selection {
+  background-color: var(--color-accent-bg);
+  color: var(--color-on-accent);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Present only for 300ms after a theme toggle, so colours never animate on load (R-05). */
+  :root[data-theme-switching] *,
+  :root[data-theme-switching] *::before,
+  :root[data-theme-switching] *::after {
+    transition:
+      background-color var(--duration-theme) var(--ease-out),
+      color var(--duration-theme) var(--ease-out),
+      border-color var(--duration-theme) var(--ease-out),
+      fill var(--duration-theme) var(--ease-out),
+      stroke var(--duration-theme) var(--ease-out),
+      outline-color var(--duration-theme) var(--ease-out);
+  }
+}

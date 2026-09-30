@@ -124,7 +124,7 @@ was open in the plan's Technical Context is resolved here.
 ## R-08 JavaScript module organisation
 
 - **Decision**: One entry module `src/js/main.js` loaded with `<script type="module">`, which
-  imports feature modules: `storage.js`, `theme.js`, `nav.js`, `copy-email.js`, `reveal.js`,
+  imports feature modules: `storage.js`, `theme.js`, `nav.js`,
   `scroll-spy.js`. Each feature exports pure, DOM-free helpers (unit-tested) plus one
   `init*()` function that attaches listeners via `addEventListener`. `main.js` calls every
   `init*()` inside its own `try/catch` so one failure cannot disable the others. Submodules are
@@ -202,13 +202,22 @@ was open in the plan's Technical Context is resolved here.
 - **Decision**: `<header>` fixed to the top (`position: sticky; top: 0` on the header inside
   the document flow) with height token `--nav-height: 3.5rem` (56px). Content: brand link
   "Aseel Almanahy" → `#home`, `<nav aria-label="Primary">` with links About, Experience,
-  Projects, Contact, and the theme toggle. Below `48em`, JS reveals a "Menu" disclosure button
-  (`aria-expanded`, `aria-controls`) and collapses the list; Escape closes it and returns focus
-  to the button; choosing a link closes it. With scripting unavailable, the list is simply shown
-  and wraps within the header (the bar may grow to two rows — acceptable degradation, since all
-  links remain available).
+  Projects, Contact, and the theme toggle. Below `48em`, when scripting runs (`html.js`, set
+  by the head bootstrap before first paint), the list is collapsed from the first paint and a
+  "Menu" control is shown. It ships as `<a class="nav__toggle" href="#nav-menu">`, which opens
+  the list through `:target` even if the module fails; `nav.js` replaces it with an identically
+  styled `<button aria-expanded aria-controls="nav-menu">` (moving the same child nodes, so no
+  layout shift). Escape closes it and returns focus to the button; choosing a link closes it.
+  With scripting unavailable (`html.no-js`), the Menu control is not shown and the list wraps
+  within the header (spec Edge Cases → "Scripting unavailable"), with a larger
+  `scroll-padding-top` so anchors clear the taller bar.
 - **Rationale**: Disclosure pattern is the simplest accessible mobile menu; sticky positioning
-  avoids a hard-coded body offset and never overlaps content in flow.
+  avoids a hard-coded body offset and never overlaps content in flow. *Changed during
+  implementation*: the first design collapsed the list only after `nav.js` revealed a hidden
+  button, which let the page paint with a three-row header and then jump up ~76px on phones
+  (CLS 0.29 when the module ran after first paint). Collapsing on the pre-paint `js` class
+  removes the shift, and the `:target` fallback keeps navigation working if the module fails
+  (constitution IV).
 - **Alternatives considered**: `<details>/<summary>` menu (works without JS but cannot be forced
   open on desktop without non-uniform `::details-content` support); off-canvas drawer (more
   code, focus-trap complexity).
@@ -236,7 +245,7 @@ was open in the plan's Technical Context is resolved here.
   visual and assistive indications cannot diverge.
 - **Alternatives considered**: `scroll` event + `getBoundingClientRect` (more work per frame).
 
-## R-15 Timeline structure and interaction (FR-011–FR-013)
+## R-15 Timeline structure and interaction (FR-011–FR-013) — SUPERSEDED 2026-09-30 (see R-27)
 
 - **Decision**: `<ol class="timeline">`, most recent first; each `<li>` holds an
   `<article class="timeline__entry" tabindex="0" aria-labelledby="…">` with an `h3` role title,
@@ -251,7 +260,7 @@ was open in the plan's Technical Context is resolved here.
 - **Alternatives considered**: non-focusable entries (fails FR-013 for keyboard users); making
   entries links/buttons (they have no action — misleading semantics).
 
-## R-16 Scroll-in animation for timeline entries (FR-013, FR-013a)
+## R-16 Scroll-in animation for timeline entries (FR-013, FR-013a) — SUPERSEDED 2026-09-30 (see R-27)
 
 - **Decision**: `reveal.js` runs only if `IntersectionObserver` exists **and**
   `prefers-reduced-motion: no-preference` matches. It marks only entries that are currently
@@ -266,7 +275,7 @@ was open in the plan's Technical Context is resolved here.
   not supported across the full browser matrix at planning time; hiding entries in CSS by
   default (entries vanish if JS fails — violates FR-013a).
 
-## R-17 Copy-email button (FR-021a)
+## R-17 Copy-email button (FR-021a) — SUPERSEDED 2026-09-30 (email removed; LinkedIn primary)
 
 - **Decision**: `copy-email.js` reveals the button (shipped `hidden`) only when
   `navigator.clipboard?.writeText` exists. On click it writes the address read from the
@@ -281,7 +290,7 @@ was open in the plan's Technical Context is resolved here.
 
 ## R-18 Icons
 
-- **Decision**: One local SVG sprite `assets/icons.svg` (GitHub, LinkedIn, email, sun, moon,
+- **Decision**: One local SVG sprite `assets/icons.svg` (GitHub, LinkedIn, sun, moon,
   menu, external-link) referenced with `<svg><use href="assets/icons.svg#id"></use></svg>`,
   always `aria-hidden="true"` next to visible text. Icons use `currentColor`.
 - **Rationale**: One cached request for both hero and contact icons; themable via tokens;
@@ -309,13 +318,17 @@ was open in the plan's Technical Context is resolved here.
 
 - **Decision**: `<meta http-equiv="Content-Security-Policy">` with
   `default-src 'none'; script-src 'self' 'sha256-<theme-bootstrap>'; style-src 'self';
-  img-src 'self'; manifest-src 'self'; connect-src 'none'; base-uri 'self';
-  form-action 'none'; upgrade-insecure-requests`, and
+  img-src 'self'; manifest-src 'self'; connect-src 'self'; base-uri 'self';
+  form-action 'none'` (no `upgrade-insecure-requests`: it would rewrite local `http://localhost`
+  asset requests during development and tests, and GitHub Pages already enforces HTTPS), and
   `<meta name="referrer" content="strict-origin-when-cross-origin">`. External links use
   `rel="noopener noreferrer"`. HTTPS enforced in repository Pages settings.
 - **Rationale**: Strictest policy that still allows the page to work; blocks any accidental
   third-party request (enforces "no third-party requests" automatically). `frame-ancestors`
-  cannot be set via meta — accepted limitation of GitHub Pages.
+  cannot be set via meta — accepted limitation of GitHub Pages. `connect-src` is `'self'`
+  rather than `'none'` (changed during implementation): Lighthouse fetches `robots.txt` from
+  inside the page, and `'none'` made its SEO audit fail (0.92 < 0.95); same-origin fetches
+  still cannot reach third parties.
 - **Alternatives considered**: no CSP (violates Principle VII); `'unsafe-inline'` (defeats CSP).
 
 ## R-21 404 page under a project subpath
@@ -344,12 +357,12 @@ was open in the plan's Technical Context is resolved here.
 
 - **Decision**:
   - **Unit** (`tests/unit`, `node --test`): pure helpers in `storage.js`, `theme.js`,
-    `copy-email.js`, `reveal.js`, `scroll-spy.js`.
+    `scroll-spy.js` (`reveal.js` and `copy-email.js` removed 2026-09-30).
   - **End-to-end** (`tests/e2e`, Playwright; Chromium, Firefox, WebKit): one spec per user
     story plus cross-cutting specs — `structure`, `hero-contact` (US1), `about-experience`
     (US2), `projects` (US3), `nav-theme` (US4), `responsive` (viewport matrix + zoom),
     `a11y` (axe WCAG 2.2 AA tags in light and dark, JS on and off), `no-js`, `privacy-scope`
-    (no third-party requests, no forms, no résumé, timeline has only allowed fields).
+    (no third-party requests, no forms, no résumé, Experience is a single narrative).
   - **Static checks**: `html-validate`, ESLint, Stylelint, Prettier, `check-csp`,
     `check-site-url`, `check-budgets`, `linkinator`.
   - **Lab performance**: Lighthouse CI (mobile) against `dist/` with assertions from
@@ -401,3 +414,117 @@ was open in the plan's Technical Context is resolved here.
 - **Rationale**: Honours the request while keeping each gate objective and checkable.
 - **Alternatives considered**: re-running the spec checklist verbatim after each phase (it would
   pass trivially and prove nothing about the code).
+
+## R-27 Experience narrative layout (FR-011–FR-013, amendment 2026-09-30)
+
+- **Decision**: The Experience section holds one `<p class="experience__narrative">` with the
+  owner's text verbatim — no list, `<time>`, headings per role, or employer name. It is styled
+  as a "long-read" block: `--text-lg` body size, generous line height, measure capped at `62ch`,
+  a 3px amber (`--color-accent-bg`) left rule, and a serif drop cap on the first letter
+  (`::first-letter`, coloured `--color-accent`, which meets 4.5:1 on both backgrounds). It is
+  static: no interaction, no animation, no JavaScript.
+- **Rationale**: Presents one cohesive story with visual polish while staying minimal, readable
+  at 320px/400% zoom, and fully accessible (a drop cap via `::first-letter` does not change the
+  accessible text). Removing the timeline also removes `reveal.js` and its CSS, which lowers
+  JS and CSS weight and removes the only below-the-fold animation — Lighthouse targets are
+  unaffected or improved.
+- **Alternatives considered**: splitting the narrative into four themed paragraphs or adding
+  "focus" tags (full-stack, cloud, architecture, leadership) — rejected because the owner asked
+  for a single narrative and no extra content; a pull-quote card — heavier visual weight than
+  the rest of the minimal page.
+
+## R-28 Interests section (FR-037–FR-040, amendment 2026-09-30)
+
+- **Decision**: `<section id="interests">` after Experience with `<ul class="interests__list">`;
+  each `<li class="interests__item">` holds an inline `<svg aria-hidden="true" focusable="false">`
+  (24×24 viewBox, `stroke="currentColor"`, no `<style>`/`style` attributes) and a text label.
+  Grid: `repeat(auto-fit, minmax(min(100%, 9.5rem), 1fr))` inside `max-width: 56rem`, so 320px
+  gets one column, 375px two, and desktop fits all five in one row. Items are quiet cards
+  (surface background, tag-coloured border, amber icon) with no hover/focus styling and no
+  motion. A `--size-icon-lg` token sizes the icons.
+- **Rationale**: The owner asked for embedded inline icons; each icon appears once, so inline SVG
+  costs no duplication and no request (unlike the shared sprite used for repeated icons, R-18).
+  `currentColor` keeps icons theme-aware without colour literals (Principle III). `auto-fit`
+  plus a max width avoids an empty sixth track on wide screens.
+- **Alternatives considered**: adding the icons to `icons.svg` (an extra fetch dependency for
+  one-off icons, and the owner asked for inline); emoji (inconsistent rendering, announced by
+  screen readers); an icon font (forbidden — constitution V and the request).
+
+## R-29 Four-tier skills grid (FR-010, amendment 2026-09-30)
+
+- **Decision**: Skills move out of the About two-column layout into their own full-width block:
+  `<div class="skills">` containing four `.skill-group` cards (heading + `ul.tag-list`). The grid
+  is `repeat(var(--skills-columns), minmax(0, 1fr))`; `--skills-columns` is a responsive token in
+  `tokens.css` (1 by default, 2 from 40em, 4 from 75em). Slash-joined labels get `<wbr>` after
+  each slash; `.tag` has `max-width: 100%` and `overflow-wrap: anywhere`.
+- **Rationale**: 28 tags do not fit a half-width column; a tier grid keeps them scannable. Driving
+  the column count from a token keeps layout configuration with the other design tokens, while
+  the selectors stay in the component layer (constitution Best Practices 6–7: tokens file holds
+  custom properties only). `<wbr>` gives natural break points without changing the accessible
+  text.
+- **Alternatives considered**: putting grid classes in `tokens.css` (breaks the tokens → components
+  layer order and the "custom properties only" rule); `auto-fit` columns (3 + 1 orphan at
+  1024px); abbreviating long labels (changes the owner's wording).
+
+## R-30 Punctuation, link placement, and featured projects (FR-041, FR-042, FR-020)
+
+- **Decision**: Replace em dashes with commas, semicolons, or sentence breaks in copy and a
+  vertical bar in page titles; enforce with an e2e check over rendered text and every `src/`
+  file. Profile links live only in the hero and Contact. Projects shows three cards built from
+  the owner's public repositories (checked 2026-09-30 via the GitHub API: READMEs, dependencies,
+  source trees): order-service + e-commerce-store-project (Spring Boot, Kafka, MySQL, Docker
+  Compose), booky-frontend + books (Angular 14, Spring Boot, Spring Data JPA), Radix-Calculator
+  (Android, Java, SQLite).
+- **Rationale**: Every claim on a card is visible in the linked code, so visitors who follow a
+  link find what the card describes. Linking repositories rather than the profile removes the
+  repetition the owner flagged while keeping direct code access.
+- **Alternatives considered**: a "Cloud Architecture" card (no public cloud code to back it);
+  linking cards to the GitHub profile (the repetition being removed); keeping `auto-fill` with
+  a spanning last card on tablets (breaks equal visual weight, US3 #3).
+
+## R-31 Five-section layout (constitution v3.0.0, amendment 2026-09-30)
+
+- **Decision**: The hero keeps only the greeting and statement; the Projects section, its CSS
+  modules, grid rules, nav link, and `#code` icon are deleted; the GitHub and LinkedIn buttons
+  exist only in Contact. Visitors reach Contact through the always-visible navigation bar.
+- **Rationale**: The owner wants a single, non-repetitive outreach destination and a calmer first
+  screen. Removing code rather than hiding it keeps the page weight, tab order (9 stops), and
+  maintenance surface minimal.
+- **Alternatives considered**: hiding the hero actions on larger screens only (still repetition);
+  keeping Projects with repository links (the owner chose GitHub profile access in Contact).
+
+## R-32 Unified intro (constitution v4.0.0, amendment 2026-09-30)
+
+- **Decision**: Move the biography, Education, and Skills into `section#home`; drop the About Me
+  section and its nav link; promote Education/Skills to `h2` (degrees and tiers to `h3`) so
+  the outline has no skipped levels; size the new `h2`s as sub-headings; reduce the intro's
+  top padding.
+- **Rationale**: Two stacked sections with full section padding left a screen-high gap between
+  the statement and the biography. One section keeps the landing screen full and still gives
+  screen-reader users a clean outline (h1 → h2 Education/Skills → h2 Experience…).
+- **Alternatives considered**: keeping `section#about` with a visually hidden heading (the gap
+  is structural padding, and a hidden landmark heading adds noise); keeping an "About" nav link
+  to `#home` (duplicates the site-name link and would mark a current section in the hero).
+
+## R-33 Visible statement removed (constitution v5.0.0, amendment 2026-09-30)
+
+- **Decision**: Delete the statement paragraph and its style; keep the sentence as the summary
+  description in page metadata, JSON-LD, and the share image.
+- **Rationale**: The owner asked to take the line out of the page; search results and link
+  previews still need a summary (FR-036), and no visitor sees it on the page.
+- **Alternatives considered**: removing it from metadata as well (leaves previews without a
+  summary until the owner supplies new text); hiding it visually (still read by screen readers).
+
+## R-34 Custom domain on GitHub Pages (FR-043, amendment 2026-09-30)
+
+- **Decision**: Keep GitHub Pages hosting and publish `CNAME` = `aseelalmanahy.com`. At the
+  registrar (Squarespace Domains) the apex gets GitHub Pages' four A records (185.199.108.153,
+  185.199.109.153, 185.199.110.153, 185.199.111.153; AAAA optional) and `www` gets a CNAME to
+  `aseelalmanahy.github.io`. In the repository's Pages settings the custom domain is set to
+  `aseelalmanahy.com` and "Enforce HTTPS" is turned on once the certificate is issued.
+- **Rationale**: The constitution fixes hosting to GitHub Pages; a custom domain changes only
+  the public address. GitHub Pages redirects the github.io address and `www` to the apex.
+- **Alternatives considered**: hosting on Squarespace (violates Principle VI and cannot serve
+  this static build as-is); keeping the github.io address as canonical (not the owner's domain).
+- **Status (2026-09-30)**: the domain resolves as a name but has no A records yet and `www` does
+  not exist, so DNS setup is still pending (owner action, T102).

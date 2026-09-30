@@ -1,0 +1,374 @@
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'none'; script-src 'self' 'sha256-o5hwM8LuGJgme0+9SQU9LhpqrQNaCZwA1qLTm5oKRwE='; style-src 'self'; img-src 'self'; manifest-src 'self'; connect-src 'self'; base-uri 'self'; form-action 'none'"
+    />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <title>Aseel Almanahy | Full Stack Software Engineer</title>
+    <script>
+      (() => {
+        const root = document.documentElement;
+        root.classList.replace('no-js', 'js');
+        try {
+          const theme = localStorage.getItem('theme');
+          if (theme === 'light' || theme === 'dark') root.dataset.theme = theme;
+        } catch {
+          // Storage can be blocked; the page then follows the device preference.
+        }
+      })();
+    </script>
+    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="css/print.css" media="print" />
+    <link rel="modulepreload" href="js/storage.js" />
+    <link rel="modulepreload" href="js/theme.js" />
+    <link rel="modulepreload" href="js/nav.js" />
+    <link rel="modulepreload" href="js/scroll-spy.js" />
+    <script type="module" src="js/main.js"></script>
+    <meta
+      name="description"
+      content="Full Stack Software Engineer specializing in scalable systems, robust architectures, and engineering mentorship."
+    />
+    <link rel="canonical" href="https://aseelalmanahy.com/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Aseel Almanahy | Full Stack Software Engineer" />
+    <meta
+      property="og:description"
+      content="Full Stack Software Engineer specializing in scalable systems, robust architectures, and engineering mentorship."
+    />
+    <meta property="og:url" content="https://aseelalmanahy.com/" />
+    <meta property="og:image" content="https://aseelalmanahy.com/assets/og-image.png" />
+    <meta
+      property="og:image:alt"
+      content="Aseel Almanahy, Full Stack Software Engineer, in serif type on a warm cream background with an amber accent."
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="theme-color" content="#FBF6EE" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#1B1310" media="(prefers-color-scheme: dark)" />
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="assets/favicon-32.png" sizes="32x32" type="image/png" />
+    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Aseel Almanahy",
+        "jobTitle": "Full Stack Software Engineer",
+        "description": "Full Stack Software Engineer specializing in scalable systems, robust architectures, and engineering mentorship.",
+        "url": "https://aseelalmanahy.com/",
+        "alumniOf": {
+          "@type": "CollegeOrUniversity",
+          "name": "University of Massachusetts Lowell"
+        },
+        "affiliation": {
+          "@type": "CollegeOrUniversity",
+          "name": "Louisiana State University Shreveport"
+        },
+        "sameAs": [
+          "https://github.com/aseelalmanahy",
+          "https://www.linkedin.com/in/aseel-almanahy-97342b109/"
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <header class="site-header">
+      <div class="container site-header__inner">
+        <a class="site-header__brand" href="#home">Aseel Almanahy</a>
+        <nav class="nav" aria-label="Primary">
+          <a class="nav__toggle" href="#nav-menu">
+            <svg class="icon" aria-hidden="true" focusable="false">
+              <use href="assets/icons.svg#menu"></use>
+            </svg>
+            <span>Menu</span>
+          </a>
+          <ul id="nav-menu" class="nav__list">
+            <li><a class="nav__link" href="#experience">Experience</a></li>
+            <li><a class="nav__link" href="#interests">Interests</a></li>
+            <li><a class="nav__link" href="#contact">Contact</a></li>
+          </ul>
+          <button class="theme-toggle" type="button" hidden aria-pressed="false">
+            <svg
+              class="icon theme-toggle__icon theme-toggle__icon--moon"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <use href="assets/icons.svg#moon"></use>
+            </svg>
+            <svg
+              class="icon theme-toggle__icon theme-toggle__icon--sun"
+              aria-hidden="true"
+              focusable="false"
+            >
+              <use href="assets/icons.svg#sun"></use>
+            </svg>
+            <span class="visually-hidden">Dark theme</span>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main" tabindex="-1">
+      <section id="home" class="hero" tabindex="-1" aria-labelledby="home-title">
+        <div class="container hero__inner">
+          <h1 id="home-title" class="hero__title">Hi, I'm Aseel.</h1>
+          <p class="about__intro">
+            I'm a full-stack software engineer who loves turning complex problems into reliable,
+            well-structured systems. I studied Computer Science at UMass Lowell and am now pursuing
+            an MBA in Project Management at LSU Shreveport, pairing engineering depth with strategic
+            delivery know-how. Mentorship is incredibly important to me; I actively dedicate time to
+            sharing my industry experience to accelerate the growth of other engineers while
+            continuously sharpening my own leadership capabilities.
+          </p>
+          <div class="about__group">
+            <h2 class="about__heading">Education</h2>
+            <ul class="education">
+              <li class="education__item">
+                <h3 class="education__degree">Bachelor of Science in Computer Science</h3>
+                <p class="education__school">University of Massachusetts Lowell</p>
+                <p class="education__status">Completed</p>
+              </li>
+              <li class="education__item">
+                <h3 class="education__degree">
+                  Master of Business Administration in Project Management
+                </h3>
+                <p class="education__school">Louisiana State University Shreveport</p>
+                <p class="education__status">Candidate</p>
+              </li>
+            </ul>
+          </div>
+          <div class="about__group">
+            <h2 class="about__heading">Skills</h2>
+            <div class="skills">
+              <div class="skill-group">
+                <h3 class="skill-group__title" id="skills-languages">Languages</h3>
+                <ul class="tag-list" aria-labelledby="skills-languages">
+                  <li class="tag">Java</li>
+                  <li class="tag">TypeScript/<wbr />JavaScript</li>
+                  <li class="tag">C/C++</li>
+                  <li class="tag">C#</li>
+                  <li class="tag">SQL</li>
+                  <li class="tag">Python</li>
+                </ul>
+              </div>
+              <div class="skill-group">
+                <h3 class="skill-group__title" id="skills-frameworks">Frameworks &amp; Security</h3>
+                <ul class="tag-list" aria-labelledby="skills-frameworks">
+                  <li class="tag">Spring Boot</li>
+                  <li class="tag">Angular</li>
+                  <li class="tag">Flask</li>
+                  <li class="tag">Hibernate</li>
+                  <li class="tag">Spring Data JPA</li>
+                  <li class="tag">RESTful APIs</li>
+                  <li class="tag">OAuth2</li>
+                  <li class="tag">JWT</li>
+                </ul>
+              </div>
+              <div class="skill-group">
+                <h3 class="skill-group__title" id="skills-cloud">Cloud &amp; DevOps</h3>
+                <ul class="tag-list" aria-labelledby="skills-cloud">
+                  <li class="tag">AWS (EC2, Lambda, S3)</li>
+                  <li class="tag">Docker</li>
+                  <li class="tag">Kubernetes</li>
+                  <li class="tag">Jenkins</li>
+                  <li class="tag">uDeploy</li>
+                  <li class="tag">Git/<wbr />GitLab/<wbr />Bitbucket</li>
+                </ul>
+              </div>
+              <div class="skill-group">
+                <h3 class="skill-group__title" id="skills-quality">Quality &amp; Methodology</h3>
+                <ul class="tag-list" aria-labelledby="skills-quality">
+                  <li class="tag">Test-Driven Development (TDD)</li>
+                  <li class="tag">JUnit</li>
+                  <li class="tag">Karate</li>
+                  <li class="tag">SonarQube</li>
+                  <li class="tag">Splunk</li>
+                  <li class="tag">Datadog</li>
+                  <li class="tag">Scrum/<wbr />Kanban/<wbr />SAFe</li>
+                  <li class="tag">Architecture Grooming</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="experience" class="experience" tabindex="-1" aria-labelledby="experience-title">
+        <div class="container">
+          <h2 id="experience-title" class="section__title">Experience</h2>
+          <p class="experience__narrative">
+            My engineering journey is rooted in a strong technical foundation, starting as a
+            Professor's Assistant and grader at UMass Lowell, where I evaluated complex algorithmic
+            concepts and mentored students in core Data Structures in C and Object-Oriented
+            Programming. I built upon these fundamentals in industry, working as an Android Engineer
+            in the healthcare sector to integrate secure services and optimize user-facing mobile
+            interfaces. Transitioning into full-stack engineering, I have evolved into a Full Stack
+            Engineer specialized in building robust systems, constructing microservices, and
+            managing cloud infrastructure on AWS within high-stakes fields like Financial Services
+            and Healthcare. Beyond the code, I focus on bridging the gap between technical execution
+            and organizational strategy. My career is defined not just by the systems I build, but
+            by my active involvement in mentorship, collaborating with leadership to share technical
+            insights while mentoring new associate software engineers to help them onboard smoothly,
+            master best practices, and achieve both technical and personal growth.
+          </p>
+        </div>
+      </section>
+
+      <section id="interests" class="interests" tabindex="-1" aria-labelledby="interests-title">
+        <div class="container">
+          <h2 id="interests-title" class="section__title">Interests</h2>
+          <ul class="interests__list">
+            <li class="interests__item">
+              <svg
+                class="interests__icon"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+                focusable="false"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.75"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M4 11h16v3.5A5.5 5.5 0 0 1 14.5 20h-5A5.5 5.5 0 0 1 4 14.5z" />
+                <path d="M2 11h2M20 11h2" />
+                <path
+                  d="M9.5 7.5c0-1.2 1.2-1.3 1.2-2.5S9.5 3.8 9.5 2.5M13.5 7.5c0-1.2 1.2-1.3 1.2-2.5s-1.2-1.2-1.2-2.5"
+                />
+              </svg>
+              <span class="interests__label">Cooking</span>
+            </li>
+            <li class="interests__item">
+              <svg
+                class="interests__icon"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+                focusable="false"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.75"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M12 6.5C10.5 5 8 4.5 3 4.5v13c5 0 7.5.5 9 2 1.5-1.5 4-2 9-2v-13c-5 0-7.5.5-9 2z"
+                />
+                <path d="M12 6.5v13" />
+              </svg>
+              <span class="interests__label">Reading Books</span>
+            </li>
+            <li class="interests__item">
+              <svg
+                class="interests__icon"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+                focusable="false"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.75"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M6.5 6.5v11M3.5 9v6M17.5 6.5v11M20.5 9v6M6.5 12h11" />
+              </svg>
+              <span class="interests__label">Weightlifting</span>
+            </li>
+            <li class="interests__item">
+              <svg
+                class="interests__icon"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+                focusable="false"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.75"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="5.5" cy="16.5" r="3.5" />
+                <circle cx="18.5" cy="16.5" r="3.5" />
+                <path d="M5.5 16.5 9 9.5h6.5l3 7M9 9.5l3.5 7h-7M13.5 6.5h3l-1 3" />
+              </svg>
+              <span class="interests__label">Cycling</span>
+            </li>
+            <li class="interests__item">
+              <svg
+                class="interests__icon"
+                viewBox="0 0 24 24"
+                aria-hidden="true"
+                focusable="false"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.75"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="15.5" cy="4.5" r="1.75" />
+                <path d="M7 11.5l4-2.5 3 2.5 2.5-1M11 9l1.5 5-3.5 3.5" />
+                <path d="M3 18.5l17.5 3M12.5 14l3.5 3" />
+              </svg>
+              <span class="interests__label">Skiing</span>
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section id="contact" class="contact" tabindex="-1" aria-labelledby="contact-title">
+        <div class="container">
+          <h2 id="contact-title" class="section__title">Contact</h2>
+          <p class="contact__intro">
+            Whether it's a role, a project, or mentorship, I'd love to hear from you. LinkedIn is my
+            primary and best channel. Reach out, connect, or initiate professional discussions
+            directly there.
+          </p>
+          <ul class="contact__links">
+            <li>
+              <a
+                class="button button--primary"
+                href="https://www.linkedin.com/in/aseel-almanahy-97342b109/"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <svg class="icon" aria-hidden="true" focusable="false">
+                  <use href="assets/icons.svg#linkedin"></use>
+                </svg>
+                Connect on LinkedIn
+                <svg class="icon icon--small" aria-hidden="true" focusable="false">
+                  <use href="assets/icons.svg#external"></use>
+                </svg>
+                <span class="visually-hidden"> (opens in a new tab)</span>
+              </a>
+            </li>
+            <li>
+              <a
+                class="button button--secondary"
+                href="https://github.com/aseelalmanahy"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <svg class="icon" aria-hidden="true" focusable="false">
+                  <use href="assets/icons.svg#github"></use>
+                </svg>
+                GitHub profile
+                <svg class="icon icon--small" aria-hidden="true" focusable="false">
+                  <use href="assets/icons.svg#external"></use>
+                </svg>
+                <span class="visually-hidden"> (opens in a new tab)</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>© 2026 Aseel Almanahy</p>
+      </div>
+    </footer>
+  </body>
+</html>

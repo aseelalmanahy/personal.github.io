@@ -71,6 +71,21 @@ Spec FR-041, FR-042, FR-017, FR-020; research R-30.
   repo-only links, 1/2/3/3 columns at 375/768/1024/1440); FR-042 placement test; FR-041 checks
   rendered text and every `src/` file; keyboard walkthrough now 17 stops. Tasks: Phase 13.
 
+## Amendment 2026-09-30 — five sections (hero links and Projects removed)
+
+Constitution v3.0.0 (Principle V); spec FR-001, FR-005, FR-016–FR-020 (removed), FR-022a, FR-042,
+SC-001, SC-002, SC-006; research R-31.
+
+- **Removed**: the hero actions (`.hero__actions` markup and rule), the Projects section and nav
+  link, `components/projects.css`, `components/project-card.css`, their `main.css` imports and
+  print rule, the `#code` sprite symbol, `projects` from `scroll-spy.js`, and
+  `tests/e2e/projects.spec.js`.
+- **Tests**: hero has no links or buttons; profile links only in Contact, once each; five
+  sections and four nav links everywhere (structure, no-JS, responsive, nav, Interests order);
+  keyboard walkthrough 9 stops. Tasks: Phase 14.
+- **Verification**: full-page review at 320/375/768/1024/1440 in both themes, keyboard and JS-off
+  (automated), recorded as gate F7.
+
 ## Summary
 
 Build a single-page, static portfolio for Aseel Almanahy — Hero, About Me, Experience
@@ -114,7 +129,7 @@ Chrome for Android); static hosting on GitHub Pages over HTTPS.
 `default-src 'none'`); WCAG 2.2 AA in both themes; no horizontal scroll 320–2560px and at 400%
 zoom; source directly servable without a build.
 
-**Scale/Scope**: 1 page + 404; 6 sections; 2 education entries; 4 skill tiers (28 skills);
+**Scale/Scope**: 1 page + 404; 5 sections; 2 education entries; 4 skill tiers (28 skills);
 1 experience narrative; 5 interests; 0 projects at launch (grid designed for ~12); 6 JS modules; 16 CSS
 partials. Expected size: HTML ≈ 4 KB, CSS ≈ 6 KB, JS ≈ 3 KB (gzip).
 
@@ -124,8 +139,8 @@ All previously open questions are resolved in research.md (R-01 – R-26); none 
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-Constitution v2.2.0 (re-checked 2026-09-30 after the narrative and Interests amendments; earlier
-checks: v2.1.0 on 2026-09-29).
+Constitution v3.0.0 (re-checked 2026-09-30 after the five-section amendment; earlier checks:
+v2.2.0 and v2.1.0).
 
 | Principle / Rule | Gate | Pre-research | Post-design evidence |
 |---|---|---|---|
@@ -133,7 +148,7 @@ checks: v2.1.0 on 2026-09-29).
 | II. Mobile-First | `min-width` queries only; 320–2560 no h-scroll; 200%/400% zoom | PASS | em breakpoints (R-11); viewport-matrix e2e (V3.1–V3.2) |
 | III. Warm Minimalist | Cream/amber/dark roles; all colours via tokens; contrast in every theme; subtle motion | PASS | Palette + contrast table (R-09); Stylelint colour-literal ban outside `tokens.css` (R-07); motion tokens ≤ 400ms |
 | IV. Code Quality & A11y | WCAG 2.2 AA, 0 axe violations; keyboard; reduced motion; JS-off; Prettier/ESLint/Stylelint/HTML validator 0 warnings; tokens on `:root` | PASS | `npm run verify` (quickstart); axe in both themes & JS-off (V2.2, V3.7); `.editorconfig` (P1.1) |
-| V. Single-Page Scope | Six sections in order Hero, About, Experience, Interests, Projects, Contact; Interests static with decorative inline icons and no scripts, animation, fonts, or third-party assets; only extra page `404.html`; content in HTML; anchor nav | PASS | [contracts/page-structure.md](contracts/page-structure.md); `privacy-scope` e2e |
+| V. Single-Page Scope | Five sections in order Hero (no contact links), About, Experience, Interests, Contact (sole home of the profile links); Interests static with decorative inline icons and no scripts, animation, fonts, or third-party assets; only extra page `404.html`; content in HTML; anchor nav | PASS | [contracts/page-structure.md](contracts/page-structure.md); `privacy-scope` e2e |
 | VI. GitHub Pages Delivery | Static, no server; Lighthouse thresholds; CWV; budgets; ≤ 1 render-blocking stylesheet; scripts are modules | PASS | Lightning CSS bundles to one stylesheet in `dist/` (R-07); LHCI + `check-budgets` (V5.5); the inline theme bootstrap is the only non-module script, covered by the Principle I exception referenced in Principle VI. Dev-mode `@import` partials are not deployed. |
 | VII. Privacy & Security | No trackers; no third-party requests; CSP + referrer via meta; HTTPS; no secrets; links-only contact | PASS | CSP policy (R-20); no forms (FR-022); `privacy-scope` e2e asserts same-origin requests only |
 | Technical Constraints | GitHub Pages via Actions; source servable as-is; dev tooling allowed; tooling recorded in `CLAUDE.md`; evergreen browsers | PASS | R-24 workflow; `CLAUDE.md` updated by this plan; Playwright 3 engines |
@@ -521,14 +536,16 @@ Validation criteria:
 | FR-011, FR-012 | 8 | Amendment A2–A3 (supersedes V1.7, V3.4) |
 | FR-013 (FR-013a removed) | 8 | Amendment A2, A8 (supersedes V3.4, V5.1) |
 | FR-014, FR-015 | 1, 5 | V1.7, V5.10 (privacy review) |
-| FR-016–FR-020 | 1, 3 | V3.3 |
-| FR-021, FR-021a, FR-022, FR-022a | 1, 3, 4 | V1.5, V1.7, V4.4 |
+| FR-016–FR-020 | — | Removed 2026-09-30 (Projects section deleted) |
+| FR-021, FR-022, FR-022a | 1, 10, 14 | Phase 10, gate F2 |
 | FR-023, FR-023a | 3 | V3.5, V3.6 |
 | FR-024–FR-027 | 1, 4, 5 | V1.4, V4.5, V5.2, V5.3 |
 | FR-028–FR-031 | 2, 4 | V2.2, V2.5, V4.2, V4.3 |
 | FR-032–FR-035 | 2, 3, 4 | V2.6, V3.1, V3.2, V1.6 |
 | FR-036 | 1, 5 | V1.4, V5.7 |
 | FR-037–FR-040 | 9 | Interests I2–I5, I10 |
+| FR-041 | 13 | Gate P1 |
+| FR-042, FR-005 | 14 | Gates F1–F2 |
 | SC-001 | 2 | V2.4 |
 | SC-002 | 5 | Usability check (manual) |
 | SC-003 | 4 | V4.5 |

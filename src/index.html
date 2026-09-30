@@ -90,7 +90,6 @@
             <li><a class="nav__link" href="#about">About</a></li>
             <li><a class="nav__link" href="#experience">Experience</a></li>
             <li><a class="nav__link" href="#interests">Interests</a></li>
-            <li><a class="nav__link" href="#projects">Projects</a></li>
             <li><a class="nav__link" href="#contact">Contact</a></li>
           </ul>
           <button class="theme-toggle" type="button" hidden aria-pressed="false">
@@ -122,38 +121,6 @@
             Full Stack Software Engineer specializing in scalable systems, robust architectures, and
             engineering mentorship.
           </p>
-          <div class="hero__actions">
-            <a
-              class="button button--primary"
-              href="https://github.com/aseelalmanahy"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <svg class="icon" aria-hidden="true" focusable="false">
-                <use href="assets/icons.svg#github"></use>
-              </svg>
-              GitHub
-              <svg class="icon icon--small" aria-hidden="true" focusable="false">
-                <use href="assets/icons.svg#external"></use>
-              </svg>
-              <span class="visually-hidden"> (opens in a new tab)</span>
-            </a>
-            <a
-              class="button button--primary"
-              href="https://www.linkedin.com/in/aseel-almanahy-97342b109/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <svg class="icon" aria-hidden="true" focusable="false">
-                <use href="assets/icons.svg#linkedin"></use>
-              </svg>
-              LinkedIn
-              <svg class="icon icon--small" aria-hidden="true" focusable="false">
-                <use href="assets/icons.svg#external"></use>
-              </svg>
-              <span class="visually-hidden"> (opens in a new tab)</span>
-            </a>
-          </div>
         </div>
       </section>
 
@@ -356,136 +323,6 @@
                 <path d="M3 18.5l17.5 3M12.5 14l3.5 3" />
               </svg>
               <span class="interests__label">Skiing</span>
-            </li>
-          </ul>
-        </div>
-      </section>
-
-      <section id="projects" class="projects" tabindex="-1" aria-labelledby="projects-title">
-        <div class="container">
-          <h2 id="projects-title" class="section__title">Projects</h2>
-          <ul class="projects__grid">
-            <li class="projects__item">
-              <article class="project-card" aria-labelledby="project-microservices">
-                <h3 class="project-card__title" id="project-microservices">
-                  Event-Driven Microservices
-                </h3>
-                <p class="project-card__description">
-                  Two Spring Boot services for an online store. Orders are checked against the
-                  product catalogue over non-blocking HTTP, saved to MySQL, and published as Kafka
-                  events.
-                </p>
-                <ul class="tag-list" aria-label="Technologies used">
-                  <li class="tag">Spring Boot</li>
-                  <li class="tag">Apache Kafka</li>
-                  <li class="tag">MySQL</li>
-                  <li class="tag">Docker Compose</li>
-                </ul>
-                <p class="project-card__links">
-                  <a
-                    class="project-card__link"
-                    href="https://github.com/aseelalmanahy/order-service"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <svg class="icon icon--small" aria-hidden="true" focusable="false">
-                      <use href="assets/icons.svg#code"></use>
-                    </svg>
-                    Order Service<span class="visually-hidden">
-                      source code for Event-Driven Microservices (opens in a new tab)</span
-                    >
-                  </a>
-                  <a
-                    class="project-card__link"
-                    href="https://github.com/aseelalmanahy/e-commerce-store-project"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <svg class="icon icon--small" aria-hidden="true" focusable="false">
-                      <use href="assets/icons.svg#code"></use>
-                    </svg>
-                    Product Service<span class="visually-hidden">
-                      source code for Event-Driven Microservices (opens in a new tab)</span
-                    >
-                  </a>
-                </p>
-              </article>
-            </li>
-            <li class="projects__item">
-              <article class="project-card" aria-labelledby="project-full-stack">
-                <h3 class="project-card__title" id="project-full-stack">
-                  Full-Stack Web Application
-                </h3>
-                <p class="project-card__description">
-                  A book catalogue with an Angular front end and a Spring Boot REST API that lists,
-                  adds, and updates books through a layered service and repository design.
-                </p>
-                <ul class="tag-list" aria-label="Technologies used">
-                  <li class="tag">Angular</li>
-                  <li class="tag">TypeScript</li>
-                  <li class="tag">REST API</li>
-                  <li class="tag">Spring Data JPA</li>
-                </ul>
-                <p class="project-card__links">
-                  <a
-                    class="project-card__link"
-                    href="https://github.com/aseelalmanahy/booky-frontend"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <svg class="icon icon--small" aria-hidden="true" focusable="false">
-                      <use href="assets/icons.svg#code"></use>
-                    </svg>
-                    Angular front end<span class="visually-hidden">
-                      source code for Full-Stack Web Application (opens in a new tab)</span
-                    >
-                  </a>
-                  <a
-                    class="project-card__link"
-                    href="https://github.com/aseelalmanahy/books"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <svg class="icon icon--small" aria-hidden="true" focusable="false">
-                      <use href="assets/icons.svg#code"></use>
-                    </svg>
-                    Spring Boot API<span class="visually-hidden">
-                      source code for Full-Stack Web Application (opens in a new tab)</span
-                    >
-                  </a>
-                </p>
-              </article>
-            </li>
-            <li class="projects__item">
-              <article class="project-card" aria-labelledby="project-algorithms">
-                <h3 class="project-card__title" id="project-algorithms">Algorithmic Systems</h3>
-                <p class="project-card__description">
-                  An Android app that converts numbers between bases and calculates across mixed
-                  bases, keeping a history of results on the device. Built as a two-person course
-                  project.
-                </p>
-                <ul class="tag-list" aria-label="Technologies used">
-                  <li class="tag">Android</li>
-                  <li class="tag">Java</li>
-                  <li class="tag">SQLite</li>
-                  <li class="tag">Algorithms</li>
-                </ul>
-                <p class="project-card__links">
-                  <a
-                    class="project-card__link"
-                    href="https://github.com/aseelalmanahy/Radix-Calculator"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <svg class="icon icon--small" aria-hidden="true" focusable="false">
-                      <use href="assets/icons.svg#code"></use>
-                    </svg>
-                    Radix Calculator<span class="visually-hidden">
-                      source code for Algorithmic Systems (opens in a new tab)</span
-                    >
-                  </a>
-                </p>
-              </article>
             </li>
           </ul>
         </div>

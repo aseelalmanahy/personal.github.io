@@ -67,3 +67,8 @@
   removed); US3, edge case, Project entity, SC-002, and assumption aligned. "Cloud Architecture"
   resolved without a marker (no public cloud repository; recorded in Clarifications). All 16
   items still pass; no [NEEDS CLARIFICATION] markers.
+- Iteration 9 (2026-09-30, five sections): hero actions removed (FR-005), Projects removed
+  (US3, FR-016–FR-020, Project entity, two edge cases), FR-001, FR-022a, FR-042, SC-001, SC-002,
+  SC-006, US1, Contact Link entity, and assumptions aligned; constitution v3.0.0. The FR-018 and
+  edge-case conflict from analysis finding I5 is resolved by removal. All 16 items still pass; no
+  [NEEDS CLARIFICATION] markers.

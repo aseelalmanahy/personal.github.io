@@ -48,11 +48,10 @@ for manual confirmation at each phase gate. Details of expected markup are in
 
 ### US1 — Meet Aseel and get in touch
 
-1. Emulate 375 × 667. Load `/`. **Expect**: "Hi, I'm Aseel.", the full statement, and GitHub,
-   LinkedIn buttons all visible without scrolling (SC-001).
-2. Activate GitHub, LinkedIn. **Expect**: each opens the correct profile in a new tab; the
-   "opens in a new tab" cue is visible and announced.
-3. Scroll to Contact. **Expect**: the text says LinkedIn is the best and primary way to reach
+1. Emulate 375 × 667. Load `/`. **Expect**: "Hi, I'm Aseel." and the full statement visible
+   without scrolling, and no links or buttons in the hero (SC-001, FR-005).
+2. Open the menu and choose Contact. **Expect**: Contact is reached in 2 interactions.
+3. At Contact, **Expect**: the text says LinkedIn is the best and primary way to reach
    out; "Connect on LinkedIn" is the first, primary button and "GitHub profile" the second; no
    email address, email link, or copy button anywhere on the page.
 
@@ -65,12 +64,9 @@ for manual confirmation at each phase gate. Details of expected markup are in
    comfortable reading width with a drop cap and amber rule; no timeline, roles, dates, or
    employer name; no animation.
 
-### US3 — Explore projects
+### US3 — Explore projects *(removed 2026-09-30)*
 
-1. Open Projects. **Expect**: three cards (Event-Driven Microservices, Full-Stack Web
-   Application, Algorithmic Systems), each with a description, unique tags, and code links that
-   open the named repository in a new tab; no placeholder card, no profile link.
-2. Resize. **Expect**: 1 column at 375px, 2 at 768px, 3 at 1024px and wider.
+No Projects section; code is reached through "GitHub profile" in Contact.
 
 ### US5 — Get to know Aseel beyond work
 

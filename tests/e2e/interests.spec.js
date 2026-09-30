@@ -8,13 +8,13 @@ const columnCount = (page) =>
     .evaluateAll((items) => new Set(items.map((item) => Math.round(item.offsetLeft))).size);
 
 test.describe('US5: Interests (FR-037 to FR-040)', () => {
-  test('sits between Experience and Projects with the five hobbies in order', async ({ page }) => {
+  test('sits between Experience and Contact with the five hobbies in order', async ({ page }) => {
     await page.goto('/');
     const order = await page
       .locator('main > section')
       .evaluateAll((sections) => sections.map((section) => section.id));
     expect(order.indexOf('interests')).toBe(order.indexOf('experience') + 1);
-    expect(order.indexOf('projects')).toBe(order.indexOf('interests') + 1);
+    expect(order.indexOf('contact')).toBe(order.indexOf('interests') + 1);
     await expect(page.locator('#interests h2')).toHaveText('Interests');
     await expect(page.locator('#interests ul.interests__list > li')).toHaveCount(5);
     const labels = await page

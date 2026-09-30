@@ -1,5 +1,20 @@
 <!--
 Sync Impact Report
+- Version change: 2.2.0 → 3.0.0 (MAJOR: a required section is removed; pages built to v2.2.0
+  with a Projects section no longer comply). Owner request 2026-09-30 for
+  specs/001-portfolio-website.
+- Modified principles:
+  - V. Focused Single-Page Scope — required sections now Hero, About Me, Experience, Interests,
+    Contact Links (Projects removed); the Hero carries no contact links; Contact Links is the
+    single place for the owner's professional profile links; "outside the six sections" →
+    "outside the five sections"
+- Added/removed sections: none
+- Templates requiring updates: none — templates read the constitution at runtime
+- Dependent artifacts to sync (outside this command): specs/001-portfolio-website (spec, plan,
+  tasks, data model, contracts, quickstart), CLAUDE.md version reference
+- Follow-up TODOs: none
+
+Earlier amendments (retained for review until committed):
 - Version change: 2.1.1 → 2.2.0 (MINOR: scope materially expanded — a sixth required section).
   Owner request 2026-09-30 for specs/001-portfolio-website.
 - Modified principles:
@@ -170,11 +185,14 @@ formatted, lint-clean code is itself part of what the site demonstrates.
 ### V. Focused Single-Page Scope
 
 - The site MUST be a single static page (`index.html`) containing exactly these sections, in
-  order: Hero (friendly greeting and one-line introduction), About Me, Experience, Interests,
-  Projects, and Contact Links. A custom `404.html` is the only additional page permitted.
+  order: Hero (friendly greeting and one-line introduction, with no contact links), About Me,
+  Experience, Interests, and Contact Links. A custom `404.html` is the only additional page
+  permitted.
+- Contact Links is the single place on the page for the owner's professional profile links
+  (GitHub, LinkedIn); no other section repeats them.
 - Interests is a static, non-interactive list of the owner's personal interests; icons in it are
   decorative and inline, and it adds no scripts, animation, fonts, or third-party assets.
-- Every element on the page MUST serve the owner's content; features outside the six sections
+- Every element on the page MUST serve the owner's content; features outside the five sections
   (blog, CMS, comments, e-commerce, dashboards) require a constitution amendment.
 - Content MUST live directly in the HTML so it is indexable and readable without JavaScript;
   JavaScript MUST NOT be the source of any primary content.
@@ -307,4 +325,4 @@ The following 20 practices apply to every change. Each is verifiable by inspecti
   `/speckit-analyze` flags conflicts with them as CRITICAL. Principles SHOULD be reviewed at
   least once a year or whenever the hosting or stack changes.
 
-**Version**: 2.2.0 | **Ratified**: 2026-09-25 | **Last Amended**: 2026-09-30
+**Version**: 3.0.0 | **Ratified**: 2026-09-25 | **Last Amended**: 2026-09-30

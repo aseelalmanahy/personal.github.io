@@ -6,7 +6,8 @@
 
 **Status**: Draft — amended 2026-09-30 (narrative content structure; Interests section; email
 removed, LinkedIn primary; four-tier skills; Experience
-narrative revised; em dashes removed; featured projects; see Clarifications)
+narrative revised; em dashes removed; hero links and Projects removed, five sections; see
+Clarifications)
 
 **Input**: User description: "Create a technical specification for a single-page personal
 portfolio website for Aseel Almanahy, a Full Stack Software Engineer. Hero section (greeting
@@ -63,6 +64,14 @@ placeholder card and restructure Projects into a grid of 2–3 featured reposito
 displaying core competencies (e.g. 'Enterprise Microservices', 'Cloud Architecture', and
 'Algorithmic Systems') with unique tags and direct code anchors. Run 'npm run verify'."
 
+**Amendment input (2026-09-30, five sections)**: "Remove the GitHub and LinkedIn profile
+buttons/links from the Hero section; the Hero focuses purely on the greeting and professional
+summary statement. Completely remove the 'Projects' section, all related CSS modules, grid rules,
+and its navigation link. The Contact footer is now the exclusive location for the GitHub and
+LinkedIn buttons, the single destination for professional outreach and code inspection. Update
+task definitions (analysis findings I1, I2, I3, I5, I7) and documentation for the 5-section
+layout (Hero, About Me, Experience, Interests, Contact). Run 'npm run verify'."
+
 ## Clarifications
 
 ### Session 2026-09-29
@@ -109,7 +118,8 @@ displaying core competencies (e.g. 'Enterprise Microservices', 'Cloud Architectu
 - Q: Where does the new Interests section go, given Projects sits between Experience and
   Contact? → A: Immediately after Experience ("right after the narrative Experience block"),
   so the order is Hero, About Me, Experience, Interests, Projects, Contact Links; constitution
-  amended to v2.2.0 to allow the sixth section.
+  amended to v2.2.0 to allow the sixth section. *(Superseded 2026-09-30: Projects removed;
+  the order is Hero, About Me, Experience, Interests, Contact Links, constitution v3.0.0.)*
 - Q: Which public email address does the page publish? → A: `[email removed]`
   (owner-supplied routing address; an earlier proposal on an unregistered domain was rejected).
   *(Superseded 2026-09-30: email removed from the page.)*
@@ -140,10 +150,18 @@ displaying core competencies (e.g. 'Enterprise Microservices', 'Cloud Architectu
   Algorithmic Systems (Radix-Calculator). "Cloud Architecture" is not used as a title because no
   public repository contains cloud infrastructure code, and a card must not claim more than its
   code shows; the cloud skills stay in Skills and Experience. "Enterprise" is replaced by
-  "Event-Driven", which describes the Kafka-based design accurately.
+  "Event-Driven", which describes the Kafka-based design accurately. *(Superseded 2026-09-30:
+  the Projects section was removed.)*
 - Q: Where may the profile links appear? → A: Only in the hero and the Contact section, once each
   (FR-042). Project cards link to repositories, never to the profile, and the page has no other
-  profile link.
+  profile link. *(Superseded 2026-09-30: only in the Contact section.)*
+- Q: With the hero links gone, how do visitors reach Aseel? → A: Through the Contact section,
+  the page's final section and the only place with the GitHub and LinkedIn buttons (FR-042). The
+  navigation bar links to Contact from every scroll position (SC-003), so the route is one or two
+  interactions away; the hero shows only the greeting and statement.
+- Q: Where do visitors inspect code now that Projects is gone? → A: Through the GitHub profile
+  button in Contact. The page links to no individual repository. Constitution v3.0.0 removes
+  Projects from the required sections (Principle V).
 
 ## User Scenarios & Testing *(mandatory)*
 
@@ -153,25 +171,25 @@ who arrive from a shared link (résumé, LinkedIn, email signature) — most oft
 ### User Story 1 - Meet Aseel and get in touch (Priority: P1)
 
 A recruiter opens the site from a link. Without scrolling, they see a friendly greeting ("Hi,
-I'm Aseel."), the professional statement, and two clear actions: GitHub and LinkedIn. They
-choose one and reach Aseel's profile. A dedicated Contact Links section at the end of the page
-tells visitors that LinkedIn is the best way to reach out or connect, and offers LinkedIn and
-GitHub again for visitors who scrolled through everything.
+I'm Aseel.") and the professional statement, with nothing competing for attention. To get in
+touch they choose Contact in the navigation bar (or scroll to the end): the Contact Links section
+tells them that LinkedIn is the best way to reach out or connect and offers LinkedIn and GitHub,
+the only place on the page where either appears.
 
 **Why this priority**: Converting a visit into contact is the site's core purpose. The hero and
 contact routes alone are a viable, publishable page.
 
-**Independent Test**: Load the page at a standard phone size, confirm the greeting, statement,
-and both actions are visible without scrolling, and activate each action to confirm it reaches
-the correct destination.
+**Independent Test**: Load the page at a standard phone size, confirm the greeting and statement
+are visible without scrolling, reach Contact through the navigation, and activate each action to
+confirm it reaches the correct destination.
 
 **Acceptance Scenarios**:
 
 1. **Given** a visitor on a phone-sized screen, **When** the page first loads, **Then** the
    greeting "Hi, I'm Aseel.", the statement "Full Stack Software Engineer specializing in
-   scalable systems, robust architectures, and engineering mentorship.", and the GitHub and
-   LinkedIn actions are all visible without scrolling.
-2. **Given** the hero is visible, **When** the visitor activates the GitHub or LinkedIn action,
+   scalable systems, robust architectures, and engineering mentorship." are visible without
+   scrolling, and the hero contains no links or buttons.
+2. **Given** the Contact section, **When** the visitor activates the GitHub or LinkedIn action,
    **Then** Aseel's corresponding public profile opens in a new tab and the visitor is told
    beforehand that it opens in a new tab.
 3. **Given** a visitor at the bottom of the page, **When** they reach the Contact Links section,
@@ -216,35 +234,10 @@ terms of full-stack work, cloud (AWS), architecture, and technical leadership.
 
 ---
 
-### User Story 3 - Explore projects (Priority: P3)
+### User Story 3 - Explore projects *(Removed 2026-09-30)*
 
-A peer or technical interviewer wants to see real work. The Projects section shows a
-minimalist grid of three featured cards, each naming a core competency and backing it with a
-public repository: a short description, technology tags, and direct links to the source code.
-
-**Why this priority**: Projects deepen credibility, but the site delivers its core value
-without them.
-
-**Independent Test**: Open the Projects section and confirm each card shows a competency title,
-a description, unique tags, and working code links, and that the grid reflows from one column on
-a phone to three on a desktop.
-
-**Acceptance Scenarios**:
-
-1. **Given** the Projects section, **When** a visitor views a card, **Then** it shows a
-   competency title, a description of no more than 200 characters, one or more technology tags
-   used by no other card, and one or more source-code links, each naming the card it belongs to
-   for assistive technology users.
-2. **Given** a project with no live demo, **When** its card is displayed, **Then** the live
-   demo link is omitted rather than shown as broken or inert.
-3. **Given** screens of different widths, **When** the visitor views the grid, **Then** cards
-   show in one column on phones and in two or more columns on tablets and desktops, with equal
-   visual weight and no card overflowing its column.
-4. **Given** the Projects section, **When** a visitor opens a code link, **Then** it opens the
-   named public repository in a new tab; no card links to a profile page, a placeholder, or a
-   missing repository.
-5. **Given** a project is added, removed, or replaced later, **When** the page is published,
-   **Then** only that card's content changes and the grid layout is unchanged (FR-019).
+The Projects section was removed at the owner's request (constitution v3.0.0). Visitors inspect
+code through the GitHub profile button in Contact (FR-042).
 
 ---
 
@@ -334,10 +327,6 @@ no motion and nothing to click.
 - **Long narrative on small screens or with enlarged text**: the Experience narrative wraps
   within the viewport at 320px and 400% zoom and stays readable (no clipped or overlapping
   text).
-- **Odd number of cards in two columns** (tablets): the last card keeps the same width as the
-  others instead of stretching across the row.
-- **Project with a missing element** (no demo, no tags): the card stays aligned with its
-  neighbours; missing links are omitted, never dead.
 - **External profile unavailable**: failures happen on the external site; this page contains no
   broken internal links.
 - **Printing the page**: content prints legibly in a light scheme with link destinations
@@ -350,7 +339,7 @@ no motion and nothing to click.
 **Page structure and scope**
 
 - **FR-001**: The site MUST be a single page containing these sections, in this order: Hero,
-  About Me, Experience, Interests, Projects, Contact Links.
+  About Me, Experience, Interests, Contact Links.
 - **FR-002**: Each section MUST be individually linkable so a visitor can share or bookmark a
   link that opens directly at that section.
 - **FR-003**: A "not found" page MUST be shown for any unknown address, in the site's style,
@@ -361,8 +350,8 @@ no motion and nothing to click.
 - **FR-004**: The hero MUST display the greeting "Hi, I'm Aseel." as the page's main heading
   and the statement "Full Stack Software Engineer specializing in scalable systems, robust
   architectures, and engineering mentorship." verbatim.
-- **FR-005**: The hero MUST present two clearly labelled actions — GitHub and LinkedIn —
-  styled as buttons, each with a visible text label (icons, if used, are supplementary).
+- **FR-005**: The hero MUST present only the greeting and the professional statement: no links,
+  buttons, or other actions. Contact routes live in Contact Links (FR-021, FR-042).
 - **FR-006**: GitHub and LinkedIn actions MUST open Aseel's public profiles —
   `https://github.com/aseelalmanahy` and `https://www.linkedin.com/in/aseel-almanahy-97342b109/`
   — in a new tab and MUST indicate to all users that they open in a new tab. The same two URLs
@@ -443,27 +432,14 @@ no motion and nothing to click.
 - **FR-041**: No em dash (—) may appear in any published text: visible copy, page titles, share
   metadata, or accessible labels. Where the owner's texts used one, it is replaced by a comma,
   semicolon, or sentence break as recorded in Clarifications.
-- **FR-042**: The GitHub and LinkedIn profile links MUST appear exactly once in the hero and once
-  in the Contact section, and nowhere else on the page. Other sections may link to specific
-  repositories but not to either profile.
+- **FR-042**: The GitHub and LinkedIn profile links MUST appear exactly once each, in the Contact
+  section only; no other section (including the hero) links to either profile or to individual
+  repositories.
 
-**Projects**
+**Projects** *(removed 2026-09-30, constitution v3.0.0)*
 
-- **FR-016**: Projects MUST be shown as a minimalist grid of cards: one column on phones, two
-  or more columns on tablets and desktops.
-- **FR-017**: Each card MUST provide: a title naming the competency it demonstrates, a short
-  description (≤ 200 characters) of the underlying project, one or more technology tags (no tag
-  repeated on another card), and one or more direct links to the project's public source code;
-  a live demo link only where a demo exists. Link labels MUST identify the card (e.g. "Order
-  Service source code for Event-Driven Microservices").
-- **FR-018**: When a project has no repository or no live demo, the corresponding link MUST be
-  omitted; no card may contain a dead or placeholder link on the live site.
-- **FR-019**: Cards MUST be structured so that adding, removing, or replacing a project
-  requires editing only that project's content, without changing the layout.
-- **FR-020**: Projects MUST show exactly these three featured cards, in order, each backed by
-  the owner's public repositories: **Event-Driven Microservices** (order-service,
-  e-commerce-store-project), **Full-Stack Web Application** (booky-frontend, books), and
-  **Algorithmic Systems** (Radix-Calculator). No placeholder or "coming soon" card appears.
+- **FR-016**–**FR-020**: *(Removed 2026-09-30: the Projects section, its cards, and their code
+  links no longer exist.)*
 
 **Contact Links**
 
@@ -475,8 +451,8 @@ no motion and nothing to click.
 - **FR-021a**: *(Removed 2026-09-30 — the copy-email control and its fallback no longer exist.)*
 - **FR-022**: No form that collects visitor data MAY be included; contact happens through
   links only.
-- **FR-022a**: The site MUST NOT offer a résumé/CV download; the hero and Contact Links section
-  contain exactly two contact routes each (GitHub and LinkedIn).
+- **FR-022a**: The site MUST NOT offer a résumé/CV download. (Placement of the two contact
+  routes: FR-042.)
 
 **Navigation**
 
@@ -529,7 +505,7 @@ no motion and nothing to click.
 - **Profile**: the site owner — display name ("Aseel"), full name (Aseel Almanahy), professional
   statement, short introduction.
 - **Contact Link**: a route to reach Aseel — type (GitHub, LinkedIn), visible label,
-  destination (always opens in a new tab); LinkedIn is the primary route.
+  destination (always opens in a new tab); LinkedIn is the primary route; shown in Contact only.
 - **Education Entry**: degree, field, institution, status (completed / candidate).
 - **Skill Category**: category name (Languages, Frameworks & Security, Cloud & DevOps,
   Quality & Methodology) and its ordered list of
@@ -538,25 +514,25 @@ no motion and nothing to click.
   employer name (the owner's university excepted, FR-012).
 - **Interest**: a personal hobby — label (Cooking, Reading Books, Weightlifting, Cycling,
   Skiing) and a decorative icon; ordered; no description or link.
-- **Project**: competency title, short description, technology tags (unique across cards), one
-  or more source-code links to the owner's public repositories, optional live demo link.
+- **Project**: *(removed 2026-09-30 with the Projects section)*
 
 ## Success Criteria *(mandatory)*
 
 ### Measurable Outcomes
 
 - **SC-001**: On a standard phone screen (375 × 667), 100% of first-time visitors can see Aseel's
-  name, professional statement, and both contact actions without scrolling.
+  name and professional statement without scrolling, and can reach the Contact actions in no
+  more than 2 interactions.
 - **SC-002**: In a usability check with at least 5 participants, at least 4 can find and open
-  Aseel's LinkedIn profile as the way to get in touch, and open Aseel's GitHub profile or one
-  featured project's source code, within 30 seconds each.
+  Aseel's LinkedIn profile as the way to get in touch, and open Aseel's GitHub profile, within
+  30 seconds each, starting from the top of the page.
 - **SC-003**: Any section can be reached from any scroll position in no more than 2
   interactions (e.g. open menu, choose section).
 - **SC-004**: Zero instances of horizontal scrolling or clipped content at 320px, 375px, 768px,
   1024px, 1440px, and 2560px widths, and at 400% zoom.
 - **SC-005**: The main content is readable within 2 seconds on a mid-range phone over a typical
   mobile connection, and nothing on the page shifts noticeably after it appears.
-- **SC-006**: 100% of interactive features (navigation, menu, theme toggle, cards, links) can
+- **SC-006**: 100% of interactive features (navigation, menu, theme toggle, links) can
   be completed using only a keyboard, and a screen-reader walkthrough announces every
   section, link, and control with a meaningful name.
 - **SC-007**: Zero accessibility violations found by an automated WCAG 2.2 AA scan in both light
@@ -572,8 +548,6 @@ no motion and nothing to click.
 - **Content still to be supplied by Aseel before launch**: none. (Supplied 2026-09-30: GitHub and
   LinkedIn URLs, About Me introduction, Experience narrative, and site URL. Role dates and an
   email address are no longer needed.)
-  Featured project copy (FR-020) is drafted from each repository's code and README and
-  approved by the owner.
 - The site's name/heading uses the first name "Aseel"; the full name "Aseel Almanahy" appears in
   the page title, share previews, and footer.
 - No profile photo is included; the hero relies on typography and colour. A photo can be added
@@ -582,6 +556,8 @@ no motion and nothing to click.
   contact channel, which also keeps the owner's address away from automated collection.
 - The About Me section may mention both degrees and skills only; certifications, awards, and a
   detailed work history are out of scope for this version.
+- No Projects section (owner decision 2026-09-30): visitors inspect code through the GitHub
+  profile linked in Contact.
 - A downloadable résumé is out of scope for this version; visitors wanting a full work history
   use the LinkedIn link.
 - The Experience narrative names no employer or program (only the owner's university) and

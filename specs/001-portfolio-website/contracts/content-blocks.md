@@ -7,7 +7,7 @@ block by copying its pattern; CSS and JS depend only on the classes and attribut
 Icon usage everywhere: `<svg class="icon" aria-hidden="true" focusable="false"><use
 href="assets/icons.svg#<id>"></use></svg>` placed next to visible text.
 
-## Contact link (hero and Contact section)
+## Contact link (Contact section only, FR-042)
 
 External profile (GitHub / LinkedIn):
 
@@ -97,32 +97,3 @@ Items sit in `<ul class="education">` under the `h3` "Education", so degrees are
 - Icons are inline, decorative (`aria-hidden`), and use `currentColor` — no `style`
   attributes, no sprite reference, no icon font.
 - No links, buttons, `tabindex`, hover/focus styles, or animation (FR-040).
-
-## Project card (FR-016–FR-020)
-
-```html
-<li class="projects__item">
-  <article class="project-card" aria-labelledby="project-<slug>">
-    <h3 class="project-card__title" id="project-<slug>">Competency Title</h3>
-    <p class="project-card__description">≤ 200 characters.</p>
-    <ul class="tag-list" aria-label="Technologies used">
-      <li class="tag">…</li>
-    </ul>
-    <p class="project-card__links">
-      <a class="project-card__link" href="https://github.com/aseelalmanahy/<repo>"
-         target="_blank" rel="noopener noreferrer">
-        <svg class="icon icon--small" aria-hidden="true" focusable="false">
-          <use href="assets/icons.svg#code"></use>
-        </svg>
-        Repo Label<span class="visually-hidden"> source code for Competency Title (opens in a
-        new tab)</span>
-      </a>
-    </p>
-  </article>
-</li>
-```
-
-One `<a>` per repository; a live demo link only where a demo exists (FR-018). Tags are unique
-across cards. The grid container is `<ul class="projects__grid">` (1 → 2 → 3 columns); no
-placeholder card (removed 2026-09-30).
-

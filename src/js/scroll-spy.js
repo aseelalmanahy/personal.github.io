@@ -1,4 +1,4 @@
-const SECTION_IDS = ['about', 'experience', 'interests', 'projects', 'contact'];
+const SECTION_IDS = ['about', 'experience', 'interests', 'contact'];
 
 /**
  * The section to mark as current: among intersecting sections, the one whose top has most

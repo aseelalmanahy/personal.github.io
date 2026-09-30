@@ -238,11 +238,11 @@ V5.8–V5.10).
 - [X] T096 [US1] Replace every remaining `CONTENT:` value in `src/index.html`, `src/404.html` (`<base href>` = `/`), `src/robots.txt`, and `src/sitemap.xml` — done 2026-09-30 (site URL in commit 072b760; email in the final launch sync); `node tools/check-content.mjs --strict` reports 0 and `node tools/check-site-url.mjs` passes (V5.8)
 - [X] T097 Run `npm run build && npm run check:links` (0 broken; LinkedIn skipped and verified manually by opening the profile) and record the result in `specs/001-portfolio-website/checklists/implementation-gates.md` (V5.6)
 - [ ] T098 Perform and record the written privacy review (FR-015, SC-009) in `checklists/implementation-gates.md`: reviewer, date, and confirmation that the whole page — especially `#experience` — contains no internal application or system names, architecture descriptions, proprietary tools, team or department names, client information, or non-public metrics
-- [ ] T099 Perform and record the manual gates in `checklists/implementation-gates.md`: screen-reader smoke test (NVDA + Firefox; VoiceOver iOS), screenshot review at 320/375/768/1024/1440/2560 in both themes, JS-disabled walkthrough, print preview, and the SC-002 usability check (5 participants; pass = ≥ 4 start an email and open GitHub within 30s each)
-- [ ] T100 Fill the final Success Criteria table SC-001–SC-010 and gates G1–G16 in `checklists/implementation-gates.md` with evidence (V5.10); confirm `git diff main -- specs/001-portfolio-website/spec.md` shows no changes below the `**Input**` line — header metadata and the recorded 2026-09-30 owner amendment only (G1)
+- [ ] T099 Perform and record the manual gates in `checklists/implementation-gates.md`: screen-reader smoke test (NVDA + Firefox; VoiceOver iOS), screenshot review at 320/375/768/1024/1440/2560 in both themes, JS-disabled walkthrough, print preview, and the SC-002 usability check (5 participants, starting from the top of the page; pass = ≥ 4 open the LinkedIn profile as the way to get in touch and open the GitHub profile, within 30s each)
+- [ ] T100 Fill the final Success Criteria table SC-001–SC-010 and gates G1–G16 in `checklists/implementation-gates.md` with evidence (V5.10); confirm with `git diff main -- specs/001-portfolio-website/spec.md` that every change below the `**Input**` line is an owner amendment recorded in the spec (Amendment input paragraphs, Clarifications, and requirements checklist iterations 3–9) (G1)
 - [X] T101 Update `CLAUDE.md` if any command, path, or tool changed during implementation, and confirm every command listed there runs
 - [ ] T102 Create the public GitHub repository `aseelalmanahy.github.io` (owner action: on github.com, or `gh repo create aseelalmanahy.github.io --public --source . --remote origin` after `gh auth login`), push the branch to `origin`, open a pull request, and confirm the `verify` job is green (V5.9); after merge to `main`, confirm with the owner that repository Settings → Pages → Source is "GitHub Actions" and "Enforce HTTPS" is on, then confirm the `deploy` job published the site
-- [ ] T103 Launch spot-check on the live URL (quickstart → Launch checklist): real phone in both themes, share-link preview renders title/description/image, theme persists across visits, all six contact links work; record the result in `specs/001-portfolio-website/checklists/implementation-gates.md`
+- [ ] T103 Launch spot-check on the live URL (quickstart → Launch checklist): real phone in both themes, share-link preview renders title/description/image, theme persists across visits, the two Contact links (Connect on LinkedIn, GitHub profile) open the right profiles and the hero has none; record the result in `specs/001-portfolio-website/checklists/implementation-gates.md`
 
 ---
 
@@ -405,6 +405,34 @@ FR-020), keeping every gate and Lighthouse at 100.
 
 ---
 
+## Phase 14: Amendment — Five Sections: Hero Links and Projects Removed (2026-09-30)
+
+**Goal**: Hero shows only the greeting and statement (FR-005); the Projects section and all of its
+code are deleted (FR-016–FR-020 removed); GitHub and LinkedIn appear only in Contact (FR-042);
+constitution v3.0.0. Also corrects the pending tasks flagged by analysis findings I1, I2, I3, I5,
+and I7.
+
+**Independent Test**: `npm run verify` exits 0; structure, hero-contact, no-JS, responsive, nav, Interests, and keyboard specs confirm five sections, four nav links, a link-free hero, and profile links only in Contact.
+
+### Tests for Phase 14 (write first, confirm they fail)
+
+- [X] T159 [P] [US1] In `tests/e2e/hero-contact.spec.js`: hero has no links or buttons (FR-005); one GitHub and one LinkedIn link, both in Contact (FR-006, FR-042); SC-001 checks greeting and statement only
+- [X] T160 [P] Five sections and four nav links: `structure.spec.js` `SECTION_IDS`, `no-js.spec.js`, `responsive.spec.js`, `nav-theme.spec.js` (section lists; failed-script test uses Interests), `interests.spec.js` (Contact follows Interests), `tests/unit/scroll-spy.test.js`; 9-stop keyboard walkthrough in `a11y.spec.js`; delete `tests/e2e/projects.spec.js`
+
+### Implementation for Phase 14
+
+- [X] T161 [US1] In `src/index.html` remove `.hero__actions`, the Projects nav item, and `section#projects`; delete `.hero__actions` from `src/css/components/hero.css`
+- [X] T162 Delete `src/css/components/projects.css` and `project-card.css`, their imports in `src/css/main.css`, the `.project-card` print rule, the `#code` symbol in `src/assets/icons.svg`, and `projects` from `src/js/scroll-spy.js`
+- [X] T163 Amend the constitution to v3.0.0 (Principle V: five sections; hero without contact links; Contact is the single home of the profile links) via `/speckit-constitution`; update `CLAUDE.md`
+- [X] T164 Sync docs: spec (status, amendment input, clarifications, US1, US3 removed, edge cases, FR-001, FR-005, FR-016–FR-020 removed, FR-022a, FR-042, entities, SC-001, SC-002, SC-006, assumptions), checklist iteration 9, data model, contracts, quickstart, plan (amendment, scale, Constitution Check, traceability), research R-31
+- [X] T165 Correct pending tasks from analysis: T099 SC-002 criterion (I1), T100 G1 definition (I2), T103 link count (I3); FR-018/edge-case conflict resolved by removing Projects (I5); refresh gates G1, G4, G15 (I7)
+- [X] T166 Constitution per-change check (analysis K1): full-page review at 320/375/768/1024/1440 in both themes; keyboard and JS-off by the automated specs; record as gate F7
+- [X] T167 Run `npm run verify` (exit 0, Lighthouse 1.00 ×4), record in `checklists/implementation-gates.md`, and commit on `001-portfolio-website`
+
+**Checkpoint (Five-section gate)**: T167 passes; no regression in earlier gates.
+
+---
+
 ## Dependencies & Execution Order
 
 ### Phase Dependencies
@@ -420,6 +448,7 @@ FR-020), keeping every gate and Lighthouse at 100.
 - **Phase 8 Amendment (2026-09-30)**: runs after Gate 5a and before T096–T103 (launch needs the amended content). T104–T108 are parallel; T109–T112 edit shared files, in order; T113–T117 follow.
 - **Phase 9 Interests (2026-09-30)**: after Phase 8 and before T096–T103. T118–T120 are parallel; T121–T124 in order; T125–T129 follow.
 - **Phase 10 Contact via LinkedIn (2026-09-30)**: after Phase 9 and before T102–T103. T130–T131 parallel; T132–T134 in order; T135–T137 follow.
+- **Phase 14 Five sections (2026-09-30)**: after Phase 13 and before T098–T103. T159–T160 parallel; T161–T166 in order; T167 last. Supersedes the Projects work of Phases 3 and 13 (T027, T054, T059, T151, T154).
 - **Phase 13 Polish & projects (2026-09-30)**: after Phase 12 and before T098/T102–T103. T151–T153 parallel; T154–T156 in order; T157–T158 follow.
 - **Phase 12 Narrative (2026-09-30)**: after Phase 11 and before T098/T102–T103. T147 → T148 → T149 → T150.
 - **Phase 11 Skills (2026-09-30)**: after Phase 10 and before T102–T103. T138–T140 parallel; T141–T144 in order; T145–T146 follow.
@@ -494,7 +523,7 @@ Each story can be verified on its own with the listed tests once its tasks are d
 |---|---|---|
 | **US1** Meet Aseel & get in touch (P1) 🎯 MVP | T016, T024, T028, T038, T046, T047, T060, T130, T132, T133 (email tasks T066, T069, T074, T096 superseded 2026-09-30) | `hero-contact.spec.js`: verbatim hero text, GitHub and LinkedIn above the fold at 375×667 with new-tab cues, Contact names LinkedIn as the primary way to connect (listed first), no email anywhere |
 | **US2** Background & experience (P2) | T025, T057, T104, T105, T109, T111, T138, T141, T142, T147, T148 (timeline tasks T026, T053, T058, T079, T081, T084, T095 superseded 2026-09-30) | `about-experience.spec.js`: verbatim About intro, degrees, four skill tiers (28 items, 1/2/4 columns), one verbatim Experience narrative at ≤ 75 characters per line; `privacy-scope.spec.js`: no timeline, dates, employer, or role list |
-| **US3** Explore projects (P3) | T027, T054, T059, T151, T154 | `projects.spec.js`: three featured repository cards (content, order, unique tags, repo-only code links) reflow 1 → 2 → 3 columns |
+| **US3** Explore projects (P3) | *(removed 2026-09-30, Phase 14)* | No Projects section; code is reached through the GitHub profile in Contact |
 | **US4** Navigate & choose a theme (P4) | T023, T039, T049, T055, T056, T065, T067, T068, T072, T073, T075, T076, T080, T082, T085 | `nav-theme.spec.js`: no-flash theme, persisted toggle, device-follow rules, reduced motion, mobile menu with Escape, focus to section, headings never under the bar, current-section marking |
 | **US5** Interests (P5) | T118, T119, T120, T121, T122, T123 | `interests.spec.js`: placement after Experience, five hobbies in order as a list, one decorative inline icon each, static (no links, motion), 1/2/5 columns at 320/375/1440px, accent-coloured icons in both themes |
 

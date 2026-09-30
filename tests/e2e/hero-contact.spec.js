@@ -36,11 +36,12 @@ test.describe('US1: hero and contact content', () => {
     expect(normalise(await page.locator('.hero__statement').textContent())).toBe(STATEMENT);
   });
 
-  test('hero has exactly GitHub then LinkedIn, opening in new tabs (FR-005)', async ({ page }) => {
+  test('hero holds only the greeting and statement: no links or buttons (FR-005)', async ({
+    page,
+  }) => {
     await page.goto('/');
-    const links = await describeLinks(page.locator('#home a'));
-    expect(links.map((link) => link.href)).toEqual([GITHUB_URL, LINKEDIN_URL]);
-    links.forEach(expectExternal);
+    await expect(page.locator('#home a, #home button')).toHaveCount(0);
+    await expect(page.locator('#home :is(h1, p)')).toHaveCount(2);
   });
 
   test('Contact names LinkedIn as the primary way to connect and lists it first (FR-021)', async ({
@@ -74,8 +75,8 @@ test.describe('US1: hero and contact content', () => {
       page.locator(selector).evaluateAll((links) => links.map((a) => a.getAttribute('href')));
     const github = await hrefs(`a[href="${GITHUB_URL}"]`);
     const linkedin = await hrefs('a[href*="linkedin.com"]');
-    expect(github).toHaveLength(2); // hero, Contact
-    expect(linkedin).toHaveLength(2); // hero, Contact
+    expect(github).toHaveLength(1); // Contact only
+    expect(linkedin).toHaveLength(1); // Contact only
     expect(new Set(linkedin)).toEqual(new Set([LINKEDIN_URL]));
     const person = await page
       .locator('script[type="application/ld+json"]')
@@ -83,35 +84,23 @@ test.describe('US1: hero and contact content', () => {
     expect(person.sameAs).toEqual([GITHUB_URL, LINKEDIN_URL]);
   });
 
-  test('profile links appear once in the hero and once in Contact, nowhere else (FR-042)', async ({
-    page,
-  }) => {
+  test('profile links appear only in Contact, once each (FR-042)', async ({ page }) => {
     await page.goto('/');
     const placement = await page
       .locator(`a[href="${GITHUB_URL}"], a[href="${LINKEDIN_URL}"]`)
       .evaluateAll((links) =>
         links.map((a) => `${a.closest('section')?.id ?? 'outside'}:${a.getAttribute('href')}`),
       );
-    expect(placement).toEqual([
-      `home:${GITHUB_URL}`,
-      `home:${LINKEDIN_URL}`,
-      `contact:${LINKEDIN_URL}`,
-      `contact:${GITHUB_URL}`,
-    ]);
+    expect(placement).toEqual([`contact:${LINKEDIN_URL}`, `contact:${GITHUB_URL}`]);
   });
 });
 
 test.describe('US1: hero above the fold (SC-001)', () => {
   test.use({ viewport: { width: 375, height: 667 } });
 
-  test('greeting, statement, and both actions are visible without scrolling', async ({ page }) => {
+  test('greeting and statement are visible without scrolling', async ({ page }) => {
     await page.goto('/');
-    const targets = [
-      page.locator('h1'),
-      page.locator('.hero__statement'),
-      ...(await page.locator('.hero__actions a').all()),
-    ];
-    expect(targets).toHaveLength(4);
+    const targets = [page.locator('h1'), page.locator('.hero__statement')];
     for (const target of targets) {
       const box = await target.boundingBox();
       expect(box.y + box.height, await target.textContent()).toBeLessThanOrEqual(667);

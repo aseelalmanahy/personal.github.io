@@ -113,10 +113,10 @@ Result values: PASS · FAIL · PENDING · N/A (with reason).
 
 | Gate | Rule | Result | Evidence |
 |---|---|---|---|
-| G1 | spec.md unchanged below header | PASS | Only the Feature Branch header line changed (T001) |
+| G1 | spec.md changes below Input are owner amendments only (redefined 2026-09-30, T100) | PASS | `git diff main` limited to the recorded Amendment inputs, Clarifications, and checklist iterations 3–9; final confirmation in T100 |
 | G2 | Everything traces to an FR/US | PASS | All src files map to plan tasks/FRs; no untraced features |
 | G3 | Plain-language visitor text, no dev artefacts | PASS (pre-content) | grep TODO/FIXME/lorem/console.log = 0; `CONTENT:` placeholders visible until T096 |
-| G4 | All sections complete | PASS | structure.spec: five sections + 404 |
+| G4 | All sections complete | PASS | structure.spec: five sections (Hero, About Me, Experience, Interests, Contact) + 404 |
 | G5 | No unresolved decisions; 0 `CONTENT:` at launch | PASS | 0 markers; email applied then removed 2026-09-30 (LinkedIn primary, FR-021) |
 | G6 | Each FR has a passing check | PASS | 258 e2e + 52 unit tests; FR-015 privacy review is manual (T098) |
 | G7 | SCs measured with numbers | PASS | Budgets, Lighthouse, CLS, viewport matrix recorded above |
@@ -127,7 +127,7 @@ Result values: PASS · FAIL · PENDING · N/A (with reason).
 | G12 | Deps justified; runtime deps zero | PASS | Dev deps per R-01 (+ none added); 10 npm-audit advisories are in dev-only tooling |
 | G13 | FR rows ticked with evidence | PASS | Phase tables above |
 | G14 | Primary flows demonstrable | PASS | US1–US4 demonstrable on the built site |
-| G15 | SC-001–SC-010 met | PENDING | See Success Criteria: SC-002, SC-009, SC-010 await owner/content; SC-006 manual part pending |
+| G15 | SC-001–SC-010 met | PENDING | SC-002 (usability, T099) and SC-009 (privacy review, T098) await the owner; SC-006 screen-reader part pending (T099); SC-010 met (check:links) |
 | G16 | No internal/implementation details leak onto the page | PASS (automated) | No HTML comments shipped; timeline fields restricted; owner privacy review in T098 |
 
 ## Success Criteria
@@ -248,3 +248,17 @@ Result values: PASS · FAIL · PENDING · N/A (with reason).
 | P7 | Budgets | PASS | 12.2 KB HTML+CSS+JS, 3.9 KB JS, 13.4 KB total (gzip) | 2026-09-30 |
 | P8 | Lighthouse (mobile ×3) | PASS | index.html Perf 1.00, A11y 1.00, BP 1.00, SEO 1.00; LCP 1.1 s, CLS 0.001, TBT 0 ms | 2026-09-30 |
 | P9 | Owner review of card copy | PENDING | Owner action with T098 | — |
+
+## Five sections: hero links and Projects removed (Phase 14, 2026-09-30)
+
+| ID | Gate | Result | Evidence | Date |
+|---|---|---|---|---|
+| F1 | Hero holds only greeting and statement (FR-005, SC-001) | PASS | hero-contact.spec: 0 links/buttons in `#home`; greeting and statement above the fold at 375 × 667 | 2026-09-30 |
+| F2 | Profile links only in Contact, once each (FR-006, FR-042) | PASS | hero-contact.spec: placement = Contact LinkedIn, Contact GitHub; JSON-LD `sameAs` unchanged | 2026-09-30 |
+| F3 | Five sections, four nav links (FR-001, constitution v3.0.0) | PASS | structure, no-JS, responsive, nav, Interests order specs (3 engines) | 2026-09-30 |
+| F4 | Projects code removed | PASS | No `projects.css`, `project-card.css`, `#code` symbol, `projects` in scroll-spy; lint and build clean | 2026-09-30 |
+| F5 | Keyboard walkthrough (SC-006) | PASS | 9 stops ending "Connect on LinkedIn", "GitHub profile"; no traps (Chromium, Firefox) | 2026-09-30 |
+| F6 | `npm run verify` | PASS | exit 0: format, lint, 46/46 unit, 0 content markers, 262 e2e passed / 8 skipped (engine limits), 12/12 links | 2026-09-30 |
+| F7 | Constitution per-change check (analysis K1) | PASS | Full-page review at 320 (light), 375 (dark), 768 (light), 1024 (dark), 1440 (light): sections in order, no overflow (scrollWidth = viewport), hero link-free, Contact buttons visible; keyboard and JS-off by the automated specs | 2026-09-30 |
+| F8 | Budgets | PASS | 11.2 KB HTML+CSS+JS, 3.9 KB JS, 12.4 KB total (gzip) | 2026-09-30 |
+| F9 | Lighthouse (mobile ×3) | PASS | index.html Perf 1.00, A11y 1.00, BP 1.00, SEO 1.00; LCP 1.1 s, CLS 0.001, TBT 0 ms | 2026-09-30 |

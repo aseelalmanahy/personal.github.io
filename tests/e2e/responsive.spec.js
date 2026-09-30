@@ -38,7 +38,7 @@ test.describe('navigation layouts (FR-023, FR-025)', () => {
   test('at 768px and wider all links sit in the bar without a menu', async ({ page }) => {
     await page.setViewportSize({ width: 768, height: 900 });
     await page.goto('/');
-    await expect(page.locator('.nav__link')).toHaveCount(5);
+    await expect(page.locator('.nav__link')).toHaveCount(4);
     for (const link of await page.locator('.nav__link').all()) {
       await expect(link).toBeVisible();
     }

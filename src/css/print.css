@@ -22,7 +22,6 @@ a[href^='http']::after {
 }
 
 .interests__item,
-.project-card,
 .education__item {
   break-inside: avoid;
 }

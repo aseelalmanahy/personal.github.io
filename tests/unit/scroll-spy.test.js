@@ -23,5 +23,5 @@ test('when every intersecting section started above, the latest one wins', () =>
 });
 
 test('non-intersecting entries are ignored', () => {
-  assert.equal(pickActiveSection([entry('about', 5, false), entry('projects', 200)]), 'projects');
+  assert.equal(pickActiveSection([entry('about', 5, false), entry('interests', 200)]), 'interests');
 });

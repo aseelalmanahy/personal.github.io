@@ -26,13 +26,13 @@ the end.
 
 | Field | Rule |
 |---|---|
-| `type` | `github` \| `linkedin` — hero order GitHub, LinkedIn; Contact order LinkedIn (primary), GitHub (FR-005, FR-021, FR-022a) |
-| `label` | Visible text: "GitHub", "LinkedIn" (hero); "Connect on LinkedIn", "GitHub profile" (Contact) |
+| `type` | `github` \| `linkedin` — Contact only, order LinkedIn (primary), GitHub (FR-021, FR-042) |
+| `label` | Visible text: "Connect on LinkedIn", "GitHub profile" |
 | `href` | `https://github.com/aseelalmanahy`, `https://www.linkedin.com/in/aseel-almanahy-97342b109/` (FR-006); no `mailto:` (email removed 2026-09-30) |
 | `opensNewTab` | always `true` |
 
 **Validation**: new-tab links carry `target="_blank"`, `rel="noopener noreferrer"`, and a
-visible or visually-hidden "(opens in a new tab)" (FR-006); no `mailto:` link or email address anywhere (FR-021); each route appears once in the hero and once in Contact (4 links total).
+visible or visually-hidden "(opens in a new tab)" (FR-006); no `mailto:` link or email address anywhere (FR-021); each route appears exactly once, in Contact (2 links total, FR-042); the hero has none (FR-005).
 
 ### EducationEntry
 
@@ -76,22 +76,13 @@ ratings.
 
 **Validation**: rendered as `ul > li` (FR-038); no links, controls, or motion (FR-040).
 
-### Project
+### Project *(removed 2026-09-30)*
 
-| Field | Rule |
-|---|---|
-| `title` | Competency the card demonstrates, ≤ 60 characters |
-| `description` | Required, ≤ 200 characters (FR-017) |
-| `tags` | ≥ 1 short technology names; no tag repeated on another card |
-| `codeLinks` | ≥ 1 of { `label`, `repoUrl` } → `https://github.com/aseelalmanahy/<repo>` |
-| `demoUrl` | Optional absolute URL; omitted link when absent (FR-018) |
-
-**Validation**: link labels include the card title (FR-017); no `#`, empty, placeholder, or
-profile hrefs (SC-010, FR-042). Exactly three cards, in FR-020 order.
+The Projects section was removed (constitution v3.0.0); there are no project entities.
 
 ### ComingSoonCard *(removed 2026-09-30)*
 
-Replaced by three featured Project cards (FR-020); the Projects section has no empty state.
+Removed together with the Projects section.
 
 ## Client-side UI state
 

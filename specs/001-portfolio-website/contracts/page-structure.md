@@ -37,15 +37,13 @@ body
 │       │   ├── a[href="#about"]       About
 │       │   ├── a[href="#experience"]  Experience
 │       │   ├── a[href="#interests"]   Interests
-│       │   ├── a[href="#projects"]    Projects
 │       │   └── a[href="#contact"]     Contact
 │       └── button.theme-toggle[hidden][aria-pressed]  accessible name "Dark theme"
 ├── main#main[tabindex="-1"]
-│   ├── section#home       aria-labelledby → h1   (Hero)
+│   ├── section#home       aria-labelledby → h1   (Hero: greeting + statement, no links)
 │   ├── section#about      aria-labelledby → h2 "About Me"
 │   ├── section#experience aria-labelledby → h2 "Experience"
 │   ├── section#interests  aria-labelledby → h2 "Interests"
-│   ├── section#projects   aria-labelledby → h2 "Projects"
 │   └── section#contact    aria-labelledby → h2 "Contact"
 └── footer.site-footer     "© <year> Aseel Almanahy"
 ```
@@ -70,8 +68,6 @@ h2  Experience
   (one narrative paragraph — no sub-headings; amendment 2026-09-30)
 h2  Interests
   (list of five items — no sub-headings)
-h2  Projects
-  h3  Event-Driven Microservices · Full-Stack Web Application · Algorithmic Systems
 h2  Contact
 ```
 

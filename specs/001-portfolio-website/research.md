@@ -481,3 +481,14 @@ was open in the plan's Technical Context is resolved here.
 - **Alternatives considered**: a "Cloud Architecture" card (no public cloud code to back it);
   linking cards to the GitHub profile (the repetition being removed); keeping `auto-fill` with
   a spanning last card on tablets (breaks equal visual weight, US3 #3).
+
+## R-31 Five-section layout (constitution v3.0.0, amendment 2026-09-30)
+
+- **Decision**: The hero keeps only the greeting and statement; the Projects section, its CSS
+  modules, grid rules, nav link, and `#code` icon are deleted; the GitHub and LinkedIn buttons
+  exist only in Contact. Visitors reach Contact through the always-visible navigation bar.
+- **Rationale**: The owner wants a single, non-repetitive outreach destination and a calmer first
+  screen. Removing code rather than hiding it keeps the page weight, tab order (9 stops), and
+  maintenance surface minimal.
+- **Alternatives considered**: hiding the hero actions on larger screens only (still repetition);
+  keeping Projects with repository links (the owner chose GitHub profile access in Contact).

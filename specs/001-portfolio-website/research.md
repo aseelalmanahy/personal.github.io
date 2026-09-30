@@ -124,7 +124,7 @@ was open in the plan's Technical Context is resolved here.
 ## R-08 JavaScript module organisation
 
 - **Decision**: One entry module `src/js/main.js` loaded with `<script type="module">`, which
-  imports feature modules: `storage.js`, `theme.js`, `nav.js`, `copy-email.js`, `reveal.js`,
+  imports feature modules: `storage.js`, `theme.js`, `nav.js`, `copy-email.js`,
   `scroll-spy.js`. Each feature exports pure, DOM-free helpers (unit-tested) plus one
   `init*()` function that attaches listeners via `addEventListener`. `main.js` calls every
   `init*()` inside its own `try/catch` so one failure cannot disable the others. Submodules are
@@ -245,7 +245,7 @@ was open in the plan's Technical Context is resolved here.
   visual and assistive indications cannot diverge.
 - **Alternatives considered**: `scroll` event + `getBoundingClientRect` (more work per frame).
 
-## R-15 Timeline structure and interaction (FR-011–FR-013)
+## R-15 Timeline structure and interaction (FR-011–FR-013) — SUPERSEDED 2026-09-30 (see R-27)
 
 - **Decision**: `<ol class="timeline">`, most recent first; each `<li>` holds an
   `<article class="timeline__entry" tabindex="0" aria-labelledby="…">` with an `h3` role title,
@@ -260,7 +260,7 @@ was open in the plan's Technical Context is resolved here.
 - **Alternatives considered**: non-focusable entries (fails FR-013 for keyboard users); making
   entries links/buttons (they have no action — misleading semantics).
 
-## R-16 Scroll-in animation for timeline entries (FR-013, FR-013a)
+## R-16 Scroll-in animation for timeline entries (FR-013, FR-013a) — SUPERSEDED 2026-09-30 (see R-27)
 
 - **Decision**: `reveal.js` runs only if `IntersectionObserver` exists **and**
   `prefers-reduced-motion: no-preference` matches. It marks only entries that are currently
@@ -357,12 +357,12 @@ was open in the plan's Technical Context is resolved here.
 
 - **Decision**:
   - **Unit** (`tests/unit`, `node --test`): pure helpers in `storage.js`, `theme.js`,
-    `copy-email.js`, `reveal.js`, `scroll-spy.js`.
+    `copy-email.js`, `scroll-spy.js` (`reveal.js` removed 2026-09-30).
   - **End-to-end** (`tests/e2e`, Playwright; Chromium, Firefox, WebKit): one spec per user
     story plus cross-cutting specs — `structure`, `hero-contact` (US1), `about-experience`
     (US2), `projects` (US3), `nav-theme` (US4), `responsive` (viewport matrix + zoom),
     `a11y` (axe WCAG 2.2 AA tags in light and dark, JS on and off), `no-js`, `privacy-scope`
-    (no third-party requests, no forms, no résumé, timeline has only allowed fields).
+    (no third-party requests, no forms, no résumé, Experience is a single narrative).
   - **Static checks**: `html-validate`, ESLint, Stylelint, Prettier, `check-csp`,
     `check-site-url`, `check-budgets`, `linkinator`.
   - **Lab performance**: Lighthouse CI (mobile) against `dist/` with assertions from
@@ -414,3 +414,21 @@ was open in the plan's Technical Context is resolved here.
 - **Rationale**: Honours the request while keeping each gate objective and checkable.
 - **Alternatives considered**: re-running the spec checklist verbatim after each phase (it would
   pass trivially and prove nothing about the code).
+
+## R-27 Experience narrative layout (FR-011–FR-013, amendment 2026-09-30)
+
+- **Decision**: The Experience section holds one `<p class="experience__narrative">` with the
+  owner's text verbatim — no list, `<time>`, headings per role, or employer name. It is styled
+  as a "long-read" block: `--text-lg` body size, generous line height, measure capped at `62ch`,
+  a 3px amber (`--color-accent-bg`) left rule, and a serif drop cap on the first letter
+  (`::first-letter`, coloured `--color-accent`, which meets 4.5:1 on both backgrounds). It is
+  static: no interaction, no animation, no JavaScript.
+- **Rationale**: Presents one cohesive story with visual polish while staying minimal, readable
+  at 320px/400% zoom, and fully accessible (a drop cap via `::first-letter` does not change the
+  accessible text). Removing the timeline also removes `reveal.js` and its CSS, which lowers
+  JS and CSS weight and removes the only below-the-fold animation — Lighthouse targets are
+  unaffected or improved.
+- **Alternatives considered**: splitting the narrative into four themed paragraphs or adding
+  "focus" tags (full-stack, cloud, architecture, leadership) — rejected because the owner asked
+  for a single narrative and no extra content; a pull-quote card — heavier visual weight than
+  the rest of the minimal page.

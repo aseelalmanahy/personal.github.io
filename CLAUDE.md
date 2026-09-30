@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Single-page personal portfolio for Aseel Almanahy, scaffolded with **GitHub Spec Kit** (v1.0.13.dev0). Active feature: `specs/001-portfolio-website` on branch `001-portfolio-website`. Implementation phases 1–5 are built and tested; launch waits on the owner's content (see below). Gate evidence lives in `specs/001-portfolio-website/checklists/implementation-gates.md`.
 
-- **Content placeholders**: unknown values (role dates, GitHub/LinkedIn URLs, email, site URL) are `CONTENT:` markers; the About intro is marked `data-content-status="draft"`. Never invent them — `node tools/check-content.mjs` lists what remains; `--strict` must pass before deploy. Until then `npm run test:lighthouse` fails SEO (placeholder in `robots.txt`) and CI stays red, by design.
+- **Content placeholders**: the two remaining unknowns (public email, site URL) are `CONTENT:` markers. GitHub/LinkedIn URLs, the About intro, and the Experience narrative are owner-approved (spec FR-006, FR-008, FR-011) — keep them verbatim. Never invent values — `node tools/check-content.mjs` lists what remains; `--strict` must pass before deploy. Until then `npm run test:lighthouse` fails SEO (placeholder in `robots.txt`) and CI stays red, by design.
 - The parent folder (`../`) contains an unrelated, empty git repository; this project's repository root is this directory.
 
 ## Stack (decided in `specs/001-portfolio-website/plan.md`)
@@ -36,7 +36,7 @@ Single-page personal portfolio for Aseel Almanahy, scaffolded with **GitHub Spec
 
 All feature work is meant to flow through Spec Kit skills, available in `.claude/skills/` (mirrored for Copilot in `.github/skills/`):
 
-1. `/speckit-constitution` — project principles in `.specify/memory/constitution.md` (v2.1.0: vanilla stack, single CSP-hashed theme bootstrap exception, mobile-first, warm palette, WCAG 2.2 AA, single-page scope, GitHub Pages budgets, privacy). Plans are checked against it.
+1. `/speckit-constitution` — project principles in `.specify/memory/constitution.md` (v2.1.1: vanilla stack, single CSP-hashed theme bootstrap exception, mobile-first, warm palette, WCAG 2.2 AA, single-page scope, GitHub Pages budgets, privacy). Plans are checked against it.
 2. `/speckit-specify <description>` — creates a numbered feature dir under `specs/` (sequential numbering) with `spec.md`, and records the active feature in `.specify/feature.json`.
 3. `/speckit-clarify` — optional, resolves ambiguities in the spec.
 4. `/speckit-plan` — produces the technical plan (tech stack decisions live here).

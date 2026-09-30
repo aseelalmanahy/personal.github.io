@@ -17,10 +17,10 @@ the end.
 | `displayName` | "Aseel" | hero `h1` greeting "Hi, I'm Aseel." |
 | `fullName` | "Aseel Almanahy" | `<title>`, brand link, OG tags, JSON-LD, footer |
 | `statement` | "Full Stack Software Engineer specializing in scalable systems, robust architectures, and engineering mentorship." — verbatim (FR-004) | hero paragraph, meta/OG description |
-| `intro` | 2–4 sentences, first person, warm tone (FR-008) — **content input** | About Me paragraph |
+| `intro` | The owner's approved text in spec FR-008, verbatim (3 sentences) | About Me paragraph |
 
 **Validation**: greeting and statement match the spec byte-for-byte (checked by e2e);
-`intro` sentence count 2–4; no `CONTENT:` placeholder at launch.
+`intro` matches FR-008 verbatim (checked by e2e); no `CONTENT:` placeholder at launch.
 
 ### ContactLink
 
@@ -28,7 +28,7 @@ the end.
 |---|---|
 | `type` | `github` \| `linkedin` \| `email` — exactly these three, in this order (FR-005, FR-022a) |
 | `label` | Visible text: "GitHub", "LinkedIn", "Email" (hero); descriptive in Contact section (e.g. "GitHub profile") |
-| `href` | `https://github.com/<user>`, `https://www.linkedin.com/in/<user>`, `mailto:<address>` — **content inputs** |
+| `href` | `https://github.com/aseelalmanahy`, `https://www.linkedin.com/in/aseel-almanahy-97342b109/` (FR-006); `mailto:<address>` — **content input** |
 | `opensNewTab` | `true` for github/linkedin, `false` for email |
 
 **Validation**: new-tab links carry `target="_blank"`, `rel="noopener noreferrer"`, and a
@@ -56,24 +56,16 @@ shown as text (FR-021); each appears once in the hero and once in Contact (6 lin
 **Validation**: two categories, each a heading followed by a `ul` (FR-010); no proficiency
 ratings.
 
-### TimelineEntry
+### ExperienceNarrative *(replaces TimelineEntry, amendment 2026-09-30)*
 
 | Field | Rule |
 |---|---|
-| `id` | kebab-case slug, unique (e.g. `role-fse`), used for `aria-labelledby` |
-| `title` | One of: Full Stack Software Engineer; Associate Full Stack Software Engineer; Leap to Lead Reverse Mentor; LEAP Program Mentor (FR-011) |
-| `organization` | "Fidelity Investments" |
-| `category` | `engineering` \| `leadership` — Engineering: the two engineer titles; Leadership: the two mentor titles |
-| `start` | `YYYY-MM` (machine) / "Mon YYYY" (display) — **content input** |
-| `end` | `YYYY-MM` / "Mon YYYY", or `present` → display "Present" — **content input** |
+| `text` | The owner's paragraph in spec FR-011, verbatim (4 sentences) |
 
 **Validation**:
-- Exactly four entries; no other fields — no description, bullets, team, system, tool, or
-  metric text (FR-013, FR-014); enforced by the `privacy-scope` e2e spec, which asserts each
-  entry contains only title, organisation, dates, and category.
-- `start ≤ end` when `end` is a date.
-- **Ordering**: by `start` descending; ties broken with `engineering` before `leadership`
-  (edge case "Overlapping or ongoing roles").
+- Exactly one paragraph inside `#experience` besides the section heading (FR-012); no `ol`,
+  `ul`, `time`, `article`, or per-role headings; no month/year dates; no employer or program
+  names (FR-012, FR-014) — enforced by the `privacy-scope` and `about-experience` e2e specs.
 - Written privacy review recorded before publication (FR-015).
 
 ### Project
@@ -142,12 +134,6 @@ the button), on choosing a link, or on widening past the breakpoint. Exposed as
 
 `idle` → (click) → `success` ("Copied!") | `error` ("Couldn't copy — please select the address
 above") → (4s) → `idle`. A new click during `success`/`error` restarts the timer.
-
-### RevealState (per timeline entry)
-
-`shown` (default; no attribute) | `pending` → `visible`. Only entries below the viewport at init,
-with motion allowed and `IntersectionObserver` available, enter `pending`. No path leaves an entry
-in `pending` once it intersects.
 
 ### ActiveSection
 

@@ -4,7 +4,7 @@
 
 **Created**: 2026-09-29
 
-**Status**: Draft
+**Status**: Draft — amended 2026-09-30 (narrative content structure; see Clarifications)
 
 **Input**: User description: "Create a technical specification for a single-page personal
 portfolio website for Aseel Almanahy, a Full Stack Software Engineer. Hero section (greeting
@@ -19,6 +19,15 @@ title, short description, tech tags, GitHub link, live demo link); UI (accessibl
 toggle with smooth transitions, smooth-scrolling section navigation, mobile-first fluid layouts
 for phone, tablet, and desktop)."
 
+**Amendment input (2026-09-30)**: "Update the project specification and tasks to reflect a
+narrative-driven content structure: About Me uses a new paragraph framing mentorship as a
+vehicle for personal growth and sharing accumulated technical experience; the Experience
+section eliminates the vertical timeline, individual role listings, and chronological position
+blocks in favour of a single, highly polished narrative focusing on full-stack competencies,
+cloud experience, architectural growth, and technical leadership capability; GitHub and
+LinkedIn links are set to the owner's profiles; tasks and the page are regenerated while
+maintaining Lighthouse scores."
+
 ## Clarifications
 
 ### Session 2026-09-29
@@ -26,8 +35,10 @@ for phone, tablet, and desktop)."
 - Q: What should interacting with a timeline entry do? → A: Entries highlight on hover, touch,
   and keyboard focus, and animate gently into view as the visitor scrolls (no animation when
   reduced motion is preferred). Entries show title, organization, dates, and category only.
+  *(Superseded 2026-09-30: the timeline was replaced by a narrative.)*
 - Q: Section order (constitution vs. request)? → A: Hero, About Me, Experience Timeline,
-  Projects, Contact Links; constitution amended to v2.0.1 to match.
+  Projects, Contact Links; constitution amended to v2.0.1 to match. *(The Experience section is
+  a narrative since 2026-09-30; order unchanged.)*
 - Q: How are placeholder project cards handled on the live site? → A: Launch with a single
   friendly "coming soon" card in the project-card style; the full card design is built and
   ready to fill with real projects.
@@ -37,11 +48,23 @@ for phone, tablet, and desktop)."
   Two-state toggle (Light ⇄ Dark); starts from the device preference, explicit choice is
   remembered.
 - Q: What date precision should timeline entries use? → A: Month and year (e.g. "Jun 2022 –
-  Present"); no computed duration.
+  Present"); no computed duration. *(Superseded 2026-09-30: no dates are published.)*
 - Q: Should the navigation bar always stay visible or hide on scroll? → A: Compact bar that
   always stays visible at the top of the viewport.
 - Q: Should the site offer a downloadable résumé? → A: No; LinkedIn serves that purpose.
   Résumé download is out of scope for this version.
+
+### Session 2026-09-30 (owner amendment: narrative content structure)
+
+- Q: How should the Experience section present career history? → A: As one polished narrative
+  paragraph (text in FR-011) about full-stack competencies, cloud experience, architectural
+  growth, and technical leadership. The vertical timeline, individual role listings, dates,
+  employer name, and chronological position blocks are removed entirely.
+- Q: What is the approved About Me introduction? → A: The owner's text in FR-008, which frames
+  mentorship as sharing accumulated experience while sharpening the owner's own leadership.
+- Q: Which public profiles do the GitHub and LinkedIn actions open? → A:
+  `https://github.com/aseelalmanahy` and
+  `https://www.linkedin.com/in/aseel-almanahy-97342b109/` (FR-006).
 
 ## User Scenarios & Testing *(mandatory)*
 
@@ -81,37 +104,30 @@ the correct destination.
 
 ### User Story 2 - Review background and experience (Priority: P2)
 
-A hiring manager wants to judge fit. In About Me they read a short introduction, see education
-(BS in Computer Science, UMass Lowell; MBA in Project Management candidate, LSU Shreveport), and
-scan skills grouped into Languages and Tools/Frameworks. In the Experience Timeline they follow
-Aseel's progression at Fidelity Investments — engineering roles and leadership/mentorship roles —
-each with dates, presented as a clean vertical timeline they can interact with.
+A hiring manager wants to judge fit. In About Me they read a short introduction that shows how
+Aseel approaches engineering and mentorship, see education (BS in Computer Science, UMass
+Lowell; MBA in Project Management candidate, LSU Shreveport), and scan skills grouped into
+Languages and Tools/Frameworks. In Experience they read one polished narrative that tells the
+story of Aseel's technical growth — from strong foundations to full-stack, cloud, and
+architecture work — and of Aseel's technical leadership.
 
-**Why this priority**: Background and career progression are the main evidence a hiring decision
-rests on, but they are only useful once the visitor already knows who Aseel is (P1).
+**Why this priority**: Background and career story are the main evidence a hiring decision rests
+on, but they are only useful once the visitor already knows who Aseel is (P1).
 
 **Independent Test**: With only the hero, About Me, and Experience sections present, a reviewer
-can state Aseel's degrees, list the skills per category, and name each role with its dates and
-whether it is an engineering or leadership role.
+can state Aseel's degrees, list the skills per category, and summarise Aseel's experience in
+terms of full-stack work, cloud (AWS), architecture, and technical leadership.
 
 **Acceptance Scenarios**:
 
-1. **Given** a visitor in About Me, **When** they read the section, **Then** they see both
-   education entries with institution, degree, and status (completed vs. candidate), and skills
-   presented under the two headings "Languages" (Java, C/C++, SQL, Python) and
-   "Tools/Frameworks" (Git, SpringBoot, Angular, AWS).
-2. **Given** a visitor in the Experience Timeline, **When** they view it at any screen size,
-   **Then** the four roles appear in a single vertical sequence ordered most recent first, each
-   showing role title, organization (Fidelity Investments), and date range.
-3. **Given** leadership roles overlap in time with engineering roles, **When** the visitor
-   views the timeline, **Then** each entry is labelled as "Engineering" or "Leadership" in text
-   (not by colour alone) so overlapping dates are not confusing.
-4. **Given** a visitor using a mouse, touch, or keyboard, **When** they hover, tap, or focus a
-   timeline entry, **Then** the entry shows the same visible highlight for every input method.
-5. **Given** a visitor scrolling down to the timeline, **When** each entry comes into view,
-   **Then** it animates gently into place; **and given** the visitor prefers reduced motion,
-   **Then** every entry is simply shown, with no animation.
-6. **Given** any timeline entry, **When** its content is reviewed, **Then** it contains no
+1. **Given** a visitor in About Me, **When** they read the section, **Then** they see the
+   introduction from FR-008 verbatim, both education entries with institution, degree, and
+   status (completed vs. candidate), and skills presented under the two headings "Languages"
+   (Java, C/C++, SQL, Python) and "Tools/Frameworks" (Git, SpringBoot, Angular, AWS).
+2. **Given** a visitor in Experience, **When** they view it at any screen size, **Then** they
+   see the narrative from FR-011 verbatim as flowing prose at a comfortable reading width, with
+   no timeline, role list, dates, or employer name.
+3. **Given** the Experience narrative, **When** its content is reviewed, **Then** it contains no
    internal application names, internal system or architecture descriptions, proprietary tool
    names, team names, or confidential metrics.
 
@@ -209,11 +225,9 @@ touch, and keyboard; toggle the theme, reload, and confirm the choice persisted.
   button or by selecting the visible text.
 - **Clipboard access denied or unsupported**: the copy button reports the failure in words and
   points the visitor to the visible address; nothing else breaks.
-- **Overlapping or ongoing roles**: ongoing roles show "Present" as the end date; overlapping
-  roles are ordered by start date, most recent first; roles starting in the same month list
-  the Engineering role first.
-- **Arriving mid-page or scrolling fast past the timeline**: entries already in or above the
-  viewport are shown immediately; no entry is ever left invisible.
+- **Long narrative on small screens or with enlarged text**: the Experience narrative wraps
+  within the viewport at 320px and 400% zoom and stays readable (no clipped or overlapping
+  text).
 - **Only the "coming soon" card present**: it sits within the grid without stretching to an
   awkward width on large screens.
 - **Project with a missing element** (no demo, no tags): the card stays aligned with its
@@ -230,7 +244,7 @@ touch, and keyboard; toggle the theme, reload, and confirm the choice persisted.
 **Page structure and scope**
 
 - **FR-001**: The site MUST be a single page containing these sections, in this order: Hero,
-  About Me, Experience Timeline, Projects, Contact Links.
+  About Me, Experience, Projects, Contact Links.
 - **FR-002**: Each section MUST be individually linkable so a visitor can share or bookmark a
   link that opens directly at that section.
 - **FR-003**: A "not found" page MUST be shown for any unknown address, in the site's style,
@@ -243,14 +257,21 @@ touch, and keyboard; toggle the theme, reload, and confirm the choice persisted.
   architectures, and engineering mentorship." verbatim.
 - **FR-005**: The hero MUST present three clearly labelled actions — GitHub, LinkedIn, Email —
   styled as buttons, each with a visible text label (icons, if used, are supplementary).
-- **FR-006**: GitHub and LinkedIn actions MUST open Aseel's public profiles in a new tab and
-  MUST indicate to all users that they open in a new tab.
+- **FR-006**: GitHub and LinkedIn actions MUST open Aseel's public profiles —
+  `https://github.com/aseelalmanahy` and `https://www.linkedin.com/in/aseel-almanahy-97342b109/`
+  — in a new tab and MUST indicate to all users that they open in a new tab. The same two URLs
+  are used everywhere the page links to these profiles.
 - **FR-007**: The Email action MUST start a new email to Aseel's chosen public address.
 
 **About Me**
 
-- **FR-008**: About Me MUST include a short introductory paragraph (2–4 sentences) written in a
-  warm, first-person voice, consistent with the hero statement.
+- **FR-008**: About Me MUST open with this introduction, verbatim: "I'm a full-stack software
+  engineer who loves turning complex problems into reliable, well-structured systems. I studied
+  Computer Science at UMass Lowell and am now pursuing an MBA in Project Management at LSU
+  Shreveport, pairing engineering depth with strategic delivery know-how. Mentorship is
+  incredibly important to me—I actively dedicate time to sharing my industry experience to
+  accelerate the growth of other engineers while continuously sharpening my own leadership
+  capabilities."
 - **FR-009**: About Me MUST list education: Bachelor of Science in Computer Science, University
   of Massachusetts Lowell (completed); Master of Business Administration in Project Management,
   Louisiana State University Shreveport (candidate / in progress).
@@ -258,32 +279,32 @@ touch, and keyboard; toggle the theme, reload, and confirm the choice persisted.
   C/C++, SQL, Python) and Tools/Frameworks (Git, SpringBoot, Angular, AWS). Groups MUST be
   readable as lists by assistive technology.
 
-**Experience Timeline**
+**Experience**
 
-- **FR-011**: The timeline MUST show exactly these Fidelity Investments roles: Full Stack
-  Software Engineer; Associate Full Stack Software Engineer; Leap to Lead Reverse Mentor; LEAP
-  Program Mentor — each with organization, role title, start date, and end date (or "Present").
-  Dates MUST be shown as abbreviated month and year (e.g. "Jun 2022 – Present"), with no
-  computed duration, and MUST be exposed as machine-readable dates to assistive technology and
-  search engines.
-- **FR-012**: Entries MUST be displayed as a single vertical timeline, most recent first, on
-  every screen size, and each entry MUST carry a text label of "Engineering" or "Leadership".
-- **FR-013**: The timeline MUST be interactive: each entry MUST respond to hover, touch, and
-  keyboard focus with the same visible highlight, and entries MUST animate gently into view
-  (no longer than ~400ms each) as the visitor scrolls to them. Entries MUST NOT expand or hide
-  content; each shows only role title, organization, dates, and category.
-- **FR-013a**: The scroll-in animation MUST be skipped entirely when the visitor prefers reduced
-  motion, and entries MUST be fully visible if the animation cannot run (e.g. scripting
-  unavailable) or when the page is opened directly at or below the timeline.
-- **FR-014**: Timeline entries MUST contain only the fields listed in FR-013 (role title,
-  organization, dates, category). No entry — and no other text on the page — may include
-  internal application or system names, descriptions of internal enterprise architecture,
-  proprietary or internal tool names or setups, team or department names, client information,
-  or non-public metrics. Elsewhere on the page, experience may be described only in terms of
-  general technical competencies (e.g. "full stack development") and leadership achievements
-  (e.g. "mentoring engineers and leaders").
-- **FR-015**: All timeline content MUST pass a written privacy review against FR-014 before
-  publication.
+- **FR-011**: The Experience section MUST present this narrative, verbatim, as flowing prose:
+  "My engineering journey is rooted in a strong technical foundation, starting with early
+  hands-on work in data structures, object-oriented systems, and core software engineering
+  integrations. Over the years, I have evolved into a Full Stack Engineer specialized in
+  architecting robust systems, constructing high-throughput microservices, and managing
+  resilient cloud infrastructure on AWS. Beyond the code, I bridge the gap between technical
+  execution and organizational strategy. My career is defined not just by the systems I build,
+  but by my active involvement in leadership development—collaborating directly with executive
+  technology leaders to share technical insights while structuring onboarding environments
+  that empower engineering teams to deploy stable, high-quality features with absolute
+  confidence."
+- **FR-012**: The Experience section MUST NOT contain a timeline, role or position listings,
+  job titles as separate items, dates or date ranges, employer or organization names, or any
+  list structure; it is a single narrative block.
+- **FR-013**: The narrative MUST be laid out for comfortable reading and visual polish: a
+  readable line length (about 45–75 characters), typographic emphasis consistent with the warm
+  minimalist design, and no interactive behaviour or animation it depends on.
+- **FR-013a**: *(Removed 2026-09-30 — applied only to the former timeline animation.)*
+- **FR-014**: No text on the page may include internal application or system names,
+  descriptions of internal enterprise architecture, proprietary or internal tool names or
+  setups, team or department names, client information, or non-public metrics. Experience is
+  described only in terms of general technical competencies and leadership capability.
+- **FR-015**: All published text, including the Experience narrative, MUST pass a written
+  privacy review against FR-014 before publication.
 
 **Projects**
 
@@ -372,8 +393,8 @@ touch, and keyboard; toggle the theme, reload, and confirm the choice persisted.
 - **Education Entry**: degree, field, institution, status (completed / candidate).
 - **Skill Category**: category name (Languages, Tools/Frameworks) and its ordered list of
   skills.
-- **Timeline Entry**: role title, organization, category (Engineering / Leadership), start date
-  (month + year), end date (month + year) or "Present". No summary text (see FR-013).
+- **Experience Narrative**: one approved paragraph of prose (FR-011); no dates, roles, or
+  employer.
 - **Project**: title, short description, technology tags, optional repository link, optional
   live demo link.
 
@@ -392,8 +413,8 @@ touch, and keyboard; toggle the theme, reload, and confirm the choice persisted.
   1024px, 1440px, and 2560px widths, and at 400% zoom.
 - **SC-005**: The main content is readable within 2 seconds on a mid-range phone over a typical
   mobile connection, and nothing on the page shifts noticeably after it appears.
-- **SC-006**: 100% of interactive features (navigation, menu, theme toggle, timeline, cards,
-  links) can be completed using only a keyboard, and a screen-reader walkthrough announces every
+- **SC-006**: 100% of interactive features (navigation, menu, theme toggle, cards, links) can
+  be completed using only a keyboard, and a screen-reader walkthrough announces every
   section, link, and control with a meaningful name.
 - **SC-007**: Zero accessibility violations found by an automated WCAG 2.2 AA scan in both light
   and dark themes.
@@ -405,9 +426,9 @@ touch, and keyboard; toggle the theme, reload, and confirm the choice persisted.
 
 ## Assumptions
 
-- **Content still to be supplied by Aseel before launch** (not blocking the spec): start/end
-  dates for each of the four roles; GitHub profile URL; LinkedIn profile URL; the public email
-  address to publish; the About Me introduction text (a draft will be proposed for approval).
+- **Content still to be supplied by Aseel before launch** (not blocking the spec): the public
+  email address to publish and the site URL / repository name. (Supplied 2026-09-30: GitHub and
+  LinkedIn URLs, About Me introduction, Experience narrative; role dates are no longer needed.)
   Real project details are post-launch content that replaces the "coming soon" card.
 - The site's name/heading uses the first name "Aseel"; the full name "Aseel Almanahy" appears in
   the page title, share previews, and footer.
@@ -416,12 +437,12 @@ touch, and keyboard; toggle the theme, reload, and confirm the choice persisted.
 - The email address is published as plain text, an email link, and a copy button; it is not
   disguised. The owner accepts the resulting exposure to automated collection and SHOULD use an
   address intended for public contact.
-- The About Me section may mention both degrees and skills only; certifications, awards, and
-  non-Fidelity roles are out of scope for this version.
+- The About Me section may mention both degrees and skills only; certifications, awards, and a
+  detailed work history are out of scope for this version.
 - A downloadable résumé is out of scope for this version; visitors wanting a full work history
   use the LinkedIn link.
-- Mentor-program names ("Leap to Lead", "LEAP") are public-facing program titles the owner is
-  comfortable publishing; no program internals are described.
+- The Experience narrative names no employer, program, or role; visitors who want a detailed
+  work history use the LinkedIn link.
 - Remembering the theme choice uses only the visitor's own browser storage — no cookies,
   accounts, analytics, or data sent anywhere.
 - English only; no internationalization in this version.

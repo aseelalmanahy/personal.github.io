@@ -1,18 +1,32 @@
 # Implementation Plan: Personal Portfolio Website
 
-**Branch**: `001-portfolio-website` (repository not yet initialised — created in step P1.1) |
-**Date**: 2026-09-29 | **Spec**: [spec.md](spec.md)
+**Branch**: `001-portfolio-website` |
+**Date**: 2026-09-29, amended 2026-09-30 | **Spec**: [spec.md](spec.md)
 
 **Input**: Feature specification from `specs/001-portfolio-website/spec.md`
 
+## Amendment 2026-09-30 — narrative content structure
+
+The owner replaced the Experience timeline with one verbatim narrative paragraph (spec FR-011–
+FR-015), fixed the About Me text (FR-008), and supplied the GitHub and LinkedIn URLs (FR-006).
+Constitution v2.1.1 renames the required section to "Experience". Design deltas:
+
+- **Removed**: timeline markup, `components/timeline.css`, `js/reveal.js` and its tests, the
+  `data-reveal` state, `--duration-reveal`, and the role-date content inputs (research R-15 and
+  R-16 are superseded; implementation Phase 3/5 steps that built them are historical).
+- **Added**: `components/experience.css` — a single narrative block with a readable measure,
+  serif drop cap, and amber rule (research R-27); privacy/structure tests for the narrative.
+- **Unchanged**: section order and ids (`#experience` keeps its nav link), theme, menu,
+  copy-email, scroll-spy, build, and budgets. Lighthouse targets are unchanged.
+- Tasks: `tasks.md` Phase 8 (T104–T117) applies the amendment.
+
 ## Summary
 
-Build a single-page, static portfolio for Aseel Almanahy — Hero, About Me, Experience Timeline,
-Projects, Contact Links — in hand-written HTML5, CSS3 (custom-property design tokens, cascade
-layers, BEM), and native ES modules, hosted on GitHub Pages. All content lives in HTML so the
-page is complete without JavaScript; JavaScript only adds the two-state theme toggle (with a
-no-flash head bootstrap), copy-email button, mobile menu, current-section indicator, and
-timeline scroll-in animation. Quality is enforced by a single `npm run verify` gate (Prettier,
+Build a single-page, static portfolio for Aseel Almanahy — Hero, About Me, Experience
+(narrative), Projects, Contact Links — in hand-written HTML5, CSS3 (custom-property design
+tokens, cascade layers, BEM), and native ES modules, hosted on GitHub Pages. All content lives in
+HTML so the page is complete without JavaScript; JavaScript only adds the two-state theme toggle
+(with a no-flash head bootstrap), copy-email button, mobile menu, and current-section indicator. Quality is enforced by a single `npm run verify` gate (Prettier,
 ESLint, Stylelint, html-validate, unit tests, Playwright + axe in three engines, Lighthouse CI,
 link check) that must pass before GitHub Actions deploys `dist/`. Work proceeds in five
 sequential implementation phases, each ending in a validation gate derived from the 16-item spec
@@ -50,7 +64,7 @@ Chrome for Android); static hosting on GitHub Pages over HTTPS.
 zoom; source directly servable without a build.
 
 **Scale/Scope**: 1 page + 404; 5 sections; 2 education entries; 2 skill groups (8 skills);
-4 timeline entries; 0 projects at launch (grid designed for ~12); ~6 JS modules; ~14 CSS
+1 experience narrative; 0 projects at launch (grid designed for ~12); 6 JS modules; 15 CSS
 partials. Expected size: HTML ≈ 4 KB, CSS ≈ 6 KB, JS ≈ 3 KB (gzip).
 
 All previously open questions are resolved in research.md (R-01 – R-26); none remain.
@@ -123,7 +137,7 @@ src/                          # Deployable site — servable as-is
 │       ├── section.css
 │       ├── about.css         # education + skill groups
 │       ├── tag.css
-│       ├── timeline.css
+│       ├── experience.css    # narrative block (replaced timeline.css, 2026-09-30)
 │       ├── projects.css      # .projects__grid / .projects__item
 │       ├── project-card.css
 │       ├── contact.css       # incl. copy-email
@@ -134,8 +148,7 @@ src/                          # Deployable site — servable as-is
 │   ├── theme.js
 │   ├── nav.js
 │   ├── scroll-spy.js
-│   ├── copy-email.js
-│   └── reveal.js
+│   └── copy-email.js
 └── assets/
     ├── icons.svg             # sprite: github, linkedin, email, sun, moon, menu, external
     ├── favicon.svg
@@ -150,7 +163,6 @@ tests/
 │   ├── copy-email.test.js
 │   ├── nav.test.js
 │   ├── scroll-spy.test.js
-│   ├── reveal.test.js
 │   └── contrast.test.js      # parses tokens.css, asserts R-09 contrast pairs
 ├── e2e/                      # Playwright (Chromium, Firefox, WebKit)
 │   ├── structure.spec.js
@@ -161,8 +173,7 @@ tests/
 │   ├── responsive.spec.js    # viewport matrix, zoom, overflow, bar height
 │   ├── a11y.spec.js          # axe: light/dark × JS on/off × 375/1024
 │   ├── no-js.spec.js
-│   ├── reveal.spec.js
-│   └── privacy-scope.spec.js # allowed timeline fields, no forms/résumé, same-origin only
+│   └── privacy-scope.spec.js # narrative-only Experience, no forms/résumé, same-origin only
 └── helpers/
     └── page-utils.js         # overflow, obscured-by-header, console-error collectors
 

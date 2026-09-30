@@ -59,13 +59,11 @@ for manual confirmation at each phase gate. Details of expected markup are in
 
 ### US2 — Review background and experience
 
-1. Read About Me. **Expect**: intro (2–4 sentences), both degrees with status, skills under
-   "Languages" and "Tools/Frameworks".
-2. Scroll to Experience. **Expect**: four entries, most recent first, each with title,
-   "Fidelity Investments", "Mon YYYY – Mon YYYY/Present", and an Engineering/Leadership label.
-3. Hover, tap, and Tab to an entry. **Expect**: identical highlight for all three.
-4. Reload with the page scrolled to the top, then scroll down. **Expect**: entries fade/slide in.
-   Repeat with reduced motion on. **Expect**: entries simply present, no movement.
+1. Read About Me. **Expect**: the approved intro (spec FR-008) verbatim, both degrees with
+   status, skills under "Languages" and "Tools/Frameworks".
+2. Scroll to Experience. **Expect**: one narrative paragraph (spec FR-011) verbatim, at a
+   comfortable reading width with a drop cap and amber rule; no timeline, roles, dates, or
+   employer name; no animation.
 
 ### US3 — Explore projects
 
@@ -92,14 +90,14 @@ for manual confirmation at each phase gate. Details of expected markup are in
 | Device theme changes | Switch OS/emulated scheme with no saved choice | Page follows; with a saved choice it doesn't |
 | 320px & 400% zoom | 1280px window at 400% zoom (= 320 CSS px) | No horizontal scroll; email and URLs wrap |
 | 2560px | Wide viewport | Content centred at comfortable width |
-| Deep link | Open `/#experience` directly | Heading visible below bar; timeline entries visible |
+| Deep link | Open `/#experience` directly | Heading visible below bar; narrative visible |
 | Keyboard under bar | Tab through whole page | Focused element never hidden by the bar |
 | Print | Print preview | Light scheme, legible, link URLs shown |
 
 ## Manual gates (recorded in the PR description)
 
 - **Screen reader smoke test**: NVDA + Firefox and VoiceOver on iOS — landmarks, headings,
-  toggle state, menu state, copy status announcement, timeline entry names.
+  toggle state, menu state, copy status announcement, Experience narrative read as one paragraph.
 - **Visual review**: screenshots at 320, 375, 768, 1024, 1440, 2560 in light and dark.
 - **Privacy review (FR-015, SC-009)**: reviewer confirms every word inside `#experience` (and
   the whole page) contains no internal application or system names, architecture descriptions,
@@ -112,14 +110,11 @@ for manual confirmation at each phase gate. Details of expected markup are in
 
 `npm run check:static` reports the remaining `CONTENT:` markers.
 
-- [ ] Start/end month for Full Stack Software Engineer
-- [ ] Start/end month for Associate Full Stack Software Engineer
-- [ ] Start/end month for Leap to Lead Reverse Mentor
-- [ ] Start/end month for LEAP Program Mentor
-- [ ] GitHub profile URL
-- [ ] LinkedIn profile URL
+- [x] ~~Role start/end months~~ — no longer needed (timeline removed 2026-09-30)
+- [x] GitHub profile URL — `https://github.com/aseelalmanahy` (2026-09-30)
+- [x] LinkedIn profile URL — `https://www.linkedin.com/in/aseel-almanahy-97342b109/` (2026-09-30)
 - [ ] Public email address
-- [ ] About Me introduction approved
+- [x] About Me introduction approved (spec FR-008, 2026-09-30)
 - [ ] Site URL / repository name (default `https://<github-username>.github.io/`) — confirm
   before the GitHub repository is created (T094); the name sets the 404 `<base href>`
 

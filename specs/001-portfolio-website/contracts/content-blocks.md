@@ -65,28 +65,20 @@ Items sit in `<ul class="education">` under the `h3` "Education", so degrees are
 </div>
 ```
 
-## Timeline entry (FR-011–FR-014)
+## Experience narrative (FR-011–FR-014; replaces the timeline entry, 2026-09-30)
 
 ```html
-<li class="timeline__item">
-  <article class="timeline__entry timeline__entry--engineering" tabindex="0"
-           aria-labelledby="role-fse">
-    <h3 class="timeline__title" id="role-fse">Full Stack Software Engineer</h3>
-    <p class="timeline__org">Fidelity Investments</p>
-    <p class="timeline__dates">
-      <time datetime="CONTENT:YYYY-MM">CONTENT:Mon YYYY</time>
-      <span aria-hidden="true">–</span><span class="visually-hidden">to</span>
-      Present
-    </p>
-    <p class="timeline__category">Engineering</p>
-  </article>
-</li>
+<section id="experience" class="experience" tabindex="-1" aria-labelledby="experience-title">
+  <div class="container">
+    <h2 id="experience-title" class="section__title">Experience</h2>
+    <p class="experience__narrative">My engineering journey is rooted in … absolute confidence.</p>
+  </div>
+</section>
 ```
 
-- Modifier `--engineering` | `--leadership` selects marker shape and badge style.
-- **Nothing else may appear inside an entry** — no descriptions, bullets, team, system, tool,
-  or metric text (FR-013, FR-014). The `privacy-scope` e2e spec enforces the allowed children.
-- Ended roles use a second `<time>` instead of "Present".
+- The paragraph is the owner's text from spec FR-011, **verbatim**.
+- **Nothing else may appear in the section** — no lists, `<time>`, per-role headings, dates,
+  employer or program names (FR-012, FR-014). The `privacy-scope` e2e spec enforces this.
 
 ## Project card (FR-016–FR-019)
 

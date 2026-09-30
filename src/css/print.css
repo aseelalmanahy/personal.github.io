@@ -22,7 +22,6 @@ a[href^='http']::after {
   font-weight: 400;
 }
 
-.timeline__entry,
 .project-card,
 .education__item {
   break-inside: avoid;

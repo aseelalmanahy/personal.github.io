@@ -1,26 +1,26 @@
 import { readFile } from 'node:fs/promises';
 import { test, expect } from '../helpers/fixtures.js';
 
-const ALLOWED_ENTRY_CHILDREN = [
-  'timeline__title',
-  'timeline__org',
-  'timeline__dates',
-  'timeline__category',
+// Experience is one narrative with no dates, employer, program, or role structure (FR-012, FR-014).
+const FORBIDDEN_IN_EXPERIENCE = [
+  /\b(19|20)\d{2}\b/,
+  /\b(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\.? \d{4}\b/,
+  /Fidelity|Leap to Lead|LEAP|Present/,
 ];
 
-test.describe('privacy and scope guardrails (FR-013, FR-014, FR-022, FR-022a, G11, G16)', () => {
-  test('timeline entries contain only the allowed fields', async ({ page }) => {
+test.describe('privacy and scope guardrails (FR-012, FR-014, FR-022, FR-022a, G11, G16)', () => {
+  test('Experience is a single narrative with no dates, employer, or role list', async ({
+    page,
+  }) => {
     await page.goto('/');
-    const entries = page.locator('.timeline__entry');
-    await expect(entries).toHaveCount(4);
-    const childClasses = await entries.evaluateAll((els) =>
-      els.map((el) => [...el.children].map((child) => child.className)),
-    );
-    for (const classes of childClasses) {
-      for (const className of classes) {
-        expect(ALLOWED_ENTRY_CHILDREN).toContain(className);
-      }
+    const experience = page.locator('#experience');
+    await expect(experience.locator('ol, ul, li, time, article, h3')).toHaveCount(0);
+    await expect(experience.locator('p')).toHaveCount(1);
+    const content = await experience.textContent();
+    for (const pattern of FORBIDDEN_IN_EXPERIENCE) {
+      expect(content, String(pattern)).not.toMatch(pattern);
     }
+    await expect(page.locator('.timeline, [class*="timeline__"]')).toHaveCount(0);
   });
 
   test('no forms and no résumé download', async ({ page }) => {

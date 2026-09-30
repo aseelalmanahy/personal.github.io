@@ -117,7 +117,7 @@ Result values: PASS · FAIL · PENDING · N/A (with reason).
 | G2 | Everything traces to an FR/US | PASS | All src files map to plan tasks/FRs; no untraced features |
 | G3 | Plain-language visitor text, no dev artefacts | PASS (pre-content) | grep TODO/FIXME/lorem/console.log = 0; `CONTENT:` placeholders visible until T096 |
 | G4 | All sections complete | PASS | structure.spec: five sections + 404 |
-| G5 | No unresolved decisions; 0 `CONTENT:` at launch | PENDING (content) | 32 markers, all tracked content inputs (T094–T096) |
+| G5 | No unresolved decisions; 0 `CONTENT:` at launch | PENDING (content) | 10 markers: public email and site URL only (T094, T096) |
 | G6 | Each FR has a passing check | PASS | 258 e2e + 52 unit tests; FR-015 privacy review is manual (T098) |
 | G7 | SCs measured with numbers | PASS | Budgets, Lighthouse, CLS, viewport matrix recorded above |
 | G8 | SCs verified in real browsers | PASS | Chromium, Firefox, WebKit |
@@ -154,3 +154,22 @@ Result values: PASS · FAIL · PENDING · N/A (with reason).
 | Privacy review (FR-015, SC-009) | PENDING | | | |
 | Usability check (SC-002, 5 participants) | PENDING | | | |
 | JS-disabled walkthrough & print preview | PENDING | | | |
+
+## Amendment 2026-09-30 — narrative content structure (tasks Phase 8)
+
+| ID | Criterion | Result | Evidence | Date |
+|---|---|---|---|---|
+| A1 | New/updated tests fail first | PASS | 7 failures before T109 (about-experience, privacy-scope, hero-contact, no-js) | 2026-09-30 |
+| A2 | About intro (FR-008) and Experience narrative (FR-011) verbatim | PASS | about-experience.spec, 3 engines | 2026-09-30 |
+| A3 | Experience has no timeline, list, dates, employer, or program names (FR-012, FR-014) | PASS | privacy-scope.spec, 3 engines; no `.timeline*` classes remain | 2026-09-30 |
+| A4 | GitHub/LinkedIn URLs everywhere incl. JSON-LD (FR-006) | PASS | hero-contact.spec, 3 engines | 2026-09-30 |
+| A5 | Full regression | PASS | lint 0; 50/50 unit; 245 e2e passed, 10 skipped (engine limits); 0 console errors / CSP violations | 2026-09-30 |
+| A6 | Budgets | PASS | 11.6 KB HTML+CSS+JS, 4.8 KB JS, 12.9 KB total (gzip) — down from 13.8 KB | 2026-09-30 |
+| A7 | Lighthouse (mobile ×3) | PASS | index.html on a copy with example email/site URL: Perf 1.00, A11y 1.00, BP 1.00, SEO 1.00; LCP 1.1 s, CLS 0.001, TBT 0 ms. Real build: SEO pending the two remaining content inputs | 2026-09-30 |
+| A8 | Visual check | PASS | Experience at 1440 light and 375 dark: 62ch measure, amber rule, serif drop cap; no overflow | 2026-09-30 |
+
+**Notes (Amendment)**
+- Removed: timeline markup/CSS, `reveal.js` (+ unit and e2e specs). Line-length check replaces
+  the timeline layout/highlight/marker tests.
+- Remaining content inputs: public email and site URL (10 markers).
+- Supersedes V3.4, V5.1 (timeline-specific). SC-006 no longer involves timeline entries.

@@ -41,3 +41,8 @@
 - Content inputs (role dates, profile URLs, email address) are listed under Assumptions as
   pre-launch dependencies; they do not block planning.
 - Items marked incomplete require spec updates before `/speckit-clarify` or `/speckit-plan`
+- Iteration 3 (2026-09-30, owner amendment): Experience timeline replaced by a verbatim narrative
+  (FR-011–FR-015 rewritten, FR-013a removed, Timeline Entry → Experience Narrative), About Me
+  text and GitHub/LinkedIn URLs fixed (FR-006, FR-008). Re-validated: all 16 items still pass;
+  no [NEEDS CLARIFICATION] markers. Constitution Principle V wording ("Experience Timeline")
+  requires a matching amendment.

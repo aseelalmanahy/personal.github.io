@@ -15,9 +15,7 @@ test.describe('scripting unavailable (FR-035, edge case)', () => {
     for (const link of await navLinks.all()) {
       await expect(link).toBeVisible();
     }
-    for (const entry of await page.locator('.timeline__entry').all()) {
-      await expect(entry).toBeVisible();
-    }
+    await expect(page.locator('.experience__narrative')).toBeVisible();
   });
 
   test('JS-only controls are not shown', async ({ page }) => {

@@ -1,5 +1,17 @@
 <!--
 Sync Impact Report
+- Version change: 2.1.0 → 2.1.1 (PATCH: wording only). Owner amendment of
+  specs/001-portfolio-website (2026-09-30) replaced the experience timeline with a narrative.
+- Modified principles:
+  - V. Focused Single-Page Scope — required section "Experience Timeline" renamed "Experience"
+    (order and count unchanged)
+  - I. Vanilla Web Platform Architecture — reusable-pattern examples updated ("timeline
+    entries" → "skill tags")
+- Added/removed sections: none
+- Templates requiring updates: none
+- Follow-up TODOs: none
+
+Earlier amendments (retained for review until committed):
 - Version change: 2.0.1 → 2.1.0 (MINOR: bounded exception added to Principles I and VI; scope of
   Principle III and Best Practice 6 clarified). Resolves /speckit-analyze findings C1 and C4 for
   specs/001-portfolio-website.
@@ -78,7 +90,7 @@ Earlier amendments (retained for review until committed):
   or render content, and MUST be verified by an automated hash check in CI. No other inline or
   non-module script is covered by this exception. Non-executable data blocks (e.g.
   `type="application/ld+json"`) are not scripts for the purposes of this principle.
-- Reusable UI patterns (cards, timeline entries, contact links) MUST share one CSS component
+- Reusable UI patterns (cards, skill tags, contact links) MUST share one CSS component
   definition rather than being styled ad hoc per instance.
 - The simplest approach that meets a requirement MUST be chosen; any runtime third-party code
   MUST be justified in the plan's Complexity Tracking table.
@@ -146,8 +158,8 @@ formatted, lint-clean code is itself part of what the site demonstrates.
 ### V. Focused Single-Page Scope
 
 - The site MUST be a single static page (`index.html`) containing exactly these sections, in
-  order: Hero (friendly greeting and one-line introduction), About Me, Experience Timeline,
-  Projects, and Contact Links. A custom `404.html` is the only additional page permitted.
+  order: Hero (friendly greeting and one-line introduction), About Me, Experience, Projects,
+  and Contact Links. A custom `404.html` is the only additional page permitted.
 - Every element on the page MUST serve the owner's content; features outside the five sections
   (blog, CMS, comments, e-commerce, dashboards) require a constitution amendment.
 - Content MUST live directly in the HTML so it is indexable and readable without JavaScript;
@@ -281,4 +293,4 @@ The following 20 practices apply to every change. Each is verifiable by inspecti
   `/speckit-analyze` flags conflicts with them as CRITICAL. Principles SHOULD be reviewed at
   least once a year or whenever the hosting or stack changes.
 
-**Version**: 2.1.0 | **Ratified**: 2026-09-25 | **Last Amended**: 2026-09-29
+**Version**: 2.1.1 | **Ratified**: 2026-09-25 | **Last Amended**: 2026-09-30

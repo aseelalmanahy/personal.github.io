@@ -233,16 +233,49 @@ assets, production build, and Lighthouse targets (plan P5.1–P5.6).
 V5.8–V5.10).
 
 - [X] T093 [P] Create `.github/workflows/ci.yml` (research R-24): triggers `pull_request` and `push` to `main`; `permissions: contents: read, pages: write, id-token: write`; job `verify` on `ubuntu-latest`: `actions/checkout`, `actions/setup-node` (node 24, npm cache), `npm ci`, `npx playwright install --with-deps chromium firefox webkit`, `npm run verify`, upload `playwright-report/` and `.lighthouseci/` as artifacts on failure, then (on success) `actions/configure-pages` and `actions/upload-pages-artifact` with path `dist` — the exact build that was tested; job `deploy` with `needs: verify`, `if: github.event_name == 'push' && github.ref == 'refs/heads/main'`, `environment: github-pages`, single step `actions/deploy-pages` (no checkout, no rebuild — research R-24)
-- [ ] T094 Collect the content inputs from Aseel listed in [quickstart.md → Content inputs](quickstart.md#content-inputs-must-be-complete-before-first-deploy) (four roles' start/end months, GitHub URL, LinkedIn URL, public email, approval or edits of the About intro, site URL / repository name) and tick them off in `specs/001-portfolio-website/quickstart.md` → Content inputs — **blocking; ask the owner, never invent values**. Then, after the owner explicitly confirms the repository name and visibility, create the GitHub repository (e.g. `gh repo create <name> --public --source . --remote origin`) — `<username>.github.io` gives base path `/`, any other name gives `/<name>/`, which T096 uses for the 404 `<base href>`
-- [ ] T095 [US2] Apply the real role dates in `src/index.html`: set each `<time datetime="YYYY-MM">Mon YYYY</time>` (abbreviated month, e.g. "Jun 2022"; FR-011), remove `data-content-placeholder`, and reorder the `li.timeline__item` elements "by `start` descending; ties broken with `engineering` before `leadership`" (data-model TimelineEntry)
-- [ ] T096 [US1] Replace every remaining `CONTENT:` value in `src/index.html`, `src/404.html` (`<base href>` = site base path), `src/robots.txt`, and `src/sitemap.xml` with the supplied URLs and email; apply the approved About intro text and remove `data-content-status="draft"`; run `node tools/check-content.mjs --strict` (expect 0) and `node tools/check-site-url.mjs` (expect pass) (V5.8)
+- [ ] T094 Collect the content inputs from Aseel listed in [quickstart.md → Content inputs](quickstart.md#content-inputs-must-be-complete-before-first-deploy) (remaining after the 2026-09-30 amendment: public email and site URL / repository name; GitHub URL, LinkedIn URL, and the About intro were supplied in the amendment) and tick them off in `specs/001-portfolio-website/quickstart.md` → Content inputs — **blocking; ask the owner, never invent values**. Then, after the owner explicitly confirms the repository name and visibility, create the GitHub repository (e.g. `gh repo create <name> --public --source . --remote origin`) — `<username>.github.io` gives base path `/`, any other name gives `/<name>/`, which T096 uses for the 404 `<base href>`
+- [X] T095 [US2] **SUPERSEDED 2026-09-30** (timeline removed; no dates are published — see Phase 8). Was: Apply the real role dates in `src/index.html`: set each `<time datetime="YYYY-MM">Mon YYYY</time>` (abbreviated month, e.g. "Jun 2022"; FR-011), remove `data-content-placeholder`, and reorder the `li.timeline__item` elements "by `start` descending; ties broken with `engineering` before `leadership`" (data-model TimelineEntry)
+- [ ] T096 [US1] Replace every remaining `CONTENT:` value in `src/index.html`, `src/404.html` (`<base href>` = site base path), `src/robots.txt`, and `src/sitemap.xml` with the supplied site URL and email (GitHub/LinkedIn URLs and the About intro are applied by T109–T110); run `node tools/check-content.mjs --strict` (expect 0) and `node tools/check-site-url.mjs` (expect pass) (V5.8)
 - [ ] T097 Run `npm run build && npm run check:links` (0 broken; LinkedIn skipped and verified manually by opening the profile) and record the result in `specs/001-portfolio-website/checklists/implementation-gates.md` (V5.6)
 - [ ] T098 Perform and record the written privacy review (FR-015, SC-009) in `checklists/implementation-gates.md`: reviewer, date, and confirmation that the whole page — especially `#experience` — contains no internal application or system names, architecture descriptions, proprietary tools, team or department names, client information, or non-public metrics
 - [ ] T099 Perform and record the manual gates in `checklists/implementation-gates.md`: screen-reader smoke test (NVDA + Firefox; VoiceOver iOS), screenshot review at 320/375/768/1024/1440/2560 in both themes, JS-disabled walkthrough, print preview, and the SC-002 usability check (5 participants; pass = ≥ 4 start an email and open GitHub within 30s each)
-- [ ] T100 Fill the final Success Criteria table SC-001–SC-010 and gates G1–G16 in `checklists/implementation-gates.md` with evidence (V5.10); confirm `git diff main -- specs/001-portfolio-website/spec.md` shows no changes below the `**Input**` line — header metadata only (G1)
+- [ ] T100 Fill the final Success Criteria table SC-001–SC-010 and gates G1–G16 in `checklists/implementation-gates.md` with evidence (V5.10); confirm `git diff main -- specs/001-portfolio-website/spec.md` shows no changes below the `**Input**` line — header metadata and the recorded 2026-09-30 owner amendment only (G1)
 - [X] T101 Update `CLAUDE.md` if any command, path, or tool changed during implementation, and confirm every command listed there runs
 - [ ] T102 Push the branch to the `origin` remote created in T094, open a pull request, and confirm the `verify` job is green (V5.9); after merge to `main`, confirm with the owner that repository Settings → Pages → Source is "GitHub Actions" and "Enforce HTTPS" is on, then confirm the `deploy` job published the site
 - [ ] T103 Launch spot-check on the live URL (quickstart → Launch checklist): real phone in both themes, share-link preview renders title/description/image, theme persists across visits, all six contact links work; record the result in `specs/001-portfolio-website/checklists/implementation-gates.md`
+
+---
+
+## Phase 8: Amendment — Narrative Content Structure (2026-09-30)
+
+**Goal**: Apply the owner's amendment (spec Session 2026-09-30; plan → Amendment; research
+R-27; constitution v2.1.1): verbatim About Me intro (FR-008), a single Experience narrative
+replacing the timeline (FR-011–FR-015), and the real GitHub/LinkedIn URLs (FR-006) — keeping
+every earlier gate and Lighthouse result.
+
+**Independent Test**: `npm run build && npx playwright test tests/e2e/about-experience.spec.js tests/e2e/privacy-scope.spec.js tests/e2e/hero-contact.spec.js` passes in three engines; the full suite and Lighthouse show no regression.
+
+### Tests for Phase 8 (write first, confirm they fail)
+
+- [X] T104 [P] [US2] Rewrite `tests/e2e/about-experience.spec.js`: About intro text equals spec FR-008 verbatim; education and skills assertions unchanged; `#experience` contains exactly one `.experience__narrative` paragraph whose text equals spec FR-011 verbatim; the narrative's rendered line length is ≤ 75 characters (width ÷ width of one `0` in its font) at 1440px; the narrative is visible and not clipped at 320px; delete the timeline layout, marker-shape, and highlight-parity tests (FR-012, FR-013)
+- [X] T105 [P] Update `tests/e2e/privacy-scope.spec.js`: replace the timeline-field test with a narrative-only test — `#experience` has no `ol`, `ul`, `li`, `time`, `article`, or `h3`, exactly one `p`, and its text matches none of `/\b(19|20)\d{2}\b/`, `/\b(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\.? \d{4}\b/`, `/Fidelity|Leap to Lead|LEAP|Present/` (FR-012, FR-014); the whole page contains no `.timeline` element
+- [X] T106 [P] [US1] Extend `tests/e2e/hero-contact.spec.js`: every GitHub link (hero, Contact, coming-soon card) has `href="https://github.com/aseelalmanahy"`, every LinkedIn link has `href="https://www.linkedin.com/in/aseel-almanahy-97342b109/"`, and the JSON-LD `sameAs` equals `[github, linkedin]` in that order (FR-006)
+- [X] T107 [P] Update `tests/e2e/no-js.spec.js` (assert `.experience__narrative` visible instead of timeline entries) and the keyboard walkthrough in `tests/e2e/a11y.spec.js` (no timeline tab stops: after the hero CTAs the next stop is the coming-soon card's GitHub link)
+- [X] T108 [P] Delete `tests/e2e/reveal.spec.js` and `tests/unit/reveal.test.js` (feature removed by FR-013)
+
+### Implementation for Phase 8
+
+- [X] T109 [US2] In `src/index.html`: replace the About intro with spec FR-008 verbatim and remove `data-content-status="draft"`; replace the whole `<ol class="timeline">` with `<p class="experience__narrative">` containing spec FR-011 verbatim, per [content-blocks.md → Experience narrative](contracts/content-blocks.md#experience-narrative-fr-011fr-014-replaces-the-timeline-entry-2026-09-30)
+- [X] T110 [US1] In `src/index.html`: set every GitHub `href` (hero, Contact, coming-soon card) to `https://github.com/aseelalmanahy` and every LinkedIn `href` (hero, Contact) to `https://www.linkedin.com/in/aseel-almanahy-97342b109/`; set JSON-LD `sameAs` to both URLs (FR-006)
+- [X] T111 [US2] Create `src/css/components/experience.css` per research R-27 (`.experience__narrative`: `--text-lg`, line-height 1.75, `max-width: 62ch`, 3px `--color-accent-bg` left rule with fluid padding, serif `::first-letter` drop cap in `--color-accent`; token colours only); delete `src/css/components/timeline.css`; in `src/css/main.css` replace the timeline import with `experience.css`; in `src/css/print.css` drop `.timeline__entry` from the break-avoid rule
+- [X] T112 Remove `src/js/reveal.js`, its import and `initReveal` entry in `src/js/main.js`, and its `modulepreload` link in `src/index.html`
+- [X] T113 Run `npm run format`, `npm run lint`, `npm run test:unit`, `npm run build`, `npm run check:static`, and the full e2e suite in Chromium, Firefox, and WebKit; all pass (0 console errors, 0 CSP violations); budgets not exceeded
+- [X] T114 Run Lighthouse CI on the build and on a throwaway copy of `dist/` with example values for the two remaining `CONTENT:` inputs (email, site URL); Performance, Accessibility, Best Practices = 1.00 and SEO ≥ 0.95 on the copy; LCP ≤ 2.0 s, CLS ≤ 0.05, TBT ≤ 200 ms
+- [X] T115 Visual check of the Experience narrative at 375px and 1440px in both themes (screenshots); record in `specs/001-portfolio-website/checklists/implementation-gates.md` → Amendment table
+- [X] T116 Update `specs/001-portfolio-website/checklists/implementation-gates.md` (Amendment table, SC/G tables where evidence changed) and `CLAUDE.md` (content placeholders now: email and site URL only)
+- [X] T117 Commit the amendment on branch `001-portfolio-website`
+
+**Checkpoint (Amendment gate)**: T113–T115 pass; no regression in Gates 1–5a.
 
 ---
 
@@ -258,6 +291,7 @@ V5.8–V5.10).
 - **Phase 5 (Impl. Phase 4)**: depends on Gate 3 (T063). (JS could start after Phase 2, but the
   requested sequence and V3.6 focus tests make Gate 3 the entry condition.)
 - **Phase 6 (Impl. Phase 5)**: depends on Gate 4 (T078).
+- **Phase 8 Amendment (2026-09-30)**: runs after Gate 5a and before T096–T103 (launch needs the amended content). T104–T108 are parallel; T109–T112 edit shared files, in order; T113–T117 follow.
 - **Phase 7 Polish & Launch**: T093 can start after Gate 4; T094 (content) can be requested at
   any time and is the only external blocker; T095–T103 depend on Gate 5a (T092) and T094.
 

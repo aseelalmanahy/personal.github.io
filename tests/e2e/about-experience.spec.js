@@ -1,12 +1,39 @@
 import { test, expect } from '../helpers/fixtures.js';
 
-const text = (locator) =>
-  locator.evaluateAll((els) => els.map((el) => el.textContent.replace(/\s+/g, ' ').trim()));
+// Owner-approved text, verbatim (spec FR-008 and FR-011, amendment 2026-09-30).
+const ABOUT_INTRO =
+  "I'm a full-stack software engineer who loves turning complex problems into reliable, " +
+  'well-structured systems. I studied Computer Science at UMass Lowell and am now pursuing an ' +
+  'MBA in Project Management at LSU Shreveport, pairing engineering depth with strategic ' +
+  'delivery know-how. Mentorship is incredibly important to me—I actively dedicate time to ' +
+  'sharing my industry experience to accelerate the growth of other engineers while ' +
+  'continuously sharpening my own leadership capabilities.';
+
+const EXPERIENCE_NARRATIVE =
+  'My engineering journey is rooted in a strong technical foundation, starting with early ' +
+  'hands-on work in data structures, object-oriented systems, and core software engineering ' +
+  'integrations. Over the years, I have evolved into a Full Stack Engineer specialized in ' +
+  'architecting robust systems, constructing high-throughput microservices, and managing ' +
+  'resilient cloud infrastructure on AWS. Beyond the code, I bridge the gap between technical ' +
+  'execution and organizational strategy. My career is defined not just by the systems I ' +
+  'build, but by my active involvement in leadership development—collaborating directly with ' +
+  'executive technology leaders to share technical insights while structuring onboarding ' +
+  'environments that empower engineering teams to deploy stable, high-quality features with ' +
+  'absolute confidence.';
+
+const normalise = (value) => value.replace(/\s+/g, ' ').trim();
+const text = (locator) => locator.evaluateAll((els) => els.map((el) => el.textContent.trim()));
 
 test.describe('US2 — About Me', () => {
+  test('introduction is the approved text, verbatim (FR-008)', async ({ page }) => {
+    await page.goto('/');
+    expect(normalise(await page.locator('.about__intro').textContent())).toBe(ABOUT_INTRO);
+    await expect(page.locator('.about__intro')).not.toHaveAttribute('data-content-status');
+  });
+
   test('education entries and statuses', async ({ page }) => {
     await page.goto('/');
-    expect(await text(page.locator('.education__degree'))).toEqual([
+    expect((await text(page.locator('.education__degree'))).map(normalise)).toEqual([
       'Bachelor of Science in Computer Science',
       'Master of Business Administration in Project Management',
     ]);
@@ -34,69 +61,36 @@ test.describe('US2 — About Me', () => {
   });
 });
 
-test.describe('US2 — Experience timeline layout (FR-011, FR-012)', () => {
-  for (const width of [375, 768, 1440]) {
-    test(`single column with labels at ${width}px`, async ({ page }) => {
-      await page.setViewportSize({ width, height: 900 });
-      await page.goto('/');
-      const entries = page.locator('.timeline__entry');
-      await expect(entries).toHaveCount(4);
-      const xs = new Set();
-      let previousY = -Infinity;
-      for (const entry of await entries.all()) {
-        const box = await entry.boundingBox();
-        xs.add(Math.round(box.x));
-        expect(box.y).toBeGreaterThan(previousY);
-        previousY = box.y;
-        await expect(entry.locator('.timeline__category')).toHaveText(/^(Engineering|Leadership)$/);
-      }
-      expect(xs.size).toBe(1);
-    });
-  }
-
-  test('engineering and leadership markers differ by shape', async ({ page }) => {
+test.describe('US2 — Experience narrative (FR-011 – FR-013)', () => {
+  test('one paragraph with the approved narrative, verbatim', async ({ page }) => {
     await page.goto('/');
-    const shape = (selector) =>
-      page
-        .locator(selector)
-        .first()
-        .evaluate((el) => {
-          const style = getComputedStyle(el, '::before');
-          return `${style.borderRadius} ${style.transform}`;
-        });
-    expect(await shape('.timeline__entry--engineering')).not.toBe(
-      await shape('.timeline__entry--leadership'),
-    );
+    const narrative = page.locator('#experience .experience__narrative');
+    await expect(narrative).toHaveCount(1);
+    expect(normalise(await narrative.textContent())).toBe(EXPERIENCE_NARRATIVE);
   });
-});
 
-test.describe('US2 — identical highlight for hover, focus, and touch (FR-013)', () => {
-  test.use({ reducedMotion: 'reduce', hasTouch: true });
-
-  const highlight = (entry) =>
-    entry.evaluate((el) => {
-      const style = getComputedStyle(el);
-      return [style.backgroundColor, style.borderColor, style.boxShadow].join(' | ');
-    });
-
-  test('hover, keyboard focus, and tap produce the same styles', async ({ page }) => {
+  test('comfortable line length at desktop width (≤ 75 characters)', async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
     await page.goto('/');
-    const entry = page.locator('.timeline__entry').first();
-    const resting = await highlight(entry);
+    const charactersPerLine = await page.locator('.experience__narrative').evaluate((el) => {
+      const probe = document.createElement('span');
+      probe.textContent = '0';
+      el.append(probe);
+      const zero = probe.getBoundingClientRect().width;
+      probe.remove();
+      return el.getBoundingClientRect().width / zero;
+    });
+    expect(charactersPerLine).toBeLessThanOrEqual(75);
+  });
 
-    await entry.hover();
-    const hovered = await highlight(entry);
-    await page.mouse.move(0, 0);
-
-    await entry.focus();
-    const focused = await highlight(entry);
-    await entry.evaluate((el) => el.blur());
-
-    await entry.tap();
-    const tapped = await highlight(entry);
-
-    expect(hovered).not.toBe(resting);
-    expect(focused).toBe(hovered);
-    expect(tapped).toBe(hovered);
+  test('readable and unclipped at 320px', async ({ page }) => {
+    await page.setViewportSize({ width: 320, height: 640 });
+    await page.goto('/');
+    const narrative = page.locator('.experience__narrative');
+    await narrative.scrollIntoViewIfNeeded();
+    await expect(narrative).toBeVisible();
+    const box = await narrative.boundingBox();
+    expect(box.x).toBeGreaterThanOrEqual(0);
+    expect(box.x + box.width).toBeLessThanOrEqual(320);
   });
 });

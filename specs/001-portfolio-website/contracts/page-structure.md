@@ -63,7 +63,7 @@ h2  About Me
     h4  Languages
     h4  Tools/Frameworks
 h2  Experience
-  h3  <role title> ×4
+  (one narrative paragraph — no sub-headings; amendment 2026-09-30)
 h2  Projects
   h3  <project title> ×N  |  h3 "More projects coming soon"
 h2  Contact

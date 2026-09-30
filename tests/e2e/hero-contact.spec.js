@@ -4,6 +4,9 @@ const GREETING = "Hi, I'm Aseel.";
 const STATEMENT =
   'Full Stack Software Engineer specializing in scalable systems, robust architectures, and engineering mentorship.';
 
+const GITHUB_URL = 'https://github.com/aseelalmanahy';
+const LINKEDIN_URL = 'https://www.linkedin.com/in/aseel-almanahy-97342b109/';
+
 const normalise = (text) => text.replace(/\s+/g, ' ').trim();
 
 async function describeLinks(locator) {
@@ -54,6 +57,24 @@ test.describe('US1 — hero and contact content', () => {
     const link = page.locator('#contact .contact__email-link');
     const href = await link.getAttribute('href');
     expect(normalise(await link.textContent())).toBe(href.replace(/^mailto:/, ''));
+  });
+
+  test('profile links point at the owner’s GitHub and LinkedIn everywhere (FR-006)', async ({
+    page,
+  }) => {
+    await page.goto('/');
+    const hrefs = (selector) =>
+      page.locator(selector).evaluateAll((links) => links.map((a) => a.getAttribute('href')));
+    const github = await hrefs('a[href*="github.com"]');
+    const linkedin = await hrefs('a[href*="linkedin.com"]');
+    expect(github).toHaveLength(3); // hero, Contact, coming-soon card
+    expect(new Set(github)).toEqual(new Set([GITHUB_URL]));
+    expect(linkedin).toHaveLength(2); // hero, Contact
+    expect(new Set(linkedin)).toEqual(new Set([LINKEDIN_URL]));
+    const person = await page
+      .locator('script[type="application/ld+json"]')
+      .evaluate((el) => JSON.parse(el.textContent));
+    expect(person.sameAs).toEqual([GITHUB_URL, LINKEDIN_URL]);
   });
 });
 

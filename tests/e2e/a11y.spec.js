@@ -68,11 +68,8 @@ test.describe('keyboard walkthrough (SC-006)', () => {
   test('logical tab order through every control, without traps', async ({ page, browserName }) => {
     test.skip(!TAB_REACHES_LINKS(browserName), 'WebKit build does not Tab to links');
     await page.goto('/');
-    const order = await tabOrder(page, 22);
-    const labels = order.map(({ text, className }) =>
-      className.includes('timeline__entry') ? 'timeline entry' : text,
-    );
-    expect(labels.slice(0, 10)).toEqual([
+    const labels = (await tabOrder(page, 16)).map(({ text }) => text);
+    expect(labels).toEqual([
       'Skip to main content',
       'Aseel Almanahy',
       'About',
@@ -83,9 +80,12 @@ test.describe('keyboard walkthrough (SC-006)', () => {
       'GitHub (opens in a new tab)',
       'LinkedIn (opens in a new tab)',
       'Email',
+      'Visit my GitHub (opens in a new tab)',
+      'GitHub profile (opens in a new tab)',
+      'LinkedIn profile (opens in a new tab)',
+      'Email me',
+      expect.stringContaining('@'),
+      'Copy email',
     ]);
-    expect(labels.filter((label) => label === 'timeline entry')).toHaveLength(4);
-    expect(labels).toContain('Copy email');
-    expect(new Set(labels.slice(0, 21)).size).toBeGreaterThan(15);
   });
 });

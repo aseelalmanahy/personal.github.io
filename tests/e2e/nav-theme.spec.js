@@ -37,10 +37,21 @@ test.describe('US4 — headings and focus never hidden under the bar (FR-023a)',
       await page.setViewportSize({ width, height: 800 });
       for (const id of ['about', 'experience', 'projects', 'contact']) {
         await page.goto(`/#${id}`);
-        await page.waitForTimeout(100);
-        const heading = await page.locator(`#${id} h2`).boundingBox();
-        const header = await page.locator('.site-header').boundingBox();
-        expect(heading.y, id).toBeGreaterThanOrEqual(header.y + header.height - 1);
+        // The page must actually scroll there: the heading lands just below the bar (within
+        // section padding), or the page is scrolled to its end (the last section may be short).
+        await expect
+          .poll(
+            () =>
+              page.evaluate((target) => {
+                const heading = document.querySelector(`#${target} h2`).getBoundingClientRect();
+                const bar = document.querySelector('.site-header').getBoundingClientRect();
+                const atEnd =
+                  Math.ceil(scrollY + innerHeight) >= document.documentElement.scrollHeight - 1;
+                return heading.top >= bar.bottom - 1 && (heading.top <= bar.bottom + 160 || atEnd);
+              }, id),
+            { message: id, timeout: 8000 },
+          )
+          .toBe(true);
       }
     });
 

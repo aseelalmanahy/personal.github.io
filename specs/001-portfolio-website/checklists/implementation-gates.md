@@ -285,3 +285,12 @@ Result values: PASS · FAIL · PENDING · N/A (with reason).
 | S16-3 | Per-change review (constitution Governance) | PASS | First-screen review at 320 (light), 375 (dark), 768 (light), 1024 (dark), 1440 (light); no overflow; keyboard and JS-off by the automated specs | 2026-09-30 |
 | S16-4 | `npm run verify` | PASS | exit 0: format, lint, 46/46 unit, 0 content markers, 271 e2e passed / 8 skipped (engine limits), 12/12 links | 2026-09-30 |
 | S16-5 | Budgets and Lighthouse | PASS | 12.4 KB total (gzip); index.html Perf 1.00, A11y 1.00, BP 1.00, SEO 1.00; LCP 1.1 s, CLS 0.001, TBT 0 ms | 2026-09-30 |
+
+## Custom domain aseelalmanahy.com (Phase 17, 2026-09-30)
+
+| ID | Gate | Result | Evidence | Date |
+|---|---|---|---|---|
+| D1 | Canonical, share tags, JSON-LD on the custom domain (FR-043) | PASS | structure.spec: canonical, `og:url` = `https://aseelalmanahy.com/`, `og:image` under it, JSON-LD `url` (3 engines) | 2026-09-30 |
+| D2 | robots, sitemap, CNAME; no github.io published | PASS | `dist/CNAME` = `aseelalmanahy.com`; robots `Sitemap:` and sitemap `<loc>` on the domain; no "github.io" in any published text file; `check-site-url` all ok incl. CNAME host | 2026-09-30 |
+| D3 | `npm run verify` | PASS | exit 0: format, lint, 46/46 unit, 0 content markers, 277 e2e passed / 8 skipped (engine limits), 12/12 links; Lighthouse 1.00 ×4, canonical audit passes | 2026-09-30 |
+| D4 | DNS and Pages custom domain live | PENDING (owner) | 2026-09-30 lookup: `aseelalmanahy.com` has no A records, `www` does not exist; Squarespace DNS and Pages settings in T102 | — |

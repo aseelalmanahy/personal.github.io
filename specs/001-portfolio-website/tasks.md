@@ -241,8 +241,8 @@ V5.8–V5.10).
 - [ ] T099 Perform and record the manual gates in `checklists/implementation-gates.md`: screen-reader smoke test (NVDA + Firefox; VoiceOver iOS), screenshot review at 320/375/768/1024/1440/2560 in both themes, JS-disabled walkthrough, print preview, and the SC-002 usability check (5 participants, starting from the top of the page; pass = ≥ 4 open the LinkedIn profile as the way to get in touch and open the GitHub profile, within 30s each)
 - [ ] T100 Fill the final Success Criteria table SC-001–SC-010 and gates G1–G16 in `checklists/implementation-gates.md` with evidence (V5.10); confirm with `git diff main -- specs/001-portfolio-website/spec.md` that every change below the `**Input**` line is an owner amendment recorded in the spec (Amendment input paragraphs, Clarifications, and requirements checklist iterations 3–9) (G1)
 - [X] T101 Update `CLAUDE.md` if any command, path, or tool changed during implementation, and confirm every command listed there runs
-- [ ] T102 Create the public GitHub repository `aseelalmanahy.github.io` (owner action: on github.com, or `gh repo create aseelalmanahy.github.io --public --source . --remote origin` after `gh auth login`), push the branch to `origin`, open a pull request, and confirm the `verify` job is green (V5.9); after merge to `main`, confirm with the owner that repository Settings → Pages → Source is "GitHub Actions" and "Enforce HTTPS" is on, then confirm the `deploy` job published the site
-- [ ] T103 Launch spot-check on the live URL (quickstart → Launch checklist): real phone in both themes, share-link preview renders title/description/image, theme persists across visits, the two Contact links (Connect on LinkedIn, GitHub profile) open the right profiles and the hero has none; record the result in `specs/001-portfolio-website/checklists/implementation-gates.md`
+- [ ] T102 Create the public GitHub repository `aseelalmanahy.github.io` (owner action: on github.com, or `gh repo create aseelalmanahy.github.io --public --source . --remote origin` after `gh auth login`), push the branch to `origin`, open a pull request, and confirm the `verify` job is green (V5.9); after merge to `main`, confirm with the owner that repository Settings → Pages → Source is "GitHub Actions", the custom domain is `aseelalmanahy.com` (DNS at Squarespace: apex A records to GitHub Pages 185.199.108.153/109/110/111, `www` CNAME → `aseelalmanahy.github.io`), and "Enforce HTTPS" is on, then confirm the `deploy` job published the site
+- [ ] T103 Launch spot-check on the live URL `https://aseelalmanahy.com/` (and that `www.` and the github.io address redirect to it) (quickstart → Launch checklist): real phone in both themes, share-link preview renders title/description/image, theme persists across visits, the two Contact links (Connect on LinkedIn, GitHub profile) open the right profiles and the hero has none; record the result in `specs/001-portfolio-website/checklists/implementation-gates.md`
 
 ---
 
@@ -471,6 +471,20 @@ the statement stays only as the share-preview summary (FR-036); constitution v5.
 
 ---
 
+## Phase 17: Amendment — Custom Domain aseelalmanahy.com (2026-09-30)
+
+**Goal**: Canonical address `https://aseelalmanahy.com/` everywhere (FR-043); GitHub Pages
+serves the custom domain from `CNAME`.
+
+**Independent Test**: `npm run verify` exits 0; the FR-043 specs confirm canonical, share tags, JSON-LD, robots, sitemap, and CNAME, and no github.io in `dist/`.
+
+- [X] T179 Add FR-043 tests to `tests/e2e/structure.spec.js` (canonical, `og:url`, `og:image`, JSON-LD `url`, `dist/robots.txt`, `dist/sitemap.xml`, `dist/CNAME`, no "github.io" in published text files); confirm failures
+- [X] T180 Point `src/index.html` (canonical, `og:url`, `og:image`, JSON-LD), `src/robots.txt`, and `src/sitemap.xml` at `https://aseelalmanahy.com/`; add `src/CNAME`; add a CNAME-host check to `tools/check-site-url.mjs`; skip the new origin in `check:links` until DNS is live; update `CLAUDE.md`
+- [X] T181 Sync spec (status, amendment input, clarification, FR-043, assumption), checklist iteration 13, quickstart launch checklist, T102/T103 domain steps, plan, research R-34
+- [X] T182 Run `npm run verify` (exit 0, Lighthouse 1.00 ×4), record in `checklists/implementation-gates.md`, and commit on `001-portfolio-website`
+
+---
+
 ## Dependencies & Execution Order
 
 ### Phase Dependencies
@@ -486,6 +500,7 @@ the statement stays only as the share-preview summary (FR-036); constitution v5.
 - **Phase 8 Amendment (2026-09-30)**: runs after Gate 5a and before T096–T103 (launch needs the amended content). T104–T108 are parallel; T109–T112 edit shared files, in order; T113–T117 follow.
 - **Phase 9 Interests (2026-09-30)**: after Phase 8 and before T096–T103. T118–T120 are parallel; T121–T124 in order; T125–T129 follow.
 - **Phase 10 Contact via LinkedIn (2026-09-30)**: after Phase 9 and before T102–T103. T130–T131 parallel; T132–T134 in order; T135–T137 follow.
+- **Phase 17 Custom domain (2026-09-30)**: after Phase 16 and before T102–T103. T179 → T180 → T181 → T182.
 - **Phase 16 Statement removed (2026-09-30)**: after Phase 15 and before T098–T103. T175 → T176 → T177 → T178.
 - **Phase 15 Unified intro (2026-09-30)**: after Phase 14 and before T098–T103. T168–T169 parallel; T170–T173 in order; T174 last.
 - **Phase 14 Five sections (2026-09-30)**: after Phase 13 and before T098–T103. T159–T160 parallel; T161–T166 in order; T167 last. Supersedes the Projects work of Phases 3 and 13 (T027, T054, T059, T151, T154).

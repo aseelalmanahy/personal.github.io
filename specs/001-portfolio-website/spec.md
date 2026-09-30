@@ -8,7 +8,7 @@
 removed, LinkedIn primary; four-tier skills; Experience
 narrative revised; em dashes removed; hero links and Projects removed; Hero and About Me merged
 into one intro, four sections;
-visible statement removed; see Clarifications)
+visible statement removed; custom domain aseelalmanahy.com; see Clarifications)
 
 **Input**: User description: "Create a technical specification for a single-page personal
 portfolio website for Aseel Almanahy, a Full Stack Software Engineer. Hero section (greeting
@@ -84,6 +84,12 @@ verify'."
 
 **Amendment input (2026-09-30, statement)**: "take this out: Full Stack Software Engineer
 specializing in scalable systems, robust architectures, and engineering mentorship."
+
+**Amendment input (2026-09-30, custom domain)**: "Re-configure the project domain parameters for
+our custom Squarespace asset: update all base production site URL mappings, sitemap entries, and
+robots.txt configurations to point strictly to 'https://aseelalmanahy.com'; ensure all
+structured metadata reflects the custom domain without referencing github.io; re-run 'npm run
+verify'."
 
 ## Clarifications
 
@@ -192,6 +198,12 @@ specializing in scalable systems, robust architectures, and engineering mentorsh
   the intro. The greeting is now followed directly by the biography (constitution v5.0.0). The
   same sentence stays as the page's summary description for search results and link previews
   (FR-036), which visitors do not see on the page; the owner can ask to replace it there too.
+- Q: What does the "Squarespace asset" change? → A: The public address only. The domain
+  aseelalmanahy.com is registered through Squarespace and points at the site, which stays on
+  GitHub Pages (constitution Principle VI); the repository keeps the name aseelalmanahy.github.io.
+  The canonical address is `https://aseelalmanahy.com/` (FR-043). Pointing the domain's DNS
+  records at GitHub Pages and entering the custom domain in the repository's Pages settings are
+  owner actions (T102). *(Supersedes the site URL answer above.)*
 
 ## User Scenarios & Testing *(mandatory)*
 
@@ -475,6 +487,13 @@ no motion and nothing to click.
   section only; no other section (including the hero) links to either profile or to individual
   repositories.
 
+**Domain**
+
+- **FR-043**: The site's canonical address MUST be `https://aseelalmanahy.com/`. The canonical
+  link, share-preview tags and image address, structured data, robots file, and sitemap MUST all
+  use it, and no published file may reference a github.io address. Visitors who reach the
+  GitHub Pages default address are sent to the custom domain.
+
 **Projects** *(removed 2026-09-30, constitution v3.0.0)*
 
 - **FR-016**–**FR-020**: *(Removed 2026-09-30: the Projects section, its cards, and their code
@@ -605,6 +624,8 @@ no motion and nothing to click.
 - Remembering the theme choice uses only the visitor's own browser storage — no cookies,
   accounts, analytics, or data sent anywhere.
 - English only; no internationalization in this version.
+- The domain aseelalmanahy.com is registered through Squarespace; its DNS records are managed
+  there by the owner and point at GitHub Pages.
 - The site is hosted as a static page (per the project constitution); there is no server-side
   processing, contact form, or content management system.
 - Supported browsers: current and previous major versions of Chrome, Edge, Firefox, and Safari

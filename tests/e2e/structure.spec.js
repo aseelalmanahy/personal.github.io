@@ -134,6 +134,37 @@ test.describe('punctuation: no em dashes (FR-041)', () => {
   });
 });
 
+test.describe('custom domain https://aseelalmanahy.com/ (FR-043)', () => {
+  const SITE = 'https://aseelalmanahy.com/';
+
+  test('canonical, share tags, and structured data use the custom domain', async ({ page }) => {
+    await page.goto('/');
+    await expect(page.locator('link[rel="canonical"]')).toHaveAttribute('href', SITE);
+    await expect(page.locator('meta[property="og:url"]')).toHaveAttribute('content', SITE);
+    await expect(page.locator('meta[property="og:image"]')).toHaveAttribute(
+      'content',
+      `${SITE}assets/og-image.png`,
+    );
+    const person = await page
+      .locator('script[type="application/ld+json"]')
+      .evaluate((el) => JSON.parse(el.textContent));
+    expect(person.url).toBe(SITE);
+  });
+
+  test('robots.txt, sitemap.xml, and CNAME ship with the custom domain; no github.io', async () => {
+    const { readFile, readdir } = await import('node:fs/promises');
+    expect((await readFile('dist/CNAME', 'utf8')).trim()).toBe('aseelalmanahy.com');
+    expect(await readFile('dist/robots.txt', 'utf8')).toContain(`Sitemap: ${SITE}sitemap.xml`);
+    expect(await readFile('dist/sitemap.xml', 'utf8')).toContain(`<loc>${SITE}</loc>`);
+    const files = (await readdir('dist', { recursive: true })).filter((f) =>
+      /\.(html|txt|xml|json|webmanifest)$/.test(f),
+    );
+    for (const file of files) {
+      expect(await readFile(`dist/${file}`, 'utf8'), file).not.toContain('github.io');
+    }
+  });
+});
+
 test.describe('production build: dist/ (V5.4, V5.7)', () => {
   test('one render-blocking stylesheet and versioned local asset URLs', async () => {
     const { readFile } = await import('node:fs/promises');

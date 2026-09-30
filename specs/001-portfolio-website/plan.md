@@ -86,6 +86,14 @@ SC-001, SC-002, SC-006; research R-31.
 - **Verification**: full-page review at 320/375/768/1024/1440 in both themes, keyboard and JS-off
   (automated), recorded as gate F7.
 
+## Amendment 2026-09-30 — custom domain aseelalmanahy.com
+
+Spec FR-043; research R-34. Canonical, `og:url`, `og:image`, JSON-LD `url`, `robots.txt`, and
+`sitemap.xml` use `https://aseelalmanahy.com/`; `src/CNAME` (copied to `dist/`) tells GitHub
+Pages to serve the custom domain; `check-site-url` also checks the CNAME host; `check:links` skips
+the new origin until DNS is live. Hosting is unchanged (GitHub Pages via Actions, Principle VI).
+Owner actions: Squarespace DNS records and the Pages custom-domain setting (T102). Tasks: Phase 17.
+
 ## Amendment 2026-09-30 — visible statement removed
 
 Constitution v5.0.0 (Principle V); spec FR-001, FR-004, FR-005, FR-005a, SC-001; research R-33.
@@ -570,6 +578,7 @@ Validation criteria:
 | FR-036 | 1, 5 | V1.4, V5.7 |
 | FR-037–FR-040 | 9 | Interests I2–I5, I10 |
 | FR-041 | 13 | Gate P1 |
+| FR-043 | 17 | Gates D1–D4 |
 | FR-042 | 14 | Gate F2 |
 | FR-001, FR-005a, FR-023 | 15 | Gates U1–U4 |
 | SC-001 | 16 | Gates S16-1 to S16-3 (supersedes V2.4) |

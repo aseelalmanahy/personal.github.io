@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://aseelalmanahy.github.io/sitemap.xml
+Sitemap: https://aseelalmanahy.com/sitemap.xml

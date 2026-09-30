@@ -84,3 +84,7 @@
   structured data, share image), FR-006 redundant sentence removed (FR-042 governs placement),
   US1 and US2 wording aligned with the intro and FR-011, clarification cross-reference added. All
   16 items still pass; no [NEEDS CLARIFICATION] markers.
+- Iteration 13 (2026-09-30, custom domain): FR-043 added (canonical address
+  https://aseelalmanahy.com/, no github.io in published files); clarification and assumption for
+  the Squarespace-registered domain and owner DNS actions. All 16 items still pass; no [NEEDS
+  CLARIFICATION] markers.

@@ -122,7 +122,7 @@ No Projects section; code is reached through "GitHub profile" in Contact.
 - [x] LinkedIn profile URL — `https://www.linkedin.com/in/aseel-almanahy-97342b109/` (2026-09-30)
 - [x] ~~Public email address~~ — no longer needed: email removed 2026-09-30; LinkedIn is the primary contact
 - [x] About Me introduction approved (spec FR-008, 2026-09-30)
-- [x] Site URL / repository name — `aseelalmanahy.github.io` → `https://aseelalmanahy.github.io/` (2026-09-30); confirm
+- [x] Site URL — custom domain `https://aseelalmanahy.com/` (2026-09-30, `src/CNAME`); repository `aseelalmanahy.github.io`; confirm
   before the GitHub repository is created (T094); the name sets the 404 `<base href>`
 
 ## Launch checklist
@@ -130,5 +130,8 @@ No Projects section; code is reached through "GitHub profile" in Contact.
 - [ ] `npm run verify` passes locally and in CI
 - [ ] All manual gates recorded
 - [ ] Content inputs complete (0 `CONTENT:` markers)
-- [ ] GitHub Pages source = GitHub Actions; "Enforce HTTPS" enabled
+- [ ] GitHub Pages source = GitHub Actions; custom domain `aseelalmanahy.com` set and DNS check
+      passed; "Enforce HTTPS" enabled
+- [ ] Squarespace DNS: apex A records 185.199.108.153, 185.199.109.153, 185.199.110.153,
+      185.199.111.153; `www` CNAME → `aseelalmanahy.github.io`
 - [ ] Live URL spot-check on a real phone in both themes

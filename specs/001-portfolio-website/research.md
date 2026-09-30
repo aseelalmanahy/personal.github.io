@@ -514,3 +514,17 @@ was open in the plan's Technical Context is resolved here.
   previews still need a summary (FR-036), and no visitor sees it on the page.
 - **Alternatives considered**: removing it from metadata as well (leaves previews without a
   summary until the owner supplies new text); hiding it visually (still read by screen readers).
+
+## R-34 Custom domain on GitHub Pages (FR-043, amendment 2026-09-30)
+
+- **Decision**: Keep GitHub Pages hosting and publish `CNAME` = `aseelalmanahy.com`. At the
+  registrar (Squarespace Domains) the apex gets GitHub Pages' four A records (185.199.108.153,
+  185.199.109.153, 185.199.110.153, 185.199.111.153; AAAA optional) and `www` gets a CNAME to
+  `aseelalmanahy.github.io`. In the repository's Pages settings the custom domain is set to
+  `aseelalmanahy.com` and "Enforce HTTPS" is turned on once the certificate is issued.
+- **Rationale**: The constitution fixes hosting to GitHub Pages; a custom domain changes only
+  the public address. GitHub Pages redirects the github.io address and `www` to the apex.
+- **Alternatives considered**: hosting on Squarespace (violates Principle VI and cannot serve
+  this static build as-is); keeping the github.io address as canonical (not the owner's domain).
+- **Status (2026-09-30)**: the domain resolves as a name but has no A records yet and `www` does
+  not exist, so DNS setup is still pending (owner action, T102).

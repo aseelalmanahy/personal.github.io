@@ -30,22 +30,28 @@ function expectExternal(link) {
 }
 
 test.describe('US1: hero and contact content', () => {
-  test('hero greeting and statement are verbatim', async ({ page }) => {
+  test('greeting is verbatim and the statement is not shown on the page (FR-004)', async ({
+    page,
+  }) => {
     await page.goto('/');
     expect(normalise(await page.locator('h1').textContent())).toBe(GREETING);
-    expect(normalise(await page.locator('.hero__statement').textContent())).toBe(STATEMENT);
+    await expect(page.locator('body')).not.toContainText('specializing in scalable systems');
+    // The statement remains the share-preview summary (FR-036), which is not visible text.
+    await expect(page.locator('meta[name="description"]')).toHaveAttribute('content', STATEMENT);
   });
 
-  test('unified intro: greeting, statement, biography, education, skills; no links (FR-005)', async ({
+  test('unified intro: greeting, biography, education, skills; no links (FR-005)', async ({
     page,
   }) => {
     await page.goto('/');
     await expect(page.locator('#home a, #home button')).toHaveCount(0);
     await expect(page.getByRole('heading', { name: 'About Me' })).toHaveCount(0);
     const order = await page
-      .locator('#home :is(h1, .hero__statement, .about__intro, .education, .skills)')
+      .locator('#home :is(h1, .about__intro, .education, .skills)')
       .evaluateAll((els) => els.map((el) => (el.tagName === 'H1' ? 'h1' : el.classList[0])));
-    expect(order).toEqual(['h1', 'hero__statement', 'about__intro', 'education', 'skills']);
+    expect(order).toEqual(['h1', 'about__intro', 'education', 'skills']);
+    // The biography is the only paragraph directly under the greeting (no statement line).
+    await expect(page.locator('#home .hero__inner > p')).toHaveCount(1);
     expect(
       await page.locator('#home h2').evaluateAll((els) => els.map((el) => el.textContent.trim())),
     ).toEqual(['Education', 'Skills']);
@@ -123,7 +129,7 @@ test.describe('US1: intro closes the landing gap (FR-005a)', () => {
       const b = await page.locator(lower).boundingBox();
       return b.y - (a.y + a.height);
     };
-    expect(await gap('.hero__statement', '.about__intro')).toBeLessThanOrEqual(64);
+    expect(await gap('h1', '.about__intro')).toBeLessThanOrEqual(64);
     expect(await gap('.about__intro', '.education')).toBeLessThanOrEqual(96);
   });
 });
@@ -131,12 +137,11 @@ test.describe('US1: intro closes the landing gap (FR-005a)', () => {
 test.describe('US1: hero above the fold (SC-001)', () => {
   test.use({ viewport: { width: 375, height: 667 } });
 
-  test('greeting and statement are visible without scrolling', async ({ page }) => {
+  test('greeting is visible and the biography starts without scrolling', async ({ page }) => {
     await page.goto('/');
-    const targets = [page.locator('h1'), page.locator('.hero__statement')];
-    for (const target of targets) {
-      const box = await target.boundingBox();
-      expect(box.y + box.height, await target.textContent()).toBeLessThanOrEqual(667);
-    }
+    const greeting = await page.locator('h1').boundingBox();
+    expect(greeting.y + greeting.height).toBeLessThanOrEqual(667);
+    const biography = await page.locator('.about__intro').boundingBox();
+    expect(biography.y).toBeLessThan(667);
   });
 });

@@ -86,6 +86,15 @@ SC-001, SC-002, SC-006; research R-31.
 - **Verification**: full-page review at 320/375/768/1024/1440 in both themes, keyboard and JS-off
   (automated), recorded as gate F7.
 
+## Amendment 2026-09-30 — visible statement removed
+
+Constitution v5.0.0 (Principle V); spec FR-001, FR-004, FR-005, FR-005a, SC-001; research R-33.
+Removed `p.hero__statement` and its `.hero__statement` rule; the greeting is followed directly by
+the biography. The sentence stays in `meta[name=description]`, `og:description`, JSON-LD, and the
+share image (FR-036). Tests: statement absent from visible text, meta description unchanged,
+intro order h1 → biography → Education → Skills, SC-001 greeting plus biography start. Tasks:
+Phase 16.
+
 ## Amendment 2026-09-30 — unified intro (Hero and About Me merged)
 
 Constitution v4.0.0 (Principle V); spec FR-001, FR-005, FR-005a, FR-008–FR-010, FR-023; research
@@ -152,8 +161,8 @@ All previously open questions are resolved in research.md (R-01 – R-26); none 
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-Constitution v4.0.0 (re-checked 2026-09-30 after the unified-intro amendment; earlier checks:
-v3.0.0, v2.2.0, and v2.1.0).
+Constitution v5.0.0 (re-checked 2026-09-30 after the statement amendment; earlier checks:
+v4.0.0, v3.0.0, v2.2.0, and v2.1.0).
 
 | Principle / Rule | Gate | Pre-research | Post-design evidence |
 |---|---|---|---|
@@ -161,7 +170,7 @@ v3.0.0, v2.2.0, and v2.1.0).
 | II. Mobile-First | `min-width` queries only; 320–2560 no h-scroll; 200%/400% zoom | PASS | em breakpoints (R-11); viewport-matrix e2e (V3.1–V3.2) |
 | III. Warm Minimalist | Cream/amber/dark roles; all colours via tokens; contrast in every theme; subtle motion | PASS | Palette + contrast table (R-09); Stylelint colour-literal ban outside `tokens.css` (R-07); motion tokens ≤ 400ms |
 | IV. Code Quality & A11y | WCAG 2.2 AA, 0 axe violations; keyboard; reduced motion; JS-off; Prettier/ESLint/Stylelint/HTML validator 0 warnings; tokens on `:root` | PASS | `npm run verify` (quickstart); axe in both themes & JS-off (V2.2, V3.7); `.editorconfig` (P1.1) |
-| V. Single-Page Scope | Four sections in order Intro (greeting, statement, biography, education, skills; no contact links), Experience, Interests, Contact (sole home of the profile links); Interests static with decorative inline icons and no scripts, animation, fonts, or third-party assets; only extra page `404.html`; content in HTML; anchor nav | PASS | [contracts/page-structure.md](contracts/page-structure.md); `privacy-scope` e2e |
+| V. Single-Page Scope | Four sections in order Intro (greeting, biography, education, skills; no statement line; no contact links), Experience, Interests, Contact (sole home of the profile links); Interests static with decorative inline icons and no scripts, animation, fonts, or third-party assets; only extra page `404.html`; content in HTML; anchor nav | PASS | [contracts/page-structure.md](contracts/page-structure.md); `privacy-scope` e2e |
 | VI. GitHub Pages Delivery | Static, no server; Lighthouse thresholds; CWV; budgets; ≤ 1 render-blocking stylesheet; scripts are modules | PASS | Lightning CSS bundles to one stylesheet in `dist/` (R-07); LHCI + `check-budgets` (V5.5); the inline theme bootstrap is the only non-module script, covered by the Principle I exception referenced in Principle VI. Dev-mode `@import` partials are not deployed. |
 | VII. Privacy & Security | No trackers; no third-party requests; CSP + referrer via meta; HTTPS; no secrets; links-only contact | PASS | CSP policy (R-20); no forms (FR-022); `privacy-scope` e2e asserts same-origin requests only |
 | Technical Constraints | GitHub Pages via Actions; source servable as-is; dev tooling allowed; tooling recorded in `CLAUDE.md`; evergreen browsers | PASS | R-24 workflow; `CLAUDE.md` updated by this plan; Playwright 3 engines |

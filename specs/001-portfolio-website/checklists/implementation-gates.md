@@ -275,3 +275,13 @@ Result values: PASS · FAIL · PENDING · N/A (with reason).
 | U6 | Per-change review (constitution Governance) | PASS | Full-page review at 320 (light), 375 (dark), 768 (light), 1024 (dark), 1440 (light): intro reads as one block, no overflow; keyboard and JS-off by the automated specs | 2026-09-30 |
 | U7 | `npm run verify` | PASS | exit 0: format, lint, 46/46 unit, 0 content markers, 271 e2e passed / 8 skipped (engine limits), 12/12 links | 2026-09-30 |
 | U8 | Budgets and Lighthouse | PASS | 12.4 KB total (gzip); index.html Perf 1.00, A11y 1.00, BP 1.00, SEO 1.00; LCP 1.1 s, CLS 0.001, TBT 0 ms | 2026-09-30 |
+
+## Visible statement removed (Phase 16, 2026-09-30)
+
+| ID | Gate | Result | Evidence | Date |
+|---|---|---|---|---|
+| S16-1 | Statement not shown; greeting then biography (FR-004, FR-005) | PASS | hero-contact.spec: statement absent from body text; one paragraph under the greeting; intro order h1 → biography → Education → Skills (3 engines) | 2026-09-30 |
+| S16-2 | Share-preview summary kept (FR-036) | PASS | `meta[name=description]` equals the statement; structure.spec OG checks pass | 2026-09-30 |
+| S16-3 | Per-change review (constitution Governance) | PASS | First-screen review at 320 (light), 375 (dark), 768 (light), 1024 (dark), 1440 (light); no overflow; keyboard and JS-off by the automated specs | 2026-09-30 |
+| S16-4 | `npm run verify` | PASS | exit 0: format, lint, 46/46 unit, 0 content markers, 271 e2e passed / 8 skipped (engine limits), 12/12 links | 2026-09-30 |
+| S16-5 | Budgets and Lighthouse | PASS | 12.4 KB total (gzip); index.html Perf 1.00, A11y 1.00, BP 1.00, SEO 1.00; LCP 1.1 s, CLS 0.001, TBT 0 ms | 2026-09-30 |

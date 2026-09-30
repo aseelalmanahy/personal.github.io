@@ -457,6 +457,20 @@ Me" heading and no landing gap (FR-001, FR-005, FR-005a); constitution v4.0.0.
 
 ---
 
+## Phase 16: Amendment — Visible Statement Removed (2026-09-30)
+
+**Goal**: The intro shows the greeting followed directly by the biography (FR-004, FR-005);
+the statement stays only as the share-preview summary (FR-036); constitution v5.0.0.
+
+**Independent Test**: `npm run verify` exits 0; `hero-contact.spec.js` confirms the statement is absent from visible text, the meta description is unchanged, and the intro order is h1 → biography → Education → Skills.
+
+- [X] T175 [US1] Update `tests/e2e/hero-contact.spec.js`: statement not in visible text, meta description equals the statement, intro order without it, one paragraph under the greeting, greeting→biography gap ≤ 64px, SC-001 greeting plus biography start at 375 × 667; confirm failures
+- [X] T176 [US1] Remove `p.hero__statement` from `src/index.html` and `.hero__statement` from `src/css/components/hero.css`
+- [X] T177 Amend the constitution to v5.0.0 via `/speckit-constitution`; update `CLAUDE.md`; sync spec (status, amendment input, clarification, US1, FR-001, FR-004, FR-005, FR-005a, Profile, SC-001), checklist iteration 11, data model, contracts, quickstart, plan, research R-33; per-change review at 320/375/768/1024/1440 in both themes
+- [X] T178 Run `npm run verify` (exit 0, Lighthouse 1.00 ×4), record in `checklists/implementation-gates.md`, and commit on `001-portfolio-website`
+
+---
+
 ## Dependencies & Execution Order
 
 ### Phase Dependencies
@@ -472,6 +486,7 @@ Me" heading and no landing gap (FR-001, FR-005, FR-005a); constitution v4.0.0.
 - **Phase 8 Amendment (2026-09-30)**: runs after Gate 5a and before T096–T103 (launch needs the amended content). T104–T108 are parallel; T109–T112 edit shared files, in order; T113–T117 follow.
 - **Phase 9 Interests (2026-09-30)**: after Phase 8 and before T096–T103. T118–T120 are parallel; T121–T124 in order; T125–T129 follow.
 - **Phase 10 Contact via LinkedIn (2026-09-30)**: after Phase 9 and before T102–T103. T130–T131 parallel; T132–T134 in order; T135–T137 follow.
+- **Phase 16 Statement removed (2026-09-30)**: after Phase 15 and before T098–T103. T175 → T176 → T177 → T178.
 - **Phase 15 Unified intro (2026-09-30)**: after Phase 14 and before T098–T103. T168–T169 parallel; T170–T173 in order; T174 last.
 - **Phase 14 Five sections (2026-09-30)**: after Phase 13 and before T098–T103. T159–T160 parallel; T161–T166 in order; T167 last. Supersedes the Projects work of Phases 3 and 13 (T027, T054, T059, T151, T154).
 - **Phase 13 Polish & projects (2026-09-30)**: after Phase 12 and before T098/T102–T103. T151–T153 parallel; T154–T156 in order; T157–T158 follow.

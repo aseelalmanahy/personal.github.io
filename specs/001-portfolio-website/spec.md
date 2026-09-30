@@ -7,7 +7,8 @@
 **Status**: Draft — amended 2026-09-30 (narrative content structure; Interests section; email
 removed, LinkedIn primary; four-tier skills; Experience
 narrative revised; em dashes removed; hero links and Projects removed; Hero and About Me merged
-into one intro, four sections; see Clarifications)
+into one intro, four sections;
+visible statement removed; see Clarifications)
 
 **Input**: User description: "Create a technical specification for a single-page personal
 portfolio website for Aseel Almanahy, a Full Stack Software Engineer. Hero section (greeting
@@ -80,6 +81,9 @@ text block to ground the initial landing viewport. The page flow: Unified Intro 
 Education Cards → Full-Width Skills Grid → Experience Narrative → Interests → Contact Footer.
 Ensure the em dash in the biographical paragraph is a comma or semicolon. Run 'npm run
 verify'."
+
+**Amendment input (2026-09-30, statement)**: "take this out: Full Stack Software Engineer
+specializing in scalable systems, robust architectures, and engineering mentorship."
 
 ## Clarifications
 
@@ -169,7 +173,8 @@ verify'."
 - Q: With the hero links gone, how do visitors reach Aseel? → A: Through the Contact section,
   the page's final section and the only place with the GitHub and LinkedIn buttons (FR-042). The
   navigation bar links to Contact from every scroll position (SC-003), so the route is one or two
-  interactions away; the hero shows only the greeting and statement.
+  interactions away; the hero shows only the greeting and statement. *(Statement removed from
+  the page 2026-09-30.)*
 - Q: Where do visitors inspect code now that Projects is gone? → A: Through the GitHub profile
   button in Contact. The page links to no individual repository. Constitution v3.0.0 removes
   Projects from the required sections (Principle V).
@@ -183,6 +188,10 @@ verify'."
   Experience, Interests, and Contact.
 - Q: Is there still an em dash in the biography? → A: No. It became a semicolon on 2026-09-30
   ("important to me; I actively…", FR-008, FR-041); this amendment confirms it.
+- Q: What does "take this out" cover for the professional statement? → A: The visible line in
+  the intro. The greeting is now followed directly by the biography (constitution v5.0.0). The
+  same sentence stays as the page's summary description for search results and link previews
+  (FR-036), which visitors do not see on the page; the owner can ask to replace it there too.
 
 ## User Scenarios & Testing *(mandatory)*
 
@@ -192,7 +201,7 @@ who arrive from a shared link (résumé, LinkedIn, email signature) — most oft
 ### User Story 1 - Meet Aseel and get in touch (Priority: P1)
 
 A recruiter opens the site from a link. Without scrolling, they see a friendly greeting ("Hi,
-I'm Aseel."), the professional statement, and a short biography, with Aseel's two degrees
+I'm Aseel.") followed directly by a short biography, with Aseel's two degrees
 starting just below; nothing competes for attention. To get in
 touch they choose Contact in the navigation bar (or scroll to the end): the Contact Links section
 tells them that LinkedIn is the best way to reach out or connect and offers LinkedIn and GitHub,
@@ -201,16 +210,15 @@ the only place on the page where either appears.
 **Why this priority**: Converting a visit into contact is the site's core purpose. The hero and
 contact routes alone are a viable, publishable page.
 
-**Independent Test**: Load the page at a standard phone size, confirm the greeting and statement
-are visible without scrolling, reach Contact through the navigation, and activate each action to
+**Independent Test**: Load the page at a standard phone size, confirm the greeting is visible and the biography
+starts without scrolling, reach Contact through the navigation, and activate each action to
 confirm it reaches the correct destination.
 
 **Acceptance Scenarios**:
 
 1. **Given** a visitor on a phone-sized screen, **When** the page first loads, **Then** the
-   greeting "Hi, I'm Aseel.", the statement "Full Stack Software Engineer specializing in
-   scalable systems, robust architectures, and engineering mentorship." are visible without
-   scrolling, and the hero contains no links or buttons.
+   greeting "Hi, I'm Aseel." is visible and the biography begins without scrolling; no
+   professional-statement line appears, and the intro contains no links or buttons.
 2. **Given** the Contact section, **When** the visitor activates the GitHub or LinkedIn action,
    **Then** Aseel's corresponding public profile opens in a new tab and the visitor is told
    beforehand that it opens in a new tab.
@@ -361,7 +369,7 @@ no motion and nothing to click.
 **Page structure and scope**
 
 - **FR-001**: The site MUST be a single page containing these sections, in this order: Intro
-  (greeting, statement, biography, education, skills), Experience, Interests, Contact Links.
+  (greeting, biography, education, skills), Experience, Interests, Contact Links.
 - **FR-002**: Each section MUST be individually linkable so a visitor can share or bookmark a
   link that opens directly at that section.
 - **FR-003**: A "not found" page MUST be shown for any unknown address, in the site's style,
@@ -369,15 +377,15 @@ no motion and nothing to click.
 
 **Intro**
 
-- **FR-004**: The hero MUST display the greeting "Hi, I'm Aseel." as the page's main heading
-  and the statement "Full Stack Software Engineer specializing in scalable systems, robust
-  architectures, and engineering mentorship." verbatim.
-- **FR-005**: The intro MUST present, in this order, the greeting and statement (FR-004), the
+- **FR-004**: The intro MUST display the greeting "Hi, I'm Aseel." as the page's main heading.
+  The professional statement ("Full Stack Software Engineer specializing in…") MUST NOT appear as visible text; it
+  remains only as the page's summary description (FR-036).
+- **FR-005**: The intro MUST present, in this order, the greeting (FR-004), the
   biography (FR-008), the education cards (FR-009), and the skills grid (FR-010), with
   "Education" and "Skills" as its only sub-headings and no "About Me" heading. It contains no
   links, buttons, or other actions; contact routes live in Contact Links (FR-021, FR-042).
 - **FR-005a**: The intro MUST read as one continuous block: no section-sized gap between the
-  statement, the biography, and the education cards, and on desktop screens (1024 × 768 and
+  greeting, the biography, and the education cards, and on desktop screens (1024 × 768 and
   larger) the education cards begin within the first screenful.
 - **FR-006**: GitHub and LinkedIn actions MUST open Aseel's public profiles —
   `https://github.com/aseelalmanahy` and `https://www.linkedin.com/in/aseel-almanahy-97342b109/`
@@ -530,8 +538,8 @@ no motion and nothing to click.
 
 ### Key Entities
 
-- **Profile**: the site owner — display name ("Aseel"), full name (Aseel Almanahy), professional
-  statement, short introduction.
+- **Profile**: the site owner — display name ("Aseel"), full name (Aseel Almanahy), summary
+  description (share previews only), short introduction.
 - **Contact Link**: a route to reach Aseel — type (GitHub, LinkedIn), visible label,
   destination (always opens in a new tab); LinkedIn is the primary route; shown in Contact only.
 - **Education Entry**: degree, field, institution, status (completed / candidate).
@@ -549,7 +557,7 @@ no motion and nothing to click.
 ### Measurable Outcomes
 
 - **SC-001**: On a standard phone screen (375 × 667), 100% of first-time visitors can see Aseel's
-  name and professional statement without scrolling, and can reach the Contact actions in no
+  name and the start of the biography without scrolling, and can reach the Contact actions in no
   more than 2 interactions.
 - **SC-002**: In a usability check with at least 5 participants, at least 4 can find and open
   Aseel's LinkedIn profile as the way to get in touch, and open Aseel's GitHub profile, within

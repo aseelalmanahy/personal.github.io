@@ -16,10 +16,10 @@ the end.
 |---|---|---|
 | `displayName` | "Aseel" | hero `h1` greeting "Hi, I'm Aseel." |
 | `fullName` | "Aseel Almanahy" | `<title>`, brand link, OG tags, JSON-LD, footer |
-| `statement` | "Full Stack Software Engineer specializing in scalable systems, robust architectures, and engineering mentorship." — verbatim (FR-004) | hero paragraph, meta/OG description |
-| `intro` | The owner's approved text in spec FR-008, verbatim (3 sentences) | intro biography paragraph (below the statement) |
+| `statement` | "Full Stack Software Engineer specializing in scalable systems, robust architectures, and engineering mentorship." — verbatim | meta/OG description and JSON-LD only; not shown on the page (FR-004, amendment 2026-09-30) |
+| `intro` | The owner's approved text in spec FR-008, verbatim (3 sentences) | intro biography paragraph (directly below the greeting) |
 
-**Validation**: greeting and statement match the spec byte-for-byte (checked by e2e);
+**Validation**: greeting and meta description match the spec byte-for-byte, and the statement is absent from visible text (checked by e2e);
 `intro` matches FR-008 verbatim (checked by e2e); no `CONTENT:` placeholder at launch.
 
 ### ContactLink

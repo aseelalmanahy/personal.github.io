@@ -48,8 +48,8 @@ for manual confirmation at each phase gate. Details of expected markup are in
 
 ### US1 — Meet Aseel and get in touch
 
-1. Emulate 375 × 667. Load `/`. **Expect**: "Hi, I'm Aseel." and the full statement visible
-   without scrolling, and no links or buttons in the hero (SC-001, FR-005).
+1. Emulate 375 × 667. Load `/`. **Expect**: "Hi, I'm Aseel." visible and the biography starting
+   without scrolling, no statement line, and no links or buttons in the hero (SC-001, FR-005).
 2. Open the menu and choose Contact. **Expect**: Contact is reached in 2 interactions.
 3. At Contact, **Expect**: the text says LinkedIn is the best and primary way to reach
    out; "Connect on LinkedIn" is the first, primary button and "GitHub profile" the second; no
@@ -57,7 +57,7 @@ for manual confirmation at each phase gate. Details of expected markup are in
 
 ### US2 — Review background and experience
 
-1. Read the intro. **Expect**: greeting, statement, then the biography (spec FR-008) verbatim, both degrees with
+1. Read the intro. **Expect**: greeting, then the biography (spec FR-008) verbatim, both degrees with
    status, skills in four tiers (Languages; Frameworks & Security; Cloud & DevOps; Quality &
    Methodology) — 1 column on phones, 2 on tablets, 4 on wide desktops.
 2. Scroll to Experience. **Expect**: one narrative paragraph (spec FR-011) verbatim, at a

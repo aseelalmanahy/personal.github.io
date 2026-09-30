@@ -505,3 +505,12 @@ was open in the plan's Technical Context is resolved here.
 - **Alternatives considered**: keeping `section#about` with a visually hidden heading (the gap
   is structural padding, and a hidden landmark heading adds noise); keeping an "About" nav link
   to `#home` (duplicates the site-name link and would mark a current section in the hero).
+
+## R-33 Visible statement removed (constitution v5.0.0, amendment 2026-09-30)
+
+- **Decision**: Delete the statement paragraph and its style; keep the sentence as the summary
+  description in page metadata, JSON-LD, and the share image.
+- **Rationale**: The owner asked to take the line out of the page; search results and link
+  previews still need a summary (FR-036), and no visitor sees it on the page.
+- **Alternatives considered**: removing it from metadata as well (leaves previews without a
+  summary until the owner supplies new text); hiding it visually (still read by screen readers).

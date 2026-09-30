@@ -1,5 +1,19 @@
 <!--
 Sync Impact Report
+- Version change: 4.0.0 → 5.0.0 (MAJOR: the Intro's required content is redefined; the
+  one-line professional statement is removed, so a v4.0.0 Intro with a statement between the
+  greeting and the biography no longer complies). Owner request 2026-09-30 for
+  specs/001-portfolio-website.
+- Modified principles:
+  - V. Focused Single-Page Scope — Intro is now the greeting followed directly by the About Me
+    content (biography, education, skills); sections, order, and other rules unchanged
+- Added/removed sections: none
+- Templates requiring updates: none — templates read the constitution at runtime
+- Dependent artifacts to sync (outside this command): specs/001-portfolio-website (spec, plan,
+  tasks, contracts, quickstart), CLAUDE.md version reference
+- Follow-up TODOs: none
+
+Earlier amendments (retained for review until committed):
 - Version change: 3.0.0 → 4.0.0 (MAJOR: required sections redefined; Hero and About Me merge
   into one Intro section, so pages built to v3.0.0 with a separate About Me section no longer
   comply). Owner request 2026-09-30 for specs/001-portfolio-website.
@@ -199,8 +213,8 @@ formatted, lint-clean code is itself part of what the site demonstrates.
 ### V. Focused Single-Page Scope
 
 - The site MUST be a single static page (`index.html`) containing exactly these sections, in
-  order: Intro (friendly greeting, one-line professional statement, and the About Me content —
-  biography, education, and skills — with no separate "About Me" heading and no contact links),
+  order: Intro (friendly greeting followed directly by the About Me content — biography,
+  education, and skills — with no separate "About Me" heading and no contact links),
   Experience, Interests, and Contact Links. A custom `404.html` is the only additional page
   permitted.
 - Contact Links is the single place on the page for the owner's professional profile links
@@ -340,4 +354,4 @@ The following 20 practices apply to every change. Each is verifiable by inspecti
   `/speckit-analyze` flags conflicts with them as CRITICAL. Principles SHOULD be reviewed at
   least once a year or whenever the hosting or stack changes.
 
-**Version**: 4.0.0 | **Ratified**: 2026-09-25 | **Last Amended**: 2026-09-30
+**Version**: 5.0.0 | **Ratified**: 2026-09-25 | **Last Amended**: 2026-09-30

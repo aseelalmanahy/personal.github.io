@@ -39,7 +39,7 @@ body
 │       │   └── a[href="#contact"]     Contact
 │       └── button.theme-toggle[hidden][aria-pressed]  accessible name "Dark theme"
 ├── main#main[tabindex="-1"]
-│   ├── section#home       aria-labelledby → h1   (Intro: greeting, statement, biography,
+│   ├── section#home       aria-labelledby → h1   (Intro: greeting, biography,
 │   │                                            Education, Skills; no links)
 │   ├── section#experience aria-labelledby → h2 "Experience"
 │   ├── section#interests  aria-labelledby → h2 "Interests"
@@ -55,7 +55,7 @@ body
 
 ```text
 h1  Hi, I'm Aseel.
-  (statement and biography paragraphs; no "About Me" heading, amendment 2026-09-30)
+  (biography paragraph; no statement line and no "About Me" heading, amendment 2026-09-30)
 h2  Education
   h3  <degree> ×2
 h2  Skills

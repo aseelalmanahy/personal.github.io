@@ -76,3 +76,7 @@
   FR-005a added for the landing gap, FR-008–FR-010 and FR-023 reworded, US1/US2 aligned); the
   biography's em dash was already a semicolon (FR-041). Constitution v4.0.0. All 16 items still
   pass; no [NEEDS CLARIFICATION] markers.
+- Iteration 11 (2026-09-30, statement): visible professional statement removed (FR-001, FR-004,
+  FR-005, FR-005a, US1, SC-001, Profile entity); it remains the summary description for share
+  previews (FR-036). Constitution v5.0.0. All 16 items still pass; no [NEEDS CLARIFICATION]
+  markers.

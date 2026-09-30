@@ -1,3 +1,13 @@
 * text=auto eol=lf
 *.png binary
 *.ico binary
+
+# GitHub language stats: count only the shipped site in src/. Tooling, tests, specs, and
+# Spec Kit scaffolding are excluded so the Languages bar shows HTML, CSS, and JavaScript.
+.specify/** linguist-vendored
+.claude/** linguist-vendored
+.github/** linguist-vendored
+tests/** linguist-vendored
+tools/** linguist-vendored
+specs/** linguist-documentation
+*.config.js linguist-vendored

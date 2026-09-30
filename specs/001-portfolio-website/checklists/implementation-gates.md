@@ -117,7 +117,7 @@ Result values: PASS · FAIL · PENDING · N/A (with reason).
 | G2 | Everything traces to an FR/US | PASS | All src files map to plan tasks/FRs; no untraced features |
 | G3 | Plain-language visitor text, no dev artefacts | PASS (pre-content) | grep TODO/FIXME/lorem/console.log = 0; `CONTENT:` placeholders visible until T096 |
 | G4 | All sections complete | PASS | structure.spec: five sections + 404 |
-| G5 | No unresolved decisions; 0 `CONTENT:` at launch | PENDING (content) | 10 markers: public email and site URL only (T094, T096) |
+| G5 | No unresolved decisions; 0 `CONTENT:` at launch | PENDING (content) | 4 markers: public email only (T094, T096) |
 | G6 | Each FR has a passing check | PASS | 258 e2e + 52 unit tests; FR-015 privacy review is manual (T098) |
 | G7 | SCs measured with numbers | PASS | Budgets, Lighthouse, CLS, viewport matrix recorded above |
 | G8 | SCs verified in real browsers | PASS | Chromium, Firefox, WebKit |
@@ -167,6 +167,8 @@ Result values: PASS · FAIL · PENDING · N/A (with reason).
 | A6 | Budgets | PASS | 11.6 KB HTML+CSS+JS, 4.8 KB JS, 12.9 KB total (gzip) — down from 13.8 KB | 2026-09-30 |
 | A7 | Lighthouse (mobile ×3) | PASS | index.html on a copy with example email/site URL: Perf 1.00, A11y 1.00, BP 1.00, SEO 1.00; LCP 1.1 s, CLS 0.001, TBT 0 ms. Real build: SEO pending the two remaining content inputs | 2026-09-30 |
 | A8 | Visual check | PASS | Experience at 1440 light and 375 dark: 62ch measure, amber rule, serif drop cap; no overflow | 2026-09-30 |
+
+| A9 | Site URL applied (T094 partial): `https://aseelalmanahy.github.io/` | PASS | check-site-url all ok; Lighthouse on the **real** build (email still a placeholder): Perf 1.00, A11y 1.00, BP 1.00, SEO 1.00; LCP 1.1 s, CLS 0.001 | 2026-09-30 |
 
 **Notes (Amendment)**
 - Removed: timeline markup/CSS, `reveal.js` (+ unit and e2e specs). Line-length check replaces

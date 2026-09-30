@@ -6,7 +6,8 @@ const read = (file) => readFile(file, 'utf8');
 const attr = (html, pattern) => html.match(pattern)?.[1];
 
 const index = await read('src/index.html');
-const canonical = attr(index, /<link rel="canonical" href="([^"]+)"/);
+// \s+ between attributes: Prettier may wrap long tags across lines.
+const canonical = attr(index, /<link rel="canonical"\s+href="([^"]+)"/);
 
 if (!canonical) {
   console.error('FAIL: no canonical URL in src/index.html');
@@ -21,10 +22,10 @@ const robots = await read('src/robots.txt');
 const sitemap = await read('src/sitemap.xml');
 const notFound = await read('src/404.html');
 const checks = [
-  ['og:url', attr(index, /property="og:url" content="([^"]+)"/), canonical],
+  ['og:url', attr(index, /property="og:url"\s+content="([^"]+)"/), canonical],
   [
     'og:image prefix',
-    attr(index, /property="og:image" content="([^"]+)"/)?.slice(0, canonical.length),
+    attr(index, /property="og:image"\s+content="([^"]+)"/)?.slice(0, canonical.length),
     canonical,
   ],
   ['robots.txt Sitemap', attr(robots, /Sitemap:\s*(\S+)/), `${canonical}sitemap.xml`],

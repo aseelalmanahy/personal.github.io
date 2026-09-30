@@ -115,7 +115,7 @@ for manual confirmation at each phase gate. Details of expected markup are in
 - [x] LinkedIn profile URL — `https://www.linkedin.com/in/aseel-almanahy-97342b109/` (2026-09-30)
 - [ ] Public email address
 - [x] About Me introduction approved (spec FR-008, 2026-09-30)
-- [ ] Site URL / repository name (default `https://<github-username>.github.io/`) — confirm
+- [x] Site URL / repository name — `aseelalmanahy.github.io` → `https://aseelalmanahy.github.io/` (2026-09-30); confirm
   before the GitHub repository is created (T094); the name sets the 404 `<base href>`
 
 ## Launch checklist

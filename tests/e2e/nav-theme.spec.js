@@ -34,24 +34,47 @@ test.describe('US4 — theme applies before first paint (FR-029)', () => {
 test.describe('US4 — headings and focus never hidden under the bar (FR-023a)', () => {
   for (const width of [375, 1440]) {
     test(`deep links land below the bar at ${width}px`, async ({ page }) => {
+      // Instant jumps: this checks where sections land (FR-023a). Smooth scrolling is covered by
+      // the scroll-behavior test; its animation can be cut short when the CPU is saturated.
+      await page.emulateMedia({ reducedMotion: 'reduce' });
       await page.setViewportSize({ width, height: 800 });
       for (const id of ['about', 'experience', 'projects', 'contact']) {
         await page.goto(`/#${id}`);
-        // The page must actually scroll there: the heading lands just below the bar (within
-        // section padding), or the page is scrolled to its end (the last section may be short).
+        // The page must actually scroll there: the heading is fully on screen below the bar and,
+        // for every section but the last, lands just below the bar (within section padding).
+        // The last section cannot reach the top; under heavy parallel load Chromium's smooth
+        // scroll can also stop slightly short of the page end, so it only needs to be visible.
+        const isLast = id === 'contact';
+        let last;
         await expect
           .poll(
-            () =>
-              page.evaluate((target) => {
-                const heading = document.querySelector(`#${target} h2`).getBoundingClientRect();
-                const bar = document.querySelector('.site-header').getBoundingClientRect();
-                const atEnd =
-                  Math.ceil(scrollY + innerHeight) >= document.documentElement.scrollHeight - 1;
-                return heading.top >= bar.bottom - 1 && (heading.top <= bar.bottom + 160 || atEnd);
-              }, id),
+            async () =>
+              (last = await page.evaluate(
+                ([target, lastSection]) => {
+                  const heading = document.querySelector(`#${target} h2`).getBoundingClientRect();
+                  const bar = document.querySelector('.site-header').getBoundingClientRect();
+                  const maxScroll = document.documentElement.scrollHeight - innerHeight;
+                  const visible = heading.top >= bar.bottom - 1 && heading.bottom <= innerHeight;
+                  const ok = visible && (lastSection || heading.top <= bar.bottom + 160);
+                  // Measurements are returned so a failure shows where the page actually was.
+                  return {
+                    ok,
+                    headingTop: Math.round(heading.top),
+                    barBottom: Math.round(bar.bottom),
+                    scrollY: Math.round(scrollY),
+                    maxScroll: Math.round(maxScroll),
+                  };
+                },
+                [id, isLast],
+              )).ok,
             { message: id, timeout: 8000 },
           )
-          .toBe(true);
+          .toBe(true)
+          .catch((error) => {
+            throw new Error(`${id} did not land correctly: ${JSON.stringify(last)}`, {
+              cause: error,
+            });
+          });
       }
     });
 

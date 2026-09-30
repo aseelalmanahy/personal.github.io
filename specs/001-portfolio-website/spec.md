@@ -65,6 +65,10 @@ maintaining Lighthouse scores."
 - Q: Which public profiles do the GitHub and LinkedIn actions open? → A:
   `https://github.com/aseelalmanahy` and
   `https://www.linkedin.com/in/aseel-almanahy-97342b109/` (FR-006).
+- Q: What are the repository name and site URL? → A: Repository `aseelalmanahy.github.io`;
+  site URL `https://aseelalmanahy.github.io/` (the owner wrote "https://github.io"; GitHub Pages
+  serves a repository with that name at `https://aseelalmanahy.github.io/`, so that address is
+  used for the canonical link, share previews, and sitemap).
 
 ## User Scenarios & Testing *(mandatory)*
 
@@ -427,8 +431,8 @@ touch, and keyboard; toggle the theme, reload, and confirm the choice persisted.
 ## Assumptions
 
 - **Content still to be supplied by Aseel before launch** (not blocking the spec): the public
-  email address to publish and the site URL / repository name. (Supplied 2026-09-30: GitHub and
-  LinkedIn URLs, About Me introduction, Experience narrative; role dates are no longer needed.)
+  email address to publish. (Supplied 2026-09-30: GitHub and LinkedIn URLs, About Me
+  introduction, Experience narrative, and site URL; role dates are no longer needed.)
   Real project details are post-launch content that replaces the "coming soon" card.
 - The site's name/heading uses the first name "Aseel"; the full name "Aseel Almanahy" appears in
   the page title, share previews, and footer.

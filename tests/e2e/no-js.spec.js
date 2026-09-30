@@ -6,12 +6,12 @@ test.describe('scripting unavailable (FR-035, edge case)', () => {
   test('all content and navigation remain available', async ({ page }) => {
     await page.goto('/');
     await expect(page.locator('html')).toHaveClass(/\bno-js\b/);
-    for (const id of ['home', 'about', 'experience', 'interests', 'contact']) {
+    for (const id of ['home', 'experience', 'interests', 'contact']) {
       await expect(page.locator(`#${id}`)).toBeVisible();
       await expect(page.locator(`#${id} :is(h1, h2)`).first()).toBeVisible();
     }
     const navLinks = page.locator('.nav__list a');
-    await expect(navLinks).toHaveCount(4);
+    await expect(navLinks).toHaveCount(3);
     for (const link of await navLinks.all()) {
       await expect(link).toBeVisible();
     }

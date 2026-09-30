@@ -34,14 +34,13 @@ body
 │       ├── a.nav__toggle[href="#nav-menu"]  "Menu" (shown only under html.js below 48em;
 │       │                                       nav.js swaps it for button[aria-expanded])
 │       ├── ul#nav-menu.nav__list
-│       │   ├── a[href="#about"]       About
 │       │   ├── a[href="#experience"]  Experience
 │       │   ├── a[href="#interests"]   Interests
 │       │   └── a[href="#contact"]     Contact
 │       └── button.theme-toggle[hidden][aria-pressed]  accessible name "Dark theme"
 ├── main#main[tabindex="-1"]
-│   ├── section#home       aria-labelledby → h1   (Hero: greeting + statement, no links)
-│   ├── section#about      aria-labelledby → h2 "About Me"
+│   ├── section#home       aria-labelledby → h1   (Intro: greeting, statement, biography,
+│   │                                            Education, Skills; no links)
 │   ├── section#experience aria-labelledby → h2 "Experience"
 │   ├── section#interests  aria-labelledby → h2 "Interests"
 │   └── section#contact    aria-labelledby → h2 "Contact"
@@ -56,14 +55,14 @@ body
 
 ```text
 h1  Hi, I'm Aseel.
-h2  About Me
-  h3  Education
-    h4  <degree> ×2
-  h3  Skills
-    h4  Languages
-    h4  Frameworks & Security
-    h4  Cloud & DevOps
-    h4  Quality & Methodology
+  (statement and biography paragraphs; no "About Me" heading, amendment 2026-09-30)
+h2  Education
+  h3  <degree> ×2
+h2  Skills
+  h3  Languages
+  h3  Frameworks & Security
+  h3  Cloud & DevOps
+  h3  Quality & Methodology
 h2  Experience
   (one narrative paragraph — no sub-headings; amendment 2026-09-30)
 h2  Interests

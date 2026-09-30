@@ -72,3 +72,7 @@
   SC-006, US1, Contact Link entity, and assumptions aligned; constitution v3.0.0. The FR-018 and
   edge-case conflict from analysis finding I5 is resolved by removal. All 16 items still pass; no
   [NEEDS CLARIFICATION] markers.
+- Iteration 10 (2026-09-30, unified intro): Hero and About Me merged (FR-001, FR-005 rewritten,
+  FR-005a added for the landing gap, FR-008–FR-010 and FR-023 reworded, US1/US2 aligned); the
+  biography's em dash was already a semicolon (FR-041). Constitution v4.0.0. All 16 items still
+  pass; no [NEEDS CLARIFICATION] markers.

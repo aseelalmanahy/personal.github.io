@@ -36,7 +36,7 @@ Single-page personal portfolio for Aseel Almanahy, scaffolded with **GitHub Spec
 
 All feature work is meant to flow through Spec Kit skills, available in `.claude/skills/` (mirrored for Copilot in `.github/skills/`):
 
-1. `/speckit-constitution` — project principles in `.specify/memory/constitution.md` (v3.0.0: vanilla stack, five sections (Hero without contact links; Contact is the only home of the GitHub/LinkedIn links) incl. a static Interests list, single CSP-hashed theme bootstrap exception, mobile-first, warm palette, WCAG 2.2 AA, single-page scope, GitHub Pages budgets, privacy). Plans are checked against it.
+1. `/speckit-constitution` — project principles in `.specify/memory/constitution.md` (v4.0.0: vanilla stack, four sections (Intro = greeting, statement, biography, education, skills, without contact links; Contact is the only home of the GitHub/LinkedIn links) incl. a static Interests list, single CSP-hashed theme bootstrap exception, mobile-first, warm palette, WCAG 2.2 AA, single-page scope, GitHub Pages budgets, privacy). Plans are checked against it.
 2. `/speckit-specify <description>` — creates a numbered feature dir under `specs/` (sequential numbering) with `spec.md`, and records the active feature in `.specify/feature.json`.
 3. `/speckit-clarify` — optional, resolves ambiguities in the spec.
 4. `/speckit-plan` — produces the technical plan (tech stack decisions live here).

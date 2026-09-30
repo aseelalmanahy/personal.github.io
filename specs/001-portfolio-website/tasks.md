@@ -433,6 +433,30 @@ and I7.
 
 ---
 
+## Phase 15: Amendment — Unified Intro: Hero and About Me Merged (2026-09-30)
+
+**Goal**: One intro section (greeting, statement, biography, Education, Skills) with no "About
+Me" heading and no landing gap (FR-001, FR-005, FR-005a); constitution v4.0.0.
+
+**Independent Test**: `npm run verify` exits 0; `hero-contact.spec.js` confirms the intro order, sub-headings, first-viewport education cards, and no section-sized gaps; four sections and three nav links everywhere.
+
+### Tests for Phase 15 (write first, confirm they fail)
+
+- [X] T168 [P] [US1] In `tests/e2e/hero-contact.spec.js`: intro order h1 → statement → biography → Education → Skills, `h2`s "Education" and "Skills", no "About Me" heading, no links; education cards start within 1024 × 768 and 1440 × 900; statement→biography ≤ 64px and biography→education ≤ 96px
+- [X] T169 [P] Four sections and three nav links: `structure.spec.js`, `no-js.spec.js`, `responsive.spec.js`, `nav-theme.spec.js`; 8-stop keyboard walkthrough in `a11y.spec.js`
+
+### Implementation for Phase 15
+
+- [X] T170 [US1] In `src/index.html` move the biography, Education, and Skills into `section#home`, remove `section#about` and the "About" nav link; headings Education/Skills h3 → h2, degrees and tiers h4 → h3
+- [X] T171 Adjust `src/css/components/hero.css` (intro padding) and `src/css/components/about.css` (biography spacing, `h2` sub-heading size, degree size)
+- [X] T172 Amend the constitution to v4.0.0 (Principle V: Intro, Experience, Interests, Contact Links) via `/speckit-constitution`; update `CLAUDE.md`
+- [X] T173 Sync docs: spec (status, amendment input, clarifications, US1, US2, FR-001, FR-005, FR-005a, FR-008–FR-010, FR-023, assumption), checklist iteration 10, data model, contracts, quickstart, plan, research R-32; per-change review at 320/375/768/1024/1440 in both themes
+- [X] T174 Run `npm run verify` (exit 0, Lighthouse 1.00 ×4), record in `checklists/implementation-gates.md`, and commit on `001-portfolio-website`
+
+**Checkpoint (Unified-intro gate)**: T174 passes; no regression in earlier gates.
+
+---
+
 ## Dependencies & Execution Order
 
 ### Phase Dependencies
@@ -448,6 +472,7 @@ and I7.
 - **Phase 8 Amendment (2026-09-30)**: runs after Gate 5a and before T096–T103 (launch needs the amended content). T104–T108 are parallel; T109–T112 edit shared files, in order; T113–T117 follow.
 - **Phase 9 Interests (2026-09-30)**: after Phase 8 and before T096–T103. T118–T120 are parallel; T121–T124 in order; T125–T129 follow.
 - **Phase 10 Contact via LinkedIn (2026-09-30)**: after Phase 9 and before T102–T103. T130–T131 parallel; T132–T134 in order; T135–T137 follow.
+- **Phase 15 Unified intro (2026-09-30)**: after Phase 14 and before T098–T103. T168–T169 parallel; T170–T173 in order; T174 last.
 - **Phase 14 Five sections (2026-09-30)**: after Phase 13 and before T098–T103. T159–T160 parallel; T161–T166 in order; T167 last. Supersedes the Projects work of Phases 3 and 13 (T027, T054, T059, T151, T154).
 - **Phase 13 Polish & projects (2026-09-30)**: after Phase 12 and before T098/T102–T103. T151–T153 parallel; T154–T156 in order; T157–T158 follow.
 - **Phase 12 Narrative (2026-09-30)**: after Phase 11 and before T098/T102–T103. T147 → T148 → T149 → T150.

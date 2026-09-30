@@ -1,14 +1,16 @@
 .about__intro {
-  margin-bottom: var(--space-7);
-  font-size: var(--text-lg);
+  margin-top: var(--space-5);
+  margin-bottom: var(--space-6);
 }
 
 .about__group + .about__group {
   margin-top: var(--space-7);
 }
 
+/* h2 in the outline, sized as a sub-heading of the intro. */
 .about__heading {
   margin-bottom: var(--space-4);
+  font-size: var(--text-xl);
 }
 
 /* minmax(0, …) lets columns shrink below their longest word so long words wrap at 400% zoom. */
@@ -30,6 +32,10 @@
   border-radius: 0 var(--radius-md) var(--radius-md) 0;
   background-color: var(--color-surface);
   overflow-wrap: anywhere;
+}
+
+.education__degree {
+  font-size: var(--text-lg);
 }
 
 .education__school {

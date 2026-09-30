@@ -39,13 +39,13 @@ Contact section (FR-021) — LinkedIn first and primary, GitHub second; no email
 
 ```html
 <li class="education__item">
-  <h4 class="education__degree">Bachelor of Science in Computer Science</h4>
+  <h3 class="education__degree">Bachelor of Science in Computer Science</h3>
   <p class="education__school">University of Massachusetts Lowell</p>
   <p class="education__status">Completed</p>
 </li>
 ```
 
-Items sit in `<ul class="education">` under the `h3` "Education", so degrees are `h4`
+Items sit in `<ul class="education">` under the `h2` "Education" inside the intro, so degrees are `h3`
 (outline in page-structure.md). The MBA uses "Candidate" as its status text.
 
 ## Skill tiers (FR-010)
@@ -53,7 +53,7 @@ Items sit in `<ul class="education">` under the `h3` "Education", so degrees are
 ```html
 <div class="skills">
   <div class="skill-group">
-    <h4 class="skill-group__title" id="skills-languages">Languages</h4>
+    <h3 class="skill-group__title" id="skills-languages">Languages</h3>
     <ul class="tag-list" aria-labelledby="skills-languages">
       <li class="tag">Java</li><li class="tag">TypeScript/<wbr />JavaScript</li>…
     </ul>

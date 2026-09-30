@@ -492,3 +492,16 @@ was open in the plan's Technical Context is resolved here.
   maintenance surface minimal.
 - **Alternatives considered**: hiding the hero actions on larger screens only (still repetition);
   keeping Projects with repository links (the owner chose GitHub profile access in Contact).
+
+## R-32 Unified intro (constitution v4.0.0, amendment 2026-09-30)
+
+- **Decision**: Move the biography, Education, and Skills into `section#home`; drop the About Me
+  section and its nav link; promote Education/Skills to `h2` (degrees and tiers to `h3`) so
+  the outline has no skipped levels; size the new `h2`s as sub-headings; reduce the intro's
+  top padding.
+- **Rationale**: Two stacked sections with full section padding left a screen-high gap between
+  the statement and the biography. One section keeps the landing screen full and still gives
+  screen-reader users a clean outline (h1 → h2 Education/Skills → h2 Experience…).
+- **Alternatives considered**: keeping `section#about` with a visually hidden heading (the gap
+  is structural padding, and a hidden landmark heading adds noise); keeping an "About" nav link
+  to `#home` (duplicates the site-name link and would mark a current section in the hero).

@@ -17,7 +17,7 @@ the end.
 | `displayName` | "Aseel" | hero `h1` greeting "Hi, I'm Aseel." |
 | `fullName` | "Aseel Almanahy" | `<title>`, brand link, OG tags, JSON-LD, footer |
 | `statement` | "Full Stack Software Engineer specializing in scalable systems, robust architectures, and engineering mentorship." — verbatim (FR-004) | hero paragraph, meta/OG description |
-| `intro` | The owner's approved text in spec FR-008, verbatim (3 sentences) | About Me paragraph |
+| `intro` | The owner's approved text in spec FR-008, verbatim (3 sentences) | intro biography paragraph (below the statement) |
 
 **Validation**: greeting and statement match the spec byte-for-byte (checked by e2e);
 `intro` matches FR-008 verbatim (checked by e2e); no `CONTENT:` placeholder at launch.

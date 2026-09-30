@@ -36,12 +36,19 @@ test.describe('US1: hero and contact content', () => {
     expect(normalise(await page.locator('.hero__statement').textContent())).toBe(STATEMENT);
   });
 
-  test('hero holds only the greeting and statement: no links or buttons (FR-005)', async ({
+  test('unified intro: greeting, statement, biography, education, skills; no links (FR-005)', async ({
     page,
   }) => {
     await page.goto('/');
     await expect(page.locator('#home a, #home button')).toHaveCount(0);
-    await expect(page.locator('#home :is(h1, p)')).toHaveCount(2);
+    await expect(page.getByRole('heading', { name: 'About Me' })).toHaveCount(0);
+    const order = await page
+      .locator('#home :is(h1, .hero__statement, .about__intro, .education, .skills)')
+      .evaluateAll((els) => els.map((el) => (el.tagName === 'H1' ? 'h1' : el.classList[0])));
+    expect(order).toEqual(['h1', 'hero__statement', 'about__intro', 'education', 'skills']);
+    expect(
+      await page.locator('#home h2').evaluateAll((els) => els.map((el) => el.textContent.trim())),
+    ).toEqual(['Education', 'Skills']);
   });
 
   test('Contact names LinkedIn as the primary way to connect and lists it first (FR-021)', async ({
@@ -92,6 +99,32 @@ test.describe('US1: hero and contact content', () => {
         links.map((a) => `${a.closest('section')?.id ?? 'outside'}:${a.getAttribute('href')}`),
       );
     expect(placement).toEqual([`contact:${LINKEDIN_URL}`, `contact:${GITHUB_URL}`]);
+  });
+});
+
+test.describe('US1: intro closes the landing gap (FR-005a)', () => {
+  for (const [width, height] of [
+    [1024, 768],
+    [1440, 900],
+  ]) {
+    test(`education cards start in the first viewport at ${width}×${height}`, async ({ page }) => {
+      await page.setViewportSize({ width, height });
+      await page.goto('/');
+      const box = await page.locator('.education__item').first().boundingBox();
+      expect(box.y).toBeLessThan(height);
+    });
+  }
+
+  test('text blocks follow each other without a section-sized gap', async ({ page }) => {
+    await page.setViewportSize({ width: 1440, height: 900 });
+    await page.goto('/');
+    const gap = async (upper, lower) => {
+      const a = await page.locator(upper).boundingBox();
+      const b = await page.locator(lower).boundingBox();
+      return b.y - (a.y + a.height);
+    };
+    expect(await gap('.hero__statement', '.about__intro')).toBeLessThanOrEqual(64);
+    expect(await gap('.about__intro', '.education')).toBeLessThanOrEqual(96);
   });
 });
 

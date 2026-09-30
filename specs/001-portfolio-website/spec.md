@@ -6,8 +6,8 @@
 
 **Status**: Draft — amended 2026-09-30 (narrative content structure; Interests section; email
 removed, LinkedIn primary; four-tier skills; Experience
-narrative revised; em dashes removed; hero links and Projects removed, five sections; see
-Clarifications)
+narrative revised; em dashes removed; hero links and Projects removed; Hero and About Me merged
+into one intro, four sections; see Clarifications)
 
 **Input**: User description: "Create a technical specification for a single-page personal
 portfolio website for Aseel Almanahy, a Full Stack Software Engineer. Hero section (greeting
@@ -72,6 +72,15 @@ LinkedIn buttons, the single destination for professional outreach and code insp
 task definitions (analysis findings I1, I2, I3, I5, I7) and documentation for the 5-section
 layout (Hero, About Me, Experience, Interests, Contact). Run 'npm run verify'."
 
+**Amendment input (2026-09-30, unified intro)**: "Restructure the top page layout to eliminate the
+large visual gap: combine the Hero greeting, the short summary statement, and the 'About Me'
+biographical paragraph into a single, unified introductory header section; remove the separate
+'About Me' section heading. Position the two Education degree cards directly beneath the merged
+text block to ground the initial landing viewport. The page flow: Unified Intro Header →
+Education Cards → Full-Width Skills Grid → Experience Narrative → Interests → Contact Footer.
+Ensure the em dash in the biographical paragraph is a comma or semicolon. Run 'npm run
+verify'."
+
 ## Clarifications
 
 ### Session 2026-09-29
@@ -120,6 +129,8 @@ layout (Hero, About Me, Experience, Interests, Contact). Run 'npm run verify'."
   so the order is Hero, About Me, Experience, Interests, Projects, Contact Links; constitution
   amended to v2.2.0 to allow the sixth section. *(Superseded 2026-09-30: Projects removed;
   the order is Hero, About Me, Experience, Interests, Contact Links, constitution v3.0.0.)*
+  *(Superseded again 2026-09-30: Intro, Experience, Interests, Contact Links, constitution
+  v4.0.0.)*
 - Q: Which public email address does the page publish? → A: `[email removed]`
   (owner-supplied routing address; an earlier proposal on an unregistered domain was rejected).
   *(Superseded 2026-09-30: email removed from the page.)*
@@ -162,6 +173,16 @@ layout (Hero, About Me, Experience, Interests, Contact). Run 'npm run verify'."
 - Q: Where do visitors inspect code now that Projects is gone? → A: Through the GitHub profile
   button in Contact. The page links to no individual repository. Constitution v3.0.0 removes
   Projects from the required sections (Principle V).
+- Q: How are the Hero and About Me combined? → A: One intro section, in this order: greeting
+  (the page's only h1), professional statement, biography (FR-008), Education (two degree cards),
+  Skills (four tiers). "Education" and "Skills" become the intro's sub-headings; there is no
+  "About Me" heading anywhere. Constitution v4.0.0 lists four sections: Intro, Experience,
+  Interests, Contact Links.
+- Q: What happens to the "About" navigation link? → A: It is removed: the intro is the top of
+  the page and the site-name link in the bar already returns to it. The bar links to
+  Experience, Interests, and Contact.
+- Q: Is there still an em dash in the biography? → A: No. It became a semicolon on 2026-09-30
+  ("important to me; I actively…", FR-008, FR-041); this amendment confirms it.
 
 ## User Scenarios & Testing *(mandatory)*
 
@@ -171,7 +192,8 @@ who arrive from a shared link (résumé, LinkedIn, email signature) — most oft
 ### User Story 1 - Meet Aseel and get in touch (Priority: P1)
 
 A recruiter opens the site from a link. Without scrolling, they see a friendly greeting ("Hi,
-I'm Aseel.") and the professional statement, with nothing competing for attention. To get in
+I'm Aseel."), the professional statement, and a short biography, with Aseel's two degrees
+starting just below; nothing competes for attention. To get in
 touch they choose Contact in the navigation bar (or scroll to the end): the Contact Links section
 tells them that LinkedIn is the best way to reach out or connect and offers LinkedIn and GitHub,
 the only place on the page where either appears.
@@ -202,7 +224,7 @@ confirm it reaches the correct destination.
 
 ### User Story 2 - Review background and experience (Priority: P2)
 
-A hiring manager wants to judge fit. In About Me they read a short introduction that shows how
+A hiring manager wants to judge fit. In the intro they read a short biography that shows how
 Aseel approaches engineering and mentorship, see education (BS in Computer Science, UMass
 Lowell; MBA in Project Management candidate, LSU Shreveport), and scan skills grouped into
 four tiers — Languages, Frameworks & Security, Cloud & DevOps, and Quality & Methodology —
@@ -214,13 +236,13 @@ services and healthcare — and of Aseel's mentorship of new engineers.
 **Why this priority**: Background and career story are the main evidence a hiring decision rests
 on, but they are only useful once the visitor already knows who Aseel is (P1).
 
-**Independent Test**: With only the hero, About Me, and Experience sections present, a reviewer
+**Independent Test**: With only the intro and Experience sections present, a reviewer
 can state Aseel's degrees, list the skills per category, and summarise Aseel's experience in
 terms of full-stack work, cloud (AWS), architecture, and technical leadership.
 
 **Acceptance Scenarios**:
 
-1. **Given** a visitor in About Me, **When** they read the section, **Then** they see the
+1. **Given** a visitor in the intro, **When** they read it, **Then** they see the
    introduction from FR-008 verbatim, both education entries with institution, degree, and
    status (completed vs. candidate), and skills presented under the four headings listed in
    FR-010, each with its items in the stated order.
@@ -338,39 +360,44 @@ no motion and nothing to click.
 
 **Page structure and scope**
 
-- **FR-001**: The site MUST be a single page containing these sections, in this order: Hero,
-  About Me, Experience, Interests, Contact Links.
+- **FR-001**: The site MUST be a single page containing these sections, in this order: Intro
+  (greeting, statement, biography, education, skills), Experience, Interests, Contact Links.
 - **FR-002**: Each section MUST be individually linkable so a visitor can share or bookmark a
   link that opens directly at that section.
 - **FR-003**: A "not found" page MUST be shown for any unknown address, in the site's style,
   with a link back to the main page.
 
-**Hero**
+**Intro**
 
 - **FR-004**: The hero MUST display the greeting "Hi, I'm Aseel." as the page's main heading
   and the statement "Full Stack Software Engineer specializing in scalable systems, robust
   architectures, and engineering mentorship." verbatim.
-- **FR-005**: The hero MUST present only the greeting and the professional statement: no links,
-  buttons, or other actions. Contact routes live in Contact Links (FR-021, FR-042).
+- **FR-005**: The intro MUST present, in this order, the greeting and statement (FR-004), the
+  biography (FR-008), the education cards (FR-009), and the skills grid (FR-010), with
+  "Education" and "Skills" as its only sub-headings and no "About Me" heading. It contains no
+  links, buttons, or other actions; contact routes live in Contact Links (FR-021, FR-042).
+- **FR-005a**: The intro MUST read as one continuous block: no section-sized gap between the
+  statement, the biography, and the education cards, and on desktop screens (1024 × 768 and
+  larger) the education cards begin within the first screenful.
 - **FR-006**: GitHub and LinkedIn actions MUST open Aseel's public profiles —
   `https://github.com/aseelalmanahy` and `https://www.linkedin.com/in/aseel-almanahy-97342b109/`
   — in a new tab and MUST indicate to all users that they open in a new tab. The same two URLs
   are used everywhere the page links to these profiles.
 - **FR-007**: *(Removed 2026-09-30 — no email action; see FR-021.)*
 
-**About Me**
+**Intro: biography, education, skills**
 
-- **FR-008**: About Me MUST open with this introduction, verbatim: "I'm a full-stack software
+- **FR-008**: The intro's biography MUST read, verbatim: "I'm a full-stack software
   engineer who loves turning complex problems into reliable, well-structured systems. I studied
   Computer Science at UMass Lowell and am now pursuing an MBA in Project Management at LSU
   Shreveport, pairing engineering depth with strategic delivery know-how. Mentorship is
   incredibly important to me; I actively dedicate time to sharing my industry experience to
   accelerate the growth of other engineers while continuously sharpening my own leadership
   capabilities."
-- **FR-009**: About Me MUST list education: Bachelor of Science in Computer Science, University
+- **FR-009**: The intro MUST list education, directly below the biography: Bachelor of Science in Computer Science, University
   of Massachusetts Lowell (completed); Master of Business Administration in Project Management,
   Louisiana State University Shreveport (candidate / in progress).
-- **FR-010**: About Me MUST present technical skills in four labelled tiers, in this order and
+- **FR-010**: The intro MUST present technical skills, below education, in four labelled tiers, in this order and
   with exactly these items in this order: **Languages** — Java, TypeScript/JavaScript, C/C++,
   C#, SQL, Python; **Frameworks & Security** — Spring Boot, Angular, Flask, Hibernate, Spring
   Data JPA, RESTful APIs, OAuth2, JWT; **Cloud & DevOps** — AWS (EC2, Lambda, S3), Docker,
@@ -456,7 +483,8 @@ no motion and nothing to click.
 
 **Navigation**
 
-- **FR-023**: A navigation menu MUST link to every main section and MUST sit in a compact bar
+- **FR-023**: A navigation menu MUST link to every section after the intro (the site name in the
+  bar returns to the intro) and MUST sit in a compact bar
   that stays visible at the top of the viewport at every scroll position (no hide-on-scroll
   behaviour). On phone-sized screens, with scripting available, the bar MUST be no taller than
   ~56px (~15% of a 375 × 667 screen at most) while the menu is collapsed (see Edge Cases →
@@ -554,7 +582,7 @@ no motion and nothing to click.
   later without changing the structure.
 - No email address is published (owner decision 2026-09-30): LinkedIn messaging is the primary
   contact channel, which also keeps the owner's address away from automated collection.
-- The About Me section may mention both degrees and skills only; certifications, awards, and a
+- The intro's About Me content may mention both degrees and skills only; certifications, awards, and a
   detailed work history are out of scope for this version.
 - No Projects section (owner decision 2026-09-30): visitors inspect code through the GitHub
   profile linked in Contact.

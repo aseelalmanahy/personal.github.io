@@ -262,3 +262,16 @@ Result values: PASS · FAIL · PENDING · N/A (with reason).
 | F7 | Constitution per-change check (analysis K1) | PASS | Full-page review at 320 (light), 375 (dark), 768 (light), 1024 (dark), 1440 (light): sections in order, no overflow (scrollWidth = viewport), hero link-free, Contact buttons visible; keyboard and JS-off by the automated specs | 2026-09-30 |
 | F8 | Budgets | PASS | 11.2 KB HTML+CSS+JS, 3.9 KB JS, 12.4 KB total (gzip) | 2026-09-30 |
 | F9 | Lighthouse (mobile ×3) | PASS | index.html Perf 1.00, A11y 1.00, BP 1.00, SEO 1.00; LCP 1.1 s, CLS 0.001, TBT 0 ms | 2026-09-30 |
+
+## Unified intro: Hero and About Me merged (Phase 15, 2026-09-30)
+
+| ID | Gate | Result | Evidence | Date |
+|---|---|---|---|---|
+| U1 | Intro order and headings (FR-001, FR-005) | PASS | hero-contact.spec: h1 → statement → biography → Education → Skills; `h2`s Education, Skills; no "About Me" heading; no links (3 engines) | 2026-09-30 |
+| U2 | Landing gap closed (FR-005a) | PASS | Education cards start inside 1024 × 768 and 1440 × 900; statement→biography ≤ 64px, biography→education ≤ 96px | 2026-09-30 |
+| U3 | Four sections, three nav links (FR-023, constitution v4.0.0) | PASS | structure, no-JS, responsive, nav specs; headings outline has one h1 and no skipped levels | 2026-09-30 |
+| U4 | Keyboard walkthrough (SC-006) | PASS | 8 stops, no traps (Chromium, Firefox) | 2026-09-30 |
+| U5 | Biography punctuation (FR-041) | PASS | "important to me; I actively…"; no em dash in `src/` (structure.spec) | 2026-09-30 |
+| U6 | Per-change review (constitution Governance) | PASS | Full-page review at 320 (light), 375 (dark), 768 (light), 1024 (dark), 1440 (light): intro reads as one block, no overflow; keyboard and JS-off by the automated specs | 2026-09-30 |
+| U7 | `npm run verify` | PASS | exit 0: format, lint, 46/46 unit, 0 content markers, 271 e2e passed / 8 skipped (engine limits), 12/12 links | 2026-09-30 |
+| U8 | Budgets and Lighthouse | PASS | 12.4 KB total (gzip); index.html Perf 1.00, A11y 1.00, BP 1.00, SEO 1.00; LCP 1.1 s, CLS 0.001, TBT 0 ms | 2026-09-30 |

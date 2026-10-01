@@ -15,4 +15,4 @@
 ## Phase 3: Release
 
 - [X] T005 Run `npm run verify` (exit 0, Lighthouse 1.00 ×4) and record results in `checklists/implementation-gates.md`
-- [ ] T006 Merge to `main`, push, and record the live W3C checker result (FR-006, SC-001, SC-002)
+- [X] T006 Merge to `main`, push, and record the live W3C checker result (FR-006, SC-001, SC-002)

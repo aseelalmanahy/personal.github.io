@@ -9,4 +9,4 @@
 | W3 | CSP unchanged (FR-005) | PASS | `check-csp`: bootstrap hash identical in src and dist | 2026-10-01 |
 | W4 | W3C checker on built pages | PASS | dist/index.html and dist/404.html: 0 errors, 0 trailing-slash notes; only CSP warnings (see validation-exceptions.md) | 2026-10-01 |
 | W5 | `npm run verify` (SC-003) | PASS | exit 0: 46/46 unit, 286 e2e passed / 8 skipped, 12/12 links; Lighthouse 1.00 ×4; 12.4 KB gzip | 2026-10-01 |
-| W6 | Live W3C checker (FR-006, SC-001, SC-002) | PENDING | Recorded after deploy (T006) | |
+| W6 | Live W3C checker (FR-006, SC-001, SC-002) | PASS | Deploy run 36813435778 succeeded (commit 206a297); live home page: 2 messages total, 0 errors, 0 info notes (was 29), 2 warnings = the documented CSP exceptions (lines 11, 50) | 2026-10-01 |

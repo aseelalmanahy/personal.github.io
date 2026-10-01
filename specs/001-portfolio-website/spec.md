@@ -4,7 +4,7 @@
 
 **Created**: 2026-09-29
 
-**Status**: Draft — amended 2026-09-30 (narrative content structure; Interests section; email
+**Status**: Released 2026-10-01 (stable production, https://aseelalmanahy.com/); amended 2026-09-30 (narrative content structure; Interests section; email
 removed, LinkedIn primary; four-tier skills; Experience
 narrative revised; em dashes removed; hero links and Projects removed; Hero and About Me merged
 into one intro, four sections;

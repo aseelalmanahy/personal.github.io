@@ -88,3 +88,4 @@
   https://aseelalmanahy.com/, no github.io in published files); clarification and assumption for
   the Squarespace-registered domain and owner DNS actions. All 16 items still pass; no [NEEDS
   CLARIFICATION] markers.
+- Release (2026-10-01): spec status set to Released; no requirement changes. All 16 items pass.

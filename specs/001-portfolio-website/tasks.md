@@ -495,6 +495,13 @@ serves the custom domain from `CNAME`.
 
 ---
 
+## Phase 19: Post-release Amendment — OOP in C++ (2026-10-01)
+
+- [X] T186 [US2] Update the FR-011 test constant ("Data Structures in C and Object-Oriented Programming in C++"); confirm it fails
+- [X] T187 [US2] Update `src/index.html` and FR-011 in `spec.md`; run `npm run verify`; record gate K3; commit
+
+---
+
 ## Dependencies & Execution Order
 
 ### Phase Dependencies

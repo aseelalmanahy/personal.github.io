@@ -12,9 +12,9 @@ const ABOUT_INTRO =
 const EXPERIENCE_NARRATIVE =
   'My engineering journey is rooted in a strong technical foundation, starting as a ' +
   "Professor's Assistant and grader at UMass Lowell, where I evaluated complex algorithmic " +
-  'concepts and mentored students in core Data Structures in C and C++ and Object-Oriented ' +
-  'Programming. I built upon these fundamentals in industry, working as an Android Engineer ' +
-  'using Kotlin in the healthcare sector to integrate secure services and optimize ' +
+  'concepts and mentored students in core Data Structures in C and Object-Oriented ' +
+  'Programming in C++. I built upon these fundamentals in industry, working as an Android ' +
+  'Engineer using Kotlin in the healthcare sector to integrate secure services and optimize ' +
   'user-facing mobile interfaces. Transitioning into full-stack engineering, I have evolved ' +
   'into a Full Stack Engineer specialized in building robust systems, constructing ' +
   'microservices, and managing cloud infrastructure on AWS within high-stakes fields like ' +

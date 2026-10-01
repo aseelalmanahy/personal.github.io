@@ -91,3 +91,5 @@
 - Release (2026-10-01): spec status set to Released; no requirement changes. All 16 items pass.
 - Iteration 14 (2026-10-01, post-release amendment): FR-011 wording corrected by the owner (C and C++;
   Android with Kotlin). No other requirement changes. All 16 items still pass.
+- Iteration 15 (2026-10-01, post-release amendment): FR-011 wording: Data Structures in C, Object-Oriented
+  Programming in C++. All 16 items still pass.

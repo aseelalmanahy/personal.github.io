@@ -61,7 +61,7 @@ performed and attested by the site owner on 2026-10-01.
 |---|---|---|---|---|
 | V3.1 | SC-004 viewport matrix, both themes, 3 engines | PASS | 320/375/768/1024/1440/2560 × light/dark × 3 engines: no overflow | 2026-09-29 |
 | V3.2 | 400% zoom / 200% font size | PASS | 320px (= 1280px at 400%) passes; 320px + 200% root font passes after `minmax(0,1fr)` grids and fluid card/button padding | 2026-09-29 |
-| V3.3 | projects.spec | PASS | Launch card, iff-invariant, 2560 width ≤ 28rem, 1 → ≥2 columns, link names include titles, missing demo omitted; 3 engines | 2026-09-29 |
+| V3.3 | projects.spec | N/A (superseded: Projects section removed 2026-09-30, Phase 14; passed at the time) | Launch card, iff-invariant, 2560 width ≤ 28rem, 1 → ≥2 columns, link names include titles, missing demo omitted; 3 engines | 2026-09-29 |
 | V3.4 | Timeline layout, labels, marker shapes, highlight parity | PASS | Single column at 375/768/1440; circle vs diamond; hover = focus = tap (hasTouch) styles; 3 engines | 2026-09-29 |
 | V3.5 | Nav height and layouts | PARTIAL → Gate 4 | ≥768 inline links: PASS; JS-off 375 links visible: PASS. Collapsed ≤56px height needs nav.js (T075) to reveal the Menu button — verified in T068 | 2026-09-29 |
 | V3.6 | FR-023a headings/focus never under the bar | PASS | Deep links to 4 sections at 375 and 1440 in 3 engines; Tab walk (Chromium, Firefox) never obscured. Taller no-JS header handled by `html:has(.nav__toggle[hidden])` scroll-padding | 2026-09-29 |
@@ -246,8 +246,8 @@ performed and attested by the site owner on 2026-10-01.
 |---|---|---|---|---|
 | P1 | No em dashes (FR-041) | PASS | structure.spec: rendered text, titles, meta, and labels on `/` and `/404.html`; every `src/` file (3 engines) | 2026-09-30 |
 | P2 | Profile links only in hero and Contact (FR-042) | PASS | hero-contact.spec: order home GitHub, home LinkedIn, Contact LinkedIn, Contact GitHub; none elsewhere | 2026-09-30 |
-| P3 | Three featured cards (FR-017, FR-020) | PASS | projects.spec: titles, order, descriptions ≤ 200, exact and unique tags, 5 repository links with card-named labels, no placeholder | 2026-09-30 |
-| P4 | Grid reflow (FR-016) | PASS | 1 @ 375, 2 @ 768, 3 @ 1024 / 1440; screenshots light 1280, dark 768 | 2026-09-30 |
+| P3 | Three featured cards (FR-017, FR-020) | N/A (superseded: Projects section removed 2026-09-30, Phase 14; passed at the time) | projects.spec: titles, order, descriptions ≤ 200, exact and unique tags, 5 repository links with card-named labels, no placeholder | 2026-09-30 |
+| P4 | Grid reflow (FR-016) | N/A (superseded: Projects section removed 2026-09-30, Phase 14; passed at the time) | 1 @ 375, 2 @ 768, 3 @ 1024 / 1440; screenshots light 1280, dark 768 | 2026-09-30 |
 | P5 | Keyboard walkthrough (SC-006) | PASS | 17 stops incl. five code links, no traps (Chromium, Firefox) | 2026-09-30 |
 | P6 | `npm run verify` | PASS | exit 0: format, lint, 46/46 unit, 0 content markers, 283 e2e passed / 8 skipped (engine limits), 17/17 links (repositories resolve). A first run hit one WebKit browser crash (no assertion failed); re-run clean | 2026-09-30 |
 | P7 | Budgets | PASS | 12.2 KB HTML+CSS+JS, 3.9 KB JS, 13.4 KB total (gzip) | 2026-09-30 |
@@ -321,3 +321,10 @@ Further changes start a new feature (`/speckit-specify`) or an amendment recorde
 | K1 | Narrative verbatim (FR-011) | PASS | about-experience.spec: corrected text ("C and C++", "using Kotlin") on all 3 engines; failed against the old page first | 2026-10-01 |
 | K2 | `npm run verify` | PASS | exit 0: 46/46 unit, 277 e2e passed / 8 skipped, 12/12 links; Lighthouse 1.00 ×4 | 2026-10-01 |
 | K3 | Narrative wording: OOP in C++ (FR-011) | PASS | about-experience.spec on 3 engines (failed first); `npm run verify` exit 0: 46/46 unit, 277 e2e passed / 8 skipped, 12/12 links; Lighthouse 1.00 ×4 | 2026-10-01 |
+| K4 | Per-change review for K1–K3 (constitution Governance) | PASS | `#experience` captured at 320/375/768/1024/1440 × light/dark (10 views): corrected sentences present, no horizontal overflow, paragraph inside the viewport; sticky bar overlapping the section in phone captures is a capture artifact (navigation lands headings below the bar, FR-023a specs); keyboard and JS-off by the automated specs | 2026-10-01 |
+
+## Archive (2026-10-01)
+
+All 187 tasks complete; every gate is PASS or N/A with reason; the ledger is closed. The feature
+workspace is archived at git tag `001-portfolio-website-v1.0` (on `main`). New work starts a new
+feature with `/speckit-specify`.

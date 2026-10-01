@@ -4,7 +4,8 @@
 
 **Created**: 2026-09-29
 
-**Status**: Released 2026-10-01 (stable production, https://aseelalmanahy.com/); amended 2026-09-30 (narrative content structure; Interests section; email
+**Status**: Released 2026-10-01 and archived (tag `001-portfolio-website-v1.0`; stable production,
+https://aseelalmanahy.com/); post-release narrative wording fixes 2026-10-01; amended 2026-09-30 (narrative content structure; Interests section; email
 removed, LinkedIn primary; four-tier skills; Experience
 narrative revised; em dashes removed; hero links and Projects removed; Hero and About Me merged
 into one intro, four sections;
@@ -617,7 +618,7 @@ no motion and nothing to click.
   email address are no longer needed.)
 - The site's name/heading uses the first name "Aseel"; the full name "Aseel Almanahy" appears in
   the page title, share previews, and footer.
-- No profile photo is included; the hero relies on typography and colour. A photo can be added
+- No profile photo is included; the intro relies on typography and colour. A photo can be added
   later without changing the structure.
 - No email address is published (owner decision 2026-09-30): LinkedIn messaging is the primary
   contact channel, which also keeps the owner's address away from automated collection.

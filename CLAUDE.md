@@ -13,6 +13,7 @@ Single-page personal portfolio for Aseel Almanahy, scaffolded with **GitHub Spec
 
 - **Shipped site**: hand-written HTML5, CSS3 (custom-property tokens, `@layer`, BEM), native ES modules. No runtime dependencies, frameworks, TypeScript, or preprocessors (constitution Principle I).
 - **Layout**: `src/` is the deployable root and is served as-is in development; `tools/build.mjs` writes the production build to `dist/` (bundled/minified CSS, `?v=` cache-busting). Tests in `tests/unit` (node:test) and `tests/e2e` (Playwright + axe); dev scripts in `tools/`.
+- **Section spacing**: one token, `--section-spacing-vertical` (tokens.css), is the gap above every `main > section` (and below the last); sections never set their own vertical padding (spec 003).
 - **Only CSS/JS file allowed to contain colour literals**: `src/css/tokens.css` (Stylelint enforces; print colours live there too). JS reads colours via `getComputedStyle`.
 - **Inline `<head>` theme bootstrap** (the only inline script the constitution allows; must stay < 1 KB) is protected by a CSP hash — after editing it, run `node tools/check-csp.mjs --write`.
 - **W3C checker**: `tools/build.mjs` strips trailing slashes from HTML void elements in `dist/` (Prettier keeps them in `src/`). The two remaining checker warnings (inline theme bootstrap, JSON-LD vs the CSP meta) are permanent, documented false positives: `specs/002-w3c-validation-cleanup/validation-exceptions.md`.

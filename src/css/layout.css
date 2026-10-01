@@ -3,8 +3,14 @@
   margin-inline: auto;
 }
 
+/* Each section owns only the gap above it; the last one also closes the gap to the footer, so
+   every boundary is exactly one --section-spacing-vertical (no stacked top + bottom padding). */
 main > section {
-  padding-block: var(--space-section);
+  padding-block: var(--section-spacing-vertical) 0;
+}
+
+main > section:last-child {
+  padding-block-end: var(--section-spacing-vertical);
 }
 
 .site-header {
@@ -21,7 +27,7 @@ main > section {
 }
 
 .not-found {
-  padding-block: var(--space-section);
+  padding-block: var(--section-spacing-vertical);
 }
 
 .not-found__text {

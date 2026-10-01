@@ -10,3 +10,4 @@
 | S4 | No regressions (FR-005, SC-004) | PASS | Chromium suite 105/105 incl. education cards in first viewport, deep links below the bar | 2026-10-01 |
 | S5 | Per-change review (constitution Governance) | PASS | Full-page captures at 320 (light), 375 (dark), 768 (light), 1024 (dark), 1440 (light and dark): even rhythm, no overflow | 2026-10-01 |
 | S6 | `npm run verify` (SC-003) | PASS | exit 0: 46/46 unit, 307 e2e passed / 8 skipped, 12/12 links; Lighthouse 1.00 ×4, CLS 0.001; 12.4 KB gzip | 2026-10-01 |
+| S7 | Live deploy | PASS | Deploy of 2761bea succeeded; https://aseelalmanahy.com/ measured: all five gaps 56 / 56 / 63 / 71 / 80 px at 320 / 375 / 768 / 1024 / 1440 | 2026-10-01 |

@@ -4,7 +4,7 @@
 
 **Created**: 2026-10-01
 
-**Status**: Draft
+**Status**: Released 2026-10-01 (live, verified)
 
 **Input**: User description: "Update the design tokens and component layouts to unify vertical
 section spacing: (1) establish a single design token in tokens.css for vertical section gaps

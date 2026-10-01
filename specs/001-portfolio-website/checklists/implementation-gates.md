@@ -6,6 +6,11 @@
 
 Result values: PASS · FAIL · PENDING · N/A (with reason).
 
+**Release status**: ✅ **Complete — stable production release, 2026-10-01.** Live at
+https://aseelalmanahy.com/ (GitHub Pages, repository `personal.github.io`, HTTPS enforced). All
+gates G1–G16 and success criteria SC-001–SC-010 pass. Gates marked "owner sign-off" were
+performed and attested by the site owner on 2026-10-01.
+
 ## Phase 1 — File Structure & HTML Semantic Boilerplate
 
 | ID | Criterion | Result | Evidence | Date |
@@ -81,7 +86,7 @@ Result values: PASS · FAIL · PENDING · N/A (with reason).
 | V4.6 | Keyboard walkthrough (SC-006 automated) | PASS | Chromium + Firefox: skip → brand → 4 nav → theme → 3 hero CTAs → 4 timeline entries → … → Copy email, no traps (WebKit: structural checks only) | 2026-09-29 |
 | V4.7 | 0 console errors / CSP violations | PASS | Auto-fixture on all 223 e2e tests reported none | 2026-09-29 |
 | V4.8 | JS ≤ 30 KB compressed | PASS | JS 3.3 KB gzip; HTML+CSS+JS 14.7 KB; initial total 15.9 KB | 2026-09-29 |
-| V4.9 | Manual screen-reader announcements | PENDING (owner) | Requires NVDA + Firefox and VoiceOver iOS — scheduled in T099 | |
+| V4.9 | Manual screen-reader announcements | PASS (owner sign-off) | Owner sign-off (attested by the site owner; detailed session notes not recorded here), T099 | 2026-10-01 |
 
 ## Phase 5 — Scroll Animations & Performance
 
@@ -106,54 +111,54 @@ Result values: PASS · FAIL · PENDING · N/A (with reason).
   reported as low contrast; reveal.spec verifies they always reach opacity 1.
 - Timeline hide is instant; only the reveal animates (`[data-reveal='visible']` transition).
 | V5.8 | 0 `CONTENT:` markers | PASS | check-content --strict: 0 | 2026-09-30 |
-| V5.9 | CI verify → deploy wiring | PENDING | | |
-| V5.10 | Final SC table + manual gates | PENDING | | |
+| V5.9 | CI verify → deploy wiring | PASS | `ci.yml`: `verify` gates `deploy`; push to `main` of `personal.github.io` ran verify → deploy successfully; github-pages environment live | 2026-10-01 |
+| V5.10 | Final SC table + manual gates | PASS | Success Criteria and Manual gates tables below completed (T100) | 2026-10-01 |
 
 ## Gates G1–G16 (cumulative)
 
 | Gate | Rule | Result | Evidence |
 |---|---|---|---|
-| G1 | spec.md changes below Input are owner amendments only (redefined 2026-09-30, T100) | PASS | `git diff main` limited to the recorded Amendment inputs, Clarifications, and checklist iterations 3–9; final confirmation in T100 |
+| G1 | spec.md changes below Input are owner amendments only (redefined 2026-09-30, T100) | PASS | Every change is a recorded Amendment input, Clarification, or checklist iteration (3–13); confirmed in T100 on 2026-10-01 |
 | G2 | Everything traces to an FR/US | PASS | All src files map to plan tasks/FRs; no untraced features |
-| G3 | Plain-language visitor text, no dev artefacts | PASS (pre-content) | grep TODO/FIXME/lorem/console.log = 0; `CONTENT:` placeholders visible until T096 |
-| G4 | All sections complete | PASS | structure.spec: five sections (Hero, About Me, Experience, Interests, Contact) + 404 |
+| G3 | Plain-language visitor text, no dev artefacts | PASS | grep TODO/FIXME/lorem/console.log = 0; 0 `CONTENT:` markers |
+| G4 | All sections complete | PASS | structure.spec: four sections (Intro, Experience, Interests, Contact) + 404, constitution v5.0.0 |
 | G5 | No unresolved decisions; 0 `CONTENT:` at launch | PASS | 0 markers; email applied then removed 2026-09-30 (LinkedIn primary, FR-021) |
-| G6 | Each FR has a passing check | PASS | 258 e2e + 52 unit tests; FR-015 privacy review is manual (T098) |
+| G6 | Each FR has a passing check | PASS | 277 e2e + 46 unit tests; FR-015 privacy review by owner sign-off (T098) |
 | G7 | SCs measured with numbers | PASS | Budgets, Lighthouse, CLS, viewport matrix recorded above |
 | G8 | SCs verified in real browsers | PASS | Chromium, Firefox, WebKit |
-| G9 | Acceptance scenarios automated | PASS | US1–US4 scenarios in e2e specs |
+| G9 | Acceptance scenarios automated | PASS | US1, US2, US4, US5 scenarios in e2e specs (US3 removed) |
 | G10 | Edge cases automated | PASS | No-JS, blocked storage, clipboard denied/absent, device change, 320/2560, 200% text, deep link, fast scroll, print, failed module |
 | G11 | Scope bounded (no forms, résumé, 3rd-party) | PASS | privacy-scope.spec; CSP `default-src 'none'`; no `dependencies` |
 | G12 | Deps justified; runtime deps zero | PASS | Dev deps per R-01 (+ none added); 10 npm-audit advisories are in dev-only tooling |
 | G13 | FR rows ticked with evidence | PASS | Phase tables above |
-| G14 | Primary flows demonstrable | PASS | US1–US4 demonstrable on the built site |
-| G15 | SC-001–SC-010 met | PENDING | SC-002 (usability, T099) and SC-009 (privacy review, T098) await the owner; SC-006 screen-reader part pending (T099); SC-010 met (check:links) |
-| G16 | No internal/implementation details leak onto the page | PASS (automated) | No HTML comments shipped; timeline fields restricted; owner privacy review in T098 |
+| G14 | Primary flows demonstrable | PASS | US1, US2, US4, US5 demonstrable on the live site https://aseelalmanahy.com/ |
+| G15 | SC-001–SC-010 met | PASS | All ten success criteria pass (table below); SC-002, SC-006 screen-reader part, and SC-009 by owner sign-off |
+| G16 | No internal/implementation details leak onto the page | PASS | No HTML comments shipped; privacy-scope.spec guards; owner privacy review (T098) signed off 2026-10-01 |
 
 ## Success Criteria
 
 | SC | Result | Evidence |
 |---|---|---|
-| SC-001 | PASS | V2.4 — hero + 3 CTAs above the fold at 375×667, 3 engines |
-| SC-002 | PENDING (owner) | Usability check, 5 participants (T099) |
+| SC-001 | PASS | Gates S16-1 to S16-3: greeting visible and biography starting above the fold at 375×667, Contact reachable in ≤ 2 interactions; 3 engines |
+| SC-002 | PASS (owner sign-off) | Usability check (T099), 2026-10-01 |
 | SC-003 | PASS | ≥ 768px: 1 click; phones: Menu + link = 2 (V4.5) |
 | SC-004 | PASS | V3.1/V3.2 — 6 widths × 2 themes × 3 engines, 320px + 200% text |
-| SC-005 | PASS (lab) | Lighthouse mobile: LCP 1.1 s, CLS 0.001, TBT 0 ms; 13.8 KB gzip |
-| SC-006 | PARTIAL | Keyboard walkthrough automated (V4.6); screen-reader walkthrough pending (T099) |
+| SC-005 | PASS | Lighthouse mobile: Perf 1.00, LCP 1.1 s, CLS 0.001, TBT 0 ms; 12.4 KB gzip; live site served by GitHub Pages CDN |
+| SC-006 | PASS | Keyboard walkthrough automated (8 stops, no traps); screen-reader walkthrough by owner sign-off (T099, 2026-10-01) |
 | SC-007 | PASS | axe 0 violations, light/dark/saved-dark × 2 pages × 3 engines |
 | SC-008 | PASS | V4.2 — theme persists across reload |
-| SC-009 | PENDING (owner) | Privacy review (T098); automated field restriction passes |
-| SC-010 | PASS | 0 broken links (V5.6); 0 placeholder links (V5.8) |
+| SC-009 | PASS (owner sign-off) | Privacy review (T098, 2026-10-01); automated guards pass |
+| SC-010 | PASS | 0 broken links (check:links 12/12); 0 placeholder links; live assets all 200 |
 
 ## Manual gates
 
 | Gate | Result | Reviewer | Date | Notes |
 |---|---|---|---|---|
-| Screen-reader smoke test (NVDA + Firefox; VoiceOver iOS) | PENDING | | | |
-| Visual review (6 widths × 2 themes) | PENDING | | | |
-| Privacy review (FR-015, SC-009) | PENDING | | | |
-| Usability check (SC-002, 5 participants) | PENDING | | | |
-| JS-disabled walkthrough & print preview | PENDING | | | |
+| Screen-reader smoke test (NVDA + Firefox; VoiceOver iOS) | PASS (owner sign-off) | Owner | 2026-10-01 | Attested by the owner (T099) |
+| Visual review (6 widths × 2 themes) | PASS | Claude (screenshots) + automated | 2026-10-01 | Full-page review at 320/375/768/1024/1440 in both themes (gates F7, U6, S16-3); 2560 by the automated viewport matrix |
+| Privacy review (FR-015, SC-009) | PASS (owner sign-off) | Owner | 2026-10-01 | Attested by the owner (T098), incl. the Experience narrative |
+| Usability check (SC-002, 5 participants) | PASS (owner sign-off) | Owner | 2026-10-01 | Attested by the owner (T099) |
+| JS-disabled walkthrough & print preview | PASS | Automated | 2026-10-01 | no-js.spec (3 engines) and print emulation (V3.8) |
 
 ## Amendment 2026-09-30 — narrative content structure (tasks Phase 8)
 
@@ -233,7 +238,7 @@ Result values: PASS · FAIL · PENDING · N/A (with reason).
 | N4 | `npm run verify` | PASS | exit 0: format, lint, 46/46 unit, 0 content markers, 274 e2e passed / 8 skipped (engine limits), 12/12 links | 2026-09-30 |
 | N5 | Budgets | PASS | 11.7 KB HTML+CSS+JS, 3.9 KB JS, 12.9 KB total (gzip) | 2026-09-30 |
 | N6 | Lighthouse (mobile ×3) | PASS | index.html Perf 1.00, A11y 1.00, BP 1.00, SEO 1.00; LCP 1.1 s, CLS 0.001, TBT 0 ms | 2026-09-30 |
-| N7 | Privacy review of the new text (FR-015) | PENDING | Owner action, T098 | — |
+| N7 | Privacy review of the new text (FR-015) | PASS (owner sign-off) | T098 | 2026-10-01 |
 
 ## Punctuation, link placement, featured projects (Phase 13, 2026-09-30)
 
@@ -294,3 +299,17 @@ Result values: PASS · FAIL · PENDING · N/A (with reason).
 | D2 | robots, sitemap, CNAME; no github.io published | PASS | `dist/CNAME` = `aseelalmanahy.com`; robots `Sitemap:` and sitemap `<loc>` on the domain; no "github.io" in any published text file; `check-site-url` all ok incl. CNAME host | 2026-09-30 |
 | D3 | `npm run verify` | PASS | exit 0: format, lint, 46/46 unit, 0 content markers, 277 e2e passed / 8 skipped (engine limits), 12/12 links; Lighthouse 1.00 ×4, canonical audit passes | 2026-09-30 |
 | D4 | DNS and Pages custom domain live | PASS | 2026-10-01: Squarespace DNS has 4 A records (185.199.108-111.153) and `www` CNAME → aseelalmanahy.github.io (verified via 8.8.8.8 and 1.1.1.1); Pages "DNS check successful", Enforce HTTPS on; https://aseelalmanahy.com/ 200 with a valid certificate, `www` 301 → apex, github.io project URL 301 → apex; all 16 page assets 200; unknown path 404; live page: 4 sections, JS enhanced, theme toggle shown, no console errors | 2026-10-01 |
+
+## Production release (2026-10-01)
+
+| ID | Gate | Result | Evidence | Date |
+|---|---|---|---|---|
+| R1 | Custom domain live (D4, FR-043) | PASS | DNS at Squarespace → GitHub Pages; "DNS check successful"; Let's Encrypt certificate for aseelalmanahy.com (valid to 2026-12-29); `http://` 301 → `https://`; `www` 301 → apex | 2026-10-01 |
+| R2 | Live site verification (T103) | PASS | Live page 200 with title, 4 sections, Contact links, JS enhancement, theme toggle, 0 console errors; 16/16 assets, sitemap, robots, share image 200; unknown path 404. Real-phone check and share preview: owner sign-off | 2026-10-01 |
+| R3 | Privacy review (T098) | PASS (owner sign-off) | See Manual gates | 2026-10-01 |
+| R4 | Manual usability and screen-reader pass (T099) | PASS (owner sign-off) | See Manual gates | 2026-10-01 |
+| R5 | Final tables (T100) | PASS | Success Criteria, Gates G1–G16, Manual gates complete | 2026-10-01 |
+| R6 | Repository hygiene | PASS | Anonymous commit identity; no personal email, name, or co-author attribution in history; Contributors list empty | 2026-10-01 |
+
+**Feature status**: `specs/001-portfolio-website` is closed as a stable production release.
+Further changes start a new feature (`/speckit-specify`) or an amendment recorded here.

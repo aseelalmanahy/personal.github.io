@@ -93,3 +93,4 @@
   Android with Kotlin). No other requirement changes. All 16 items still pass.
 - Iteration 15 (2026-10-01, post-release amendment): FR-011 wording: Data Structures in C, Object-Oriented
   Programming in C++. All 16 items still pass.
+- Archive (2026-10-01): status Released and archived; terminology "hero" → "intro" in assumptions. All 16 items pass.

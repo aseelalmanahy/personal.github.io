@@ -118,8 +118,8 @@ R-32.
 
 ## Summary
 
-Build a single-page, static portfolio for Aseel Almanahy — Hero, About Me, Experience
-(narrative), Interests, Projects, Contact Links — in hand-written HTML5, CSS3 (custom-property design
+Build a single-page, static portfolio for Aseel Almanahy — four sections: Intro (greeting,
+biography, education, skills), Experience (narrative), Interests, Contact Links — in hand-written HTML5, CSS3 (custom-property design
 tokens, cascade layers, BEM), and native ES modules, hosted on GitHub Pages. All content lives in
 HTML so the page is complete without JavaScript; JavaScript only adds the two-state theme toggle
 (with a no-flash head bootstrap), mobile menu, and current-section indicator. Quality is enforced by a single `npm run verify` gate (Prettier,
@@ -465,7 +465,7 @@ Validation criteria:
 |---|---|---|
 | V3.1 | SC-004: at 320, 375, 768, 1024, 1440, 2560 × light/dark × 3 engines — no horizontal overflow and no visible element's right edge beyond the viewport | G7, G8, G15 |
 | V3.2 | 400% zoom (1280px window → 320 CSS px) and 200% root font size at 375: no overflow; email and URLs wrap | G10 |
-| V3.3 | `projects.spec` with 3 injected sample cards: 1 column at 375, ≥ 2 at 768+; all five elements present; missing demo link omitted; lone coming-soon card width ≤ one column at 2560 | G9, G10, G14 |
+| V3.3 | `projects.spec` with 3 injected sample cards: 1 column at 375, ≥ 2 at 768+; all five elements present; missing demo link omitted; lone coming-soon card width ≤ one column at 2560 (N/A since 2026-09-30: Projects removed, Phase 14) | G9, G10, G14 |
 | V3.4 | Timeline: one column and most-recent-first order at all widths; category text present; marker shapes differ; hovered vs focused entry computed styles identical | G6, G9 |
 | V3.5 | Nav: header height ≤ 56px at 375 (JS on, collapsed); all links inline at ≥ 768; JS off at 375 all links visible and reachable | G6, G10 |
 | V3.6 | FR-023a: deep link to each section → heading top ≥ header bottom; tabbing through the page → no focused element intersects the header | G9, G10 |
@@ -566,7 +566,7 @@ Validation criteria:
 | FR-006 | 14 | Gate F2 |
 | FR-007 | — | Removed 2026-09-30 (no email action) |
 | FR-008–FR-010 | 1, 3 | V1.4, V3.1 |
-| FR-011, FR-012 | 8 | Amendment A2–A3 (supersedes V1.7, V3.4) |
+| FR-011, FR-012 | 8, 12, 18, 19 | Amendment A2–A3, gates N1, K1, K3, K4 (supersedes V1.7, V3.4) |
 | FR-013 (FR-013a removed) | 8 | Amendment A2, A8 (supersedes V3.4, V5.1) |
 | FR-014, FR-015 | 1, 5 | V1.7, V5.10 (privacy review) |
 | FR-016–FR-020 | — | Removed 2026-09-30 (Projects section deleted) |

@@ -502,6 +502,14 @@ serves the custom domain from `CNAME`.
 
 ---
 
+## Phase 20: Close-out and Archive (2026-10-01)
+
+- [X] T188 Per-change visual review of the narrative fixes at 320/375/768/1024/1440 in both themes (gate K4)
+- [X] T189 Patch traceability and logs: plan summary (four sections), FR-011 trace, V3.3/P3/P4 N/A, spec status and terminology
+- [X] T190 Merge to `main` and archive the feature at tag `001-portfolio-website-v1.0`
+
+---
+
 ## Dependencies & Execution Order
 
 ### Phase Dependencies

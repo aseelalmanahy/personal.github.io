@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Single-page personal portfolio for Aseel Almanahy, scaffolded with **GitHub Spec Kit** (v1.0.13.dev0). Active feature: `specs/001-portfolio-website` on branch `001-portfolio-website`. Implementation phases 1–9 are built and tested; launch waits only on creating the GitHub repository and the owner's manual gates (tasks T097–T103). Gate evidence lives in `specs/001-portfolio-website/checklists/implementation-gates.md`.
 
-- **Content**: all owner content is final (spec FR-006, FR-008, FR-011, FR-037; site URL `https://aseelalmanahy.com/` (custom domain; `src/CNAME`, repository `aseelalmanahy.github.io`); no email by design) — keep it verbatim. `node tools/check-content.mjs --strict` must stay at 0 markers; never invent content.
+- **Content**: all owner content is final (spec FR-006, FR-008, FR-011, FR-037; site URL `https://aseelalmanahy.com/` (custom domain; `src/CNAME`, repository `personal.github.io`); no email by design) — keep it verbatim. `node tools/check-content.mjs --strict` must stay at 0 markers; never invent content.
 - The parent folder (`../`) contains an unrelated, empty git repository; this project's repository root is this directory.
 
 ## Stack (decided in `specs/001-portfolio-website/plan.md`)

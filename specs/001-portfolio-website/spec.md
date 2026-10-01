@@ -200,7 +200,7 @@ verify'."
   (FR-036), which visitors do not see on the page; the owner can ask to replace it there too.
 - Q: What does the "Squarespace asset" change? → A: The public address only. The domain
   aseelalmanahy.com is registered through Squarespace and points at the site, which stays on
-  GitHub Pages (constitution Principle VI); the repository keeps the name aseelalmanahy.github.io.
+  GitHub Pages (constitution Principle VI); the repository is `personal.github.io` (renamed 2026-09-30; the custom domain serves it at the root).
   The canonical address is `https://aseelalmanahy.com/` (FR-043). Pointing the domain's DNS
   records at GitHub Pages and entering the custom domain in the repository's Pages settings are
   owner actions (T102). *(Supersedes the site URL answer above.)*

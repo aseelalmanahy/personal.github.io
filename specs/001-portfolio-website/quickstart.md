@@ -122,7 +122,7 @@ No Projects section; code is reached through "GitHub profile" in Contact.
 - [x] LinkedIn profile URL — `https://www.linkedin.com/in/aseel-almanahy-97342b109/` (2026-09-30)
 - [x] ~~Public email address~~ — no longer needed: email removed 2026-09-30; LinkedIn is the primary contact
 - [x] About Me introduction approved (spec FR-008, 2026-09-30)
-- [x] Site URL — custom domain `https://aseelalmanahy.com/` (2026-09-30, `src/CNAME`); repository `aseelalmanahy.github.io`; confirm
+- [x] Site URL — custom domain `https://aseelalmanahy.com/` (2026-09-30, `src/CNAME`); repository `personal.github.io`; confirm
   before the GitHub repository is created (T094); the name sets the 404 `<base href>`
 
 ## Launch checklist

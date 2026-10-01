@@ -79,9 +79,16 @@ async function versionHtml(versions) {
       (match, attribute, url, fragment = '') =>
         versions.has(url) ? `${attribute}="${url}?v=${versions.get(url)}${fragment}"` : match,
     );
-    await writeFile(file, rewritten);
+    await writeFile(file, stripVoidSlashes(rewritten));
   }
 }
+
+// Prettier writes HTML void elements as `<meta … />`; the trailing slash has no effect in HTML and
+// the W3C checker reports it (spec 002 FR-001). Only void elements change: self-closing SVG
+// shapes are meaningful in foreign content and stay as written (FR-002).
+const VOID_ELEMENT =
+  /<(area|base|br|col|embed|hr|img|input|link|meta|source|track|wbr)\b([^<>]*?)\s*\/>/gi;
+const stripVoidSlashes = (html) => html.replace(VOID_ELEMENT, '<$1$2>');
 
 try {
   await rm(DIST, { recursive: true, force: true });

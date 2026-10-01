@@ -165,6 +165,32 @@ test.describe('custom domain https://aseelalmanahy.com/ (FR-043)', () => {
   });
 });
 
+test.describe('published HTML has no trailing slash on void elements (002 FR-001, FR-002)', () => {
+  // HTML void elements: a trailing "/" is a W3C checker note. SVG shapes must keep theirs.
+  const VOID = /<(area|base|br|col|embed|hr|img|input|link|meta|source|track|wbr)\b[^<>]*\/>/gi;
+
+  for (const page of ['index.html', '404.html']) {
+    test(`dist/${page}`, async () => {
+      const { readFile } = await import('node:fs/promises');
+      const html = await readFile(`dist/${page}`, 'utf8');
+      expect(html.match(VOID) ?? []).toEqual([]);
+      expect(html).toMatch(/<meta charset="utf-8">/);
+    });
+  }
+
+  test('inline SVG keeps its self-closing shapes', async () => {
+    const { readFile } = await import('node:fs/promises');
+    const [source, built] = await Promise.all([
+      readFile('src/index.html', 'utf8'),
+      readFile('dist/index.html', 'utf8'),
+    ]);
+    const shapes = (html) =>
+      html.match(/<(path|circle|rect|line|polyline|polygon)\b[^<>]*\/>/g) ?? [];
+    expect(shapes(built).length).toBeGreaterThan(0);
+    expect(shapes(built)).toEqual(shapes(source));
+  });
+});
+
 test.describe('production build: dist/ (V5.4, V5.7)', () => {
   test('one render-blocking stylesheet and versioned local asset URLs', async () => {
     const { readFile } = await import('node:fs/promises');

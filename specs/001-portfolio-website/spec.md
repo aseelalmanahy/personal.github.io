@@ -91,6 +91,11 @@ robots.txt configurations to point strictly to 'https://aseelalmanahy.com'; ensu
 structured metadata reflects the custom domain without referencing github.io; re-run 'npm run
 verify'."
 
+**Amendment input (2026-10-01, narrative wording)**: "In the Experience section I was [a grader] for C
+and C++, fix that, and for Android I used Kotlin." Applied to FR-011: "core Data Structures in C
+and C++ and Object-Oriented Programming" and "working as an Android Engineer using Kotlin in the
+healthcare sector".
+
 ## Clarifications
 
 ### Session 2026-09-29
@@ -436,8 +441,8 @@ no motion and nothing to click.
 - **FR-011**: The Experience section MUST present this narrative, verbatim, as flowing prose:
   "My engineering journey is rooted in a strong technical foundation, starting as a Professor's
   Assistant and grader at UMass Lowell, where I evaluated complex algorithmic concepts and
-  mentored students in core Data Structures in C and Object-Oriented Programming. I built upon
-  these fundamentals in industry, working as an Android Engineer in the healthcare sector to
+  mentored students in core Data Structures in C and C++ and Object-Oriented Programming. I built upon
+  these fundamentals in industry, working as an Android Engineer using Kotlin in the healthcare sector to
   integrate secure services and optimize user-facing mobile interfaces. Transitioning into
   full-stack engineering, I have evolved into a Full Stack Engineer specialized in building
   robust systems, constructing microservices, and managing cloud infrastructure on AWS within

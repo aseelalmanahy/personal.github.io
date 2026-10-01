@@ -485,6 +485,16 @@ serves the custom domain from `CNAME`.
 
 ---
 
+## Phase 18: Post-release Amendment — Narrative Wording (2026-10-01)
+
+**Goal**: FR-011 names C and C++ for the teaching role and Kotlin for the Android role.
+
+- [X] T183 [US2] Update `EXPERIENCE_NARRATIVE` in `tests/e2e/about-experience.spec.js`; confirm it fails
+- [X] T184 [US2] Update the narrative in `src/index.html` and FR-011 in `spec.md`; record the amendment
+- [X] T185 Run `npm run verify`, record gate K1–K2, and commit on `001-portfolio-website`
+
+---
+
 ## Dependencies & Execution Order
 
 ### Phase Dependencies

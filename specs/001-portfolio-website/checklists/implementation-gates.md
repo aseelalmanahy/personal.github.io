@@ -320,3 +320,4 @@ Further changes start a new feature (`/speckit-specify`) or an amendment recorde
 |---|---|---|---|---|
 | K1 | Narrative verbatim (FR-011) | PASS | about-experience.spec: corrected text ("C and C++", "using Kotlin") on all 3 engines; failed against the old page first | 2026-10-01 |
 | K2 | `npm run verify` | PASS | exit 0: 46/46 unit, 277 e2e passed / 8 skipped, 12/12 links; Lighthouse 1.00 ×4 | 2026-10-01 |
+| K3 | Narrative wording: OOP in C++ (FR-011) | PASS | about-experience.spec on 3 engines (failed first); `npm run verify` exit 0: 46/46 unit, 277 e2e passed / 8 skipped, 12/12 links; Lighthouse 1.00 ×4 | 2026-10-01 |
